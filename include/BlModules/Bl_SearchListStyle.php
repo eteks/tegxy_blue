@@ -6,7 +6,7 @@ $path='../../';
 
 ?>
 <script type="text/javascript" src="js/popupbox.js"></script>
-<?php 
+<?php
 $requestType=$_REQUEST['RequestType'];
 $searchkey=$_REQUEST['SearchKey'];
 $Type=$_REQUEST['Type'];
@@ -79,7 +79,7 @@ while($fetchprodid=mysql_fetch_array($queryprodname)){
 $matchingids.=$fetchprodid['Id'].',';
 }
 $matchingids=substr($matchingids,0,-1);
-
+$relatedsearch1='';
 if($matchingids!=''&&$citymatchdata!=''){
 $searchquery=db_query("SELECT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Fk IN (".$matchingids.") AND PS_User_Fk IN (".$citymatchdata.") ");
 $searchquery1=db_query("SELECT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Fk IN (".$matchingids.") AND PS_User_Fk IN (".$citymatchdata.") ");
@@ -93,12 +93,12 @@ $relatedsearch.=$fetchquery['PS_Id'].',';
 while($fetchquery1=mysql_fetch_array($searchquery3)){
 $relatedsearch1.=$fetchquery1['PS_Fk'].',';
 }
-}        
+}
 }
 $relatedsearch=substr($relatedsearch, 0, -1);
-$relatedsearch1=substr($relatedsearch1, 0, -1);        
+$relatedsearch1=substr($relatedsearch1, 0, -1);
 if(isset($searchquery2)){
-while($fetchquery=db_fetch_array($searchquery2)){    
+while($fetchquery=db_fetch_array($searchquery2)){
 if($requestType=='company'){
 $alreadylisteddetails .=$fetchquery['RGT_PK'].',';
 
@@ -106,17 +106,17 @@ $alreadylisteddetails .=$fetchquery['RGT_PK'].',';
 if($requestType=='bestdeals'){
 $alreadylisteddetails.=$fetchquery['PS_Id'].',';
 }
-$finaldetails=substr($alreadylisteddetails, 0, -1);;    
+$finaldetails=substr($alreadylisteddetails, 0, -1);;
 }
 }
 
 
 if($Type=='1' && $requestType=='company' ){
-if($countresult>0){    
+if($countresult>0){
 while($fetchquery=mysql_fetch_array($searchquery)){
 $yearofestablishment = explode('-',$fetchquery['RGT_YrofEstablish']);
- if(strlen(stripslashes($fetchquery['RGT_CompName']))>25){ $Compnamefixlimit = substr(stripslashes($fetchquery['RGT_CompName']),0,25).'...' ;} else { $Compnamefixlimit =  stripslashes($fetchquery['RGT_CompName']);} 
-$Compnamedisp = '<span style="cursor:pointer;" title="'.$fetchquery['RGT_CompName'].'">'.$Compnamefixlimit.'</span><span style="color:#007088;"> (Since - '.$yearofestablishment[2].')</span>'; 
+ if(strlen(stripslashes($fetchquery['RGT_CompName']))>25){ $Compnamefixlimit = substr(stripslashes($fetchquery['RGT_CompName']),0,25).'...' ;} else { $Compnamefixlimit =  stripslashes($fetchquery['RGT_CompName']);}
+$Compnamedisp = '<span style="cursor:pointer;" title="'.$fetchquery['RGT_CompName'].'">'.$Compnamefixlimit.'</span><span style="color:#007088;"> (Since - '.$yearofestablishment[2].')</span>';
 ?>
 <div class="singlead">
 <!----title---->
@@ -130,7 +130,7 @@ $Compnamedisp = '<span style="cursor:pointer;" title="'.$fetchquery['RGT_CompNam
 <div class="company_logo" align="right"><a href="#thumb" class="thumbnail">
 <img src="<?php if($fetchquery['RGT_PK']!=''){ echo getLogodetails($fetchquery['RGT_PK'],$path); } else { echo 'images/default/no_image.png'; }?>"  width="124" height="115" /><span><img  src="<?php if($fetchquery['RGT_PK']!=''){ echo getLogodetails($fetchquery['RGT_PK'],$path); } else { echo 'images/default/no_image.png'; }?>" width="220" height="220" /></span></a></div>
 <div class="addetails_left">
-<?php if (strlen(getOperatingAreas($fetchquery['RGT_PK'])) > 35)	
+<?php if (strlen(getOperatingAreas($fetchquery['RGT_PK'])) > 35)
 $dispareas =  substr(getOperatingAreas($fetchquery['RGT_PK']),0,35).'...';
 else
 $dispareas = getOperatingAreas($fetchquery['RGT_PK']);?>
@@ -149,8 +149,8 @@ $dispareas = getOperatingAreas($fetchquery['RGT_PK']);?>
 <div class="addetails_left">
 <span style="color:#EC5324;"><b>Company Details</b></span>
 <div style="height:10px;"></div><?php if($fetchquery['RGT_CompType']!=''){?><span>Company Type : <?php if($fetchquery['RGT_CompType']=='1'){echo "Cooperative Societies"; } elseif($fetchquery['RGT_CompType']=='2'){ echo "Government Based";} elseif($fetchquery['RGT_CompType']=='3'){ echo "Joint Stock Companies";} elseif($fetchquery['RGT_CompType']=='4'){ echo "Partnership";} elseif($fetchquery['RGT_CompType']=='5'){ echo "Private Limited";} elseif($fetchquery['RGT_CompType']=='6'){ echo "Sole Proprietorship";}?></span><?php }?>
-<div style="height:5px;"></div><span>Industry : </span> <?php getSectordetails($fetchquery['RGT_Sector']);?></span><br/><?php //if(getMemberKeywords($fetchquery['RGT_PK'])!=''){?><div style="height:5px;" ></div><span>offers : </span><span style="cursor:pointer;" title="<?php echo getMemberKeywords($fetchquery['RGT_PK']);?>"><?php 
-if (strlen(getMemberKeywords($fetchquery['RGT_PK'])) > 20)	
+<div style="height:5px;"></div><span>Industry : </span> <?php getSectordetails($fetchquery['RGT_Sector']);?></span><br/><?php //if(getMemberKeywords($fetchquery['RGT_PK'])!=''){?><div style="height:5px;" ></div><span>offers : </span><span style="cursor:pointer;" title="<?php echo getMemberKeywords($fetchquery['RGT_PK']);?>"><?php
+if (strlen(getMemberKeywords($fetchquery['RGT_PK'])) > 20)
 $dispkeyword =  substr(getMemberKeywords($fetchquery['RGT_PK']),0,20).'...';
 else
 $dispkeyword = getMemberKeywords($fetchquery['RGT_PK']);
@@ -159,13 +159,13 @@ echo $dispkeyword;?></span></span><?php //}?>
 <div class="addetails_sep"></div>
 <div class="addetails_right">
 <span style="color:#EC5324;"><b>Contact Details</b></span><div style="height:10px;"></div>
-<?php 
-if (strlen($fetchquery['RGT_Address1']) > 15)	
+<?php
+if (strlen($fetchquery['RGT_Address1']) > 15)
 $dispaddress =  substr($fetchquery['RGT_Address1'],0,15).'...';
 else
 $dispaddress = $fetchquery['RGT_Address1'];
 
-if (strlen($fetchquery['RGT_Address2']) > 15)	
+if (strlen($fetchquery['RGT_Address2']) > 15)
 $dispaddress2 =  substr($fetchquery['RGT_Address2'],0,15).'...';
 else
 $dispaddress2 = $fetchquery['RGT_Address2'];
@@ -192,11 +192,11 @@ if($fetchquery['RGT_Area']!=''){ getAreadetails($fetchquery['RGT_Area']);}  if($
 </div><br /></br>
 <?php }} else{?><tr><td>No Records Found</td></tr><?php }}
 if($Type=='1' && $requestType=='bestdeals' ){
-if($countresult>0){  
+if($countresult>0){
 while($fetchquery=mysql_fetch_array($searchquery)){
 $yearofestablishment = explode('-',get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_YrofEstablish'));
- if(strlen(stripslashes(get_company_name($fetchquery['PS_Id'])))>25){ $Compnamefixlimit = substr(stripslashes(get_company_name($fetchquery['PS_Id'])),0,25).'...' ;} else { $Compnamefixlimit =  stripslashes(get_company_name($fetchquery['PS_Id']));} 
-$Compnamedisp = $Compnamefixlimit.'<span style="color:#007088;"> (Since - '.$yearofestablishment[2].')</span>'; 
+ if(strlen(stripslashes(get_company_name($fetchquery['PS_Id'])))>25){ $Compnamefixlimit = substr(stripslashes(get_company_name($fetchquery['PS_Id'])),0,25).'...' ;} else { $Compnamefixlimit =  stripslashes(get_company_name($fetchquery['PS_Id']));}
+$Compnamedisp = $Compnamefixlimit.'<span style="color:#007088;"> (Since - '.$yearofestablishment[2].')</span>';
 ?>
 <div class="singlead">
 <!----title---->
@@ -213,8 +213,8 @@ $Compnamedisp = $Compnamefixlimit.'<span style="color:#007088;"> (Since - '.$yea
 
 </div>
 <div>
-<div><?php echo $fetchquery['PS_Display']?></div>     
-<div><?php 
+<div><?php echo $fetchquery['PS_Display']?></div>
+<div><?php
 if($fetchquery['PS_Price']!=''&&$fetchquery['PS_Price']!='0'){
 echo '<span> Price :'.' '.$fetchquery['PS_Price'].' '.CurrencyName($fetchquery['PS_Currency']).'</span>';
 }
@@ -222,8 +222,8 @@ if($fetchquery['PS_Unit']!=''){
 echo '<span> Unit :'.' '.$fetchquery['PS_Unit'].'</span>';
 }
 
-?></div> 
-</div>   
+?></div>
+</div>
 </div>
 <!------adimage--------->
 <!------addetails--------->
@@ -235,7 +235,7 @@ echo '<span> Unit :'.' '.$fetchquery['PS_Unit'].'</span>';
 <div class="addetails_right">
 <span style="color:#EC5324;"><b>Contact Details</b></span><div style="height:10px"></div>
 <?php
-getAreadetails(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Area'));  
+getAreadetails(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Area'));
 getCitydetails(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_City'));
 getStatedetails(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_State'));
 getPindetails(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Pincode'));
@@ -252,7 +252,7 @@ getCountrydetails2(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Cou
 <div class="chat_style"><img src="images/chat_online.png" style="position:relative;top:3px;" />&nbsp;&nbsp;<a href="#"> I'm Offline</a>
 </div>
 <div class="chat_fullcurve"></div>
-<?php  
+<?php
 
 if(get_data_from_registration($fetchquery['PS_User_Fk'],RGT_Type)==3)
 $user_id = $fetchquery['PS_User_Fk'];
@@ -293,7 +293,7 @@ $companycount=0;
 
 
 
-<?php 
+<?php
 }
 if($Type=='2' && $requestType=='bestdeals' ){
 if($countresult>0){
@@ -312,5 +312,5 @@ $listcount=0;?>
 </div>
 <div style="width:142px;height:5px;margin-left:auto;margin-right:auto;background:url(images/gallery_box-shadow.png) no-repeat;"></div>
 </td>
-<?php $listcount++; if($listcount%4==0){ ?></tr><tr><?php }} ?> 
+<?php $listcount++; if($listcount%4==0){ ?></tr><tr><?php }} ?>
 </tr></tbody></table><?php } else { ?><tr><td>No Records Found</td></tr><?php } }}?>

@@ -1,9 +1,12 @@
-<?php 
+<?php
 include_once("include/Configuration.php");
 include_once(PAGE_DBCONNECTION);
-db_connect(); 
-$_SESSION['chatuser'] = $_SESSION['LID'];
-$_SESSION['chatuser_name'] = $_SESSION['UserName']; 
+db_connect();
+if(isset($_SESSION['UserName'])){
+    $_SESSION['chatuser'] = $_SESSION['LID'];
+    $_SESSION['chatuser_name'] = $_SESSION['UserName'];
+}
+
 $PageName = basename($_SERVER['SCRIPT_FILENAME'],'.php');
 if($_REQUEST['user']=='')
 {
@@ -43,8 +46,7 @@ $sessionuserprofile=find_user_url($_SESSION['LID']);
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?php echo $Title;?></title>
 <link rel="stylesheet" href="css/frontpage.css" type="text/css" />
-<!------------------------SCRIPT FILES---------------------------->
-
+<!--SCRIPT FILES---------------------------->
 <!--------slide up/down----------->
 <script src="js/jquery-1.5.2.js"></script>
 <script type="application/javascript">
@@ -111,8 +113,8 @@ var $login = jQuery.noConflict();
 $login(document).ready(function(){
 	$login('#login-trigger').click(function(){
 		$login(this).next('#login-content').slideToggle();
-		$login(this).toggleClass('active');					
-		
+		$login(this).toggleClass('active');
+
 		if ($login(this).hasClass('active')) $login(this).find('span').html('&#x25B2;')
 			else $login(this).find('span').html('&#x25BC;')
 		})
@@ -129,24 +131,24 @@ $login(document).ready(function(){
 <div id="maincontainer">
     <div id="toplogo"><div id="toplogo" style="font-weight: bold; margin-top: 30px; font-family: Trebuchet MS; font-size: 40px;text-shadow: 2px 2px #000000;"><span style="color:#00667C;">X</span><span style="color:#C31118;">Y</span><span style="color:#00667C;">GET</span><span style="color:#C31118;font-size:30px;">.COM</span></div></div><!-- cursor:pointer; onclick="window.open('index.php','_self')" href="index.php"-->
 <div id="title"><table width="600" height="45" cellpadding="0" style="margin-left:auto;margin-right:auto;"><tr><td valign="middle"><a href="index.php" style="text-decoration:none;"><h1><?php echo $FetProfileDetails['RGT_CompName'] ;?></h1></a></td></tr></table></div> <!-----login---->
-<div class="login"> 
+<div class="login">
 <?php if($_SESSION['LID']==''){ ?>
 <nav>
 <ul>
-<li id="login"> 
+<li id="login">
 <a id="login-trigger" href="#">
 <img src="images/login.png" style="position:relative;top:15px;"/>
 </a>
 <div id="login-content">
 <form  method="post" action="Login.php" onSubmit="return ValidateLogin();">
 <fieldset id="inputs" style="border:none;">
-<input id="UserName" class="loginfont" name="UserName" type="text" placeholder="Username / Email Id / Mobile Number" autofocus autocomplete="off" />   
+<input id="UserName" class="loginfont" name="UserName" type="text" placeholder="Username / Email Id / Mobile Number" autofocus autocomplete="off" />
 <input id="PassWord"  class="loginfont" name="PassWord" type="password" placeholder="Password"  autocomplete="off" />
 </fieldset>
 <fieldset id="actions" style="border:none;">
 <input type="submit" id="Submit" name="Submit" value="Sign In">					</fieldset>
 </form>
-</div>                     
+</div>
 </li>
 </ul>
 </nav>
@@ -156,29 +158,29 @@ $login(document).ready(function(){
 <li id="login">
 <a id="login-trigger" href="Logout.php">Sign Out</a>
 <?php if($_SESSION['Type']==2){?>
-<a id="login-trigger" href="ManageProfile.php" target="_blank">Admin</a>           <?php }?>     
+<a id="login-trigger" href="ManageProfile.php" target="_blank">Admin</a>           <?php }?>
 </li>
 </ul>
 </nav>
 <?php }?>
 </div>
-<!-----login----> 
+<!-----login---->
 </div>
 
 <div id="Profile_View_Grid">
 <?php  include("ProfileViewajax.php");?>
 </div>
-<?php 
+<?php
 if($_SESSION['LID']!=''){
 if($sessionuserprofile!=$_REQUEST['user']){
     ?>
     <!-- script to online get status -->
 <script>
-setInterval("find_user_online(<?php echo $LID; ?>)", 5000); // Update every 10 seconds 
+setInterval("find_user_online(<?php echo $LID; ?>)", 5000); // Update every 10 seconds
 </script>
 
 <!-- script to online get status end -->
-    <?php 
+    <?php
 $useronlinestatus=find_user_online($_REQUEST['user']);
 ?>
 <a id="onlinestatusmessage" href="javascript:void(0)" onclick="chatWith('<?php echo $LID; ?>','<?php echo $pageusername; ?>');"><div id="iamonline" onmouseover="importJavascript('js/chat.js')" style="z-index:1261;width:143px;height:74px;position:fixed;right:0;top:25%;background-image: url(images/<?php if($useronlinestatus=='0'){echo 'iamoffline';}else {echo 'iamonline';}?>.png);"></div></a>

@@ -1,5 +1,5 @@
-<?php 
-function db_connect($server = DB_SERVER, $username = DB_SERVER_USERNAME, $password = DB_SERVER_PASSWORD, $database = DB_DATABASE, $link = 'db_link') 
+<?php
+function db_connect($server = DB_SERVER, $username = DB_SERVER_USERNAME, $password = DB_SERVER_PASSWORD, $database = DB_DATABASE, $link = 'db_link')
 {
 global $$link;
 $$link = mysql_connect($server, $username, $password) or die("Couldnt connect DB");
@@ -7,21 +7,21 @@ if ($$link) mysql_select_db($database);
 return $$link;
 }
 
-function db_close($link = 'db_link') 
+function db_close($link = 'db_link')
 {
 global $$link;
 return mysql_close($$link);
 }
 
-function db_error($query, $errno, $error) 
-{ 
+function db_error($query, $errno, $error)
+{
 die('<font color="#000000"><b>' . $errno . ' - ' . $error . '<br><br>' . $query . '<br><br><small><font color="#ff0000">[TEP STOP]</font></small><br><br></b></font>');
 }
 
-function db_query($query, $link = 'db_link') 
+function db_query($query, $link = 'db_link')
 {
 global $$link, $logger;
-if (defined('STORE_DB_TRANSACTIONS') && (STORE_DB_TRANSACTIONS == 'true')) 
+if (defined('STORE_DB_TRANSACTIONS') && (STORE_DB_TRANSACTIONS == 'true'))
 {
 if (!is_object($logger)) $logger = new logger;
 $logger->write($query, 'QUERY');
@@ -29,33 +29,33 @@ $logger->write($query, 'QUERY');
 
 $result = mysql_query($query, $$link) or db_error($query, mysql_errno(), mysql_error());
 
-if (defined('STORE_DB_TRANSACTIONS') && (STORE_DB_TRANSACTIONS == 'true')) 
+if (defined('STORE_DB_TRANSACTIONS') && (STORE_DB_TRANSACTIONS == 'true'))
 {
 if (mysql_error()) $logger->write(mysql_error(), 'ERROR');
 }
 return $result;
 }
 
-function sql_query($query) 
+function sql_query($query)
 {
 return mysql_query($query);
 }
 
-function db_perform($table, $data, $action = 'insert', $parameters = '', $link = 'db_link') 
+function db_perform($table, $data, $action = 'insert', $parameters = '', $link = 'db_link')
 {
 reset($data);
-if ($action == 'insert') 
+if ($action == 'insert')
 {
 $query = 'insert into ' . $table . ' (';
-while (list($columns, ) = each($data)) 
+while (list($columns, ) = each($data))
 {
 $query .= $columns . ', ';
 }
 $query = substr($query, 0, -2) . ') values (';
 reset($data);
-while (list(, $value) = each($data)) 
+while (list(, $value) = each($data))
 {
-switch ((string)$value) 
+switch ((string)$value)
 {
 case 'now()':
 $query .= 'now(), ';
@@ -69,13 +69,13 @@ break;
 }
 }
 $query = substr($query, 0, -2) . ')';
-} 
-elseif ($action == 'update') 
+}
+elseif ($action == 'update')
 {
 $query = 'update ' . $table . ' set ';
-while (list($columns, $value) = each($data)) 
+while (list($columns, $value) = each($data))
 {
-switch ((string)$value) 
+switch ((string)$value)
 {
 case 'now()':
 $query .= $columns . ' = now(), ';
@@ -93,7 +93,7 @@ $query = substr($query, 0, -2) . ' where ' . $parameters;
 return db_query($query, $link);
 }
 
-function db_fetch_array($db_query) 
+function db_fetch_array($db_query)
 {
 return mysql_fetch_array($db_query);
 }
@@ -113,52 +113,52 @@ function db_fetch_object($db_query)
 return mysql_fetch_object($db_query);
 }
 
-function db_data_seek($db_query, $row_number) 
+function db_data_seek($db_query, $row_number)
 {
 return mysql_data_seek($db_query, $row_number);
 }
 
-function db_insert_id() 
+function db_insert_id()
 {
 return mysql_insert_id();
 }
 
-function db_free_result($db_query) 
+function db_free_result($db_query)
 {
 return mysql_free_result($db_query);
 }
 
-function db_fetch_fields($db_query) 
+function db_fetch_fields($db_query)
 {
 return mysql_fetch_field($db_query);
 }
 
-function db_output($string) 
+function db_output($string)
 {
 return htmlspecialchars($string);
 }
 
-function db_input($string) 
+function db_input($string)
 {
 return addslashes($string);
 }
 
-function db_prepare_input($string) 
+function db_prepare_input($string)
 {
-if (is_string($string)) 
+if (is_string($string))
 {
 return trim(stripslashes($string));
-} 
-elseif (is_array($string)) 
+}
+elseif (is_array($string))
 {
 reset($string);
-while (list($key, $value) = each($string)) 
+while (list($key, $value) = each($string))
 {
 $string[$key] = db_prepare_input($value);
 }
 return $string;
-} 
-else 
+}
+else
 {
 return $string;
 }
@@ -210,13 +210,13 @@ $startlmt = 0;
 }
 if (($noofpages > 1))
 {
-if($startdata==0) 
+if($startdata==0)
 $Pageing .="<li class='page'><a onclick=\"javascript:void(0);\" style=\"text-decoration:none\">First</a></li>";
 else
 $PageContent .= "<li class='nav'><a onclick=\"return ".$jsFun."('0');\" style=\"text-decoration:none\">First</a></li>";
 }
 
-if($startdata!=0) 
+if($startdata!=0)
 {
 $prev=$startdata-$pagesize;
 $PageContent .= "<li class='nav'><a onclick=\"return ".$jsFun."('$prev');\" style=\"text-decoration:none\">Prev</a></li>";
@@ -268,25 +268,25 @@ return $PageContent;
 
 function ProductName($Iid)
 {
-$SelectQuery=db_query("Select Kd_Keyword From ".TABLE_KEYWORDMST." WHERE Kd_Id='".$Iid."' "); 
+$SelectQuery=db_query("Select Kd_Keyword From ".TABLE_KEYWORDMST." WHERE Kd_Id='".$Iid."' ");
 $FetchQuery=db_fetch_array($SelectQuery);
 return ucfirst($FetchQuery[0]);
 }
 function ProductCategory($Iid)
 {
-$SelectQuery=db_query("Select ProductCat_Name From ".TABLE_PRODUCTCATEGORY." WHERE ProductCat_Pk='".$Iid."' "); 
+$SelectQuery=db_query("Select ProductCat_Name From ".TABLE_PRODUCTCATEGORY." WHERE ProductCat_Pk='".$Iid."' ");
 $FetchQuery=db_fetch_array($SelectQuery);
 return ucfirst($FetchQuery[0]);
 }
 function ProductSubCategory($Iid)
 {
-$SelectQuery=db_query("Select ProductSubCat_Name From ".TABLE_PRODUCTSUBCATEGORY." WHERE ProductSubCat_Pk='".$Iid."' "); 
+$SelectQuery=db_query("Select ProductSubCat_Name From ".TABLE_PRODUCTSUBCATEGORY." WHERE ProductSubCat_Pk='".$Iid."' ");
 $FetchQuery=db_fetch_array($SelectQuery);
 return ucfirst($FetchQuery[0]);
 }
 function ProductType($Iid)
 {
-$SelectQuery=db_query("Select ProductType_Name From ".TABLE_PRODUCTTYPE." WHERE ProductType_Pk='".$Iid."' "); 
+$SelectQuery=db_query("Select ProductType_Name From ".TABLE_PRODUCTTYPE." WHERE ProductType_Pk='".$Iid."' ");
 $FetchQuery=db_fetch_array($SelectQuery);
 return ucfirst($FetchQuery[0]);
 }
@@ -296,7 +296,7 @@ function StringLeftArrow($string,$symbol,$count)
 if($string!='')
 {
 $strlength= strlen($string) + $count;
-$stringright = str_pad($string,$strlength,$symbol, STR_PAD_LEFT);	
+$stringright = str_pad($string,$strlength,$symbol, STR_PAD_LEFT);
 }
 if(isset($stringright) && !empty($stringright))
 return $stringright;
@@ -308,7 +308,7 @@ function StringAppend($string,$symbol,$count,$Type)//Type - STR_PAD_LEFT Or STR_
 if($string!='')
 {
 $strlength= strlen($string) + $count;
-$stringa = str_pad($string,$strlength,$symbol, $Type);	
+$stringa = str_pad($string,$strlength,$symbol, $Type);
 }
 if(isset($stringa) && !empty($stringa))
 return $stringa;
@@ -372,7 +372,7 @@ $whereCon .= $dlmt.$where_field." LIKE '%".$word1."%'";
 }
 }
 if ($whereCon != 'WHERE ')
-{   
+{
 $sql ="SELECT ".$get_data." FROM ".$table." ".$whereCon;
 
 $res = db_query($sql);
@@ -380,7 +380,7 @@ $Collection_Id='';
 $resCount = db_num_rows($res);
 
 if($resCount > 0)
-{	
+{
 while($Select_ftch=db_fetch_array($res))
 {
 $Select_ftch[$get_data];
@@ -398,12 +398,12 @@ return $Collection_Id;
 
 
 
-function CountryName($id) 
-{	
+function CountryName($id)
+{
 $name = "";
 $sql="SELECT Country_Name FROM ".TABLE_GENERALCOUNTRYMASTER." WHERE Id = '$id'";
 $result_obj=db_query($sql);
-if(db_num_rows($result_obj)) 
+if(db_num_rows($result_obj))
 {
 $rs=db_fetch_array($result_obj);
 $name = $rs["Country_Name"];
@@ -411,12 +411,12 @@ $name = $rs["Country_Name"];
 return $name;
 }
 
-function StateName($id) 
-{	
+function StateName($id)
+{
 $name = "";
 $sql="SELECT St_Name FROM ".TABLE_GENERALSTATEMASTER." WHERE Id = '$id'";
 $result_obj=db_query($sql);
-if(db_num_rows($result_obj)) 
+if(db_num_rows($result_obj))
 {
 $rs=db_fetch_array($result_obj);
 $name = $rs["St_Name"];
@@ -424,80 +424,80 @@ $name = $rs["St_Name"];
 return $name;
 }
 
-function CityName($id) 
-{	
+function CityName($id)
+{
 $name = "";
 $sql="SELECT Area FROM ".TABLE_GENERALAREAMASTER." WHERE Id = '$id'";
 $result_obj=db_query($sql);
-if(db_num_rows($result_obj)) 
-{ 	
+if(db_num_rows($result_obj))
+{
 $rs=db_fetch_array($result_obj);
 $name = $rs["Area"];
-}	
+}
 return $name;
-}	
+}
 
-function AreaName($id) 
-{	
+function AreaName($id)
+{
 $name = "";
 $sql="SELECT AM_Area FROM ".TABLE_AREAMASTER." WHERE AM_Id = '$id'";
 $result_obj=db_query($sql);
-if(db_num_rows($result_obj)) 
-{ 	
+if(db_num_rows($result_obj))
+{
 $rs=db_fetch_array($result_obj);
 $name = $rs["AM_Area"];
-}	
+}
 return $name;
-}	
+}
 
-function PincodeName($id) 
-{	
+function PincodeName($id)
+{
 $name = "";
 $sql="SELECT PM_Pincode FROM ".TABLE_PINCODEMASTER." WHERE PM_Id = '$id'";
 $result_obj=db_query($sql);
-if(db_num_rows($result_obj)) 
-{ 	
+if(db_num_rows($result_obj))
+{
 $rs=db_fetch_array($result_obj);
 $name = $rs["PM_Pincode"];
-}	
+}
 return $name;
-}	
+}
 
 
 function PHP_Mailer($Message,$Subject,$ToAddress,$ToName,$FromAddress,$FromName,$Attachmenttemp,$Attachment)
-{ 
+{
 $mail = new PHPMailer(true);
 try {
 $mail->AddAddress($ToAddress,$ToName);
-$mail->SetFrom($FromAddress,$FromName);		  
+$mail->SetFrom($FromAddress,$FromName);
 $mail->Subject = $Subject;
 if(isset($Attachment) && $Attachment!='')
 $mail->AddAttachment($Attachmenttemp,$Attachment);
-$mail->AltBody = 'To view the message, please use an HTML compatible email viewer!'; 
+$mail->AltBody = 'To view the message, please use an HTML compatible email viewer!';
 $mail->MsgHTML($Message);
 $mail->Send();
 } catch (phpmailerException $e) {
-echo $e->errorMessage(); 
+echo $e->errorMessage();
 } catch (Exception $e) {
-echo $e->getMessage(); 
-} 
+echo $e->getMessage();
+}
 
 }
-function CurrencyName($id) 
-{	
+function CurrencyName($id)
+{
 $name = "";
 $sql="SELECT Symbol FROM ".TABLE_ADVCURRENCY." WHERE Id = '$id'";
 $result_obj=db_query($sql);
-if(db_num_rows($result_obj)) 
-{ 	
+if(db_num_rows($result_obj))
+{
 $rs=db_fetch_array($result_obj);
 $name = $rs["Symbol"];
-}	
+}
 return $name;
-}	
+}
 
 
-function ChangeDateforDB($inputdate) 
+function ChangeDateforDB($inputdate)
 {
 if($inputdate>0)
 {
@@ -509,7 +509,7 @@ return $show;
 }
 }
 
-function ChangeDateforShow($inputdate) 
+function ChangeDateforShow($inputdate)
 {
 $show = "00-00-0000";
 if($inputdate>0)
@@ -530,7 +530,7 @@ $Fetchlogo=mysql_fetch_array($querylogo);
 $logo=$path.$Fetchlogo['LG_Logo'];
 
 if($Fetchlogo['LG_Logo']!='' && file_exists($logo)){
-  echo $Fetchlogo['LG_Logo'];  
+  echo $Fetchlogo['LG_Logo'];
  }
 else{
    echo 'images/default/no_logo.png';
@@ -545,7 +545,7 @@ $Fetchlogo=mysql_fetch_array($querylogo);
 $logo=$path.$Fetchlogo['LG_Logo'];
 
 if($Fetchlogo['LG_Logo']!='' && file_exists($logo)){
-  echo $Fetchlogo['LG_Logo'];  
+  echo $Fetchlogo['LG_Logo'];
  }
 else{
     echo 'images/default/no_logo_gallery.png';
@@ -594,7 +594,7 @@ function getCountrydetails($countryid,$pinid){
 $querycountry=db_query("SELECT Country_Name FROM  ".TABLE_GENERALCOUNTRYMASTER." WHERE  `Id` ='".$countryid."'");
 $Fetchcountry=mysql_fetch_array($querycountry);
 if($Fetchcountry['Country_Name']!=''){
-if($pinid!='')	
+if($pinid!='')
 echo $Fetchcountry['Country_Name'].'.';
 else
 echo StringAppend($Fetchcountry['Country_Name'],', ',2,STR_PAD_LEFT);
@@ -622,11 +622,11 @@ echo $Fetchdesc['PDS_Desc'];
 
 function getRelatedSearchComp($sectordata,$alreadylisteddetails,$findcitymatch,$findareamatch){
 
-if($findareamatch!='')	
+if($findareamatch!='')
 $area ="AND RGT_Area IN ($findareamatch)";
 else
-$area ='';	
-	
+$area ='';
+
 $queryrelated=db_query("SELECT RGT_CompName FROM  ".TABLE_REGISTRATION." WHERE RGT_Status=1 AND RGT_Type=2  AND  RGT_Sector IN ('".$sectordata."')  AND RGT_PK NOT IN ('".$alreadylisteddetails."') AND RGT_City =$findcitymatch $area ");
 $countresult=mysql_num_rows($queryrelated);
 if($countresult>0){
@@ -652,7 +652,7 @@ else {
 echo '<li>No Results</li>';
 }
 
-}    
+}
 function getRelatedSearchBestdeals($ps_id,$ps_fk,$citymatchdata){
 
 if($citymatchdata!='')
@@ -672,16 +672,16 @@ $countresult=mysql_num_rows($selectrelatedproducts);
 if($countresult>0){
 
 while($fetchrelatedproduct=mysql_fetch_array($selectrelatedproducts)){
-	
-	
+
+
 /*if($count>15){
 $displaydata=(substr($fetchrelatedproduct['PS_Display'],0,15));
 $displaydata.='...';
 }
 else {*/
 $displaydata=$fetchrelatedproduct['PS_Display'];
-/*}*/	
-	
+/*}*/
+
 echo '<li><span>';
 echo '<a target="_blank" href="Bestdealsajax.php?user=';
 echo get_data_from_registration($fetchrelatedproduct['PS_User_Fk'],RGT_ProfileUrl);
@@ -710,7 +710,7 @@ echo '<li>No Results</li>';
 else
 echo '<li>No Results</li>';
 
-} 
+}
 
 function nameLimiter($string,$count){
 $strcount=strlen($string);
@@ -725,7 +725,7 @@ return $result;
 
 
 function display_area_list($citycode,$selectt,$key){
-	
+
 if($key=='name')
 $citycode = get_Search_Id(TABLE_GENERALAREAMASTER,"Id","Area",$citycode);
 else
@@ -734,9 +734,9 @@ $citycode =$citycode;
 $queryarea=db_query("SELECT AM_Id, AM_Area, AM_Status  FROM ".TABLE_AREAMASTER." WHERE AM_City =$citycode ");
 echo '<option>Select Area in '.CityName($citycode).'</option>';
 while($fetchquery=mysql_fetch_array($queryarea)){
-$Selector = ($fetchquery['AM_Id'] == $selectt) ? 'selected=selected':'' ;	
+$Selector = ($fetchquery['AM_Id'] == $selectt) ? 'selected=selected':'' ;
 echo '<option value="'.$fetchquery['AM_Id'].'"  '.$Selector.' >'.$fetchquery['AM_Area'].'</option>';
-}    
+}
 }
 function display_city_name($cityid){
 $querycityname=db_query("SELECT  Area FROM ".TABLE_GENERALAREAMASTER." WHERE Id =$cityid ");
@@ -746,10 +746,10 @@ return $fetchcityname['Area'];
 
 
 
-/*	
+/*
 Create a thumbnail of $srcFile and save it to $destFile.
 The thumbnail will be $width pixels.
-*/	
+*/
 
 function createThumbnail($srcFile, $destFile, $new_w, $new_h, $quality = 75)
 {
@@ -769,9 +769,9 @@ $thumb_h=$old_y/$ratio1;
 else {
 $thumb_h=$new_h;
 $thumb_w=$old_x/$ratio2;
-}			
+}
 $thumbnail = copyImage($srcFile, $destFile, $thumb_w, $thumb_h, $quality);
-}	
+}
 // return the thumbnail file name on sucess or blank on fail
 return basename($thumbnail);
 }
@@ -827,20 +827,20 @@ imagepng($dest,$destFile);
 return $destFile;
 }
 
-function getExtension($str) 
-{ 
-$i = strrpos($str,"."); 
-if (!$i) 
-{ 
+function getExtension($str)
+{
+$i = strrpos($str,".");
+if (!$i)
+{
 return "";
-}        
-$l = strlen($str) - $i; 
-$ext = substr($str,$i+1,$l); 
-return $ext; 
+}
+$l = strlen($str) - $i;
+$ext = substr($str,$i+1,$l);
+return $ext;
 }
 function UserFileSize($UserId)
 {
-$SqlRun = db_query("SELECT SFS_FileSize FROM ".TABLE_STOREFILESIZE." WHERE SFS_UserFk='".$UserId."' ");	
+$SqlRun = db_query("SELECT SFS_FileSize FROM ".TABLE_STOREFILESIZE." WHERE SFS_UserFk='".$UserId."' ");
 while($Fetch = db_fetch_array($SqlRun))
 {
 $Result += $Fetch['SFS_FileSize'];
@@ -850,7 +850,7 @@ return $Result;
 
 function UserFileSizeLimit($UserId)
 {
-$SqlRun = db_query("SELECT RGT_Filesize FROM ".TABLE_REGISTRATION." WHERE RGT_PK='".$UserId."' AND RGT_Type='2' ");	
+$SqlRun = db_query("SELECT RGT_Filesize FROM ".TABLE_REGISTRATION." WHERE RGT_PK='".$UserId."' AND RGT_Type='2' ");
 $Fetch = db_fetch_array($SqlRun);
 return $Fetch[0];
 }
@@ -858,7 +858,7 @@ return $Fetch[0];
 function get_company_name($productId){
 $querycompname=db_query("SELECT RGT_CompName	FROM ".TABLE_REGISTRATION." WHERE RGT_PK IN (SELECT PS_User_Fk FROM ".TABLE_PRODUCTSERVICE." WHERE PS_Id=$productId) ");
 $fetchcompname=mysql_fetch_array($querycompname);
-return $fetchcompname['RGT_CompName'];   
+return $fetchcompname['RGT_CompName'];
 }
 
 function get_data_from_registration($userfk,$tofetch){
@@ -918,13 +918,13 @@ function find_user_url($userid){
 }
 
 function clear_visitedpage($userid){
-db_query("UPDATE ".TABLE_REGISTRATION." SET RGT_VisitingPage='' WHERE RGT_PK=$userid");  
-db_query("UPDATE ".TABLE_REGISTRATION." SET RGT_onlinestatus='0' WHERE RGT_PK='".$_SESSION['LID']."'"); 
+db_query("UPDATE ".TABLE_REGISTRATION." SET RGT_VisitingPage='' WHERE RGT_PK=$userid");
+db_query("UPDATE ".TABLE_REGISTRATION." SET RGT_onlinestatus='0' WHERE RGT_PK='".$_SESSION['LID']."'");
 }
 
 function track_page_visits($user,$visitedpage,$ipaddress){
  $trackpagevisit=db_query("INSERT INTO tbl_visitors (RGT_Pk,visited_page,visited_time,visitor_ip) VALUES ('".$user."','".$visitedpage."',CURRENT_TIMESTAMP,'".$ipaddress."') ");
- db_query("UPDATE ".TABLE_REGISTRATION." SET RGT_VisitingPage='$visitedpage' WHERE RGT_PK='".$_SESSION['LID']."'");   
+ db_query("UPDATE ".TABLE_REGISTRATION." SET RGT_VisitingPage='$visitedpage' WHERE RGT_PK='".$_SESSION['LID']."'");
 }
 
 function find_profile_id($url){
@@ -955,14 +955,14 @@ function getRealIPAddr()
 function getPrimaryId($field,$table,$id,$compare)
 {
 $sqlquery = db_query("select $id from $table where $field='".$compare."'");
-$fetchid    = db_fetch_array($sqlquery); 
+$fetchid    = db_fetch_array($sqlquery);
 return  $fetchid[0];
 }
 function getMemberKeywords($memberid)
 {
 $checkexist = db_query("SELECT Kd_Keyword FROM ".TABLE_MEMBERKEYWORD." a, ".TABLE_KEYWORDMST." b WHERE Mk_MemFk='".$memberid."' and Mk_KeywordFk=Kd_Id and b.Kd_Status=1");
 if(db_num_rows($checkexist)>0)
-{	
+{
 while($fetch = db_fetch_array($checkexist))
 {
 if($fetch['Kd_Keyword']!='')
@@ -970,7 +970,7 @@ if($fetch['Kd_Keyword']!='')
 if($result=='')
 $result = $fetch['Kd_Keyword'];
 else
-$result .=', '.$fetch['Kd_Keyword'];	
+$result .=', '.$fetch['Kd_Keyword'];
 }
 }
 }
@@ -1008,7 +1008,7 @@ else {
 echo '<li>No Results</li>';
 }
 
-}    
+}
 
 function getKeywordCompListFromSearchedKeyword($searchkey)
 {
@@ -1030,8 +1030,8 @@ $ResCompIds .=','.$FetchIndustryIds['RGT_PK'];
 
 if($ResIndustryIds!='')
 {
-	
-//company list	
+
+//company list
 $queryrelated=db_query("SELECT RGT_CompName FROM ".TABLE_REGISTRATION." WHERE RGT_Status=1 AND RGT_Type=2 AND  RGT_Sector IN (".$ResIndustryIds.") AND RGT_PK NOT IN (".$ResCompIds.")");
 $countresult=mysql_num_rows($queryrelated);
 if($countresult>0){
@@ -1090,7 +1090,7 @@ echo '<li>No Results</li>';
 else {
 echo '<li>No Results</li>';
 }
-}  
+}
 
 
 function getKeywordCompListFromSearchedCompany($searchkey)
@@ -1113,8 +1113,8 @@ $ResCompIds .=','.$FetchIndustryIds['RGT_PK'];
 
 if($ResIndustryIds!='')
 {
-	
-//company list	
+
+//company list
 $queryrelated=db_query("SELECT RGT_CompName FROM ".TABLE_REGISTRATION." WHERE RGT_Status=1 AND RGT_Type=2 AND  RGT_Sector IN (".$ResIndustryIds.") AND RGT_PK NOT IN (".$CompanyIds.")");
 $countresult=mysql_num_rows($queryrelated);
 if($countresult>0){
@@ -1173,11 +1173,11 @@ echo '<li>No Results</li>';
 else {
 echo '<li>No Results</li>';
 }
-}  
+}
 
 function XbitImage($ProductId)
 {
-$SelectQuery=db_query("Select PSG_ImgPath From ".TABLE_PRODUCTSERVICEGALLERY." WHERE PSG_PSFk='".$ProductId."' order by PSG_Id asc"); 
+$SelectQuery=db_query("Select PSG_ImgPath From ".TABLE_PRODUCTSERVICEGALLERY." WHERE PSG_PSFk='".$ProductId."' order by PSG_Id asc");
 $FetchQuery=db_fetch_array($SelectQuery);
 return ucfirst($FetchQuery[0]);
 }
@@ -1186,15 +1186,15 @@ function CompanyType($Id)
 {
 if($Id == 1)
 $result = 'Cooperative Societies';
-else if($Id == 2)	
+else if($Id == 2)
 $result = 'Government Based';
-else if($Id == 3)	
+else if($Id == 3)
 $result = 'Joint Stock Companies';
-else if($Id == 4)	
+else if($Id == 4)
 $result = 'Partnership';
-else if($Id == 5)	
+else if($Id == 5)
 $result = 'Private Limited';
-else if($Id == 5)	
+else if($Id == 5)
 $result = 'Sole Proprietorship';
 else
 $result = '';
@@ -1205,17 +1205,17 @@ function getOperatingAreas($memberid)
 {
 $checkexist = db_query("SELECT Area FROM ".TABLE_OPERATINGAREA." a, ".TABLE_GENERALAREAMASTER." b WHERE Op_BusFk='".$memberid."' and  Op_AreaFk =Id and b.Status=1");
 if(db_num_rows($checkexist)>0)
-{	
+{
 while($fetch = db_fetch_array($checkexist))
 {
 if($fetch['Area']!='')
 {
     if(isset($result) && !empty($result))
 if($result=='')
-    
+
 $result = $fetch['Area'];
 else
-$result .=', '.$fetch['Area'];	
+$result .=', '.$fetch['Area'];
 }
 }
 }
