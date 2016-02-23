@@ -1,0 +1,403 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>TRACEMEIN</title>
+<link rel="stylesheet" href="css/frontpage.css" type="text/css" />
+<!--------slide up/down----------->
+<script src="js/jquery-1.5.2.js"></script>
+<script type="application/javascript">
+var $j = jQuery.noConflict();
+$j(document).ready(function(){
+$j("#myButton").toggle(function(){
+    $j("#slideimg").slideUp();
+    $j(this).css("background-image", "url(images/show-panel.png)");
+},function(){
+	$j("#slideimg").slideDown();
+    $j(this).css("background-image", "url(images/hide-panel.png)");
+})
+});
+</script>
+<!---------slide up/down--------------->
+<!--------vertical accordion----------->
+<link type="text/css" rel="stylesheet" href="vaccordian/css/jquery-ui-1.8.9.custom.css" />
+	<script type="text/javascript" src="vaccordian/jquery-1.4.3.min.js"></script>	
+	<script type="text/javascript" src="vaccordian/jquery-ui-1.8.13.custom.min.js"></script>
+	<script type="text/javascript" src="vaccordian/jquery.multi-accordion-1.5.3.js"></script>
+<!--------vertical accordion----------->
+<!-----------product carousel---------->
+<link rel="stylesheet" type="text/css" media="screen" href="carousel/css/CSSreset.min.css" />
+<script type="text/javascript" src="carousel/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="carousel/js/jquery.als-1.2.min.js"></script>
+<script type="text/javascript">
+var $k = jQuery.noConflict();
+$k(document).ready(function() 
+{
+$k("#lista1").als({
+visible_items: 1,
+scrolling_items: 1,
+orientation: "horizontal",
+circular: "yes",
+interval: 5000,
+direction: "right",
+start_from: 0
+});
+});
+
+var $l = jQuery.noConflict();
+$l(document).ready(function() 
+{
+$l("#lista2").als({
+visible_items: 1,
+scrolling_items: 1,
+orientation: "horizontal",
+circular: "yes",
+interval: 5000,
+direction: "right",
+start_from: 0
+});
+});
+</script>
+<!-----------product carousel---------->
+
+<!------------LOGIN FORM---------------->
+<script type="text/javascript">
+var $login = jQuery.noConflict();
+$login(document).ready(function(){
+	$login('#login-trigger').click(function(){
+		$login(this).next('#login-content').slideToggle();
+		$login(this).toggleClass('active');					
+		
+		if ($login(this).hasClass('active')) $login(this).find('span').html('&#x25B2;')
+			else $login(this).find('span').html('&#x25BC;')
+		})
+});
+</script>
+<!------------LOGIN FORM---------------->
+<!-----------LEFT ACCORDION-------------->
+<link rel="stylesheet" type="text/css" href="css/accordion.css" />
+<script src="accordion/jquery-latest.min.js" type="text/javascript"></script>
+<script src="accordion/main.js" type="text/javascript"></script>
+<script type="text/javascript">
+$('#search').click(function () {
+    $("#cssmenu").accordion({active: false}).click();
+});
+</script>  
+<!-----------LEFT ACCORDION-------------->
+<style>
+.supplr_menu_container
+{
+width:990px;
+height:56px;
+margin-left:auto;
+margin-right:auto;
+}
+
+.leftaccordiaon_top
+{
+width:247px;
+height:32px;
+padding:10px 0px 0px 15px;
+background:url(images/title_h.png) no-repeat;
+color:#fff;
+font-weight:bold;
+font-size:16px;
+
+}
+
+.leftaccordion_btm
+{
+width:247px;
+height:18px;
+background:url(images/head_bottom.png) no-repeat;
+margin-top:-10px;
+}
+</style>
+</head>
+
+<body>
+<div id="maincontainer">
+<div id="toplogo"><img src="images/logo_new.png" /></div>
+<div id="title"><h1 style="text-transform:uppercase;">Atomicka Softtech Pvt Ltd</h1></div> 
+<!-----login---->
+<div class="login">
+<nav>
+	<ul>
+		<li id="login">
+			<a id="login-trigger" href="#">
+				<img src="images/login.png" style="position:relative;top:15px;"/>
+			</a>
+			<div id="login-content">
+				<form>
+					<fieldset id="inputs" style="border:none;">
+						<input id="username" type="email" name="Email" placeholder="Your email address" required>   
+						<input id="password" type="password" name="Password" placeholder="Password" required>
+					</fieldset>
+					<fieldset id="actions" style="border:none;">
+						<input type="button" id="submit" value="Log in">
+					</fieldset>
+				</form>
+			</div>                     
+		</li>
+	</ul>
+</nav>
+</div>
+<!-----login---->
+</div><!------maincontainer---------->
+
+<!-------menu_container--------->
+<div class="supplr_menu_container">
+<div style="width:790px;height:56px;margin-left:200px;">
+<div class="leftmenubg"></div>
+<div class="midmenubg">
+<ul class="menu">
+    <div style="float:left;padding:0px 35px 0px 15px;"><a href="index.html" ><img src="images/home_icon.png" style="position:relative;top:3px;" /></a></div>
+    <li><a href="profile.html" >Profile</a></li>
+    <li><a href="bestdeals.html" >Xbit</a></li>
+    <li><a href="events.html" >Events</a></li>
+    <li><a href="network.html" >Network</a></li>
+    <li><a href="gallery.html" >Gallery</a></li>
+    <li><a href="Contact_us.html">Contact us</a></li>
+    </ul>
+</div>
+<div class="rightmenubg"></div>
+</div>
+</div>
+<!-------menu_container--------->
+
+
+<div id="contentwrapper">
+
+<div id="leftcolumn">
+<div class="innertube">
+<div style="width:100%;height:20px;"></div>
+<!-------accordion menu--------->
+<div class="leftaccordiaon_top" >My Category</div>
+<div style="width:245px;height:auto;border:1px solid #C0C0C0;" >
+<div id='cssmenu'>
+<ul>
+   <li><a href='http://www.google.com'><span>Company</span></a>
+      <ul>
+         <li><a href='http://www.google.com'>About</a></li>
+         <li><a href='http://www.google.com'>Location</a></li>
+      </ul>
+   </li>
+   <li><a href='http://www.google.com'><span>Products</span></a>
+      <ul>
+         <li><a href='http://www.google.com'>Widgets</a></li>
+         <li><a href='http://www.google.com'>Menus</a></li>
+         <li><a href='http://www.google.com'>Products</a></li>
+      </ul>
+   </li>
+   <li><a href='http://www.google.com'><span>Company</span></a>
+      <ul>
+         <li><a href='http://www.google.com'>About</a></li>
+         <li><a href='#'>Location</a></li>
+      </ul>
+   </li>
+   <li><a href='#'><span>Contact</span></a></li>
+</ul>
+</div>
+</div>
+<div class="leftaccordion_btm" ></div>
+<!-------accordion menu--------->
+<div style="width:100%;height:20px;"></div>
+<!-------best deal---------> 
+<div style="width:85%;margin:0 1%;border:2px solid #9EA9B5;border-radius:5px 5px;padding:0px 7px; text-align:justify;font-size:13px;">
+<div style="width:96%;margin:-3% 1% 0 1%;padding:2% 0;text-align:center;background:url(images/title_ornage.png) no-repeat center;color:#fff;"><b>Xbit</b></div>
+<div style="width:96%;height:5px;"></div>
+<div style="width:96%;height:130px;" align="center">
+<div id="lista1" class="als-container">
+		<span class="als-prev"><img src="images/left_arrow.png" alt="prev" title="previous" /></span>
+		<div class="als-viewport" align="center">
+		<ul class="als-wrapper">
+		<li class="als-item"><a href=""><img src="images/machine.png" alt="Paper Cup Machinery" title="Paper Cup Machinery" /><span style="line-height:16px;">Paper Cup Machinery <br/>Offer Price $ 1456</span></a></li>
+		<li class="als-item"><a href=""><img src="images/machine.png" alt="Paper Cup Machinery" title="Paper Cup Machinery" /><span style="line-height:16px;">Paper Cup Machinery <br/>Offer Price $ 1456</span></a></li>
+		<li class="als-item"><a href=""><img src="images/machine.png" alt="Paper Cup Machinery" title="Paper Cup Machinery" /><span style="line-height:16px;">Paper Cup Machinery <br/>Offer Price $ 1456</span></a></li>
+		<li class="als-item"><a href=""><img src="images/machine.png" alt="Paper Cup Machinery" title="Paper Cup Machinery" /><span style="line-height:16px;">Paper Cup Machinery <br/>Offer Price $ 1456</span></a></li>
+		<li class="als-item"><a href=""><img src="images/machine.png" alt="Paper Cup Machinery" title="Paper Cup Machinery" /><span style="line-height:16px;">Paper Cup Machinery <br/>Offer Price $ 1456</span></a></li>
+		<li class="als-item"><a href=""><img src="images/machine.png" alt="Paper Cup Machinery" title="Paper Cup Machinery" /><span style="line-height:16px;">Paper Cup Machinery <br/>Offer Price $ 1456</span></a></li>
+		</ul>
+		</div>
+		<span class="als-next"><img src="images/right_arrow.png" alt="next" title="next" /></span>
+		</div>
+</div>
+</div>
+<div style="width:90%;height:27px;background:url(images/shadow.png) no-repeat center top;margin-left:auto;margin-right:auto;
+z-index:-100px;position:relative;top:-15px;"></div> 
+<!-------best deal--------->
+<!----events-------->
+<div style="width:85%;margin:0 1%;border:2px solid #9EA9B5;border-radius:5px 5px;padding:0px 7px; text-align:justify;font-size:13px;">
+<div class="eventbg"><b>Events</b>&nbsp;&nbsp;&nbsp;<img src="images/mic.png" style="position:relative;top:10px;" /></div>
+<p style="padding:0 3%;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/>Etiam dapibus vitae eros eget dictum. Ut vitae faucibus quam, a sagittis magna. </p>
+<div style="width:98%;height:40px;margin:0 1%;">
+<div style="width:50%;height:40px;float:left;"></div>
+<div style="width:50%;height:30px;padding-top:10px;float:left;" align="right"><a href="#" style="text-decoration:none;color:#06F;font-weight:600;">Know more</a></div>
+</div>
+</div>
+<div style="width:90%;height:27px;background:url(images/shadow.png) no-repeat center top;margin-left:auto;margin-right:auto;
+z-index:-100px;position:relative;top:-15px;"></div>
+<!----events--------> 
+<!-------Product Gallery------->
+<div style="width:85%;margin:0 1%;border:2px solid #9EA9B5;border-radius:5px 5px;padding:0px 7px; text-align:justify;font-size:13px;">
+<div style="width:96%;margin:-3% 1% 0 1%;padding:2% 0;text-align:center;background:url(images/title_ornage.png) no-repeat center;color:#fff;"><b>Gallery</b></div>
+<div style="width:96%;height:15px;"></div>
+<div style="width:96%;height:130px;" align="center">
+<div id="lista2" class="als-container">
+		<span class="als-prev"><img src="images/left_arrow.png" alt="prev" title="previous" /></span>
+		<div class="als-viewport" align="center">
+		<ul class="als-wrapper">
+		<li class="als-item"><a href=""><img src="images/machine.png" alt="Paper Cup Machinery" title="Paper Cup Machinery" /><span style="line-height:16px;">Paper Cup Machinery <br/>Offer Price $ 1456</span></a></li>
+		<li class="als-item"><a href=""><img src="images/machine.png" alt="Paper Cup Machinery" title="Paper Cup Machinery" /><span style="line-height:16px;">Paper Cup Machinery <br/>Offer Price $ 1456</span></a></li>
+		<li class="als-item"><a href=""><img src="images/machine.png" alt="Paper Cup Machinery" title="Paper Cup Machinery" /><span style="line-height:16px;">Paper Cup Machinery <br/>Offer Price $ 1456</span></a></li>
+		<li class="als-item"><a href=""><img src="images/machine.png" alt="Paper Cup Machinery" title="Paper Cup Machinery" /><span style="line-height:16px;">Paper Cup Machinery <br/>Offer Price $ 1456</span></a></li>
+		<li class="als-item"><a href=""><img src="images/machine.png" alt="Paper Cup Machinery" title="Paper Cup Machinery" /><span style="line-height:16px;">Paper Cup Machinery <br/>Offer Price $ 1456</span></a></li>
+		<li class="als-item"><a href=""><img src="images/machine.png" alt="Paper Cup Machinery" title="Paper Cup Machinery" /><span style="line-height:16px;">Paper Cup Machinery <br/>Offer Price $ 1456</span></a></li>
+		</ul>
+		</div>
+		<span class="als-next"><img src="images/right_arrow.png" alt="next" title="next" /></span>
+		</div>
+</div>
+</div>
+<div style="width:90%;height:27px;background:url(images/shadow.png) no-repeat center top;margin-left:auto;margin-right:auto;
+z-index:-100px;position:relative;top:-15px;"></div>
+<!------Product Gallery--------> 
+<!------Network--------->
+<div style="width:85%;margin:0 1%;border:2px solid #9EA9B5;border-radius:5px 5px;padding:0px 7px 10px 7px;text-align:justify;font-size:13px;">
+<div class="nwbg"><b>Network</b>&nbsp;&nbsp;&nbsp;<img src="images/network_icon.png" style="position:relative;top:10px;" /></div>
+<div style="width:96%;height:10px;"></div>
+<table width="70%" cellpadding="2" cellspacing="0" align="center" >
+<tr><td width="60%">Clients</td><td>Branches</td></tr>
+<tr><td width="60%">Vendors</td><td>Partners</td></tr>
+<tr><td width="60%">Suppliers</td><td>Staff</td></tr>
+</table>
+<img src="images/NETWORK.png"/>
+
+</div>
+<div style="width:90%;height:27px;background:url(images/shadow.png) no-repeat center top;margin-left:auto;margin-right:auto;
+z-index:-100px;position:relative;top:-15px;"></div>
+<!------Network--------->
+<!-------chat---------> 
+<div id="fixeddiv"  style="width:20%;height:30px;cursor:pointer;position:absolute;right:59px;bottom:0px;">
+<div style="width:100%;height:20px;margin:0 1%;padding:2% 0;border-radius:15px 15px 0px 0px; border:2px solid #9EA9B5;background:url(images/hover_button.png) repeat-x;">
+<div style="width:20%;height:30px;float:left;padding-left:5px;"><img src="images/CHAT.png"/></div>
+<div style="width:20%;height:30px;float:right;padding-right:5px;"><img src="images/CHAR-GREEN.png"/>&nbsp;&nbsp;<span style="color:#F48335;font-weight:600;">Chat</span></div>
+</div>
+</div>
+<script type="text/javascript" src="js/floatdiv.js"></script>
+<!-------chat---------> 
+</div>
+</div>
+
+
+
+<div id="contentcolumn">
+<div class="innertube">
+<center><h2 style="position:relative;color:#E76524;font-weight:bold;text-align:center;padding:5px 0px;">Xbit</h2></center>
+
+<div style="width:98%;height:40px;margin-left:auto;margin-right:auto;">
+<span><input type="text" style="width:350px;height:20px;border:1px solid #D9D9D9;background:#f3f3f3;" /></span>&nbsp;<span><input type="button" value="Search" id="search" style="width:100px;border:none;background:transparent;color:#136578;font-weight:bold;cursor:pointer;" onclick="hideall();" /></span>
+</div>
+
+<div style="width:98%;height:40px;margin-left:auto;margin-right:auto;font-weight:bold;font-size:14px;color:#EB8A18;">
+<span><a href="#" style="text-decoration:none;color:#EB8A18;">Product List</a></span>&nbsp;&nbsp;|&nbsp;&nbsp;<span><a href="#" style="text-decoration:none;color:#EB8A18;">Gallery</a></span>
+</div>
+
+<div style="width:98%;height:7px;margin-left:auto;margin-right:auto;background:url(images/seprater_shadow.png) no-repeat left;">
+</div>
+
+<div style="width:98%;height:auto;min-height:550px;margin-left:2%;">
+
+<table>
+
+<tr>
+<td style="width:125px;height:145px;background:url(images/dealphoto.png) no-repeat;float:left;"></td>
+<td valign="top">
+<table>
+<tr>
+<td style="font-weight:bold;color:#E76524;height:25px;font-size:14px;"> Spic Pharmaceuticals <span style="color:#136578;">( Since 1989)</span></td>
+</tr>
+<tr><td>Manufacturing Penincillin</td></tr>
+<tr><td>Location : Cuddalore Sipcot</td></tr>
+<tr><td>Description</td></tr>
+<tr><td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</td></tr>
+<tr><td align="right"> <input type="button"  style="width:80px;height:24px;background:transparent url(images/know-morw.png) no-repeat;border:none;cursor:pointer;" /></td></tr>
+</table>
+</td>
+</tr>
+
+
+<tr>
+<td style="width:125px;height:145px;background:url(images/dealphoto.png) no-repeat;float:left;"></td>
+<td valign="top">
+<table>
+<tr>
+<td style="font-weight:bold;color:#E76524;height:25px;font-size:14px;"> Spic Pharmaceuticals <span style="color:#136578;">( Since 1989)</span></td>
+</tr>
+<tr><td>Manufacturing Penincillin</td></tr>
+<tr><td>Location : Cuddalore Sipcot</td></tr>
+<tr><td>Description</td></tr>
+<tr><td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</td></tr>
+<tr><td align="right"> <input type="button"  style="width:80px;height:24px;background:transparent url(images/know-morw.png) no-repeat;border:none;cursor:pointer;" /></td></tr>
+</table>
+</td>
+</tr>
+
+
+<tr>
+<td style="width:125px;height:145px;background:url(images/dealphoto.png) no-repeat;float:left;"></td>
+<td valign="top">
+<table>
+<tr>
+<td style="font-weight:bold;color:#E76524;height:25px;font-size:14px;"> Spic Pharmaceuticals <span style="color:#136578;">( Since 1989)</span></td>
+</tr>
+<tr><td>Manufacturing Penincillin</td></tr>
+<tr><td>Location : Cuddalore Sipcot</td></tr>
+<tr><td>Description</td></tr>
+<tr><td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</td></tr>
+<tr><td align="right"> <input type="button"  style="width:80px;height:24px;background:transparent url(images/know-morw.png) no-repeat;border:none;cursor:pointer;" /></td></tr>
+</table>
+</td>
+</tr>
+
+
+<tr>
+<td style="width:125px;height:145px;background:url(images/dealphoto.png) no-repeat;float:left;"></td>
+<td valign="top">
+<table>
+<tr>
+<td style="font-weight:bold;color:#E76524;height:25px;font-size:14px;"> Spic Pharmaceuticals <span style="color:#136578;">( Since 1989)</span></td>
+</tr>
+<tr><td>Manufacturing Penincillin</td></tr>
+<tr><td>Location : Cuddalore Sipcot</td></tr>
+<tr><td>Description</td></tr>
+<tr><td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</td></tr>
+<tr><td align="right"> <input type="button"  style="width:80px;height:24px;background:transparent url(images/know-morw.png) no-repeat;border:none;cursor:pointer;" /></td></tr>
+</table>
+</td>
+</tr>
+
+</table>
+
+
+</div>        
+   
+</div>
+</div>
+</div>
+
+
+
+
+<!----footer------>
+<div id="footer">
+<div id="footercontainer">
+All Rights Reserved © 2013 By TechDNS.
+Designed &amp; Developed by : <a href="http://atomicka.in/default.php" target="_blank" style="text-decoration:none;">INFOM ATOMICKA PVT LTD</a>
+</div>
+</div>
+
+<!----footer------>
+
+</body>
+</html>

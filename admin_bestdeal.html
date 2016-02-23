@@ -1,0 +1,333 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>TRACEMEIN</title>
+<link rel="stylesheet" href="css/frontpage.css" type="text/css" />
+<style>
+.formname
+{
+min-width:100px;
+width:auto;
+height:16px;
+padding:2px 10px 8px 10px;
+background:#FEAC72;
+border-top-left-radius:20px;
+border-top-right-radius:20px;
+color:#fff;float:left;
+text-align:center;
+margin-left:10px;
+font-weight:bold;
+font-size:14px;
+}
+
+.back
+{
+min-width:50px;
+height:16px;
+padding:2px 10px 8px 10px;
+background:#FFF;
+border-top-left-radius:10px;
+border-top-right-radius:10px;
+color:#000;
+float:right;
+text-align:center;
+margin-right:0px;
+font-size:13px;
+}
+
+.formbox
+{
+width:730px;
+min-height:720px;
+height:auto;
+-webkit-box-shadow: 0px 1px 3px 1px #666666;
+box-shadow: 0px 1px 3px 1px #aaaaaa;
+border-radius:10px;
+border-top-right-radius:0px;
+background:#fff;
+font-size:14px;
+color:#333333;
+padding-top:20px;
+margin-bottom:10px;
+}
+
+.fielddiv
+{
+width:720px;
+height:30px;
+}
+
+input[type='text']
+{
+border:1px solid #E5E5E5;
+width:450px;
+height:20px;
+}
+
+input[type='button']
+{
+border:none;
+background:#F48335;
+padding:5px 10px;
+color:#fff;
+text-align:center;
+cursor:pointer;
+margin:0px 10px;
+font-weight:bold;
+}
+
+
+textarea
+{
+border:1px solid #E5E5E5;
+width:450px;
+height:150px;
+resize:none;
+overflow:auto;
+}
+
+select
+{
+border:1px solid #E5E5E5;
+width:450px;
+height:25px;
+}
+
+.textareaholder
+{
+width:450px;
+height:165px;
+text-align:right;
+float:left;
+margin-left:10px;
+}
+
+.textholder
+{
+width:450px;
+height:30px;
+text-align:right;
+float:left;
+margin-left:10px;
+}
+
+.labelhoder
+{
+width:200px;
+height:30px;
+text-align:right;
+float:left;
+}
+
+.innerlabelhoder
+{
+width:120px;
+height:30px;
+text-align:right;
+float:left;
+}
+
+.innertable
+{
+background:#D4EDF2;
+min-height:350px;
+height:auto;
+width:700px;
+border-radius:10px;
+margin-left:auto;
+margin-right:auto;
+margin-top:10px;
+}
+
+.alertmsg
+{
+font-size:10px;
+}
+
+.gridtable
+{
+border:1px solid #1EB9E7;
+}
+
+</style>
+</head>
+
+<body>
+<div style="width:990px;min-height:760px;height:auto;margin-left:auto;margin-right:auto;">
+
+<!--------left sidebar---------->
+<div style="width:250px;min-height:760px;height:auto;float:left;">
+
+
+
+</div>
+<!--------left sidebar---------->
+
+<div style="width:10px;min-height:760px;height:auto;float:left;"></div>
+
+<!--------right sidebar---------->
+<div style="width:730px;min-height:760px;height:auto;float:left;">
+<div style="width:730px;height:26px;">
+<div class="formname">Best Deal</div>
+<div class="back">Back</div>
+</div>
+<div class="formbox">
+
+
+<div class="fielddiv" align="center">
+Provider &nbsp;&nbsp;&nbsp;&nbsp;<input id="ProodType1" type="radio" value="1" name="ProodType">
+&nbsp;&nbsp;&nbsp;&nbsp;
+Seeker  &nbsp;&nbsp;&nbsp;&nbsp;<input id="ProodType2" type="radio" value="2" name="ProodType">
+</div>
+
+<div class="fielddiv">
+<div class="labelhoder">Display Name:</div>
+<div class="textholder"><input type="text" /></div>
+</div>
+
+<div class="fielddiv">
+<div class="labelhoder">Product / Service Name:</div>
+<div class="textholder"><input type="text" /></div>
+</div>
+
+<div class="fielddiv">
+<div class="labelhoder">Industry:</div>
+<div class="textholder"><input type="text" /></div>
+</div>
+
+<div style="width:720px;height:165px;">
+<div class="labelhoder">Description:</div>
+<div class="textareaholder"><textarea></textarea></div>
+</div>
+
+<div class="fielddiv">
+<div class="labelhoder">Business Type:</div>
+<div class="textholder"><select>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<select/></div>
+</div>
+
+<div style="width:720px;height:30px;">
+<div class="labelhoder">Keywords:</div>
+<div class="textholder"><input type="text" /></div>
+</div>
+
+<div class="innertable">
+
+<div style="width:660px;height:auto;margin-left:auto;margin-right:auto;padding-top:10px;">
+
+<div style="width:660px;height:30px;color:#21829A;">Want to add more details</div>
+
+<div style="width:660px;height:30px;">
+<div style="width:330px;height:30px;float:left;"><input type="text" style="border:1px solid #4CC5E0;width:320px;height:20px;" /></div>
+<div style="width:330px;height:30px;float:left;"><input type="text" style="border:1px solid #4CC5E0;width:320px;height:20px;" /></div>
+</div>
+
+<div style="width:660px;height:30px;margin-left:auto;margin-right:auto;margin:10px 0px;" align="center">
+<input type="button" style="background:#21829A;" value="Add" />
+<input type="button" style="background:#21829A;" value="Reset" />
+</div>
+
+<div style="width:660px;height:auto;margin-bottom:10px;">
+
+<table border="0" cellspacing="0" cellpadding="5" width="100%" class="gridtable">
+
+<tr height="35" style="background:#8FDDF3;">
+<td width="10%">S. No.</td>
+<td width="35%">Title</td>
+<td width="40%">Description</td>
+<td width="15%">Action</td>
+</tr>
+
+<tr height="35">
+<td width="10%">S. No.</td>
+<td width="35%">Title</td>
+<td width="40%">Description</td>
+<td width="15%">Action</td>
+</tr>
+
+<tr height="35">
+<td width="10%">S. No.</td>
+<td width="35%">Title</td>
+<td width="40%">Description</td>
+<td width="15%">Action</td>
+</tr>
+
+<tr height="35">
+<td width="10%">S. No.</td>
+<td width="35%">Title</td>
+<td width="40%">Description</td>
+<td width="15%">Action</td>
+</tr>
+
+<tr height="35" style="background:#8FDDF3;">
+<td colspan="4"></td>
+</tr>
+
+</table>
+
+</div>
+
+<div style="width:660px;height:35px;">
+<div style="width:120px;height:30px;float:left;text-align:right;">Brochure:</div>
+<div style="width:120px;height:30px;float:left;"><input type="button" style="background:#21829A;" value="Upload File" /></div>
+<div style="width:370px;height:30px;float:left;">(PDF file Only - Below 1MB)</div>
+</div>
+
+<div style="width:660px;height:35px;">
+<div style="width:120px;height:30px;float:left;text-align:right;">Cover Image:</div>
+<div style="width:120px;height:30px;float:left;"><input type="button" style="background:#21829A;" value="Upload File" /></div>
+<div style="width:370px;height:30px;float:left;line-height:16px;">(.jpg, .gif, .png file Only - Below 1MB)<br/><em><span class="alertmsg">Maximum limit of three images</span></em></div>
+</div>
+
+<div style="width:660px;height:35px;">
+<div style="width:120px;height:30px;float:left;text-align:right;">Inner Image:</div>
+<div style="width:120px;height:30px;float:left;"><input type="button" style="background:#21829A;" value="Upload File" /></div>
+<div style="width:370px;height:30px;float:left;">(.jpg, .gif, .png file Only - Below 1MB)</div>
+</div>
+
+<div class="fielddiv">
+<div class="innerlabelhoder">Country:</div>
+<div class="textholder"><input type="text" style="border:1px solid #4CC5E0;" /></div>
+</div>
+
+<div class="fielddiv">
+<div class="innerlabelhoder"></div>
+<div class="textholder"><input type="text" style="border:1px solid #4CC5E0;" /></div>
+</div>
+
+<div style="width:660px;height:30px;margin-left:auto;margin-right:auto;margin:10px 0px;" align="center">
+<input type="button" style="background:#21829A;" value="Add Location" />
+<input type="button" style="background:#21829A;" value="Reset" />
+</div>
+
+
+
+</div>
+
+</div>
+
+
+
+</div>
+
+<div style="width:700px;height:30px;margin-left:auto;margin-right:auto;margin-bottom:10px;" align="center">
+<input type="button" value="Add" />
+<input type="button" value="Reset" />
+<input type="button" value="Cancel" />
+</div>
+
+</div>
+<!--------right sidebar---------->
+
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>A very Simple jQuery Popup</title>
+<script type="text/javascript" src="jquery-1.6.1.min.js"></script>
+<script type="text/javascript">
+$(function() {
+$('#toggle1').click(function() {
+	$('.toggle1').show();
+	$('.toggle2').hide();
+	$('.registrd_usr').show();
+	return false;
+});
+$('#toggle2').click(function() {
+	$('.toggle2').show();
+	$('.toggle1').hide();
+	$('.registrd_usr').hide();
+	$('.newuser').hide();
+	positionPopup();
+	return false;
+});
+});
+
+$(document).ready(function(){
+//open popup
+$("#pop").click(function(){
+  $("#overlay_form").fadeIn(1000);
+  $(".background_overlay").fadeIn(500);
+  positionPopup();
+});
+
+//close popup
+$("#close, .background_overlay").click(function(){
+	$("#overlay_form").fadeOut(500);
+	$(".background_overlay").fadeOut(500);
+});
+});
+
+//position the popup at the center of the page
+function positionPopup(){
+  if(!$("#overlay_form").is(':visible')){
+    return;
+  } 
+  $("#overlay_form").css({
+      left: ($(window).width() - $('#overlay_form').width()) / 2,
+      top: ($(window).width() - $('#overlay_form').width()) / 7,
+      position:'absolute'
+  });
+}
+
+//maintain the popup at center of the page when browser resized
+$(window).bind('resize',positionPopup);
+
+</script>
+<style>
+#overlay_form{
+	position: absolute;
+	padding: 35px;
+	padding-top:35px;
+	background: white no-repeat 10px 10px;
+	min-width: 380px;
+	width:auto;
+	min-height: 60px;
+	height:auto;
+	z-index: 200;
+	border-radius:5px;
+	-webkit-box-shadow: 0px 0px 1px 1px #cccccc
+	;box-shadow: 0px 0px 1px 1px #cccccc;margin-left:auto;margin-right:auto;
+}
+#pop{
+	display: block;
+	width: 65px;
+	text-align: center;
+	padding: 6px;
+	border-radius: 5px;
+	text-decoration: none;
+	margin: 0 auto;
+	z-index: 100;
+}
+.background_overlay { position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 1; background:black; opacity: 0.5;}
+.formdiv
+{
+min-width:330px;width:auto;height:250px;margin-left:auto;margin-right:auto;background:#fffff;padding:20px;padding-top:10px;border-radius:10px;font-family:Arial, Helvetica, sans-serif;
+}
+
+.forgotformdiv
+{
+width:330px;height:60px;margin-left:auto;margin-right:auto;background:#FEF0E5;padding:20px;padding-top:10px;border-radius:10px;font-family:Arial, Helvetica, sans-serif;
+}
+.closediv
+{
+width:30px;height:30px;position:absolute;right:-2%;top:-2%;
+}
+.closebtn
+{
+width:27px;height:27px;background:url(images/close_bittons.png) no-repeat;
+}
+.newuser
+{
+width:410px;height:20px;float:left;text-align:left;color:#115B71;
+}
+.registrd_usr
+{
+width:165px;height:20px;float:left;text-align:right;color:#EF020F;
+}
+.field
+{
+width:330px;height:40px;
+}
+.labeldiv
+{
+width:130px;height:30px;float:left;padding-top:5px;
+}
+.txtboxdiv
+{
+width:200px;height:35px;float:left;
+}
+.txtbox
+{
+width:180px;height:25px;border:1px solid #BBF0F7;border-radius:5px;
+}
+.btnstyle
+{
+border:none;background:#BEB57C;color:#252521;padding:4px 5px;font-size:14px;border-radius:5px;width:80px;cursor:pointer;
+}
+
+a.forgot
+{
+text-decoration:none;
+border:none;
+color:#26292B;
+}
+
+.ffield
+{
+width:330px;height:40px;
+}
+.flabeldiv
+{
+width:80px;height:30px;float:left;padding-top:5px;
+}
+.ftxtboxdiv
+{
+width:200px;height:35px;float:left;
+}
+
+</style>
+</head>
+<body>
+<a href="#" id="pop" >PopUp</a>
+<br />
+<div class="background_overlay" style="display:none"></div>
+
+<div id="overlay_form" style="display:none;">
+<div class="closediv" align="right"><a href="#" id="close" ><div class="closebtn"></div></a></div>
+<div class="formdiv">
+<div style="width:100%;height:20px;">
+<div class="newuser"><a href="#" id="toggle1">Already a Member</a></div>
+<div class="registrd_usr"><a href="#" id="toggle3">Join Tracemein</a></div>
+</div>
+<div style="width:100%;height:30px;"></div>
+
+<!-------toggle1----------->
+<div class="toggle1">
+
+<div style="width:360px;float:left;background:#FEF0E5;padding:40px;margin-right:30px;border-radius:10px;">
+<div style="width:330px;background:#fff;padding:20px;border-radius:10px;">
+
+<form>
+<div class="field">
+<div class="labeldiv">Username:</div>
+<div class="txtboxdiv"><input type="text" name="username" class="txtbox" /></div>
+</div>
+
+<div class="field">
+<div class="labeldiv">Password:</div>
+<div class="txtboxdiv"><input type="password" name="password" class="txtbox"/></div>
+</div>
+	
+    
+<div style="width:330px;height:35px;margin-top:10px;">
+<input type="button" value="Submit" class="btnstyle"/>
+<input type="button" value="Reset" class="btnstyle" style="margin-left:40px;"/>
+<input type="button" value="Cancel" class="btnstyle" style="margin-left:40px;"/>
+</div>
+   
+
+</form>
+
+<div class="field" style="margin-top:10px;" align="right">
+<a class="forgot" href="#" id="toggle2">
+<div style="width:135px;height:25px;float:right;">Forgot Password?</div><div style="width:25px;height:25px;float:right;background:url(images/forgot-password.png) no-repeat;"></div>
+</a>
+</div>
+</div>
+</div>
+<div style="width:360px;float:left;background:#DFFBFF;padding:40px;border-radius:10px;">
+<div style="width:330px;background:#fff;padding:20px;border-radius:10px;">
+<form>
+<div class="field">
+<div class="labeldiv">Username:</div>
+<div class="txtboxdiv"><input type="text" name="username" class="txtbox" /></div>
+</div>
+
+<div class="field">
+<div class="labeldiv">Mobile No.:</div>
+<div class="txtboxdiv"><input type="text" name="username" class="txtbox" /></div>
+</div>
+
+<div class="field">
+<div class="labeldiv">Email Id:</div>
+<div class="txtboxdiv"><input type="text" name="username" class="txtbox" /></div>
+</div>
+
+<div class="field">
+<div class="labeldiv">Password:</div>
+<div class="txtboxdiv"><input type="password" name="password" class="txtbox"/></div>
+</div>
+   
+<div style="width:330px;height:35px;margin-top:10px;">
+<input type="button" value="Submit" class="btnstyle" style="margin-left:140px;"/>
+<input type="button" value="Cancel" class="btnstyle" style="margin-left:20px;"/>
+</div>
+</form>
+</div>
+</div>
+
+</div>
+<!-------toggle1----------->
+<!-------toggle2----------->
+<div class="toggle2" style="display:none;">
+<p style="margin-left:auto;margin-right:auto;margin-top:-60px;">Forgot Password</p>
+<div style="width:360px;margin-left:auto;margin-right:auto;background:#FEF0E5;padding:40px 40px 45px 40px;border-radius:10px;">
+<div style="width:330px;background:#fff;padding:20px 20px 50px 20px;border-radius:10px;">
+<form>
+<div class="ffield">
+<div class="flabeldiv">Username:</div>
+<div class="ftxtboxdiv"><input type="text" name="username" class="txtbox" /></div>
+<div style="width:330px;height:35px;margin-top:20px;">
+<input type="button" value="Submit" class="btnstyle" style="margin-left:80px;"/>
+<input type="button" value="Cancel" class="btnstyle" style="margin-left:20px;"/>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+<!-------toggle2----------->
+
+
+</div>
+</div>
+</body>
+</html>

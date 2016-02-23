@@ -1,0 +1,42 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	background: #000000;
+	padding:40px 0;
+	margin:0 auto;
+}
+
+.td{
+		padding:15px 10px;
+}
+
+.login{
+	width:380px;
+	height:270px;
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px; 
+	border-radius: 5px;
+	background-color:#2e2e2e;
+}
+
+.logintxt{
+	font-size:12px;
+	color:#FFFFFF;
+	font-family:Verdana, Geneva, sans-serif;
+}
+
+.inputbg{
+	background:url(../images/txt_bg.gif) top repeat-x;
+	height:32px;
+}
+
+
+.iput{
+	background:#cdcbcb;
+	border:#f6f5f5 1px solid;
+	font-size:11px;
+	font-family:Verdana, Geneva, sans-serif;
+	color:#666666;
+	padding:2px;
+	height:16px;
+}
