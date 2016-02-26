@@ -110,23 +110,19 @@ while($fetchquery=mysql_fetch_array($queryarea)){
 </div>
 <div class="admain_container">
 <div id="searchResults">
-<!-----admain_container-------->
+<!--admain_container-->
 <?php $path=''; include("Searchresult.php");?>
-<!-----admain_container-------->
+<!--admain_containe-->
 </div>
-<!-----adright_container-------->
+<!--adright_container-->
 <?php include("Advertisementcolumn.php");?>
-<!-----adright_container-------->
+<!--adright_container-->
 
 </div>
 </div>
 
 <?php include("Footer.php");?>
-<!----------mid------------->
-
-
-
-<!--Load Javascript-->
+<!--mid-><!-Load Javascript-->
 <script>
 if(google.loader.ClientLocation)
 {
@@ -167,99 +163,109 @@ $("#searchlist").focusout(function(){
 </script>
 <!--popubox content starts-->
 <div class="background_overlay" style="display:none"></div>
-<input type="hidden" id="FProfileLink" />
-<input type="hidden" id="FProfiletype" />
-<input type="text" id="Postafreead" />
-<input type="hidden" id="FBDId" />
+	<input type="hidden" id="FProfileLink" />
+	<input type="hidden" id="FProfiletype" />
+	<input type="text" id="Postafreead" />
+	<input type="hidden" id="FBDId" />
 <div id="overlay_form" style="display:none;">
-<div class="closediv" align="right"><a href="#" id="close" ><div class="closebtn"></div></a></div>
-<div class="formdiv">
-<div style="width:100%;height:20px;position:relative;top:85px;">
-<div class="newuser" align="center"><label><input name="Radiochkselection" onClick="onclicksignin();" id="fradio" type="radio"/>Already a Member</label></div>
-<div class="registrd_usr" align="center"><label><input id="sradio" onClick="onclicksignup();" name="Radiochkselection" type="radio"/>Join XYGET.com</label></div>
-</div>
-<div style="width:100%;height:30px;"></div>
+	<div class="closediv" align="right">
+		<a href="#" id="close" >
+			<div class="closebtn"></div>
+		</a>
+	</div>
+	<div class="formdiv">
+		<div style="width:100%;height:20px;position:relative;top:85px;">
+			<div class="newuser" align="center">
+				<label>
+					<input name="Radiochkselection" onClick="onclicksignin();" id="fradio" type="radio"/>Already a Member
+				</label>
+			</div>
+			<div class="registrd_usr" align="center">
+				<label>
+					<input id="sradio" onClick="onclicksignup();" name="Radiochkselection" type="radio"/>Join XYGET.com
+				</label>
+			</div>
+		</div>
+		<div style="width:100%;height:30px;"></div>
+	<!--toggle1-->
+	<div class="toggle1">
+		<form id="Freeuserlogin">
+			<div id="signin">
+				<div style="width:230px;background:#fff;padding:20px;border-radius:10px;">
+					<p align="center" style="color:#F7862A;">Sign In</p>
+				<!-- </div>
+			</div> -->
+			<div id="Fmsg" style="height:20px;color:#EC4211;font-size:16px;text-shadow:1px 1px 1px #aaa;font-style:italic;"></div>
+			<div class="field">
+				<div class="labeldiv">Username:</div>
+				<div class="txtboxdiv"><input type="text" name="FLusername" autocomplete="off" id="FLusername" class="txtbox" /></div>
+			</div>
 
-<!-------toggle1----------->
-<div class="toggle1">
-<form id="Freeuserlogin">
-<div id="signin">
-<div style="width:230px;background:#fff;padding:20px;border-radius:10px;">
-<p align="center" style="color:#F7862A;">Sign In</p>
-<div id="Fmsg" style="height:20px;color:#EC4211;font-size:16px;text-shadow:1px 1px 1px #aaa;font-style:italic;"></div>
-<div class="field">
-<div class="labeldiv">Username:</div>
-<div class="txtboxdiv"><input type="text" name="FLusername" autocomplete="off" id="FLusername" class="txtbox" /></div>
-</div>
+			<div class="field">
+				<div class="labeldiv">Password:</div>
+				<div class="txtboxdiv"><input type="password" name="FLpassword" autocomplete="off" id="FLpassword" class="txtbox"/></div>
+			</div>		
+	    
+			<div style="width:230px;height:35px;margin-top:10px;">
+				<input type="button" value="Sign In" onclick="FreeUserLogin();"  class="btnstylee" style="margin-left:40px;" />
+				<input type="button" value="Reset" onclick="FreeUserLoginReset();"  class="btnstylee" style="margin-left:20px;" />
+			</div>
+		</form>
+		<div class="field" style="margin-top:10px;" align="right">
+			<a class="forgot" href="#" id="toggle2">
+				<div style="width:135px;height:25px;float:right;">Forgot Password?</div><div style="width:25px;height:25px;float:right;background:url(images/forgot-password.png) no-repeat;"></div>
+			</a>
+		</div>
+	</div><!--TOGGLE1-->
+	</div><!--formdiv-->
 
-<div class="field">
-<div class="labeldiv">Password:</div>
-<div class="txtboxdiv"><input type="password" name="FLpassword" autocomplete="off" id="FLpassword" class="txtbox"/></div>
-</div>
-	
-    
-<div style="width:230px;height:35px;margin-top:10px;">
-<input type="button" value="Sign In" onclick="FreeUserLogin();"  class="btnstylee" style="margin-left:40px;" />
-<input type="button" value="Reset" onclick="FreeUserLoginReset();"  class="btnstylee" style="margin-left:20px;" />
-</div>
-   
+	<div id="signup" style="pointer-events:none;">
+	<div style="width:230px;background:#fff;padding:20px;border-radius:10px;">
+	<p align="center" style="color:#F7862A;font-size:14px;">Just takes few seconds to be a part of <br/>XYGET Community</p>
+	<div id="FRmsg" style="height:20px;color:#EC4211;font-size:16px;text-shadow:1px 1px 1px #aaa;font-style:italic;"></div>
+	<form onclick='return false;' id="Freeuserreg" >
+	<input type="hidden" id="Fcountry" name="Fcountry"  />
+	<input type="hidden" id="Fcity" name="Fcity"  />
+	<div class="field">
+	<div class="labeldiv">Name:</div>
+	<div class="txtboxdiv"><input type="text" name="Fname" id="Fname" autocomplete="off" class="txtbox" /></div>
+	</div>
+	<div class="field">
+	<div class="labeldiv">Username:</div>
+	<div class="txtboxdiv"><input type="text" name="Fusername" id="Fusername" autocomplete="off" class="txtbox" /></div>
+	</div>
 
-</form>
+	<div class="field">
+	<div class="labeldiv">Mobile No.:</div>
+	<div class="txtboxdiv"><input onkeyup="checkNumber(this);" type="text" autocomplete="off" name="Fmobileno" id="Fmobileno" class="txtbox" /></div>
+	</div>
 
-<div class="field" style="margin-top:10px;" align="right">
-<a class="forgot" href="#" id="toggle2">
-<div style="width:135px;height:25px;float:right;">Forgot Password?</div><div style="width:25px;height:25px;float:right;background:url(images/forgot-password.png) no-repeat;"></div>
-</a>
-</div>
-</div>
-</div>
-<div id="signup" style="pointer-events:none;">
-<div style="width:230px;background:#fff;padding:20px;border-radius:10px;">
-<p align="center" style="color:#F7862A;font-size:14px;">Just takes few seconds to be a part of <br/>XYGET Community</p>
-<div id="FRmsg" style="height:20px;color:#EC4211;font-size:16px;text-shadow:1px 1px 1px #aaa;font-style:italic;"></div>
-<form onclick='return false;' id="Freeuserreg" >
-<input type="hidden" id="Fcountry" name="Fcountry"  />
-<input type="hidden" id="Fcity" name="Fcity"  />
-<div class="field">
-<div class="labeldiv">Name:</div>
-<div class="txtboxdiv"><input type="text" name="Fname" id="Fname" autocomplete="off" class="txtbox" /></div>
-</div>
-<div class="field">
-<div class="labeldiv">Username:</div>
-<div class="txtboxdiv"><input type="text" name="Fusername" id="Fusername" autocomplete="off" class="txtbox" /></div>
-</div>
+	<div class="field">
+	<div class="labeldiv">Email Id:</div>
+	<div class="txtboxdiv"><input type="text" name="FemailId" id="FemailId" autocomplete="off" class="txtbox" /></div>
+	</div>
 
-<div class="field">
-<div class="labeldiv">Mobile No.:</div>
-<div class="txtboxdiv"><input onkeyup="checkNumber(this);" type="text" autocomplete="off" name="Fmobileno" id="Fmobileno" class="txtbox" /></div>
-</div>
+	<div class="field">
+	<div class="labeldiv">Password:</div>
+	<div class="txtboxdiv"><input type="password" name="Fpassword" id="Fpassword" class="txtbox" autocomplete="off" /></div>
+	</div>
 
-<div class="field">
-<div class="labeldiv">Email Id:</div>
-<div class="txtboxdiv"><input type="text" name="FemailId" id="FemailId" autocomplete="off" class="txtbox" /></div>
-</div>
+	<div class="field">
+	<div class="labeldiv">Confirm Password:</div>
+	<div class="txtboxdiv"><input type="password" name="CFpassword" id="CFpassword" class="txtbox" autocomplete="off" /></div>
+	</div>
+	   
+	<div style="width:230px;height:35px;margin-top:10px;margin-left: 20%;">
+	<input type="button" value="Submit" onclick="FreeUserRegister();"  class="btnstylee" />
+	<input type="button" value="Reset" onclick="FreeUserRegisterReset()"  class="btnstylee" />
+	</div>
+	</form>
+	</div>
+	</div>
 
-<div class="field">
-<div class="labeldiv">Password:</div>
-<div class="txtboxdiv"><input type="password" name="Fpassword" id="Fpassword" class="txtbox" autocomplete="off" /></div>
-</div>
-
-<div class="field">
-<div class="labeldiv">Confirm Password:</div>
-<div class="txtboxdiv"><input type="password" name="CFpassword" id="CFpassword" class="txtbox" autocomplete="off" /></div>
-</div>
-   
-<div style="width:230px;height:35px;margin-top:10px;margin-left: 20%;">
-<input type="button" value="Submit" onclick="FreeUserRegister();"  class="btnstylee" />
-<input type="button" value="Reset" onclick="FreeUserRegisterReset()"  class="btnstylee" />
-</div>
-</form>
-</div>
-</div>
-
-</div>
-<!-------toggle1----------->
-<!-------toggle2----------->
+</div><!--overlay_form-->
+<!--toggle1-->
+<!--toggle2-->
 <div class="toggle2" style="display:none;">
 <p style="margin-left:auto;margin-right:auto;margin-top:-60px;text-align:center;color:#F7862A;">Forgot Password</p>
 <div style="width:360px;margin-left:auto;margin-right:auto;background:#F99F57;padding:30px 40px 30px 30px;border-radius:10px;-webkit-box-shadow: 0px 0px 3px 3px #999;box-shadow: 0px 0px 3px 3px #999;">
@@ -279,7 +285,7 @@ $("#searchlist").focusout(function(){
 </div>
 </div>
 </div>
-<!-------toggle2----------->
+<!--toggle2-->
 
 
 </div>
@@ -303,7 +309,7 @@ if($('#sradio').is(':checked')){
   
   });   
   
-  /*$("#signin").click(function(){
+  $("#signin").click(function(){
 $("#fradio").attr("selected","selected");
 onclicksignin();
 
@@ -315,7 +321,7 @@ $("#sradio").attr("selected","selected");
 onclicksignup();
 $('#Fname').focus();
 FreeUserLoginReset();
-});*/
+});
 
 $('#closeforgetpass').click(function() {
     poploginreset();

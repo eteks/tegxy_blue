@@ -1,6 +1,6 @@
 
 function onclicksignup()
-{
+{	
 	$('.newuser').show();
 	document.getElementById('sradio').checked=true;
 	document.getElementById('fradio').checked=false;
@@ -71,14 +71,17 @@ $('.firstviewmore').click(function() {
 });
 
 $(document).ready(function(){
-//open popup
-$(".pop").click(function(){
+//open popup 
+$(".full_det").click(function(){	
   $("#overlay_form").fadeIn(1000);
   $(".background_overlay").fadeIn(500);
   $("#searchlist").focus();
   positionPopup();
   
   $('#FLusername').focus();
+  onclicksignup();
+  onclicksignin();
+  poploginreset();
 });
 
 //close popup

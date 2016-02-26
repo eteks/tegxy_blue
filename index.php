@@ -17,6 +17,13 @@ db_connect();
 function Searchpage()
 {
 searchKey = $("#searchlist").val();
+// alert('searchKey'+searchKey);
+if(searchKey==""){ 
+	alert("Please Enter the Search Box Value");
+	DocId('searchlist').focus();
+	return false;
+}
+else{
 var requestType=$("input[name='requestType']:checked").val();
 var userCity=$("#userCity").val();
 var userArea;
@@ -26,12 +33,14 @@ else
 userArea=selectarea;
 window.location.href="Searchpage.php?action=Add&searchkey="+searchKey+"&requesttype="+requestType+"&usercity="+userCity+"&userarea="+userArea+"&type2=1";
 }
+}
+
 function Searchusingenterkey(e)
 {
-// look for window.event in case event isn't passed in
-if (typeof e == 'undefined' && window.event) { e = window.event; }
-if (e.keyCode == 13)
-Searchpage();
+// // look for window.event in case event isn't passed in
+// if (typeof e == 'undefined' && window.event) { e = window.event; }
+// if (e.keyCode == 13)
+// Searchpage();
 }
 </script>
 <style type="text/css">

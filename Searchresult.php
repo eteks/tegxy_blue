@@ -172,13 +172,13 @@ $finaldetails=substr($alreadylisteddetails, 0, -1);;
 }
 }
 if($requestType=='company'){?>
-<!-----adleft_container-------->
+<!--adleft_container-->
 <div class="adleft_container">
 <div style="width:100%;height:40px;float:left;" align="right"></div>
-<!-----250------->
+<!--250-->
 <div style="width:250px;height:auto;float:left;">
 
-<!-----relatedsearch------->
+<!--relatedsearch-->
 <div class="adrelatedsearch">
 <div id="relatedresultsbox" style="display:<?php if($searchkey=='' ){echo 'none';} else echo 'block'; ?>" >
 <div class="adleftaccordiaon_top" >Related Searches</div>
@@ -201,14 +201,14 @@ list_featured();
 </div>
 <div class="adleftaccordion_btm" ></div>
 </div>
-<!-----relatedsearch------->
+<!--relatedsearch-->
 
 
 
 </div>
-<!-----250------->
+<!--250-->
 
-<!-----740------->
+<!--740-->
 <div style="width:740px;height:auto;float:left;">
 
 <div style="width:740px; height:30px;display:none;" align="center">
@@ -241,7 +241,7 @@ list_featured();
 <?php if($countresult>0){?>
 <div class="adsearchresult_menu"><a id="Searchdisplaytypelist" class="active" href="#" onclick="SearchListStyle(<?php echo '\''.$requestType.'\''.','.'\''.$searchkey.'\''; ?>,'1',<?php echo $type2 ;?>);">List</a> | <a href="#" id="Searchdisplaytypegrid" onclick="SearchListStyle(<?php echo '\''.$requestType.'\''.','.'\''.$searchkey.'\''; ?>,'2',<?php echo $type2 ;?>);" >View Gallery</a></div>
 
-<!------ad---------->
+<!--ad-->
 <div id="mainsearchcontent">
 <?php
 if($requestType=='company'){
@@ -254,13 +254,13 @@ $Compnamedisp = '<span style="cursor:pointer;" title="'.$fetchquery['RGT_CompNam
 ?>
 
 <div class="singlead">
-<!----title---->
+<!--title-->
 <div class="adtitle">
 <div style="width:550px;color:#EC5324;float:left;"><b><?php echo $Compnamedisp; ?></b></div>
 <?php /*?><div class="rating">Rating <span><img src="images/rating_star.png" /><img src="images/rating_star.png" /><img src="images/rating_star.png" /></span> 3.0</div><?php */?>
 </div>
-<!----title--------->
-<!------adimage--------->
+<!--title-->
+<!--adimage-->
 <div class="adimage">
 <div class="company_logo" align="right"><a href="#thumb" class="thumbnail">
 <img src="<?php if($fetchquery['RGT_PK']!=''){ echo getLogodetails($fetchquery['RGT_PK'],$path); } else { echo 'images/default/no_image.png'; }?>"  width="124" height="115" /><span><img  src="<?php if($fetchquery['RGT_PK']!=''){ echo getLogodetails($fetchquery['RGT_PK'],$path); } else { echo 'images/default/no_image.png'; }?>" width="220" height="220" /></span></a><?php /*?><img src="<?php getLogodetails($fetchquery['RGT_PK'],$path);?>" width="124" height="115" /><?php */?></div>
@@ -279,8 +279,8 @@ $dispareas = getOperatingAreas($fetchquery['RGT_PK']);?>
 </div>
 
 </div>
-<!------adimage--------->
-<!------addetails--------->
+<!--dimage-->
+<!--addetails-->
 <div class="addetails">
 <div class="addetails_left">
 <span style="color:#EC5324;"><b>Company Details</b></span>
@@ -325,19 +325,19 @@ if($fetchquery['RGT_Area']!=''){ getAreadetails($fetchquery['RGT_Area']);}  if($
 </div>
 <?php }?>
 </div>
-<!------addetails--------->
+<!--addetails-->
 </div><br/><br/>
 <?php }}?>
-<!------ad---------->
+<!--ad-->
 </div>
 <?php } else{ echo '<center class="msgalert">No Company Found</center>' ;}?>
 </div>
-<!-----740------->
+<!--740-->
 </div>
-<!-----adleft_container-------->
+<!--adleft_container-->
 <?php }
 if($requestType=='bestdeals'){?>
-<!-----adleft_container-------->
+<!--adleft_container-->
 <div class="adleft_container">
 
 <div style="width:100%;height:55px;float:left;" align="right">
@@ -347,10 +347,10 @@ if($requestType=='bestdeals'){?>
 <div class="post_findtxt">To find your Best Deal</div></a>
 </div>
 </div>
-<!-----250------->
+<!--250-->
 <div style="width:250px;height:auto;float:left;">
 
-<!-----relatedsearch------->
+<!--relatedsearch-->
 
 
 <div class="adrelatedsearch">
@@ -375,14 +375,14 @@ if($requestType=='bestdeals'){?>
 </div>
 <div class="adleftaccordion_btm" ></div>
 </div>
-<!-----relatedsearch------->
+<!--relatedsearch-->
 
 
 
 </div>
-<!-----250------->
+<!--250-->
 
-<!-----740------->
+<!--740-->
 <div style="width:740px;height:auto;float:left;">
 
 <div style="width:740px; height:30px;display:none;" align="center">
@@ -415,7 +415,7 @@ if($requestType=='bestdeals'){?>
 <?php if($countresult>0){?>
 <div class="adsearchresult_menu"><a id="Searchdisplaytypelist" class="active" href="#" onclick="SearchListStyle(<?php echo '\''.$requestType.'\''.','.'\''.$searchkey.'\''; ?>,'1',<?php echo $type2 ;?>);">List</a> | <a id="Searchdisplaytypegrid" href="#" onclick="SearchListStyle(<?php echo '\''.$requestType.'\''.','.'\''.$searchkey.'\''; ?>,'2',<?php echo $type2 ;?>);" >View Gallery</a></div>
 
-<!------ad---------->
+<!--ad-->
 <div id="mainsearchcontent">
 <?php
 if($requestType=='bestdeals'){
@@ -432,14 +432,14 @@ $Compnamedisp = $Compnamefixlimit.$Since;
 ?>
 
 <div class="singlead">
-<!----title---->
+<!--title-->
 <div class="adtitle">
 <div style="width:550px;color:#EC5324;float:left;"><b><?php echo $Compnamedisp; ?></b></div>
 
 <?php /*?><div class="rating">Rating <span><img src="images/rating_star.png" /><img src="images/rating_star.png" /><img src="images/rating_star.png" /></span> 3.0</div>
 <?php */?></div>
-<!----title--------->
-<!------adimage--------->
+<!---title-->
+<!---adimage-->
 <div class="adimage">
 <div class="company_logo">
 <a href="#thumb" class="thumbnail">
@@ -459,8 +459,8 @@ echo '<span> Unit :'.' '.$fetchquery['PS_Unit'].'</span>';
 ?></div>
 </div>
 </div>
-<!------adimage--------->
-<!------addetails--------->
+<!--adimage-->
+<!--addetails-->
 <div class="addetails">
 <div class="addetails_left">
 <span style="color:#EC5324;"><b>Business Descriptions</b></span><div style="height:10px;"></div>
@@ -496,15 +496,15 @@ $user_id = get_data_from_registration($fetchquery['PS_User_Fk'],RGT_ProfileUrl);
 <div class="full_det"><a <?php  if(isset($_SESSION['LID'])){?> target="_blank"  href="<?php echo 'Bestdealsajax.php?type='.base64_encode(get_data_from_registration($fetchquery['PS_User_Fk'],RGT_Type)).'&user='.$user_id.'&BDId='.$fetchquery['PS_Id'];?>" <?php } else {?> class="pop firstviewmore" onclick="getUserProfile('<?php echo $user_id ;?>','<?php echo $fetchquery['PS_Id'];?>','<?php echo base64_encode(get_data_from_registration($fetchquery['PS_User_Fk'],RGT_Type));?>');" <?php }?> >View Full Details</a></div>
 </div>
 </div>
-<!------addetails--------->
+<!--addetails-->
 </div><br/><br/>
 <?php }}?>
-<!------ad---------->
+<!--ad-->
 </div>
 <?php } else{ echo '<center class="msgalert">No Xbit Found</center>' ;}?>
 
 </div>
-<!-----740------->
+<!---740-->
 </div>
-<!-----adleft_container-------->
+<!--adleft_container-->
 <?php }?>

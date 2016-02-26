@@ -6,10 +6,53 @@ $("#SearchListRes").fadeOut('slow');
 });
 
 $("#searchlist").focus(function() {this.val=''; });
+$("#SearchListRes").mouseover(function(){	
+	$(this).find("li a:first-child").mouseover(function () {
+		  $(this).addClass("selected");
+	});
+	$(this).find("li a:first-child").mouseout(function () {
+		  $(this).removeClass("selected");
+	});
+	$(this).find("li a:first-child").click(function () {
+          var searchresult = $(this).text().split('**'); 
+		  $("#searchlist").val(searchresult[0]);
+		  if(Chkstatus==1)
+		  {
+		  $("#cityvalue").html(searchresult[2]);
+		  $("#userCity").val(searchresult[2]);
+		  changeArealist(searchresult[1],searchresult[3],'');
+		  }
+		  var type2;	
+          type2 = searchresult[5];
+		  $("#type2").val(type2);
+		  if($("#Searchmodel").val()==1)
+          {
+			var userCityy;
+			var requestType=$("input[name='requestType']:checked").val();
+			
+			if(Chkstatus==1)
+			{
+			userCityy = searchresult[2];
+			userArea  = searchresult[3];
+			}
+			else
+			{
+			userCityy = 'Pondicherry';
+			userArea  = '';	
+			}
+			window.location.href="Searchpage.php?action=Add&searchkey="+$('#searchlist').val()+"&requesttype="+requestType+"&usercity="+userCityy+"&userarea="+searchresult[3]+"&type2="+type2;
+		  }
+		  else
+		  searchResult($('#searchlist').val(),searchresult[3],type2);
+		  $("#SearchListRes").fadeOut("slow");
+	});
+});
 
 $("#searchlist").keyup(function(event){
 	var offset = $("#searchlist").offset();
 	var width = $("#searchlist").width()-2;
+	
+	 var user_city =  $("#citylisthidden").val();	
 	if($('#requestTypedeals').attr('checked'))
 	Chkstatus = 2;
 	else 
@@ -17,26 +60,29 @@ $("#searchlist").keyup(function(event){
 									
 	$("#SearchListRes").css("left",offset.left); 
 	$("#SearchListRes").css("width",width);
-	 // alert(event.keyCode);
-	 var searchlist = $("#searchlist").val();
-	 
-	 if(searchlist.length)
-	 {
-		 if(event.keyCode != 40 && event.keyCode != 38  && event.keyCode != 32 && event.keyCode != 13)
-		 {
-			 $("#loading").css("visibility","visible");
+	var searchlist = $("#searchlist").val();
+	// alert('searchlist'+searchlist);
+	if(searchlist.length)
+	{
+	 	if(event.keyCode != 40 && event.keyCode != 38  && event.keyCode != 32 && event.keyCode != 13)
+		{
+			$("#loading").css("visibility","visible");
 				getUrl = "include/BlModules/Bl_SearchList.php?action="+Chkstatus;
 			 
 			 $.ajax({
 			   type: "POST",
 			   url: getUrl,
-			   data: "data="+searchlist,
+			   
+			 //data: "data="+searchlist,
+			 			  
+			  data: 'data='+searchlist+'&user_city='+user_city,
+			  
 			   success: function(msg){	
 				if(msg != 0)
 				{
 				  $("#SearchListRes").fadeIn("slow").html(msg);
 				  $("#SearchListRes").css('border','1px solid #8789E7');
-				  $("#SearchListRes").css('background','none repeat scroll 0 0 #FFFFFF');
+				  $("#SearchListRes").css('background','none repeat scroll 0 0 #FFFFFF');				
 				}
 				else
 				{
@@ -59,9 +105,9 @@ $("#searchlist").keyup(function(event){
 			   }
 			 });
 			$("#SearchListRes").scrollTop(0);
-		 }
+		}
 		 else
-		 {
+		{
 			switch (event.keyCode)
 			{
 			 case 40:
@@ -138,6 +184,8 @@ $("#searchlist").keyup(function(event){
 			 }
 			 break;
 			 case 13:
+				{
+			 	// alert('archlist');
 				$("#SearchListRes").fadeOut("slow");
 			 	var searchresult = $("#SearchListRes li[class='selected'] a").text().split('**');   
 		  		$("#searchlist").val(searchresult[0]);
@@ -155,71 +203,31 @@ $("#searchlist").keyup(function(event){
 				var requestType=$("input[name='requestType']:checked").val();
 				var userCityy;
 				
-				if(Chkstatus==1)
-				{
-				userCityy = searchresult[2];
-				userArea  = searchresult[3];
-				}
-				else
-				{
-				userCityy = 'Pondicherry';
-				userArea = '';
-				}
-				 window.location.href="Searchpage.php?action=Add&searchkey="+$('#searchlist').val()+"&requesttype="+requestType+"&usercity="+userCityy+"&userarea="+userArea+"&type2="+type2;
+					if(Chkstatus==1)
+					{
+					userCityy = searchresult[2];
+					userArea  = searchresult[3];
+					}
+					else
+					{
+					userCityy = 'Pondicherry';
+					userArea = '';
+					}
+				window.location.href="Searchpage.php?action=Add&searchkey="+$('#searchlist').val()+"&requesttype="+requestType+"&usercity="+userCityy+"&userarea="+userArea+"&type2="+type2;
 				}
 				else
 				searchResult($('#searchlist').val(),searchresult[3],type2);
-
+			}
 			 break;
 			}
-		 }
-	 }
+		}
+	}
 	 else {
 		$("#SearchListRes").fadeOut("slow");
 		}
 		
 });
-$("#SearchListRes").mouseover(function(){
-	$(this).find("li a:first-child").mouseover(function () {
-		  $(this).addClass("selected");
-	});
-	$(this).find("li a:first-child").mouseout(function () {
-		  $(this).removeClass("selected");
-	});
-	$(this).find("li a:first-child").click(function () {
-          var searchresult = $(this).text().split('**'); 
-		  $("#searchlist").val(searchresult[0]);
-		  if(Chkstatus==1)
-		  {
-		  $("#cityvalue").html(searchresult[2]);
-		  $("#userCity").val(searchresult[2]);
-		  changeArealist(searchresult[1],searchresult[3],'');
-		  }
-		  var type2;	
-          type2 = searchresult[5];
-		  $("#type2").val(type2);
-		  if($("#Searchmodel").val()==1)
-          {
-			var userCityy;
-			var requestType=$("input[name='requestType']:checked").val();
-			
-			if(Chkstatus==1)
-			{
-			userCityy = searchresult[2];
-			userArea  = searchresult[3];
-			}
-			else
-			{
-			userCityy = 'Pondicherry';
-			userArea  = '';	
-			}
-			window.location.href="Searchpage.php?action=Add&searchkey="+$('#searchlist').val()+"&requesttype="+requestType+"&usercity="+userCityy+"&userarea="+searchresult[3]+"&type2="+type2;
-		  }
-		  else
-		  searchResult($('#searchlist').val(),searchresult[3],type2);
-		  $("#SearchListRes").fadeOut("slow");
-	});
-});
+
 });
 
 
@@ -235,8 +243,8 @@ $("#userCityselect").focus(function() {this.val=''; });
 $("#userCityselect").keyup(function(event){
 	var offset = $("#userCityselect").offset();
 	var width = $("#userCityselect").width()-2;
-	$("#ListCityRes").css("left",offset.left); 
-	$("#ListCityRes").css("width",width);
+	// $("#ListCityRes").css("left",offset.left); 
+	// $("#ListCityRes").css("width",width);
 
 	 // alert(event.keyCode);
 	 var userCityselect = $("#userCityselect").val();
@@ -258,7 +266,7 @@ $("#userCityselect").keyup(function(event){
 				else
 				{
 				  $("#ListCityRes").fadeIn("slow");	
-				  $("#ListCityRes").html('<div style="text-align:left;font-family:verdana;font-size:11px;width:278px;padding:2px 4px;">No Matches Found</div>');
+				  $("#ListCityRes").html('<div style="text-align:left;font-family:verdana;font-size:11px;position:absolute;width:278px;padding:2px 4px;">No Matches Found</div>');
 				}
 				$("#loading").css("visibility","hidden");
 			   }
@@ -357,9 +365,9 @@ $("#userCityselect").keyup(function(event){
 	 }
 	 else {
 		$("#ListCityRes").fadeOut("slow");
-		}
-		
+		}		
 });
+
 $("#ListCityRes").mouseover(function(){
 	$(this).find("li a:first-child").mouseover(function () {
 		  $(this).addClass("selected");
@@ -392,8 +400,8 @@ if(google.loader.ClientLocation)
 	changeArealist(visitor_city,'','name');
 }
 
-$( "#noneedspaces1" ).slideDown();
-$( "#noneedspaces2" ).slideDown();
+$("#noneedspaces1" ).slideDown();
+$("#noneedspaces2" ).slideDown();
 $('#topsidelogo').css('display','none');  
 $('#suggestions').css('display','none');  
 $("#searchlist").focus();
@@ -403,8 +411,6 @@ if($('#searchlist').attr('placeholder')=='Please Enter Company Name / Sector / K
   }
   else{
   $('#search_lookfor').attr('disabled',false);
-	$('#searchlist').attr('placeholder','Please Enter Company Name / Sector / Keyword to Search'); 
+  $('#searchlist').attr('placeholder','Please Enter Company Name / Sector / Keyword to Search'); 
   }  
-  
-     
 }
