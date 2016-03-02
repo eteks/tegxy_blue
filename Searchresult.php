@@ -37,7 +37,12 @@ if(isset($_REQUEST['searchkey'])){
 $searchkey=$_REQUEST['searchkey'];
 $requestType=$_REQUEST['requesttype'];
 $userCity=$_REQUEST['usercity'];
-$userArea=AreaName($_REQUEST['userarea']);
+if(isset($_REQUEST['userarea'])){
+    $userArea=AreaName($_REQUEST['userarea']);
+}else{
+    $userArea= '';
+}
+
 $type2 = $_REQUEST['type2'];
 //TO SEARCH AND FIND THE MERGED SQL
 $findcitymatch=get_Search_Id(TABLE_GENERALAREAMASTER,"Id","Area",$userCity);
@@ -78,6 +83,8 @@ $searchsql ='';
 $relatedsearch='';
 $relatedsearch1='';
 $alreadylisteddetails='';
+$citymatchdata = '';
+$countresult = '';
 if($requestType=='company'){
 $searchtTitle="Company List";
 //db connection
@@ -101,7 +108,7 @@ $citymatchdata.=$fetchcitymatch['RGT_PK'].',';
 }
 $citymatchdata=substr($citymatchdata,0,-1);
 }
-
+$matchingids = '';
 $queryprodname=db_query("SELECT Id FROM ".TABLE_ADMINPRODUCT." WHERE ProductName LIKE '$searchkey%'");
 while($fetchprodid=mysql_fetch_array($queryprodname)){
 $matchingids.=$fetchprodid['Id'].',';
@@ -501,7 +508,7 @@ $user_id = get_data_from_registration($fetchquery['PS_User_Fk'],RGT_ProfileUrl);
 <?php }}?>
 <!------ad---------->
 </div>
-<?php } else{ echo '<center class="msgalert">No Xbit Found</center>' ;}?>
+<?php } else{ echo '<center class="msgalert">No Result Found</center>' ;}?>
 
 </div>
 <!-----740------->

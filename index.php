@@ -1,4 +1,4 @@
-<?php 
+<?php
 include_once("include/Configuration.php");
 include_once(PAGE_DBCONNECTION);
 db_connect();
@@ -25,6 +25,19 @@ userArea=$("#selectarea").val();
 else
 userArea=selectarea;
 window.location.href="Searchpage.php?action=Add&searchkey="+searchKey+"&requesttype="+requestType+"&usercity="+userCity+"&userarea="+userArea+"&type2=1";
+}
+function adv_Searchpage()
+{
+searchKey = $("#searchlist").val();
+var requestType=$("input[name='requestType']:checked").val();
+var userCity=$("#userCity").val();
+var userArea;
+if(selectarea=='')
+userArea=$("#selectarea").val();
+else
+userArea=selectarea;
+window.location.href="adv_search.php?action=Add&searchkey="+searchKey+"&requesttype="+requestType+"&usercity="+userCity+"&userarea="+userArea+"&type2=1";
+
 }
 function Searchusingenterkey(e)
 {
@@ -71,7 +84,7 @@ Searchpage();
 	height:130px;
 	z-index:100;
 }
-	
+
 #SearchListRes .list {
 	width: 505px;
 	padding:0px 0px;
@@ -117,6 +130,7 @@ Searchpage();
 <input type="text" autocomplete="off" name="searchkey" id="searchlist"  class="mainsearchbox" placeholder="Please Enter Company Name / Sector / Keyword to Search" autofocus value="" onkeypress="Searchusingenterkey(event);" />
 <div id="SearchListRes"></div>
 <input id="searchsubmit" type="button" onclick="Searchpage();" value="Search" class="btnstyle"/></span>
+<img src="images/Green-Search-Icon.png" onClick="adv_Searchpage();" width="30" style="position:relative; top:9px; cursor:pointer; left:115px;" title="Advance Search">
 
 <div id="suggestions" style="display: none;"> <div style="width:504px;height:auto;position: relative; z-index: 9999; display: block;text-align:left;border:1px solid #ccc;left:0px;" id="suggestionsList"> &nbsp; </div></div>
 <input type="hidden" name="searchlisthidden" id="searchlisthidden" value="" />
@@ -160,12 +174,12 @@ while($fetchquery=mysql_fetch_array($queryarea)){
 <a href="#" class="topopup2" >Advertisement</a>
 <span style="color:#085A70;">|</span>
 <a href="#" class="topopup3" >Contact Us</a>
-<div id="toPopup0"> 
-    	
+<div id="toPopup0">
+
         <div class="close0"></div>
        	<span class="arrow"></span>
-		<div id="popup_content"> 
-            <p> 
+		<div id="popup_content">
+            <p>
             <img src="images/logo.png" style="position:relative;top:-10px;"><br/>
             <p>The idea of <b>tracemein.com</b>, an innovation of <b>TECHDNS</b>, is to create an opportunity for all levels of business people from small, medium and large, to have their own dynamic web site and make changes of their own on day to day basis. This site helps everyone get listed is the search engine and allow the companies to have a new door to do business apart from their regular way.</p>
 <p>For those who don’t have a website, they can use this site as their own website. For those who already have website, this will act as an additional tool for promoting themselves.</p>
@@ -176,10 +190,10 @@ while($fetchquery=mysql_fetch_array($queryarea)){
 <ul>
 <li>Specialized for Group Institutions</li>
 <li>Helps in Budgeting based on income & Expense</li>
-<li>Students Performance on hand</li>	
+<li>Students Performance on hand</li>
 <li>Staff Performance on hand</li>
-<li>Exam Scheduling for Rooms & Staff allocation</li>	
-<li>Centralized Fees collecting </li> 
+<li>Exam Scheduling for Rooms & Staff allocation</li>
+<li>Centralized Fees collecting </li>
 <li>Communicates among the parents, students, staff, administration and Management </li>
 <li>Assign Levels & permissions to avoid transparency  Etc.,</li>
 </ul>
@@ -187,10 +201,10 @@ while($fetchquery=mysql_fetch_array($queryarea)){
 <ul>
 <li>A comprehensive web reporting tool.</li>
 <li>Upload of information as a single excel file.</li>
-<li>Auto created menu options with report formation.</li>	
+<li>Auto created menu options with report formation.</li>
 <li>Any number of auto generated defined repots.</li>
-<li>Interactive module with internal mailing options.</li>	
-<li>Authenticated entries for management level access.</li> 
+<li>Interactive module with internal mailing options.</li>
+<li>Authenticated entries for management level access.</li>
 <li>Log reports for analyzing the usage frequency.</li>
 <li>Highly logical alert systems for reminders.</li>
 </ul>
@@ -198,35 +212,35 @@ while($fetchquery=mysql_fetch_array($queryarea)){
 <ul>
 <li>Totally Cost Effective compared to brochures & photos</li>
 <li>Impressive CD/Online Presentations.</li>
-<li>Add to Favorite option to filter the selected products for future reference.</li>	
+<li>Add to Favorite option to filter the selected products for future reference.</li>
 <li>Detailed description of products with image displayed.</li>
-<li>Zooming of product images for better viewing.</li>	
-<li>Easy upload option of the photos and descriptions with the help of a CMS Software.</li> 
+<li>Zooming of product images for better viewing.</li>
+<li>Easy upload option of the photos and descriptions with the help of a CMS Software.</li>
 </ul>
 <p><b>POS / BILLING - Sectors</b></p>
 <ul>
 <li>SME RETAIL – For small and medium enterprises</li>
 <li>PHARMA – POS for pharmacies</li>
-<li>STOCK STORAGE & DISTRIBUTION – For any sector</li>	
+<li>STOCK STORAGE & DISTRIBUTION – For any sector</li>
 <li>RETAIL ERP – Extensive Retail ERP solution for Supermarkets.</li>
-<li>BEAUTY PARLORS RETAIL – For Parlors and Saloons.</li>	
-<li>RESTURANT- POS.</li> 
+<li>BEAUTY PARLORS RETAIL – For Parlors and Saloons.</li>
+<li>RESTURANT- POS.</li>
 </ul>
 
 
 <p><b>Feature</b></p>
 <ul>
-<li> 	Efficient – With Barcode scanners and touch screen interfaces the sales can be 
-	             Processed quickly and efficiently</li>  
+<li> 	Efficient – With Barcode scanners and touch screen interfaces the sales can be
+	             Processed quickly and efficiently</li>
 <li> 	 Easy to Learn – No expensive training for staff, its as easy to learn</li>
 <li> 	 Easy to Use – Required minimum keystrokes with occasional use of keypad</li>
-<li> 	 Flexible – Handles any combination of discounts, taxes, offers, returns, credits and 
+<li> 	 Flexible – Handles any combination of discounts, taxes, offers, returns, credits and
 	            sales special in one easy transaction</li>
 <li> 	 Automatic – Applies auto discounts or preferred price levels to special customers</li>
 <li> 	 Accommodating – Stock and inventory alerts for ROLs</li>
 <li> 	 Secure – Highly secure with user level authentications for every departments</li>
 <li> 	Versatile – accommodates both international and national clients</li>
-<li> 	 Modern – Very well integrates with all latest retail devices like barcode scanners, cash 
+<li> 	 Modern – Very well integrates with all latest retail devices like barcode scanners, cash
 	          drawers, display poles</li>
 </ul>
 
@@ -251,23 +265,23 @@ while($fetchquery=mysql_fetch_array($queryarea)){
 <li>E- Commerce application Solution</li>
 <li>SEO (Search Engine Optimization)</li>
 </ul>
-            
+
             </p>
-        </div> 
-    
-    </div> 
-    
-    
-    <div id="toPopup1"> 
-    	
+        </div>
+
+    </div>
+
+
+    <div id="toPopup1">
+
         <div class="close1"></div>
        	<span class="arrow"></span>
-		<div id="popup_content"> 
-            <p> 
+		<div id="popup_content">
+            <p>
             <img src="images/logo.png" style="position:relative;top:-10px;"><br/>
            <b> 1.	Service Utility; Tracemein Accounts</b>
 
-<p>This service comes to effect on your Account creation and approval by Tracemein (an <b>“Account”</b>). Tracemein has got all the rights to refuse or limit your access to the Services provided. You agree to that you are at least 18 years of age, an individual,  to hold an account with Tracemein. If as an organization or group of companies you have to provide your registration number for Authenticity.</p> 
+<p>This service comes to effect on your Account creation and approval by Tracemein (an <b>“Account”</b>). Tracemein has got all the rights to refuse or limit your access to the Services provided. You agree to that you are at least 18 years of age, an individual,  to hold an account with Tracemein. If as an organization or group of companies you have to provide your registration number for Authenticity.</p>
 
 <p>This account is valid for a period of one year, from the date of approval of the account and has to be renewed for further period of validity.</p>
 
@@ -277,7 +291,7 @@ while($fetchquery=mysql_fetch_array($queryarea)){
 
 <b>2.	Website usage</b>
 <ol>
-<li>By utilizing this Service, you affirm and represent to the <b>TECHDNS</b> that you are authorized to do so and to make use of information accessible via the website.</li> 
+<li>By utilizing this Service, you affirm and represent to the <b>TECHDNS</b> that you are authorized to do so and to make use of information accessible via the website.</li>
 <li>TECHDNS reserves the right, in its sole discretion and at any time, to make changes to this account. </li>
 <li>Any changes made will be effective accordingly when made and the updated details will be sent to the member via e-mail.</li>
 <li>By becoming an account holder you are agreeing to be e bound by this agreement and any of the policies and procedures that may be made by TECHDNS from time to time.</li>
@@ -299,7 +313,7 @@ while($fetchquery=mysql_fetch_array($queryarea)){
 </ol>
 <b>6.	VIOLATIONS:</b>
 <ol>
-<li>Violations of system and network security are prohibited, and may result in criminal and civil liability. Examples of system and network security violations include the following:<br/> 
+<li>Violations of system and network security are prohibited, and may result in criminal and civil liability. Examples of system and network security violations include the following:<br/>
 a)	Any automated use of system.<br/>
 b)	Use of software that allows your account to stay logged on while you are not actively using the account.<br/>
 c)	Unauthorized access to or use of data, systems or networks, including any attempt to probe, scan or test the vulnerability of a system or network or to breach security or authentication measures without the express authorization of the owner of the system or network.</li>
@@ -315,48 +329,48 @@ The <b>TECHDNS</b> shall not be accountable for and disown all accountability fo
 <b>10.	Laws Applicable</b>
 <p>Usage of this website will in all respect, be governed by the laws of the Union Territory of Puducherry, INDIA, despite of the laws that might be valid under principles of conflicts of law. The parties agree that the Puducherry courts located in Union Territory of Puducherry, INDIA, shall have exclusive jurisdiction over all controversies occurring under this contract and agree that location is fitting in those courts.</p>
 
-            
-            
-            
-            
+
+
+
+
             </p>
-        </div> 
-    
-    </div> 
-    
-    <div id="toPopup2"> 
-    	
+        </div>
+
+    </div>
+
+    <div id="toPopup2">
+
         <div class="close2"></div>
        	<span class="arrow"></span>
-		<div id="popup_content"> 
+		<div id="popup_content">
             <p> 2222222222222222222222222222222</p>
-        </div> 
-    
-    </div> 
-    
-    <div id="toPopup3"> 
-    	
+        </div>
+
+    </div>
+
+    <div id="toPopup3">
+
         <div class="close3"></div>
        	<span class="arrow"></span>
-		<div id="popup_content"> 
-            <p> 
+		<div id="popup_content">
+            <p>
             <img src="images/logo.png" style="position:relative;top:-10px;"><br/>
             #50,First Floor, Sellaperumalpet<br/>
-Lawspet Main Road<br/>
-Lawspet<br/>
-Pondicherry-605008<br/>
-Pondicherry<br/>
-India<br/>
-Mobile: +91 9894964175 / 8940400934 / 8940400939
-<br/>
-Email ID - <a href="mailto:enquiry@tracemein.com" style="text-decoration:none;color:#006076;padding:0px;">enquiry@tracemein.com</a>          
+			Lawspet Main Road<br/>
+			Lawspet<br/>
+			Pondicherry-605008<br/>
+			Pondicherry<br/>
+			India<br/>
+			Mobile: +91 9894964175 / 8940400934 / 8940400939
+			<br/>
+			Email ID - <a href="mailto:enquiry@tracemein.com" style="text-decoration:none;color:#006076;padding:0px;">enquiry@tracemein.com</a>
             </p>
-        </div> 
-    
-    </div> 
-    
-    
-	
+        </div>
+
+    </div>
+
+
+
    	<div id="backgroundPopup"></div>
 
 </div>
@@ -384,24 +398,15 @@ alert('We are not able to choose city Please Select Manually');
 $("#userCityselect").focusout(function(){
   $("#cityvalue").css('display','inline-block');
   $("#userCityselect").css('display','none');
-    
-
 });
-
 // citysuggestions should be displayed none
 //userCityselect
 $("#userCityselect").focusout(function(){
-    
      setTimeout("$('#citysuggestions').fadeOut();", 100);
-    
 });
-
 $("#searchlist").focusout(function(){
     setTimeout("$('#suggestions').fadeOut();", 600);
 });
-
-
-
 </script>
 
 

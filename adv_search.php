@@ -38,7 +38,7 @@ db_connect();?>
 	margin:0px;
 	list-style : none;
 }
-#SearchListRes{
+#SearchListRes,#SearchListPro{
 	border : 1px solid #8789E7;
 	background : #FFFFFF;
 	position:absolute;
@@ -54,7 +54,7 @@ db_connect();?>
 	z-index:100;
 }
 
-#SearchListRes .list {
+#SearchListRes .list,#SearchListPro .list {
 	width:605px;
 	padding:0px 0px;
 	margin:0px;
@@ -82,41 +82,42 @@ db_connect();?>
 <div class="main_container">
 <div class="top_menu">
 <div class="adlogo"><a href="index.php"><div style="font-weight: bold; margin-top: 5px; font-family: Trebuchet MS; font-size: 40px;text-shadow: 2px 2px #000000;" id="toplogo"><span style="color:#00667C;">X</span><span style="color:#C31118;">Y</span><span style="color:#00667C;">GET</span><span style="color:#C31118;font-size:30px;">.COM</span></div></a></div>
-<div style="width:250px;height:20px;padding-top:13px;float:left;margin-left:10px;">
+<!-- <div style="width:250px;height:20px;padding-top:13px;float:left;margin-left:10px;">
 <a onclick="Togglecity();" id="cityvalue" ></a>
 <input name="userCity" id="userCity"  type="hidden"  />
-<input name="type2" id="type2"  type="hidden" value="<?php echo $_REQUEST['type2'] ;?>"  />
+<input name="type2" id="type2"  type="hidden" value="<?php //echo $_REQUEST['type2'] ;?>"  />
 
 <input name="userCityselect" placeholder="Select City" autocomplete="off" id="userCityselect"  type="text"  value="" style="width:280px;height:20px;border:1px solid #C8C8C8;color:#000000; display:none;" /><div id="ListCityRes"></div>
 <input type="hidden" name="citylisthidden" id="citylisthidden" value="" />
 <div id="citysuggestions" style="display: none;"> <div style="position: relative; width: 260px;  max-height: 300px; z-index: 9999; display: block;background: none repeat scroll 0 0 #FFFFFF;text-align:left;list-style: none outside none;border: 1px solid rgba(0, 51, 255, 0.5);cursor:pointer;" id="citysuggestionlist"> &nbsp; </div></div>
 <span style="display:none;">Select Area in <span id="citydisplayname"  >Pondicherry</span>?</span>
-</div>
-<div style="width:200px;height:20px;padding-top:13px;float:left;margin-left:100px;">
+</div> -->
+<!-- <div style="width:200px;height:20px;padding-top:13px;float:left;margin-left:100px;">
 <select name="selectarea" id="selectarea"  style="border:none;color:#007088;background:#F4F4F4;text-align: right;" >
 	<?php
-	$cityyidd=get_Search_Id(TABLE_GENERALAREAMASTER,"Id","Area",$_REQUEST['usercity']);
-    if($cityyidd!='')
-	$cityyidd = $cityyidd;
-	else
-	$cityyidd =1;
-	$queryarea=db_query("SELECT AM_Id, AM_Area, AM_Status  FROM ".TABLE_AREAMASTER." WHERE AM_City ='".$cityyidd."' ");
-echo '<option>Select Area in '.CityName($cityyidd).'</option>';
-while($fetchquery=mysql_fetch_array($queryarea)){
-	$selectid = ($fetchquery['AM_Id'] == $_REQUEST['userarea']) ? 'selected=selected':'';
-    echo '<option value="'.$fetchquery['AM_Id'].'" '.$selectid.'>'.$fetchquery['AM_Area'].'</option>';
-} ?></select>
-</div>
+// 	$cityyidd=get_Search_Id(TABLE_GENERALAREAMASTER,"Id","Area",$_REQUEST['usercity']);
+//     if($cityyidd!='')
+// 	$cityyidd = $cityyidd;
+// 	else
+// 	$cityyidd =1;
+// 	$queryarea=db_query("SELECT AM_Id, AM_Area, AM_Status  FROM ".TABLE_AREAMASTER." WHERE AM_City ='".$cityyidd."' ");
+// echo '<option>Select Area in '.CityName($cityyidd).'</option>';
+// while($fetchquery=mysql_fetch_array($queryarea)){
+// 	$selectid = ($fetchquery['AM_Id'] == $_REQUEST['userarea']) ? 'selected=selected':'';
+//     echo '<option value="'.$fetchquery['AM_Id'].'" '.$selectid.'>'.$fetchquery['AM_Area'].'</option>';
+//} ?>
+</select>
+</div> -->
 </div>
 <div class="admain_container">
 <div id="searchResults">
-<!-----admain_container-------->
+<!---admain_container-------->
 <?php $path=''; include("advancesearchpage.php");?>
-<!-----admain_container-------->
+<!---admain_container-------->
 </div>
-<!-----adright_container-------->
+<!---adright_container-------->
 <?php include("Advertisementcolumn.php");?>
-<!-----adright_container-------->
+<!--adright_container-------->
 
 </div>
 </div>
@@ -133,26 +134,27 @@ $(function(){
 $(".comp_search").keyup(function()
 {
 var comp_searchid = $(this).val();
-var dataString = 'comp_search='+ comp_searchid;
-//alert(dataString);
+//var dataString = 'comp_search='+ comp_searchid;
+//alert(comp_searchid);
 
-if(comp_searchid!='')
-{
-	$.ajax({
-	type: "POST",
-	url: "autocomplete/search.php",
-	data: dataString,
-	cache: false,
-	success: function(html)
-	{
-	$("#comp_result").html(html).show();
-	//alert(comp_result);
-	}
-	});
-}return false;
+// if(comp_searchid!='')
+// {
+// 	$.ajax({
+// 		type: "POST",
+// 		url: "autocomplete/search.php",
+// 		data: {'comp_search':comp_searchid},
+// 		cache: false,
+// 		success: function(html)
+// 		{
+// 		alert(html);
+// 		$("#comp_result").html(html.RGT_CompName).show();
+// 		//alert(comp_result);
+// 		}
+// 	});
+// }return false;
 });
 
-jQuery("#comp_result").live("click",function(c){
+jQuery("#comp_result").click(function(c){
 
 	var $comp_clicked = $(c.target);
 	var $comp_name = $comp_clicked.find('.comp_name').html();
@@ -194,7 +196,7 @@ jQuery("#comp_result").live("click",function(c){
 });
 
 
-jQuery(document).live("click", function(c) {
+jQuery(document).click(function(c) {
 	var $comp_clicked = $(c.target);
 	if (! $comp_clicked.hasClass("comp_search")){
 	jQuery("#comp_result").fadeOut();
@@ -205,7 +207,6 @@ $('#comp_searchid').click(function(){
 	jQuery("#comp_result").fadeIn();
 });
 });
-
 
 
 $(function(){
@@ -238,13 +239,13 @@ if(searchid!='')
 });
 
 
-jQuery("#result").live("click",function(e){
+jQuery("#result").click(function(e){
 	var $clicked = $(e.target);
 	var $name = $clicked.find('.name').html();
 	var decoded = $("<div/>").html($name).text();
 	$('#searchid').val(decoded);
 });
-jQuery(document).live("click", function(e) {
+jQuery(document).click(function(e) {
 	var $clicked = $(e.target);
 	if (! $clicked.hasClass("search")){
 	jQuery("#result").fadeOut();
@@ -572,11 +573,31 @@ $(document).keypress(function(e) {
         FreeUserForgot();
     }
 });
-
+$(document).delegate('#SearchListRes .list li', 'click', function(){
+	//alert($(this).text());
+	$('#comp_searchid').val($(this).text());
+});
+$(document).delegate('#SearchListPro .list li', 'click', function(){
+	//alert($(this).text());
+	$('.search_pro').val($(this).text());
+});
 
 
 </script>
 <script type="text/javascript">
+	$('#search_city').change(function(event) {
+		//alert('dfssddfs');
+		var city_id = $(this).val();
+		$.ajax({
+			url: 'include/BlModules/Bl_ListArea.php',
+			type: 'POST',
+			data: {'city_id':city_id},
+			success: function(data) {
+				//alert(data);
+				$('#Area').empty().append(data);
+			}
+		})
+	});
 	if(google.loader.ClientLocation)
 	{
 		visitor_lat = google.loader.ClientLocation.latitude;

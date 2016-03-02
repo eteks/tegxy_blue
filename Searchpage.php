@@ -1,4 +1,4 @@
-<?php 
+<?php
 include_once("include/Configuration.php");
 include_once(PAGE_DBCONNECTION);
 db_connect();?>
@@ -31,7 +31,7 @@ db_connect();?>
 	height:130px;
 	z-index:100;
 }
-	
+
 #ListCityRes .list {
 	width: 280px;
 	padding:0px 0px;
@@ -53,7 +53,7 @@ db_connect();?>
 	height:130px;
 	z-index:100;
 }
-	
+
 #SearchListRes .list {
 	width:605px;
 	padding:0px 0px;
@@ -78,7 +78,8 @@ db_connect();?>
 
 </style>
 <body class="background">
-<?php include("OuterHeader.php");?>
+
+<?php  include("OuterHeader.php");?>
 <div class="main_container">
 <div class="top_menu">
 <div class="adlogo"><a href="index.php"><div style="font-weight: bold; margin-top: 5px; font-family: Trebuchet MS; font-size: 40px;text-shadow: 2px 2px #000000;" id="toplogo"><span style="color:#00667C;">X</span><span style="color:#C31118;">Y</span><span style="color:#00667C;">GET</span><span style="color:#C31118;font-size:30px;">.COM</span></div></a></div>
@@ -94,7 +95,7 @@ db_connect();?>
 </div>
 <div style="width:200px;height:20px;padding-top:13px;float:left;margin-left:100px;">
 <select name="selectarea" id="selectarea"  style="border:none;color:#007088;background:#F4F4F4;text-align: right;" >
-	<?php 
+	<?php
 	$cityyidd=get_Search_Id(TABLE_GENERALAREAMASTER,"Id","Area",$_REQUEST['usercity']);
     if($cityyidd!='')
 	$cityyidd = $cityyidd;
@@ -147,16 +148,16 @@ alert('We are not able to choose city Please Select Manually');
 $("#userCityselect").focusout(function(){
   $("#cityvalue").css('display','inline-block');
   $("#userCityselect").css('display','none');
-    
+
 
 });
 
 // citysuggestions should be displayed none
 //userCityselect
 $("#userCityselect").focusout(function(){
-    
+
      setTimeout("$('#citysuggestions').fadeOut();", 100);
-    
+
 });
 
 $("#searchlist").focusout(function(){
@@ -169,7 +170,7 @@ $("#searchlist").focusout(function(){
 <div class="background_overlay" style="display:none"></div>
 <input type="hidden" id="FProfileLink" />
 <input type="hidden" id="FProfiletype" />
-<input type="text" id="Postafreead" />
+<input type="hidden" id="Postafreead" />
 <input type="hidden" id="FBDId" />
 <div id="overlay_form" style="display:none;">
 <div class="closediv" align="right"><a href="#" id="close" ><div class="closebtn"></div></a></div>
@@ -196,13 +197,13 @@ $("#searchlist").focusout(function(){
 <div class="labeldiv">Password:</div>
 <div class="txtboxdiv"><input type="password" name="FLpassword" autocomplete="off" id="FLpassword" class="txtbox"/></div>
 </div>
-	
-    
+
+
 <div style="width:230px;height:35px;margin-top:10px;">
 <input type="button" value="Sign In" onclick="FreeUserLogin();"  class="btnstylee" style="margin-left:40px;" />
 <input type="button" value="Reset" onclick="FreeUserLoginReset();"  class="btnstylee" style="margin-left:20px;" />
 </div>
-   
+
 
 </form>
 
@@ -248,7 +249,7 @@ $("#searchlist").focusout(function(){
 <div class="labeldiv">Confirm Password:</div>
 <div class="txtboxdiv"><input type="password" name="CFpassword" id="CFpassword" class="txtbox" autocomplete="off" /></div>
 </div>
-   
+
 <div style="width:230px;height:35px;margin-top:10px;margin-left: 20%;">
 <input type="button" value="Submit" onclick="FreeUserRegister();"  class="btnstylee" />
 <input type="button" value="Reset" onclick="FreeUserRegisterReset()"  class="btnstylee" />
@@ -299,10 +300,10 @@ if($('#sradio').is(':checked')){
      $("#signup").css('pointer-events','none');
       $('#FLusername').focus();
 }
- 
-  
-  });   
-  
+
+
+  });
+
   /*$("#signin").click(function(){
 $("#fradio").attr("selected","selected");
 onclicksignin();
@@ -324,8 +325,8 @@ $('#closeforgetpass').click(function() {
 });
 
 $('#FreeuserFogg').bind("keyup", function(e) {
-  var code = e.keyCode || e.which; 
-  if (code  == 13) {               
+  var code = e.keyCode || e.which;
+  if (code  == 13) {
    FreeUserForgot();
     return false;
   }
@@ -333,16 +334,16 @@ $('#FreeuserFogg').bind("keyup", function(e) {
 
 
 $('#Freeuserreg').bind("keyup", function(e) {
-  var code = e.keyCode || e.which; 
-  if (code  == 13) {               
+  var code = e.keyCode || e.which;
+  if (code  == 13) {
    FreeUserRegister();
     return false;
   }
 });
 
 $('#Freeuserlogin').bind("keyup", function(e) {
-  var code = e.keyCode || e.which; 
-  if (code  == 13) {               
+  var code = e.keyCode || e.which;
+  if (code  == 13) {
    FreeUserLogin();
     return false;
   }

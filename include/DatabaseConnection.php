@@ -1012,6 +1012,7 @@ echo '<li>No Results</li>';
 
 function getKeywordCompListFromSearchedKeyword($searchkey)
 {
+$ResIndustryIds = '';
 $KeywordsIds      = get_Search_Id(TABLE_KEYWORDMST, "Kd_Id", "Kd_Keyword", $searchkey);
 if($KeywordsIds!='')
 {
@@ -1095,6 +1096,8 @@ echo '<li>No Results</li>';
 
 function getKeywordCompListFromSearchedCompany($searchkey)
 {
+$ResIndustryIds = '';
+$ResCompIds= '';
 $CompanyIds      = get_Search_Id(TABLE_REGISTRATION, "RGT_PK", "RGT_CompName", $searchkey);
 if($CompanyIds !='')
 {

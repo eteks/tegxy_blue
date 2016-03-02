@@ -6,7 +6,7 @@ define('DB_SERVER','localhost');
 define('DB_SERVER_PASSWORD','');
 define('DB_SERVER_USERNAME','root');
 define('DB_DATABASE','xyget.com');
-define('HTTP_URL','localhost/xyget_blue');
+define('HTTP_URL','localhost/tegxy_blue');
 
 $Title = 'XYget - Admin';
 

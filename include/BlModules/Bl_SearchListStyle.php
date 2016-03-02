@@ -48,9 +48,10 @@ $searchsql ='';
 
 
 
-
-
+$alreadylisteddetails = '';
+$relatedsearch1='';
 if($requestType=='company'){
+$relatedsearch = '';
 $searchtTitle="Company List";
 
 //db connection
@@ -80,20 +81,19 @@ $matchingids.=$fetchprodid['Id'].',';
 }
 $matchingids=substr($matchingids,0,-1);
 $relatedsearch1='';
-if($matchingids!=''&&$citymatchdata!=''){
-$searchquery=db_query("SELECT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Fk IN (".$matchingids.") AND PS_User_Fk IN (".$citymatchdata.") ");
-$searchquery1=db_query("SELECT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Fk IN (".$matchingids.") AND PS_User_Fk IN (".$citymatchdata.") ");
-$searchquery2=db_query("SELECT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Fk IN (".$matchingids.") AND PS_User_Fk IN (".$citymatchdata.") ");
-$searchquery3=db_query("SELECT DISTINCT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Fk IN (".$matchingids.") AND PS_User_Fk IN (".$citymatchdata.") ");
-
-$countresult=mysql_num_rows($searchquery);
-while($fetchquery=mysql_fetch_array($searchquery1)){
-$relatedsearch.=$fetchquery['PS_Id'].',';
-}
-while($fetchquery1=mysql_fetch_array($searchquery3)){
-$relatedsearch1.=$fetchquery1['PS_Fk'].',';
-}
-}
+    if($matchingids!=''&&$citymatchdata!=''){
+        $searchquery=db_query("SELECT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Fk IN (".$matchingids.") AND PS_User_Fk IN (".$citymatchdata.") ");
+        $searchquery1=db_query("SELECT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Fk IN (".$matchingids.") AND PS_User_Fk IN (".$citymatchdata.") ");
+        $searchquery2=db_query("SELECT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Fk IN (".$matchingids.") AND PS_User_Fk IN (".$citymatchdata.") ");
+        $searchquery3=db_query("SELECT DISTINCT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Fk IN (".$matchingids.") AND PS_User_Fk IN (".$citymatchdata.") ");
+        $countresult=mysql_num_rows($searchquery);
+        while($fetchquery=mysql_fetch_array($searchquery1)){
+            $relatedsearch.=$fetchquery['PS_Id'].',';
+        }
+        while($fetchquery1=mysql_fetch_array($searchquery3)){
+            $relatedsearch1.=$fetchquery1['PS_Fk'].',';
+        }
+    }
 }
 $relatedsearch=substr($relatedsearch, 0, -1);
 $relatedsearch1=substr($relatedsearch1, 0, -1);

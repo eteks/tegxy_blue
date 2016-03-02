@@ -1,19 +1,19 @@
 <div class="adright_container">
-<?php 
-$selectadquery = db_query("SELECT ADV_Existornew,ADV_Selection,ADV_Name,ADV_Imagepath,ADV_Description,ADV_Selectionfk FROM ".TABLE_ADVERTISEMENT."");
+<?php
+$selectadquery = db_query("SELECT ADV_Existornew,ADV_Selection,ADV_Name,ADV_Imagepath,ADV_Description,ADV_Selectionfk FROM ".TABLE_ADVERTISEMENT." limit 3");
 while(list($adv_existornew,$adv_selection,$adv_name,$adv_imagepath,$adv_description,$adv_selectionfk) = db_fetch_array($selectadquery))
 {
 $adv_title       = $adv_name;
-	
+
 if($adv_existornew==2)
 {
 $adv_imagepath   = $adv_imagepath;
 $adv_description = $adv_description;
 }
-else 
+else
 {
 if($adv_selection==1)
-{	
+{
 $selectadquery1 = db_query("SELECT PS_CoverImg,PS_Description FROM ".TABLE_PRODUCTSERVICE." WHERE PS_Id='".$adv_selectionfk."'");
 list($ps_coverImg,$ps_description) = db_fetch_array($selectadquery1);
 $adv_imagepath   = $ps_coverImg;
@@ -32,7 +32,7 @@ $selectadquery3 = db_query("SELECT GY_Image,GY_Desp FROM ".TABLE_GALLERY." WHERE
 list($gy_image,$gy_desp) = db_fetch_array($selectadquery3);
 $adv_imagepath   = $gy_image;
 $adv_description = $gy_desp;
-	
+
 }
 }
 ?>
