@@ -1,4 +1,5 @@
 <script type="text/javascript" src="js/Searchlist.js"></script>
+
 <link href="css/popup.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="js/popupbox.js"></script>
 <script type="text/javascript">
@@ -9,6 +10,102 @@
     if (e.keyCode == 13)
     searchResult($('#searchlist').val(),'','');
     }
+</script>
+<script>
+
+function Searchpage()
+{
+var pro_search =$("#searchid").val();
+
+var comp_name = $("#comp_searchid").val();
+//alert(comp_name);
+
+if(comp_name !="" && pro_search !="")
+{
+var searchKey = $("#searchid").val();
+//alert("enter1");
+}
+
+if(comp_name !="" && pro_search =="")
+{
+var searchKey = $("#comp_searchid").val();
+//alert("enter2");
+}
+if(comp_name =="" && pro_search !="")
+{
+var searchKey = $("#searchid").val();
+//alert("enter3");
+}
+if(pro_search =="" && comp_name =="")
+{
+var requestType="company";
+//alert(requestType);
+
+alert("Please Enter Company Name OR Product Name");
+return false;
+
+
+}
+else if(pro_search =="" && comp_name !="")
+{
+var requestType="company";
+//alert(requestType);
+}
+else if(pro_search !="" && comp_name =="")
+{
+var requestType="bestdeals";
+//alert(requestType);
+}
+else if(pro_search !="" && comp_name !="")
+{
+var requestType="bestdeals";
+//alert(requestType);
+}
+
+var userCity1=$("#city_name").val();
+//var userCity;
+var userCity = userCity1.replace(",", "");
+if(userCity =="")
+{
+var userCity="ALL City";
+//alert(requestType);
+}
+
+var industry_c=$("#Sector_id").val();
+var industry_p=$("#Sector").val();
+//var userCity;
+if(industry_c=="" && industry_p=="")
+{
+var industry="";
+//alert(requestType);
+}
+else if(industry_c !="" && industry_p=="")
+{
+var industry=$("#Sector_id").val();
+}
+
+else if(industry_c =="" && industry_p !="")
+{
+var industry=$("#Sector").val();
+}
+
+
+
+//alert(industry);
+
+// if(selectarea=='')
+// {
+// userArea=$("#selectarea").val();
+// }
+// else
+// {
+// userArea=selectarea;
+// }
+
+window.location.href="Searchpage.php?action=Add&searchkey="+searchKey+"&requesttype="+requestType+"&usercity="+userCity+"&industry="+industry+"&type2=1";
+
+
+}
 </script>
 <style type="text/css">
     ul.leftsidebarlist
@@ -105,8 +202,6 @@
     $matchingids.=$fetchprodid['Id'].',';
     }
     $matchingids=substr($matchingids,0,-1);
-
-
     if($searchkey!='')
     {
     // Based On Keyword, Display
@@ -222,7 +317,7 @@
     <div class="comp_content">
 
     <input type="text" class="comp_search" id="comp_searchid" placeholder="Search for Company Name" />
-
+    <div id="SearchListRes" style="left:224px;width:260px!important;"></div>
     <input type="hidden"  id="c_name" name="c_name" />
 
     <input type="hidden" id="comp_id" name="comp_id"/>
@@ -238,6 +333,7 @@
         <td width="404" align="left">
             <div class="content">
     <input type="text" class="search_pro" id="searchid" placeholder="Search for Product" />
+    <div id="SearchListPro" style="left:224px;width:260px!important;"></div>
     <div id="result"></div>
     </div>    </td>
       </tr>

@@ -29,6 +29,8 @@ DocId('PCityGrid').innerHTML='<select></select>';
 
 function ValidateFirstLevel()
 {
+	
+	
 if(DocId('CompanyName').value=='')
 {
 alert("Please Enter the Company Name");	
@@ -54,12 +56,7 @@ DocId('Sector').focus();
 return false;
 }
 
-else if(DocId('Email').value=='')
-{
-alert("Please Enter the Email");	
-DocId('Email').focus();
-return false;
-}
+
 else if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(DocId('Email').value)))
 {
 alert("Please Enter the Valid Email Id");	
@@ -148,127 +145,52 @@ RegisterOption('Per');
 }
 }
 
+
+
+$(document).ready(function(){
+$('#business_details').change(function(){
+if(this.checked)
+{
+$('#view_business_details').fadeIn('slow');
+$('#bus_details').val('1');
+}
+else
+{
+$('#view_business_details').fadeOut('slow');
+$('#bus_details').val('0');
+}
+});
+});
+
+
+$(document).ready(function(){
+$('#terms').change(function(){
+if(this.checked)
+{
+$('#terms_con').val('1');
+}
+else
+{
+$('#terms').fadeOut('slow');
+$('#terms_con').val('0');
+}
+});
+});
+
+
+
+/*-------------------------------------------------------------Registration form validation------------------------------------------------------------*/
+
 $(document).ready(function()
 {
 $('#RegisterForm').submit(function()
 {
-//Business Validation	
-/*if(DocId('PName').value=='' && DocId('CompanyName').value=='')
+if(DocId('OwnerName').value=='')
 {
-alert("Please Enter the Name");
-DocId('PName').focus();
+alert("Please Enter the Your Name");	
+DocId('OwnerName').focus();
 return false;
-}
-
-if(DocId('CompanyName').value!='')
-CompanyProfileValidate();
-
-//Personal Validation
-if(DocId('PName').value=='')
-{
-alert("Please Enter the Name");	
-DocId('PName').focus();
-return false;
-}
-else if(DocId('PDOB').value=='')
-{
-alert("Please Enter the Date of Birth");	
-DocId('PDOB').focus();
-return false;
-}
-else if(DocId('PEmail').value=='')
-{
-alert("Please Enter the Email");	
-DocId('PEmail').focus();
-return false;
-}
-else if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(DocId('PEmail').value)))
-{
-alert("Please Enter the Valid Email Id");	
-DocId('PEmail').focus();
-return false;
-}
-else if(DocId('PUserName').value=='')
-{
-alert("Please Enter the User Name");	
-DocId('PUserName').focus();
-return false;
-}
-
-else if(DocId('PPassword').value=='')
-{
-alert("Please Enter the Password");	
-DocId('PPassword').focus();
-return false;
-}
-else if(DocId('PCPassword').value=='')
-{
-alert("Please Enter the Confirm Password");	
-DocId('PCPassword').focus();
-return false;
-}
-else if(DocId('PCPassword').value!=DocId('PPassword').value)
-{
-alert("Password Mismatched");	
-DocId('PCPassword').focus();
-DocId('PPassword').value='';
-DocId('PCPassword').value='';
-return false;
-}
-else if(DocId('PAddress1').value=='' && DocId('PAddress2').value=='')
-{
-alert("Please Enter the Address");	
-DocId('PAddress1').focus();
-return false;
-}
-else if(DocId('PSelCountry').value=='')
-{
-alert("Please Select the Country");	
-DocId('PSelCountry').focus();
-return false;
-}
-else if(DocId('PMobile').value=='' && DocId('PLandLine').value=='')
-{
-alert("Please Enter the Mobile / Landline Number");	
-DocId('PMobile').focus();
-return false;
-}
-
-
-else if(DocId('User_Name').value==DocId('PUserName').value)
-{
-alert("Please Change your User Name Either Business / Personal");	
-DocId('User_Name').focus();
-return false;
-}
-
-
-else if(DocId('Password').value==DocId('PPassword').value)
-{
-alert("Please Change your Password Either Business / Personal");	
-DocId('Password').focus();
-return false;
-}*/
-
-if(DocId('CompanyName').value=='')
-{
-alert("Please Enter the Company Name");	
-DocId('CompanyName').focus();
-return false;
-}
-else if(DocId('YearofEst').value=='')
-{
-alert("Please Select the Year Of Establishment");	
-DocId('YearofEst').focus();
-return false;
-}
-
-else if(DocId('Sector').value=='')
-{
-alert("Please Select the Industry");	
-DocId('Sector').focus();
-return false;
-}
+}	
 
 else if(DocId('Email').value=='')
 {
@@ -282,7 +204,108 @@ alert("Please Enter the Valid Email Id");
 DocId('Email').focus();
 return false;
 }
-else if(DocId('User_Name').value=='')
+
+else if(DocId('Mobile').value=='')
+{
+alert("Please Enter the Mobile Number");	
+DocId('Mobile').focus();
+return false;
+}
+
+
+
+if(DocId('bus_details').value =='1')
+{
+
+if(DocId('CompanyName').value=='')
+{
+alert("Please Enter the Company Name");	
+DocId('CompanyName').focus();
+return false;
+}
+if(DocId('YearofEst').value=='')
+{
+alert("Please Select the Year Of Establishment");	
+DocId('YearofEst').focus();
+return false;
+}
+
+if(DocId('Sector').value=='')
+{
+alert("Please Select the Industry");	
+DocId('Sector').focus();
+return false;
+}
+
+if(DocId('Designation').value=='')
+{
+alert("Please Enter the Company Description");	
+DocId('Designation').focus();
+return false;
+}
+
+if(DocId('Address1').value=='' && DocId('Address2').value=='' )
+{
+alert("Please Enter the Address");	
+DocId('Address1').focus();
+return false;
+}
+
+/*else if(DocId('SelCountry').value=='')
+{
+alert("Please Select the Country");	
+DocId('SelCountry').focus();
+return false;
+}*/
+if(DocId('SelState').value=='')
+{
+alert("Please Select the State");	
+DocId('SelState').focus();
+return false;
+}
+if(DocId('SelCity').value=='')
+{
+alert("Please Select the City");	
+DocId('SelCity').focus();
+return false;
+}
+
+}
+
+/*else if(DocId('selectarea').value=='')
+{
+alert("Please Select the Area");	
+DocId('selectarea').focus();
+return false;
+}*/
+if(DocId('OpArea').value!='')
+{
+  var allSchools = [];
+ var s = document.getElementById("OpArea");
+            //alert("schools lenght  " + s.options.length);
+         var c=1;
+		    for (var i = 0; i < s.options.length; i++) {
+                if (s.options[i].selected == true) {
+					
+					//alert(c);
+                    var schoolid = s.options[i].value;
+                  //  alert(s.options[i].value);
+					
+					if(c > 3)
+					{ 
+					alert("Please do not select more than three options");
+					DocId('OpArea').focus();
+					return false;
+					}
+                        allSchools.push(schoolid);
+               var c=c+1;
+				
+				}
+            }
+}
+
+
+if(DocId('User_Name').value=='')
 {
 alert("Please Enter the User Name");	
 DocId('User_Name').focus();
@@ -312,36 +335,11 @@ DocId('CPassword').value='';
 return false;
 }
 
-else if(DocId('Address1').value=='' && DocId('Address2').value=='' )
-{
-alert("Please Enter the Address");	
-DocId('Address1').focus();
-return false;
-}
 
-/*else if(DocId('SelCountry').value=='')
+else if(DocId('terms_con').value=='0')
 {
-alert("Please Select the Country");	
-DocId('SelCountry').focus();
-return false;
-}*/
-else if(DocId('SelState').value=='')
-{
-alert("Please Select the State");	
-DocId('SelState').focus();
-return false;
-}
-else if(DocId('SelCity').value=='')
-{
-alert("Please Select the City");	
-DocId('SelCity').focus();
-return false;
-}
-
-else if(DocId('Mobile').value=='' && DocId('LandLine').value=='')
-{
-alert("Please Enter the Mobile / Landline Number");	
-DocId('Mobile').focus();
+alert("Please select the Terms & Conditions");	
+DocId('terms').focus();
 return false;
 }
 
@@ -445,7 +443,6 @@ function FreeUserRegister()
 	return false;
 	}
 	
-	
 	var str = "action=1&Fusername="+Fusername+"&Fmobileno="+Fmobileno+"&FemailId="+FemailId+"&Fpassword="+Fpassword+"&FProfileLink="+FProfileLink+"&Postafreead="+Postafreead+"&Fname="+Fname+"&Fcity="+Fcity+"&Fcountry="+Fcountry+"&r="+ran_number;
 	
 	var url = "include/BlModules/Bl_Login.php";
@@ -466,29 +463,36 @@ function ShowFreeUserRegister()
 		{
 		var FBDId= DocId('FBDId').value;
 		
+		var FProfileLink = DocId('FProfileLink').value;			
+		var FProfiletype = DocId('FProfiletype').value;	
+		
 		var Res = trim(response).split('***');
 		if(Res[0]=='1')
 		DocId('FRmsg').innerHTML  = 'Username / Email Id Already Exists';
 		else if(Res[0]=='' && Res[2]!='fad')
 		{
 		var FProfileLink = DocId('FProfileLink').value;	
+		
 		var FProfiletype = DocId('FProfiletype').value;	
 		$("#overlay_form").fadeOut(500);
 		$(".background_overlay").fadeOut(500);
 		if(DocId('requestTypedeals').checked==true)
 		window.location.href='Bestdealsajax.php?type='+FProfiletype+'&user='+FProfileLink+'&BDId='+FBDId;
 		else
-		window.location.href=FProfileLink ;
+		window.location.href=FProfileLink;
 		}
 		else
-		window.location.href='ManageProfile.php?user='+Res[1];
+		window.location.href=FProfileLink;
+		//window.location.href='ManageProfile.php?user='+Res[1];	
 		}
 	}
 }
 
+
+
 function getUserProfile(user,id,type)
 {
-DocId('FProfileLink').value  = user; 	
+DocId('FProfileLink').value  = user;	
 DocId('FBDId').value  = id;
 DocId('FProfiletype').value  = type;
 }
@@ -551,13 +555,14 @@ function ShowFreeUserLogin()
 		$("#overlay_form").fadeOut(500);
 		$(".background_overlay").fadeOut(500);
 		if(DocId('requestTypedeals').checked==true)
-		window.location.href='Bestdealsajax.php?type='+FProfiletype+'&user='+FProfileLink+'&BDId='+FBDId;
+	window.location.href='Bestdealsajax.php?type='+FProfiletype+'&user='+FProfileLink+'&BDId='+FBDId;
 		else
-		window.location.href=FProfileLink ;
- ;
+		//alert(FProfileLink);
+	window.location.href=FProfileLink ;
+
 		}
 		else
-		window.location.href='ManageProfile.php?user='+Res[1];
+	window.location.href='ManageProfile.php?user='+Res[1];
 		}
 		
 	}

@@ -44,10 +44,10 @@ function poploginreset()
 	$('.registrd_usr').show();
 	$('.newuser').show();
 	positionPopup();
-	
+
 }
 $(function() {
-	
+
 	$('#signin').addClass('shad');
 
 $('#toggle2').click(function() {
@@ -65,19 +65,18 @@ $('#toggle2').click(function() {
 $('.firstviewmore').click(function() {
 	poploginreset();
 	positionPopup();
-	
+
 });
 
 });
 
 $(document).ready(function(){
-//open popup
 $(".pop").click(function(){
   $("#overlay_form").fadeIn(1000);
   $(".background_overlay").fadeIn(500);
   $("#searchlist").focus();
   positionPopup();
-  
+
   $('#FLusername').focus();
 });
 
@@ -92,7 +91,7 @@ $("#close, .background_overlay").click(function(){
 function positionPopup(){
   if(!$("#overlay_form").is(':visible')){
     return;
-  } 
+  }
   $("#overlay_form").css({
       left: ($(window).width() - $('#overlay_form').width()) / 2,
       top: ($(window).width() - $('#overlay_form').width()) / 7,
@@ -102,6 +101,3 @@ function positionPopup(){
 
 //maintain the popup at center of the page when browser resized
 $(window).bind('resize',positionPopup);
-
-
-

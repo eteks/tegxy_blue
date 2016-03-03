@@ -11,7 +11,7 @@
 <script type="text/javascript" src="carousel/js/jquery.als-1.2.min.js"></script>
 <script type="text/javascript">
 var $k = jQuery.noConflict();
-$k(document).ready(function() 
+$k(document).ready(function()
 {
 $k("#lista1").als({
 visible_items: 1,
@@ -26,7 +26,7 @@ start_from: 0
 });
 
 var $l = jQuery.noConflict();
-$l(document).ready(function() 
+$l(document).ready(function()
 {
 $l("#lista2").als({
 visible_items: 1,
@@ -42,7 +42,7 @@ start_from: 0
 
 
 var $k = jQuery.noConflict();
-$k(document).ready(function() 
+$k(document).ready(function()
 {
 $k("#lista3").als({
 visible_items: 4,
@@ -70,7 +70,7 @@ start_from: 0
     $niv(window).load(function() {
         $niv('#slider').nivoSlider();
     });
-    
+
 <!----------nivo slider------->
 function showrow()
 {
@@ -78,14 +78,14 @@ function showrow()
 	{
    $('tr:not(.toplevel)[data-id="3"]').show();
    document.getElementById("showtoggle").innerHTML="HIDE ALL"
-   
+
 	}
 	else
 	{
 	$('tr:not(.toplevel)[data-id="3"]').hide();
    document.getElementById("showtoggle").innerHTML="SHOW ALL"
 	}
-	
+
 }
     </script>
 <!----------nivo slider------->
@@ -129,9 +129,9 @@ function  ViewMoree(MoreId,ID,Grid,File,Pass,user)
 var Type;
 var SearchText;
 var	Caty ;
-var SubCaty ;	
+var SubCaty ;
 var User =user;
-if(DocId('BDType'))	
+if(DocId('BDType'))
 Type = DocId('BDType').value;
 if(DocId('SearchArea'))
 SearchText=DocId('SearchArea').value;
@@ -139,8 +139,8 @@ if(DocId('BCategory'))
 Caty = DocId('BCategory').value;
 if(DocId('BSubCategory'))
 SubCaty = DocId('BSubCategory').value;
-	
-	
+
+
 if(ID)
 {
 $("#"+MoreId).html('<img src="moreajax.gif" />');
@@ -148,7 +148,7 @@ $("#"+MoreId).html('<img src="moreajax.gif" />');
 $.ajax({
 type: "POST",
 url: "include/BlModules/"+File+".php?LogIdd=<?php echo $LID ;?>&Type="+Type+"&SearchText="+SearchText+"&Caty="+Caty+"&SubCaty="+SubCaty+"&User="+User,
-data: "lastmsg="+ ID, 
+data: "lastmsg="+ ID,
 cache: false,
 success: function(html){
 $("#"+Grid).append(html);
@@ -191,7 +191,7 @@ $joom(document).ready(function() {
             preloadImages: false,
             alwaysOn:false
         });
-	
+
 });
 </script>
 <style type="text/css">
@@ -230,7 +230,7 @@ top:-130px;
 }
 </style>
 <!-----joom------>
-<?php 
+<?php
 $LID=(isset($LID) && !empty($LID) ? trim($LID) : '');
 $EnableSql = db_query("SELECT * FROM ".TABLE_PRODUCTSERVICE." WHERE PS_User_Fk 	='".$LID."'");
 $EnableSql2 = db_query("SELECT * FROM ".TABLE_GALLERY." WHERE ((GY_Type=0) || (GY_Type=1 AND GY_Type2=0))  AND GY_UserFk='".$LID."'");
@@ -260,7 +260,7 @@ var $latest = jQuery.noConflict();
 $latest('#search').click(function () {
     $latest("#cssmenu").accordion({active: false}).click();
 });
-</script>  
+</script>
 <!-----------LEFT ACCORDION-------------->
 <style>
 .supplr_menu_container

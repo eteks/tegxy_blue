@@ -1,457 +1,334 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>TRACEMEIN</title>
-<link rel="stylesheet" href="css/ad.css" type="text/css" />
-<!--------LOGIN FORM----------->
-<script src="js/jquery-1.5.2.js"></script>
-<script type="text/javascript">
-var $login = jQuery.noConflict();
-$login(document).ready(function(){
-	$login('#login-trigger').click(function(){
-		$login(this).next('#login-content').slideToggle();
-		$login(this).toggleClass('active');					
-		
-		if ($login(this).hasClass('active')) $login(this).find('span').html('&#x25B2;')
-			else $login(this).find('span').html('&#x25BC;')
-		})
-});
-</script>
-<!------------LOGIN FORM---------------->
-</head>
-
-<body class="ad">
-<div class="main_container">
-<div class="top_menu">
-<div class="adlogo"><img src="images/logo_bg_shadow.jpg" width="273" height="71" style="position:relative;top:3px;" /></div>
-<div style="width:120px;height:20px;padding-top:13px;float:left;margin-left:10px;">
-<select style="border:none;color:#007088;background:#F4F4F4;">
-<option>Puducherry</option>
-</select>
-</div>
-<div style="width:200px;height:20px;padding-top:13px;float:left;margin-left:100px;">
-<select style="border:none;color:#007088;background:#F4F4F4;">
-<option>Search Area</option>
-</select>
-</div>
-
-<div style="width:200px;height:20px;padding-top:13px;float:left;margin-left:90px;">
-<div style="width:200px;height:29px;float:right;">
-<div style="width:110px;height:10px;float:left;">
-<nav>
-	<ul>
-		<li id="login">
-			<a id="login-trigger" href="#" style="margin:0px;color:#666;font-size:14px;font-weight:normal;margin-top:-5px;">
-				Sign In
-			</a>
-			<div id="login-content" style="margin-top:20px;">
-				<form  method="post" action="Login.php" onSubmit="return ValidateLogin();">
-					<fieldset id="inputs" style="border:none;background:none;">
-<input id="UserName" class="loginfont" name="UserName" type="text" placeholder="Username / Email Id / Mobile Number" autofocus autocomplete="off" />   
-<input id="PassWord" class="loginfont" name="PassWord" type="password" placeholder="Password"  autocomplete="off" />
-					</fieldset>
-					<fieldset id="actions" style="border:none;background:none;">
-                    <input type="submit" id="Submit" name="Submit" value="Sign In">	
-                    </fieldset>
-				</form>
-<a href="#" style="text-decoration:none;color:#666;font-size:11px;"><span><img src="images/forgot-passwords.png" /></span>Forgot Password ?</a>
-
-
-
-			</div>                     
-		</li>
-	</ul>
-</nav>
-</div>
-<div style="width:60px;height:10px;float:left;"><a href="Register.php" style="text-decoration:none;color:#666;font-size:14px;">Register</a></div>
-<div style="width:30px;height:10px;float:left;"><a href="#" style="border:none;text-decoration:none;"><img src="images/home/register_icon.png" style="position:relative;top:-5px;" /></a></div>
-</div>
-</div>
-</div>
-
-<!-----admain_container-------->
-<div class="admain_container">
-<!-----adleft_container-------->
-<div class="adleft_container">
-<div style="width:100%;height:55px;float:left;" align="right">
-<div class="post_anadd">
-<div class="post_addtxt">Post a Free Ad</div>
-<div class="post_findtxt">To find your Best Deal</div>
-</div>
-</div>
-<!-----250------->
-<div style="width:250px;height:auto;float:left;margin-top:-15px;">
-
-<!-----relatedsearch------->
-<div class="adrelatedsearch">
-<div class="adleftaccordiaon_tops" >
-<div class="adleftaccordiaon_topss1" >Related Companies</div>
-<div class="adleftaccordiaon_topss2" ></div>
-</div>
-<!--<div class="adleftaccordiaon_tops2" ></div>-->
-<div style="width:245px;height:auto;border:1px solid #C0C0C0;" >
-<ul class="relatedsearch_ul">
-   <li><a href='#'><span>Company</span></a></li>
-   <li><a href='#'><span>Products</span></a></li>
-   <li><a href='#'><span>Company</span></a></li>
-   <li><a href='#'><span>Contact</span></a></li>
-</ul>
-</div>
-<div class="adleftaccordion_btm" ></div>
-</div>
-<!-----relatedsearch------->
-
-
-
-</div>
-<!-----250------->
-<!-----740------->
-<div style="width:740px;height:auto;float:left;margin-top:-15px;">
-
-<div style="width:740px; height:30px;" align="center">
-<input type="radio" /> Company &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="radio" checked /> Best Deal 
-</div>
-<div style="width:740px; height:50px;">
-<div style="width:610px;height:30px;border:1px solid #999;margin-left:40px;float:left;">
-<div class="adsearch_lookfor" ><select class="search_lookfor">
-<option>Looking for</option>
-<option>Supplier</option>
-<option>Buyer</option>
-</select>
-</div>
-<div class="adsearch_sep"></div>
-<div class="adsearch_txbox" ><input type="text" style="width:390px;height:25px;border:none;padding-left:10px;" /></div>
-</div>
-<div class="adsearch" align="center"><a href="#">Search</a></div>
-</div>
-
-<div class="adsearchresult_menu"><a class="active" href="#">List</a> | <a href="">Gallery</a></div>
-
-<!------ad---------->
-<div class="singlead">
-<!----title---->
-<div class="adtitle">
-<div style="width:550px;color:#EC5324;float:left;"><b>Spic Pharmaceuticals  <span style="color:#007088;">( Since -  1989 )</span></b></div>
-<div class="rating">Rating <span><img src="images/rating_star.png" /><img src="images/rating_star.png" /><img src="images/rating_star.png" /></span> 3.0</div>
-</div>
-<!----title--------->
-<!------adimage--------->
-<div class="adimage">
-<div class="company_thumbgal">
-<div class="product_thumbbg"><img src="images/img_inner.jpg" width="72" height="43" class="company_thumbimg" /></div>
-<div class="product_thumbbg"><img src="images/img_inner.jpg" width="72" height="43" class="company_thumbimg" /></div>
-<div class="product_thumbbg"><img src="images/img_inner.jpg" width="72" height="43" class="company_thumbimg" /></div>
-</div>
-<div class="company_logo" align="right"><img src="images/company-01.jpg" width="124" height="48" /></div>
-</div>
-<!------adimage--------->
-<!------addetails--------->
-<div class="addetails">
-<div class="addetails_left">
-<span style="color:#EC5324;"><b>Business Descriptions</b></span><br/>
-Spic Pharmaceuticals make penicillin. When people get sick. Doctors figured out why. Spic Pharmaceuticals make penicillin.
-</div>
-<div class="addetails_sep"></div>
-<div class="addetails_right">
-<span style="color:#EC5324;"><b>Contact Details</b></span><br/>
-Ariyankuppam, Pondicherry - 605007, India.<br/>
-Phone: 0413 2254785 / 86 / 87 / 88. Fax: 0413 22547859<br/>
-Email : info@spicpahrmaceuticlas.com
-</div>
-</div>
-<div style="width:720px;height:39px;float:left;">
-<div class="chat_details">
-<div class="chat_curve"></div>
-<div class="chat_style"><img src="images/chat_online.png" style="position:relative;top:3px;" />&nbsp;&nbsp;<a href="#"> I'm Online</a>
-</div>
-<div class="chat_fullcurve"></div>
-<div class="full_det"><a href="#"> View Full Details</a></div>
-</div>
-</div>
-<!------addetails--------->
-</div>
-<!------ad---------->
-
-<br/><br/>
-
-<!------ad2---------->
-<div class="singlead">
-<!----title---->
-<div class="adtitle">
-<div style="width:550px;color:#EC5324;float:left;"><b>Spic Pharmaceuticals  <span style="color:#007088;">( Since -  1989 )</span></b></div>
-<div class="rating">Rating <span><img src="images/rating_star.png" /><img src="images/rating_star.png" /><img src="images/rating_star.png" /></span> 3.0</div>
-</div>
-<!----title--------->
-<!------adimage--------->
-<div class="adimage">
-<div class="company_thumbgal">
-<div class="product_thumbbg"><img src="images/img_inner.jpg" width="72" height="43" class="company_thumbimg" /></div>
-<div class="product_thumbbg"><img src="images/img_inner.jpg" width="72" height="43" class="company_thumbimg" /></div>
-<div class="product_thumbbg"><img src="images/img_inner.jpg" width="72" height="43" class="company_thumbimg" /></div>
-</div>
-<div class="company_logo" align="right"><img src="images/company-01.jpg" width="124" height="48" /></div>
-</div>
-<!------adimage--------->
-<!------addetails--------->
-<div class="addetails">
-<div class="addetails_left">
-<span style="color:#EC5324;"><b>Business Descriptions</b></span><br/>
-Spic Pharmaceuticals make penicillin. When people get sick. Doctors figured out why. Spic Pharmaceuticals make penicillin.
-</div>
-<div class="addetails_sep"></div>
-<div class="addetails_right">
-<span style="color:#EC5324;"><b>Contact Details</b></span><br/>
-Ariyankuppam, Pondicherry - 605007, India.<br/>
-Phone: 0413 2254785 / 86 / 87 / 88. Fax: 0413 22547859<br/>
-Email : info@spicpahrmaceuticlas.com
-</div>
-</div>
-<div style="width:720px;height:39px;float:left;">
-<div class="chat_details">
-<div class="chat_curve"></div>
-<div class="chat_style"><img src="images/chat_online.png" style="position:relative;top:3px;" />&nbsp;&nbsp;<a href="#"> I'm Online</a>
-</div>
-<div class="chat_fullcurve"></div>
-<div class="full_det"><a href="#"> View Full Details</a></div>
-</div>
-</div>
-<!------addetails--------->
-</div>
-<!------ad2---------->
-
-<br/><br/>
-
-
-<!------ad3---------->
-<div class="singlead">
-<!----title---->
-<div class="adtitle">
-<div style="width:550px;color:#EC5324;float:left;"><b>Spic Pharmaceuticals  <span style="color:#007088;">( Since -  1989 )</span></b></div>
-<div class="rating">Rating <span><img src="images/rating_star.png" /><img src="images/rating_star.png" /><img src="images/rating_star.png" /></span> 3.0</div>
-</div>
-<!----title--------->
-<!------adimage--------->
-<div class="adimage">
-<div class="company_thumbgal">
-<div class="product_thumbbg"><img src="images/img_inner.jpg" width="72" height="43" class="company_thumbimg" /></div>
-<div class="product_thumbbg"><img src="images/img_inner.jpg" width="72" height="43" class="company_thumbimg" /></div>
-<div class="product_thumbbg"><img src="images/img_inner.jpg" width="72" height="43" class="company_thumbimg" /></div>
-</div>
-<div class="company_logo" align="right"><img src="images/company-01.jpg" width="124" height="48" /></div>
-</div>
-<!------adimage--------->
-<!------addetails--------->
-<div class="addetails">
-<div class="addetails_left">
-<span style="color:#EC5324;"><b>Business Descriptions</b></span><br/>
-Spic Pharmaceuticals make penicillin. When people get sick. Doctors figured out why. Spic Pharmaceuticals make penicillin.
-</div>
-<div class="addetails_sep"></div>
-<div class="addetails_right">
-<span style="color:#EC5324;"><b>Contact Details</b></span><br/>
-Ariyankuppam, Pondicherry - 605007, India.<br/>
-Phone: 0413 2254785 / 86 / 87 / 88. Fax: 0413 22547859<br/>
-Email : info@spicpahrmaceuticlas.com
-</div>
-</div>
-<div style="width:720px;height:39px;float:left;">
-<div class="chat_details">
-<div class="chat_curve"></div>
-<div class="chat_style"><img src="images/chat_online.png" style="position:relative;top:3px;" />&nbsp;&nbsp;<a href="#"> I'm Online</a>
-</div>
-<div class="chat_fullcurve"></div>
-<div class="full_det"><a href="#"> View Full Details</a></div>
-</div>
-</div>
-<!------addetails--------->
-
-
-</div>
-<!------ad3---------->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-<!-----740------->
-</div>
-<!-----adleft_container-------->
-
-<!-----adright_container-------->
-<div class="adright_container">
-
-<div class="right_singlead">
-<div class="right_adtitle">Joyalukkas</div>
-<div style="width:290px;min-height:80px;">
-<div class="right_adimg"><img src="images/adv_right.gif" /></div>
-<div class="right_addesp">Joyalukkas opens the most unique mega retail experience in Kuwait City</div>
-</div>
-</div>
-
-
-<div class="right_singlead">
-<div class="right_adtitle">Joyalukkas</div>
-<div style="width:290px;min-height:80px;">
-<div class="right_adimg"><img src="images/adv_right.gif" /></div>
-<div class="right_addesp">Joyalukkas opens the most unique mega retail experience in Kuwait City</div>
-</div>
-</div>
-
-
-<div class="right_singlead">
-<div class="right_adtitle">Joyalukkas</div>
-<div style="width:290px;min-height:80px;">
-<div class="right_adimg"><img src="images/adv_right.gif" /></div>
-<div class="right_addesp">Joyalukkas opens the most unique mega retail experience in Kuwait City</div>
-</div>
-</div>
-
-
-<div class="right_singlead">
-<div class="right_adtitle">Joyalukkas</div>
-<div style="width:290px;min-height:80px;">
-<div class="right_adimg"><img src="images/adv_right.gif" /></div>
-<div class="right_addesp">Joyalukkas opens the most unique mega retail experience in Kuwait City</div>
-</div>
-</div>
-
-
-
-<div class="right_singlead">
-<div class="right_adtitle">Joyalukkas</div>
-<div style="width:290px;min-height:80px;">
-<div class="right_adimg"><img src="images/adv_right.gif" /></div>
-<div class="right_addesp">Joyalukkas opens the most unique mega retail experience in Kuwait City</div>
-</div>
-</div>
-
-
-<div class="right_singlead">
-<div class="right_adtitle">Joyalukkas</div>
-<div style="width:290px;min-height:80px;">
-<div class="right_adimg"><img src="images/adv_right.gif" /></div>
-<div class="right_addesp">Joyalukkas opens the most unique mega retail experience in Kuwait City</div>
-</div>
-</div>
-
-
-<div class="right_singlead">
-<div class="right_adtitle">Joyalukkas</div>
-<div style="width:290px;min-height:80px;">
-<div class="right_adimg"><img src="images/adv_right.gif" /></div>
-<div class="right_addesp">Joyalukkas opens the most unique mega retail experience in Kuwait City</div>
-</div>
-</div>
-
-
-<div class="right_singlead">
-<div class="right_adtitle">Joyalukkas</div>
-<div style="width:290px;min-height:80px;">
-<div class="right_adimg"><img src="images/adv_right.gif" /></div>
-<div class="right_addesp">Joyalukkas opens the most unique mega retail experience in Kuwait City</div>
-</div>
-</div>
-
-
-<div class="right_singlead">
-<div class="right_adtitle">Joyalukkas</div>
-<div style="width:290px;min-height:80px;">
-<div class="right_adimg"><img src="images/adv_right.gif" /></div>
-<div class="right_addesp">Joyalukkas opens the most unique mega retail experience in Kuwait City</div>
-</div>
-</div>
-
-
-
-</div>
-<!-----adright_container-------->
-
-
-</div>
-<!-----admain_container-------->
-
-</div>
-<!----footer------>
-<div id="footer">
-<div id="footercontainer">
-All Rights Reserved © 2013 By TechDNS.
-Designed &amp; Developed by : <a href="http://atomicka.in/default.php" target="_blank" style="text-decoration:none;">INFOM ATOMICKA PVT LTD</a>
-</div>
-</div>
-
-<!----footer------>
-
-</body>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>TRACEMEIN</title>
+        <link rel="stylesheet" href="css/ad.css" type="text/css" />
+        <!--------LOGIN FORM----------->
+        <script src="js/jquery-1.5.2.js"></script>
+        <script type="text/javascript">
+            var $login = jQuery.noConflict();
+            $login(document).ready(function(){
+                $login('#login-trigger').click(function(){
+                    $login(this).next('#login-content').slideToggle();
+                    $login(this).toggleClass('active');
+
+                    if ($login(this).hasClass('active')) $login(this).find('span').html('&#x25B2;')
+                        else $login(this).find('span').html('&#x25BC;')
+                    })
+            });
+        </script>
+        <!------------LOGIN FORM---------------->
+    </head>
+    <body class="ad">
+        <div class="main_container">
+            <div class="top_menu">
+                <div class="adlogo"><img src="images/logo_bg_shadow.jpg" width="273" height="71" style="position:relative;top:3px;" /></div>
+                <div style="width:120px;height:20px;padding-top:13px;float:left;margin-left:10px;">
+                    <select style="border:none;color:#007088;background:#F4F4F4;">
+                        <option>Puducherry</option>
+                    </select>
+                </div>
+                <div style="width:200px;height:20px;padding-top:13px;float:left;margin-left:100px;">
+                    <select style="border:none;color:#007088;background:#F4F4F4;">
+                        <option>Search Area</option>
+                    </select>
+                </div>
+                <div style="width:200px;height:20px;padding-top:13px;float:left;margin-left:90px;">
+                    <div style="width:200px;height:29px;float:right;">
+                        <div style="width:110px;height:10px;float:left;">
+                            <nav>
+                                <ul>
+                                    <li id="login">
+                                        <a id="login-trigger" href="#" style="margin:0px;color:#666;font-size:14px;font-weight:normal;margin-top:-5px;">
+                                        Sign In
+                                        </a>
+                                        <div id="login-content" style="margin-top:20px;">
+                                            <form  method="post" action="Login.php" onSubmit="return ValidateLogin();">
+                                                <fieldset id="inputs" style="border:none;background:none;">
+                                                    <input id="UserName" class="loginfont" name="UserName" type="text" placeholder="Username / Email Id / Mobile Number" autofocus autocomplete="off" />
+                                                    <input id="PassWord" class="loginfont" name="PassWord" type="password" placeholder="Password"  autocomplete="off" />
+                                                </fieldset>
+                                                <fieldset id="actions" style="border:none;background:none;">
+                                                    <input type="submit" id="Submit" name="Submit" value="Sign In">
+                                                </fieldset>
+                                            </form>
+                                            <a href="#" style="text-decoration:none;color:#666;font-size:11px;"><span><img src="images/forgot-passwords.png" /></span>Forgot Password ?</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div style="width:60px;height:10px;float:left;"><a href="Register.php" style="text-decoration:none;color:#666;font-size:14px;">Register</a></div>
+                        <div style="width:30px;height:10px;float:left;"><a href="#" style="border:none;text-decoration:none;"><img src="images/home/register_icon.png" style="position:relative;top:-5px;" /></a></div>
+                    </div>
+                </div>
+            </div>
+            <!-----admain_container-------->
+            <div class="admain_container">
+                <!-----adleft_container-------->
+                <div class="adleft_container">
+                    <div style="width:100%;height:55px;float:left;" align="right">
+                        <div class="post_anadd">
+                            <div class="post_addtxt">Post a Free Ad</div>
+                            <div class="post_findtxt">To find your Best Deal</div>
+                        </div>
+                    </div>
+                    <!-----250------->
+                    <div style="width:250px;height:auto;float:left;margin-top:-15px;">
+                        <!-----relatedsearch------->
+                        <div class="adrelatedsearch">
+                            <div class="adleftaccordiaon_tops" >
+                                <div class="adleftaccordiaon_topss1" >Related Companies</div>
+                                <div class="adleftaccordiaon_topss2" ></div>
+                            </div>
+                            <!--<div class="adleftaccordiaon_tops2" ></div>-->
+                            <div style="width:245px;height:auto;border:1px solid #C0C0C0;" >
+                                <ul class="relatedsearch_ul">
+                                    <li><a href='#'><span>Company</span></a></li>
+                                    <li><a href='#'><span>Products</span></a></li>
+                                    <li><a href='#'><span>Company</span></a></li>
+                                    <li><a href='#'><span>Contact</span></a></li>
+                                </ul>
+                            </div>
+                            <div class="adleftaccordion_btm" ></div>
+                        </div>
+                        <!-----relatedsearch------->
+                    </div>
+                    <!-----250------->
+                    <!-----740------->
+                    <div style="width:740px;height:auto;float:left;margin-top:-15px;">
+                        <div style="width:740px; height:30px;" align="center">
+                            <input type="radio" /> Company &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" checked /> Best Deal
+                        </div>
+                        <div style="width:740px; height:50px;">
+                            <div style="width:610px;height:30px;border:1px solid #999;margin-left:40px;float:left;">
+                                <div class="adsearch_lookfor" >
+                                    <select class="search_lookfor">
+                                        <option>Looking for</option>
+                                        <option>Supplier</option>
+                                        <option>Buyer</option>
+                                    </select>
+                                </div>
+                                <div class="adsearch_sep"></div>
+                                <div class="adsearch_txbox" ><input type="text" style="width:390px;height:25px;border:none;padding-left:10px;" /></div>
+                            </div>
+                            <div class="adsearch" align="center"><a href="#">Search</a></div>
+                        </div>
+                        <div class="adsearchresult_menu"><a class="active" href="#">List</a> | <a href="">Gallery</a></div>
+                        <!------ad---------->
+                        <div class="singlead">
+                            <!----title---->
+                            <div class="adtitle">
+                                <div style="width:550px;color:#EC5324;float:left;"><b>Spic Pharmaceuticals  <span style="color:#007088;">( Since -  1989 )</span></b></div>
+                                <div class="rating">Rating <span><img src="images/rating_star.png" /><img src="images/rating_star.png" /><img src="images/rating_star.png" /></span> 3.0</div>
+                            </div>
+                            <!----title--------->
+                            <!------adimage--------->
+                            <div class="adimage">
+                                <div class="company_thumbgal">
+                                    <div class="product_thumbbg"><img src="images/img_inner.jpg" width="72" height="43" class="company_thumbimg" /></div>
+                                    <div class="product_thumbbg"><img src="images/img_inner.jpg" width="72" height="43" class="company_thumbimg" /></div>
+                                    <div class="product_thumbbg"><img src="images/img_inner.jpg" width="72" height="43" class="company_thumbimg" /></div>
+                                </div>
+                                <div class="company_logo" align="right"><img src="images/company-01.jpg" width="124" height="48" /></div>
+                            </div>
+                            <!------adimage--------->
+                            <!------addetails--------->
+                            <div class="addetails">
+                                <div class="addetails_left">
+                                    <span style="color:#EC5324;"><b>Business Descriptions</b></span><br/>
+                                    Spic Pharmaceuticals make penicillin. When people get sick. Doctors figured out why. Spic Pharmaceuticals make penicillin.
+                                </div>
+                                <div class="addetails_sep"></div>
+                                <div class="addetails_right">
+                                    <span style="color:#EC5324;"><b>Contact Details</b></span><br/>
+                                    Ariyankuppam, Pondicherry - 605007, India.<br/>
+                                    Phone: 0413 2254785 / 86 / 87 / 88. Fax: 0413 22547859<br/>
+                                    Email : info@spicpahrmaceuticlas.com
+                                </div>
+                            </div>
+                            <div style="width:720px;height:39px;float:left;">
+                                <div class="chat_details">
+                                    <div class="chat_curve"></div>
+                                    <div class="chat_style"><img src="images/chat_online.png" style="position:relative;top:3px;" />&nbsp;&nbsp;<a href="#"> I'm Online</a></div>
+                                    <div class="chat_fullcurve"></div>
+                                    <div class="full_det"><a href="#"> View Full Details</a></div>
+                                </div>
+                            </div>
+                            <!------addetails--------->
+                        </div>
+                        <!------ad---------->
+                        <br/><br/>
+                        <!------ad2---------->
+                        <div class="singlead">
+                            <!----title---->
+                            <div class="adtitle">
+                                <div style="width:550px;color:#EC5324;float:left;"><b>Spic Pharmaceuticals  <span style="color:#007088;">( Since -  1989 )</span></b></div>
+                                <div class="rating">Rating <span><img src="images/rating_star.png" /><img src="images/rating_star.png" /><img src="images/rating_star.png" /></span> 3.0</div>
+                            </div>
+                            <!----title--------->
+                            <!------adimage--------->
+                            <div class="adimage">
+                                <div class="company_thumbgal">
+                                    <div class="product_thumbbg"><img src="images/img_inner.jpg" width="72" height="43" class="company_thumbimg" /></div>
+                                    <div class="product_thumbbg"><img src="images/img_inner.jpg" width="72" height="43" class="company_thumbimg" /></div>
+                                    <div class="product_thumbbg"><img src="images/img_inner.jpg" width="72" height="43" class="company_thumbimg" /></div>
+                                </div>
+                                <div class="company_logo" align="right"><img src="images/company-01.jpg" width="124" height="48" /></div>
+                            </div>
+                            <!------adimage--------->
+                            <!------addetails--------->
+                            <div class="addetails">
+                                <div class="addetails_left">
+                                    <span style="color:#EC5324;"><b>Business Descriptions</b></span><br/>
+                                    Spic Pharmaceuticals make penicillin. When people get sick. Doctors figured out why. Spic Pharmaceuticals make penicillin.
+                                </div>
+                                <div class="addetails_sep"></div>
+                                <div class="addetails_right">
+                                    <span style="color:#EC5324;"><b>Contact Details</b></span><br/>
+                                    Ariyankuppam, Pondicherry - 605007, India.<br/>
+                                    Phone: 0413 2254785 / 86 / 87 / 88. Fax: 0413 22547859<br/>
+                                    Email : info@spicpahrmaceuticlas.com
+                                </div>
+                            </div>
+                            <div style="width:720px;height:39px;float:left;">
+                                <div class="chat_details">
+                                    <div class="chat_curve"></div>
+                                    <div class="chat_style"><img src="images/chat_online.png" style="position:relative;top:3px;" />&nbsp;&nbsp;<a href="#"> I'm Online</a></div>
+                                    <div class="chat_fullcurve"></div>
+                                    <div class="full_det"><a href="#"> View Full Details</a></div>
+                                </div>
+                            </div>
+                            <!------addetails--------->
+                        </div>
+                        <!------ad2---------->
+                        <br/><br/>
+                        <!------ad3---------->
+                        <div class="singlead">
+                            <!----title---->
+                            <div class="adtitle">
+                                <div style="width:550px;color:#EC5324;float:left;"><b>Spic Pharmaceuticals  <span style="color:#007088;">( Since -  1989 )</span></b></div>
+                                <div class="rating">Rating <span><img src="images/rating_star.png" /><img src="images/rating_star.png" /><img src="images/rating_star.png" /></span> 3.0</div>
+                            </div>
+                            <!----title--------->
+                            <!------adimage--------->
+                            <div class="adimage">
+                                <div class="company_thumbgal">
+                                    <div class="product_thumbbg"><img src="images/img_inner.jpg" width="72" height="43" class="company_thumbimg" /></div>
+                                    <div class="product_thumbbg"><img src="images/img_inner.jpg" width="72" height="43" class="company_thumbimg" /></div>
+                                    <div class="product_thumbbg"><img src="images/img_inner.jpg" width="72" height="43" class="company_thumbimg" /></div>
+                                </div>
+                                <div class="company_logo" align="right"><img src="images/company-01.jpg" width="124" height="48" /></div>
+                            </div>
+                            <!------adimage--------->
+                            <!------addetails--------->
+                            <div class="addetails">
+                                <div class="addetails_left">
+                                    <span style="color:#EC5324;"><b>Business Descriptions</b></span><br/>
+                                    Spic Pharmaceuticals make penicillin. When people get sick. Doctors figured out why. Spic Pharmaceuticals make penicillin.
+                                </div>
+                                <div class="addetails_sep"></div>
+                                <div class="addetails_right">
+                                    <span style="color:#EC5324;"><b>Contact Details</b></span><br/>
+                                    Ariyankuppam, Pondicherry - 605007, India.<br/>
+                                    Phone: 0413 2254785 / 86 / 87 / 88. Fax: 0413 22547859<br/>
+                                    Email : info@spicpahrmaceuticlas.com
+                                </div>
+                            </div>
+                            <div style="width:720px;height:39px;float:left;">
+                                <div class="chat_details">
+                                    <div class="chat_curve"></div>
+                                    <div class="chat_style"><img src="images/chat_online.png" style="position:relative;top:3px;" />&nbsp;&nbsp;<a href="#"> I'm Online</a></div>
+                                    <div class="chat_fullcurve"></div>
+                                    <div class="full_det"><a href="#"> View Full Details</a></div>
+                                </div>
+                            </div>
+                            <!------addetails--------->
+                        </div>
+                        <!------ad3---------->
+                    </div>
+                    <!-----740------->
+                </div>
+                <!-----adleft_container-------->
+                <!-----adright_container-------->
+                <div class="adright_container">
+                    <div class="right_singlead">
+                        <div class="right_adtitle">Joyalukkas</div>
+                        <div style="width:290px;min-height:80px;">
+                            <div class="right_adimg"><img src="images/adv_right.gif" /></div>
+                            <div class="right_addesp">Joyalukkas opens the most unique mega retail experience in Kuwait City</div>
+                        </div>
+                    </div>
+                    <div class="right_singlead">
+                        <div class="right_adtitle">Joyalukkas</div>
+                        <div style="width:290px;min-height:80px;">
+                            <div class="right_adimg"><img src="images/adv_right.gif" /></div>
+                            <div class="right_addesp">Joyalukkas opens the most unique mega retail experience in Kuwait City</div>
+                        </div>
+                    </div>
+                    <div class="right_singlead">
+                        <div class="right_adtitle">Joyalukkas</div>
+                        <div style="width:290px;min-height:80px;">
+                            <div class="right_adimg"><img src="images/adv_right.gif" /></div>
+                            <div class="right_addesp">Joyalukkas opens the most unique mega retail experience in Kuwait City</div>
+                        </div>
+                    </div>
+                    <div class="right_singlead">
+                        <div class="right_adtitle">Joyalukkas</div>
+                        <div style="width:290px;min-height:80px;">
+                            <div class="right_adimg"><img src="images/adv_right.gif" /></div>
+                            <div class="right_addesp">Joyalukkas opens the most unique mega retail experience in Kuwait City</div>
+                        </div>
+                    </div>
+                    <div class="right_singlead">
+                        <div class="right_adtitle">Joyalukkas</div>
+                        <div style="width:290px;min-height:80px;">
+                            <div class="right_adimg"><img src="images/adv_right.gif" /></div>
+                            <div class="right_addesp">Joyalukkas opens the most unique mega retail experience in Kuwait City</div>
+                        </div>
+                    </div>
+                    <div class="right_singlead">
+                        <div class="right_adtitle">Joyalukkas</div>
+                        <div style="width:290px;min-height:80px;">
+                            <div class="right_adimg"><img src="images/adv_right.gif" /></div>
+                            <div class="right_addesp">Joyalukkas opens the most unique mega retail experience in Kuwait City</div>
+                        </div>
+                    </div>
+                    <div class="right_singlead">
+                        <div class="right_adtitle">Joyalukkas</div>
+                        <div style="width:290px;min-height:80px;">
+                            <div class="right_adimg"><img src="images/adv_right.gif" /></div>
+                            <div class="right_addesp">Joyalukkas opens the most unique mega retail experience in Kuwait City</div>
+                        </div>
+                    </div>
+                    <div class="right_singlead">
+                        <div class="right_adtitle">Joyalukkas</div>
+                        <div style="width:290px;min-height:80px;">
+                            <div class="right_adimg"><img src="images/adv_right.gif" /></div>
+                            <div class="right_addesp">Joyalukkas opens the most unique mega retail experience in Kuwait City</div>
+                        </div>
+                    </div>
+                    <div class="right_singlead">
+                        <div class="right_adtitle">Joyalukkas</div>
+                        <div style="width:290px;min-height:80px;">
+                            <div class="right_adimg"><img src="images/adv_right.gif" /></div>
+                            <div class="right_addesp">Joyalukkas opens the most unique mega retail experience in Kuwait City</div>
+                        </div>
+                    </div>
+                </div>
+                <!-----adright_container-------->
+            </div>
+            <!-----admain_container-------->
+        </div>
+        <!----footer------>
+        <div id="footer">
+            <div id="footercontainer">
+                All Rights Reserved © 2013 By TechDNS.
+                Designed &amp; Developed by : <a href="http://atomicka.in/default.php" target="_blank" style="text-decoration:none;">INFOM ATOMICKA PVT LTD</a>
+            </div>
+        </div>
+        <!----footer------>
+    </body>
 </html>

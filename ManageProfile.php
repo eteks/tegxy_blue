@@ -27,6 +27,7 @@ db_query("DELETE FROM ".TABLE_PROFILEDETAILS."  WHERE PDS_Fk='".session_id()."'"
 <script type="text/javascript" src="js/jquery.naviDropDown.1.0.js"></script>
 <script type="text/javascript" src="js/ManageProfile.js"></script>
 <script type="text/javascript" src="js/CalendarControl.js"></script>
+<link href="css/CalendarControl.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/ajaxupload.3.5.js" ></script>
 
 <!---------chat script css--------------->
@@ -34,7 +35,7 @@ db_query("DELETE FROM ".TABLE_PROFILEDETAILS."  WHERE PDS_Fk='".session_id()."'"
 <link type="text/css" rel="stylesheet" media="all" href="css/screen.css" />
 
 <!---------chat script css  ends --------------->
-<link href="css/CalendarControl.css" rel="stylesheet" type="text/css" />
+
 <link href="css/Profile.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript">
