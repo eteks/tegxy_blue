@@ -64,10 +64,9 @@ showCloseButton: true
 })(jQuery);
 </script>
 <!-- Keyword related script -->
-
-<script type="text/javascript" src="js/Register.js"></script>
 <script type="text/javascript" src="js/CalendarControl.js"></script>
 <link href="css/CalendarControl.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/Register.js"></script>
 </head><!-- onload="Disappear();" -->
 <body  class="background">
 

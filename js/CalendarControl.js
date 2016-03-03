@@ -227,7 +227,7 @@ function CalendarControl() {
             css_class = 'weekday';
           }
 
-          table = table + "<td><a class='"+css_class+"' href=\"javascript:setCalendarControlDate("+currentYear+","+currentMonth+","+dayOfMonth+")\">"+dayOfMonth+"</a></td>";
+           table = table + "<td><a class='"+css_class+"' href=\"javascript:setCalendarControlDate("+currentYear+","+currentMonth+","+dayOfMonth+")\">"+dayOfMonth+"</a></td>";
           dayOfMonth++;
         } else {
           table = table + "<td class='empty'>&nbsp;</td>";
@@ -336,8 +336,9 @@ function hideCalendarControl() {
   }
 }
 
-
-
+function setCalendarControlDate(year, month, day) {
+  calendarControl.setDate(year, month, day);
+}
 function changeCalendarControlYear(change) {
   calendarControl.changeYear(change);
 }
