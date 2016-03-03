@@ -2,7 +2,7 @@
 ob_start();
 session_start();
 
-define('DB_SERVER','localhost');define('DB_SERVER_USERNAME','root');define('DB_SERVER_PASSWORD','');
+define('DB_SERVER','localhost');define('DB_SERVER_USERNAME','root');define('DB_SERVER_PASSWORD','root');
 define('DB_DATABASE','xyget.com');// tracemein tracemein_live_db
 define('HTTP_URL','localhost/xyget_blue');
 $Title = 'XYget.com';

@@ -3,10 +3,10 @@
 include_once("include/Configuration.php");
 include_once(PAGE_DBCONNECTION);
 db_connect();
-$UId              = trim($_SESSION['LID']);
+$UId = trim($_SESSION['LID']);
 
 $LID=trim($_SESSION["LID"])!=""?trim($_SESSION["LID"]):session_id();
-
+echo $_REQUEST['objtype'];
 if(isset($_REQUEST['objtype']) && $_REQUEST['objtype']=="mov")
 	$allowExt = "movie";
 else if($_REQUEST['objtype']=="doc")

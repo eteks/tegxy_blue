@@ -1944,6 +1944,10 @@ DocId('ConfirmPassword').value=''
 
 function FileUploadValidate(HImage,doc,ImageDisp,Path)
 {
+	alert(HImage);
+	alert(doc);
+	alert(ImageDisp);
+	alert(Path);
 if(parseInt($("#FileSizeLimit").val()) < parseInt($("#FileSize").val()))
 alert("Can not upload");
 else
