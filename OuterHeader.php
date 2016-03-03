@@ -17,7 +17,7 @@ $FetProfileDetails = db_fetch_array($ProfileDetails);
 include("ScriptStyleView.php");
 ?>
 <link href="css/homepage.css" rel="stylesheet" type="text/css" media="all" />
-<!--------LOGIN FORM----------->
+<!--LOGIN FORM-->
 <script src="js/jquery-1.5.2.js"></script>
 <script>setInterval("update()", 5000); // Update every 10 seconds 
 //to find online user status
@@ -74,15 +74,14 @@ return false;
 			<div id="login-content" style="margin-top:20px;">
 				<form  method="post" action="Login.php" onSubmit="return ValidateLogin();">
 					<fieldset id="inputs" style="border:none;background:none;padding: 7px 10px;">
-<input id="UserName" class="loginfont" name="UserName" style="color:#000;font-family: Arial,Helvetica,sans-serif;" type="text" placeholder="Username / Email Id / Mobile Number" autofocus autocomplete="off" />   
-<input id="PassWord" class="loginfont" style="color:#000;font-family: Arial,Helvetica,sans-serif;" name="PassWord" type="password" placeholder="Password"  autocomplete="off" />
+						<input id="UserName" class="loginfont" name="UserName" style="color:#000;font-family: Arial,Helvetica,sans-serif;" type="text" placeholder="Username / Email Id / Mobile Number" autofocus autocomplete="off" />   
+						<input id="PassWord" class="loginfont" style="color:#000;font-family: Arial,Helvetica,sans-serif;" name="PassWord" type="password" placeholder="Password"  autocomplete="off" />
 					</fieldset>
 					<fieldset id="actions" style="border:none;background:none;">
-                    <input type="submit" id="Submit" name="Submit" value="Sign In">	
+                    	<input type="submit" id="Submit" name="Submit" value="Sign In">	
                     </fieldset>
 				</form>
-<a href="ForgotPassword.php" style="text-decoration:none;color:#666;font-size:11px;"><span><img src="images/forgot-passwords.png" /></span>Forgot Password ?</a>
-
+				<a href="ForgotPassword.php" style="text-decoration:none;color:#666;font-size:11px;"><span><img src="images/forgot-passwords.png" /></span>Forgot Password ?</a>
 			</div>                     
 		</li>
 	</ul>

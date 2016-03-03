@@ -667,7 +667,6 @@ while($fetchcategoryfk = mysql_fetch_array($selectcategoryfk)){
 $categoryids=substr($categoryids,0,-1);
 
 $selectrelatedproducts=db_query("SELECT DISTINCT * FROM ".TABLE_PRODUCTSERVICE." WHERE PS_CategoryFk IN (".$categoryids.") AND PS_Id NOT IN (".$ps_id.") $wherecon ");
-
 $countresult=mysql_num_rows($selectrelatedproducts);
 if($countresult>0){
 

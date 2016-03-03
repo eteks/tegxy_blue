@@ -72,7 +72,7 @@ $('.firstviewmore').click(function() {
 
 $(document).ready(function(){
 //open popup 
-$(".full_det").click(function(){	
+$(".pop").click(function(){	
   $("#overlay_form").fadeIn(1000);
   $(".background_overlay").fadeIn(500);
   $("#searchlist").focus();

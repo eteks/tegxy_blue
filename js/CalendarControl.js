@@ -336,9 +336,7 @@ function hideCalendarControl() {
   }
 }
 
-function setCalendarControlDate(year, month, day) {
-  calendarControl.setDate(year, month, day);
-}
+
 
 function changeCalendarControlYear(change) {
   calendarControl.changeYear(change);

@@ -321,7 +321,7 @@ if($fetchquery['RGT_Area']!=''){ getAreadetails($fetchquery['RGT_Area']);}  if($
 <div class="chat_style"><?php if($fetchquery['RGT_onlinestatus']==1){?><img src="images/chatonline.png" style="position:relative;top:3px;" />&nbsp;&nbsp;<span style="color:#fff;">I'm Online</span><?php } else {?> <img src="images/chatoffine.png" style="position:relative;top:3px;" />&nbsp;&nbsp;<span style="color:#fff;">I'm offline.</span><?php }?>
 </div>
 <div class="chat_fullcurve"></div>
-<div class="full_det"><a <?php  if(isset($_SESSION['LID'])){?>href="<?php echo $fetchquery['RGT_ProfileUrl']?>" <?php } else {?> class="pop firstviewmore" onclick="getUserProfile('<?php echo $fetchquery['RGT_ProfileUrl']?>','','');" <?php }?>   target="_blank"> View Full Details</a></div>
+<div class="full_det"><a <?php  if(isset($_SESSION['LID'])){?> target="_blank" href="<?php echo $fetchquery['RGT_ProfileUrl']?>" <?php } else {?> class="pop firstviewmore" onclick="getUserProfile('<?php echo $fetchquery['RGT_ProfileUrl']?>','','');" <?php }?>> View Full Details</a></div>
 </div>
 <?php }?>
 </div>
@@ -342,7 +342,7 @@ if($requestType=='bestdeals'){?>
 
 <div style="width:100%;height:55px;float:left;" align="right">
 <div class="post_anadd">
-<a <?php  if(isset($_SESSION['LID'])){?> target="_blank"  href="<?php echo 'ManageProfile.php?user='.base64_encode($_SESSION['Type']);?>" <?php } else {?> class="pop firstviewmore" onclick="Postafreead();" <?php }?> title="View More" style="text-decoration: none;">
+<a <?php  if($_SESSION['LID']){?>target="_blank"  href="<?php echo $fetchquery['RGT_ProfileUrl']?>" <?php } else {?> class="pop firstviewmore" onclick="getUserProfile('<?php echo $fetchquery['RGT_ProfileUrl']?>','','');" <?php }?>> View Services</a>
 <div class="post_addtxt">Post a Free Ad</div>
 <div class="post_findtxt">To find your Best Deal</div></a>
 </div>
