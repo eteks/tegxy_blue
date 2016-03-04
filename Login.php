@@ -76,7 +76,7 @@ if($_REQUEST['Submit']=='Sign In')
 {
 $Username = $_REQUEST['UserName'];
 $Password = base64_encode($_REQUEST['PassWord']);	
-$Check  = db_query("SELECT RGT_PK,RGT_Type,RGT_UserName FROM ".TABLE_REGISTRATION." WHERE (RGT_UserName='".$Username."' || RGT_Email='".$Username."' || RGT_Mobile='".$Username."') AND RGT_Password='".$Password."' AND RGT_Status='1' AND RGT_Type='2' ");
+$Check  = db_query("SELECT RGT_PK,RGT_Type,RGT_UserName FROM ".TABLE_REGISTRATION." WHERE (RGT_UserName='".$Username."' || RGT_Email='".$Username."' || RGT_Mobile='".$Username."') AND RGT_Password='".$Password."' AND RGT_Status='1'  AND RGT_Type='2'");
 if(db_num_rows($Check)>0)
 {
 list($Lid,$Type,$UserName)=db_fetch_array($Check);	

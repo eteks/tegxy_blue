@@ -849,12 +849,17 @@ padding: 4px 0;clear:left;
     display:block;
     float:left;
 }
-.mainsearchbox{
-	padding: 2px;
-	border: 1px solid #C8C8C8;
-	width: 500px;
-	height: 25px;
-	color: #000000;
+.mainsearchbox {
+    border: 1px solid #c8c8c8;
+    box-shadow: 0 0 8px rgba(0, 51, 255, 0.1);
+    color: #000000;
+    float: left;
+    height: 25px;
+    left: 205px;
+    padding: 2px;
+    position: relative;
+    width: 390px;
+    top: 9px;
 	box-shadow: 0px 0px 8px rgba(0,51,255,0.1);
 	-moz-box-shadow: 0px 0px 8px rgba(0,51,255,0.1);
 	-webkit-box-shadow: 0px 0px 8px rgba(0,51,255,0.1);
@@ -889,33 +894,45 @@ padding: 5px;
 display:none;
 }
 
-.btnstyle
-{
-
-border:none;
-color:#136578;
-font-weight:600;
-cursor:pointer;
-float:right;
-position:relative;
-right:190px;
-background: #ff7c54;
-  background-image: -webkit-linear-gradient(top, #ff7c54, #ED5222);
-  background-image: -moz-linear-gradient(top, #ff7c54, #ED5222);
-  background-image: -ms-linear-gradient(top, #ff7c54, #ED5222);
-  background-image: -o-linear-gradient(top, #ff7c54, #ED5222);
-  background-image: linear-gradient(to bottom, #ff7c54, #ED5222);
-  /*-webkit-border-radius: 10;
-  -moz-border-radius: 10;
-  border-radius: 10px;*/
-  font-family: Arial;
-  color: #ffffff;
-  font-size: 16px;
-  padding: 3px 10px 4px 10px;
-  text-decoration: none;
-  border:none;
+.btnstyle {
+    background: #ff7c54 linear-gradient(to bottom, #ff7c54, #ed5222) repeat scroll 0 0;
+    border: medium none;
+    color: #ffffff;
+    cursor: pointer;
+    float: right;
+    font-family: Arial;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 2px 10px 6px;
+    position: relative;
+    right: 310px;
+    text-decoration: none;
+    top: 230px;
+    background-image: -webkit-linear-gradient(top, #ff7c54, #ED5222);
+    background-image: -moz-linear-gradient(top, #ff7c54, #ED5222);
+    background-image: -ms-linear-gradient(top, #ff7c54, #ED5222);
+    background-image: -o-linear-gradient(top, #ff7c54, #ED5222); 
 }
-
+.advance_btn{
+	position: relative;
+	background: rgb(255, 124, 84) linear-gradient(to bottom, rgb(255, 124, 84), rgb(237, 82, 34)) repeat scroll 0px 0px; 
+	border: medium none; 
+	cursor: pointer; 
+	color: rgb(255, 255, 255); 
+	float: right; 
+	font-family: Arial; 
+	font-size: 16px; 
+	font-weight: 600; 
+	text-decoration: none; 
+	padding: 3px; 
+	top: 8px;
+	right: 85px;
+}
+.align_table{
+	float: left;
+    left: 205px;
+    position: relative;
+}
 .btnstyle:hover {
   background: #ED5222;
   background-image: -webkit-linear-gradient(top, #ED5222, #ff7c54);

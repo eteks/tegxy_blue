@@ -3,9 +3,9 @@ include_once(PAGE_DBCONNECTION);
 db_connect();
 $_SESSION['chatuser'] = $_SESSION['LID'];
 $_SESSION['chatuser_name'] = $_SESSION['UserName'];
+// print_r ($_SESSION['Type']);
 if($_SESSION['LID']=='')
 header("Location:index.php");
-
 $LID   = $_SESSION['LID'];
 $ProfileDetails=db_query("SELECT * FROM ".TABLE_REGISTRATION." WHERE RGT_PK='".$LID."' AND RGT_Type!=1");
 $FetProfileDetails = db_fetch_array($ProfileDetails);

@@ -62,6 +62,8 @@ Searchpage();
 	overflow-y: auto;
 	height:130px;
 	z-index:100;
+	top:30px;
+	left: 0px !important;
 }
 #ListCityRes .list {
 	width: 280px;
@@ -75,10 +77,10 @@ Searchpage();
 	position:absolute;
 	display:none;
 	padding:2px 0px;
-	top:auto;
 	font-family :verdana;
 	font-size:12px;
-	width: 505px !important;
+	top: 420px;
+    width: 475px !important;
 	overflow-x: hidden;
 	overflow-y: auto;
 	height:130px;
@@ -110,8 +112,8 @@ Searchpage();
 </head>
 <body class="background">
 <?php include("OuterHeader.php");?>
-<!----------top------------->
-<!----------mid------------->
+<!--top-->
+<!--mid-->
 <div class="search_mid">
 <div id="noneedspaces1" style="width:990px;height:200px;"></div>
 <div id="noneedspaces2" style="width:990px;height:82px;" align="center"><div style="font-weight: bold; margin-top: 30px; font-family: Trebuchet MS; font-size: 80px;text-shadow: 4px 4px #000000;"><span style="color:#00667C;">X</span><span style="color:#C31118;">Y</span><span style="color:#00667C;">GET</span><span style="color:#C31118;font-size:55px;">.COM</span></div></div>
@@ -130,8 +132,8 @@ Searchpage();
 <input type="text" autocomplete="off" name="searchkey" id="searchlist"  class="mainsearchbox" placeholder="Please Enter Company Name / Sector / Keyword to Search" autofocus value="" onkeypress="Searchusingenterkey(event);" />
 <div id="SearchListRes"></div>
 <input id="searchsubmit" type="button" onclick="Searchpage();" value="Search" class="btnstyle"/></span>
-<img src="images/Green-Search-Icon.png" onClick="adv_Searchpage();" width="30" style="position:relative; top:9px; cursor:pointer; left:115px;" title="Advance Search">
-
+<!-- <img src="images/Green-Search-Icon.png" onClick="adv_Searchpage();" width="30" style="position:relative; top:9px; cursor:pointer; left:115px;" title="Advance Search"> -->
+<input type="button" class="btnstyle advance_btn" onclick="adv_Searchpage();" value="advance search">
 <div id="suggestions" style="display: none;"> <div style="width:504px;height:auto;position: relative; z-index: 9999; display: block;text-align:left;border:1px solid #ccc;left:0px;" id="suggestionsList"> &nbsp; </div></div>
 <input type="hidden" name="searchlisthidden" id="searchlisthidden" value="" />
 
@@ -139,9 +141,9 @@ Searchpage();
 
 <div style="width:990px;height:60px;" align="center">
 
-<table cellpadding="0" cellspacing="0" border="0">
+<table class="align_table" cellpadding="0" cellspacing="0" border="0">
   <tr>
-     <td width="300" valign="top" style="padding-left:28px;"><a onclick="Togglecity();" id="cityvalue" ></a>
+     <td width="300" valign="top"><a onclick="Togglecity();" id="cityvalue" ></a>
 
 <input name="userCity" id="userCity"  type="hidden" value="" />
 <input name="userCityselect" placeholder="Select City" autocomplete="off" id="userCityselect"  type="text"  value="" style="width:280px;height:25px;border:1px solid #C8C8C8;color:#000000; display:none;" /><div id="ListCityRes"></div>
@@ -149,7 +151,7 @@ Searchpage();
 <div id="citysuggestions" style="display: none;"> <div style="position: relative; width: 260px;  max-height: 300px; z-index: 9999; display: block;background: none repeat scroll 0 0 #FFFFFF;text-align:left;list-style: none outside none;border: 1px solid rgba(0, 51, 255, 0.5);cursor:pointer;" id="citysuggestionlist"> &nbsp; </div></div>
 <span style="display:none;">Select Area in <span id="citydisplayname"  >Pondicherry</span>?</span></td>
     <td>&nbsp;</td>
-        <td width="300" valign="top" style="padding-left:9px;"><select name="selectarea" id="selectarea"  style="width:280px;padding: 5px;color:#000000;border:1px solid #C8C8C8;" >
+        <td width="300" valign="top" style="padding-left: 40px;"><select name="selectarea" id="selectarea"  style="width:280px;padding: 5px;color:#000000;border:1px solid #C8C8C8;" >
 	<?php $queryarea=db_query("SELECT AM_Id, AM_Area, AM_Status  FROM ".TABLE_AREAMASTER." WHERE AM_City =1 ");
 echo '<option>--- Select Area in Pondicherry ---</option>';
 while($fetchquery=mysql_fetch_array($queryarea)){

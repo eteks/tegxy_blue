@@ -179,7 +179,7 @@ to continue browsing XYget.com</p>
 <tr>
 <td class="twenty"><label for="input-two" class="floatleft">Date Of Birth</label></td>
 <td class="ten"> : </td>
-<td class="seventy"><input  class="inp-text" name="DOB"  id="DOB" type="text" size="30"  onFocus="return clearedate('DOB')" onClick="return clearedate('DOB')"   autocomplete="off" readonly="readonly"  /><img src="images/Cal.png" width="16" height="16" style="cursor:pointer" onClick="showCalendarControl(document.forms['RegisterForm'].DOB)"  /></td>
+<td class="seventy"><input  class="inp-text" name="DOB"  id="DOB" type="text" size="30" value=""  autocomplete="off" readonly="readonly"  /><img src="images/Cal.png" width="16" height="16" style="cursor:pointer" onClick="showCalendarControl(document.forms['RegisterForm'].DOB)"  /></td>
 </tr>
 
 <tr>
@@ -444,14 +444,14 @@ while(list($Id,$Area)=db_fetch_array($SelectArea))
 </tr>
 
 
-<?php /*?><tr><td colspan="3" align="left" style="font-weight:bold;">Please Set your Page Address here,</td>
+<?php ?><tr><td colspan="3" align="left" style="font-weight:bold;">Please Set your Page Address here,</td>
 <tr><td colspan="3" height="5"></td></tr>
 
 <tr><td colspan="2"><label for="input-nine" class="float"><?php echo HTTP_URL ;?>/</label></td>
 <td><input class="inp-text" name="ProfileLink"  autocomplete="off" id="ProfileLink" type="text" size="30" onkeyup="urlvalidate(this);showHint(this.value)" />
 </td></tr>
 <tr><td colspan="3" align="right"><span id="txtHint"></span></td>
-</tr><?php */?>
+</tr><?php ?>
 
 
 <tr><td colspan="3">&nbsp;</td></tr>
@@ -575,9 +575,8 @@ $Mobile = trim($_REQUEST['Mobile']);
 $Email = trim($_REQUEST['Email']);	
 $UserName = trim($_REQUEST['User_Name']);
 $Password = base64_encode(trim($_REQUEST['Password']));
-$DOB = trim($_REQUEST['DOB']);
+$DOB =  date('Y-m-d',  strtotime($_REQUEST['DOB']));
 $Gender = trim($_REQUEST['Gender']);
-
 $Country = trim($_REQUEST['SelCountry']);
 $State = trim($_REQUEST['SelState']);
 $City = trim($_REQUEST['SelCity']);
@@ -618,10 +617,10 @@ $LandLine = trim($_REQUEST['LandLine']);
 $Email = trim($_REQUEST['Email']);	
 $website_url = trim($_REQUEST['website_url']);	
 
-$YearofEst = trim($_REQUEST['YearofEst']);
+$YearofEst = date('Y-m-d',  strtotime($_POST['YearofEst']));
 $Designation = trim($_REQUEST['Designation']);
 $Gender = trim($_REQUEST['Gender']);
-$DOB = trim($_REQUEST['DOB']);
+$DOB =  date('Y-m-d',  strtotime($_REQUEST['DOB']));
 $Area = trim($_REQUEST['BArea']);
 $Pincode = trim($_REQUEST['BPincode']);
 $TypeofComp = trim($_REQUEST['TypeofComp']);
@@ -631,7 +630,7 @@ $FromOT = trim($_REQUEST['FromOT']);
 $ToOT = trim($_REQUEST['ToOT']);
 $FromBT = trim($_REQUEST['FromBT']);
 $ToBT = trim($_REQUEST['ToBT']);
-//$ProfileLink = trim($_REQUEST['ProfileLink']);
+$ProfileLink = trim($_REQUEST['ProfileLink']);
 $GroupName    = $_REQUEST['GroupName'];
 $CompStrength = $_REQUEST['CompStrength'];
 $Type="2";
