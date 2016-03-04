@@ -84,16 +84,26 @@ $FetchSlot=db_fetch_array($SelectSlot)?>
 <tr>
 <td>Upload Logo</td>
 <td> :&nbsp;</td>
-<td><span id="UploadLogo" style="cursor:pointer;"><img src="images/upload-icon.png" />&nbsp;upload</span><span style="display:none;" id="UploadLogoStatus"></span><br/><em><span class="alertmsg">(gif,jpg,png Files Only - Below 1MB - Recommended size 148X155)</span></em></td>
+<td>
+	<!-- <input type="hidden" name="GalleryImage" id="GalleryImage" value="" />
+	<span onclick="FileUploadValidate('GalleryImage','doc','GalleryImageDisp','Document/Gallery/');"  style="cursor:pointer;">
+	<img src="images/upload-icon.png" /> upload</span>&nbsp;&nbsp;
+	<span id="GalleryImageDisp"></span><br/>
+	<em><span class="alertmsg">(gif,jpg,png Files Only - Below 1MB - Recommended size 500X400)</span></em> -->
+
+	<input type="hidden" name="LogoImage" id="LogoImage" value="" />
+	<span onclick="FileUploadValidate('LogoImage','doc','UploadLogoList','Document/Logo/');" style="cursor:pointer;">
+	<img src="images/upload-icon.png" />&nbsp;upload</span>
+	<span id="UploadLogoList"></span><br/>
+	<em><span class="alertmsg">(gif,jpg,png Files Only - Below 1MB - Recommended size 148X155)</span></em>
+</td>
 </tr>
 <tr>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
-<td><span id="UploadLogoList"><a href="javascript:void(0)" onClick="deleteLogo('<?php echo $FetchSlot['LG_Id']; ?>','UploadLogoList');"><img src="<?php echo $FetchSlot['LG_Logo']; ?>" height="200"  width="200" style="margin:5px;" /></a><?php $NumSlotct=db_num_rows($SelectSlot);
-if($NumSlotct>0)
-echo '<em><span class="alertmsg">Click on the image to delete</span></em>';?>
+<td>
 
-</span></td>
+</td>
 </tr>
 </table>
 </fieldset>

@@ -46,7 +46,7 @@ $FCKeditor->Create();
 </td>
 </tr>
 <tr><td colspan="3">&nbsp;</td></tr>
-<tr><td colspan="3" width="95%" align="center">
+<tr><td colspan="3" width="95%mn" align="center">
 <div id="SubProfileGrid" class="gridpad"></div>
 </td></tr>
 </table>

@@ -10,7 +10,15 @@
 <tr>
 <td>Upload Image</td>
 <td> :&nbsp;</td>
-<td><input type="hidden" name="GalleryImage" id="GalleryImage" value="" /><span onclick="FileUploadValidate('GalleryImage','doc','GalleryImageDisp','Document/Gallery/');"  style="cursor:pointer;"><img src="images/upload-icon.png" /> upload</span>&nbsp;&nbsp;<span id="GalleryImageDisp"></span><br/><em><span class="alertmsg">(gif,jpg,png Files Only - Below 1MB - Recommended size 500X400)</span></em></td>
+<td>
+	<input type="hidden" name="GalleryImage" id="GalleryImage" value="" />
+	<span onclick="FileUploadValidate('GalleryImage','doc','GalleryImageDisp','Document/Gallery/');"  style="cursor:pointer;">
+	<img src="images/upload-icon.png" /> upload</span>&nbsp;&nbsp;
+	<span id="GalleryImageDisp"></span><br/>
+	<em>
+	<span class="alertmsg">(gif,jpg,png Files Only - Below 1MB - Recommended size 500X400)</span>
+	</em>
+</td>
 </tr>
 <tr><td colspan="3" height="10"></td></tr>
 <tr>
