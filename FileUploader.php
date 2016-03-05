@@ -116,7 +116,7 @@ if($_POST['Upload']=='Upload')
 			window.opener.document.getElementById('<?php echo $_REQUEST['Disp']; ?>').innerHTML='<a href="<?php echo $mainMesage;?>" target="_blank"><img width="30" height="30" src="images/pdf.png"></a>&nbsp;&nbsp;<span style="color: #00677D;cursor: pointer;font-size: 11px;font-weight: bold;" onclick="DeleteFromFolder(\'<?php echo $mainMesage;?>\',\'<?php echo $_POST['Disp'];?>\',\'<?php echo $_REQUEST['fieldName']; ?>\');" >Delete</span>&nbsp;&nbsp;';
 			<?php }
 			else {?>
-			window.opener.document.getElementById('<?php echo $_POST['Disp']; ?>').innerHTML='<img width="30" height="30" src="<?php echo $mainMesage;?>" />&nbsp;&nbsp;<span style="color: #00677D;cursor: pointer;font-size: 11px;font-weight: bold;" onclick="DeleteFromFolder(\'<?php echo $mainMesage;?>\',\'<?php echo $_POST['Disp'];?>\',\'<?php echo $_REQUEST['fieldName']; ?>\');" >Delete</span>&nbsp;&nbsp;';
+			window.opener.document.getElementById('<?php echo $_POST['Disp']; ?>').innerHTML='<img width="200px" height="200px" src="<?php echo $mainMesage;?>" />&nbsp;&nbsp;<span style="color: #00677D;cursor: pointer;font-size: 11px;font-weight: bold;" onclick="DeleteFromFolder(\'<?php echo $mainMesage;?>\',\'<?php echo $_POST['Disp'];?>\',\'<?php echo $_REQUEST['fieldName']; ?>\');" >Delete</span>&nbsp;&nbsp;';
 			<?php } ?>
 			window.close();
         </script> <?php 

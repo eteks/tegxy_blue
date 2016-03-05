@@ -406,6 +406,14 @@ while(list($Id,$Area)=db_fetch_array($SelectArea))
 <td class="ten"> : </td>
 <td>From <input class="inp-text" name="FromBT"  id="timepicker_3" type="text" size="30" style="width:65px;" autocomplete="off"   /> To <input class="inp-text" name="ToBT"  id="timepicker_4" style="width:65px;" type="text" size="30" autocomplete="off"  /></td></tr>
 
+<?php ?><tr><td colspan="3" align="left" style="font-weight:bold;">Please Set your Page Address here,</td>
+<tr><td colspan="3" height="5"></td></tr>
+
+<tr><td colspan="2"><label for="input-nine" class="float"><?php echo HTTP_URL ;?>/</label></td>
+<td><input class="inp-text" name="ProfileLink"  autocomplete="off" id="ProfileLink" type="text" size="30" onkeyup="urlvalidate(this);showHint(this.value)" />
+</td></tr>
+<tr><td colspan="3" align="right"><span id="txtHint"></span></td>
+</tr><?php ?>
 </table>
 
 
@@ -442,17 +450,6 @@ while(list($Id,$Area)=db_fetch_array($SelectArea))
 <td class="ten"> : </td>
 <td class="seventy"><input class="inp-text" name="CPassword"  id="CPassword" type="Password" size="30" autocomplete="off" /></td>
 </tr>
-
-
-<?php ?><tr><td colspan="3" align="left" style="font-weight:bold;">Please Set your Page Address here,</td>
-<tr><td colspan="3" height="5"></td></tr>
-
-<tr><td colspan="2"><label for="input-nine" class="float"><?php echo HTTP_URL ;?>/</label></td>
-<td><input class="inp-text" name="ProfileLink"  autocomplete="off" id="ProfileLink" type="text" size="30" onkeyup="urlvalidate(this);showHint(this.value)" />
-</td></tr>
-<tr><td colspan="3" align="right"><span id="txtHint"></span></td>
-</tr><?php ?>
-
 
 <tr><td colspan="3">&nbsp;</td></tr>
 <tr><td colspan="3" class="text-align-c">
