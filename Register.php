@@ -582,11 +582,8 @@ $City = trim($_REQUEST['SelCity']);
 //$P_Type="1";
 
 
-db_query("INSERT INTO ".TABLE_REGISTRATION." SET RGT_Name='".$OwnerName."',RGT_UserName='".$UserName."',RGT_Password='".$Password."',RGT_Mobile='".$Mobile."' ,RGT_Email='".$Email."' ,RGT_RegisterOn=NOW(), RGT_Country='".$Country."',RGT_State='".$State."',RGT_City='".$City."', RGT_Type='3', RGT_Status='1', RGT_DOB='".$DOB."',RGT_Gender='".$Gender."', RGT_Filesize='0',RGT_Featured='0'");
+db_query("INSERT INTO ".TABLE_REGISTRATION." SET RGT_Name='".$OwnerName."',RGT_UserName='".$UserName."',RGT_Password='".$Password."',RGT_Mobile='".$Mobile."' ,RGT_Email='".$Email."' ,RGT_RegisterOn=NOW(), RGT_Country='".$Country."',RGT_State='".$State."',RGT_City='".$City."', RGT_Type='1', RGT_Status='0', RGT_DOB='".$DOB."',RGT_Gender='".$Gender."', RGT_Filesize='0',RGT_Featured='0'");
 $PerId = db_insert_id();
-
-
-
 
 /*db_query("UPDATE ".TABLE_REGISTRATION." SET RGT_Relation = '".$PerId."' WHERE RGT_PK='".$BusId."' ");
 db_query("UPDATE ".TABLE_REGISTRATION." SET RGT_Relation = '".$BusId."' WHERE RGT_PK='".$PerId."' ");
@@ -663,8 +660,8 @@ $keyid = db_insert_id();
 db_query("INSERT INTO ".TABLE_MEMBERKEYWORD." SET Mk_MemFk='".$BusId."', Mk_KeywordFk='".$keyid."', Mk_CreatedOn=Now(), Mk_ModifiedOn=Now()");
 }
 
-//|| $PerId!=''
-if($BusId!='' )
+//
+if($BusId!='' || $PerId!='' )
 {
 $Message     = "<table border='0' cellpadding='0' cellspacing='0'  style='font-size: 12px; line-height: 25px;font-family:Arial, Helvetica, sans-serif;padding-left:5px;padding-bottom:10px;'>
 <tr><td colspan='2' height='10'></td></tr>

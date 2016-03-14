@@ -126,7 +126,7 @@ Searchpage();
 <div style="width:850px;height:30px;display:block;" align="center" >
 <input type="hidden" id="Searchmodel" value="1" />
 <input type="radio" id="requestTypeCom" name="requestType" checked="checked" value="company" title="Company" onclick="changesearchtype();" /><label for="requestTypeCom">Company</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="radio" name="requestType" id="requestTypedeals" value="bestdeals" title="Xbit" onclick="changesearchtype();" /><label for="requestTypedeals" >Xbit</label>
+<input type="radio" name="requestType" id="requestTypedeals" value="bestdeals" title="Xbit" onclick="changesearchtype();" /><label for="requestTypedeals" >Products</label>
 </div>
 <div style="width:990px;height:55px;" align="center">
 <input type="text" autocomplete="off" name="searchkey" id="searchlist"  class="mainsearchbox" placeholder="Please Enter Company Name / Sector / Keyword to Search" autofocus value="" onkeypress="Searchusingenterkey(event);" />

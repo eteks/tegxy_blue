@@ -223,7 +223,7 @@
     <div style="width:740px;height:auto;float:left;">
         <div style="width:740px; height:30px;display:none;" align="center">
             <input type="radio" id="requestTypeCom" name="requestType" checked="checked" value="company" title="Company" onclick="changesearchtype();" /><label for="requestTypeCom" >Company</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="radio" name="requestType" id="requestTypedeals"  value="bestdeals" title="Xbit"onclick="changesearchtype();" /><label for="requestTypedeals" >Xbit</label>
+            <input type="radio" name="requestType" id="requestTypedeals"  value="bestdeals" title="Xbit"onclick="changesearchtype();" /><label for="requestTypedeals" >Products</label>
         </div>
         <?php
             /*?>
@@ -443,7 +443,7 @@
                             ?></div>
                     </div>
                 </div>
-                <div style="width:653px;height:39px;float:left;">
+                <div style="width:705px;height:39px;float:left;">
                     <?php
                         if ($fetchquery['RGT_PaymentStatus'] == '1') {
                         ?>
@@ -475,14 +475,14 @@
                         } //$fetchquery['RGT_PaymentStatus'] == '1'
                         ?>
                 </div>
-                <!------addetails--------->
+                <!--addetails-->
             </div>
             <br/><br/>
             <?php
                 } //$fetchquery = mysql_fetch_array($searchquery)
                 } //$requestType == 'company'
                 ?>
-            <!------ad---------->
+            <!--ad-->
         </div>
         <?php
             } //$countresult > 0
@@ -491,14 +491,14 @@
             }
             ?>
     </div>
-    <!-----740------->
+    <!--740-->
 </div>
-<!-----adleft_container-------->
+<!--adleft_container-->
 <?php
     } //$requestType == 'company'
     if ($requestType == 'bestdeals') {
     ?>
-<!-----adleft_container-------->
+<!--adleft_container-->
 <div class="adleft_container">
     <div style="width:100%;height:55px;float:left;" align="right">
         <div class="post_anadd">
@@ -517,9 +517,9 @@
             </a>
         </div>
     </div>
-    <!-----250------->
+    <!--250-->
     <div style="width:250px;height:auto;float:left;">
-        <!-----relatedsearch------->
+        <!--relatedsearch-->
         <div class="adrelatedsearch">
             <div id="relatedresultsbox" style="display:<?php
                 if ($searchkey == '') {
@@ -575,14 +575,14 @@
             </div>
             <div class="adleftaccordion_btm" ></div>
         </div>
-        <!-----relatedsearch------->
+        <!--relatedsearch-->
     </div>
-    <!-----250------->
-    <!-----740------->
+    <!--250-->
+    <!--740-->
     <div style="width:740px;height:auto;float:left;">
         <div style="width:740px; height:30px;display:none;" align="center">
             <input type="radio" id="requestTypeCom" name="requestType"  value="company" title="Company" onclick="changesearchtype();" /><label for="requestTypeCom" >Company</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="radio" name="requestType" id="requestTypedeals" checked="checked" value="bestdeals" title="Xbit" onclick="changesearchtype();" /><label for="requestTypedeals">Xbit</label>
+            <input type="radio" name="requestType" id="requestTypedeals" checked="checked" value="bestdeals" title="Xbit" onclick="changesearchtype();" /><label for="requestTypedeals">Products</label>
         </div>
         <?php
             /*?>
@@ -628,7 +628,7 @@
             ?>,'2',<?php
             echo $type2;
             ?>);" >View Gallery</a></div>
-        <!------ad---------->
+        <!--ad-->
         <div id="mainsearchcontent">
             <?php
                 if ($requestType == 'bestdeals') {
@@ -647,7 +647,7 @@
                         $Compnamedisp = $Compnamefixlimit . $Since;
                 ?>
             <div class="singlead">
-                <!----title---->
+                <!--title-->
                 <div class="adtitle">
                     <div style="width:550px;color:#EC5324;float:left;"><b><?php
                         echo $Compnamedisp;
@@ -658,8 +658,8 @@
                     <?php */
                         ?>
                 </div>
-                <!----title--------->
-                <!------adimage--------->
+                <!--title-->
+                <!--adimage-->
                 <div class="adimage">
                     <div class="company_logo">
                         <a href="#thumb" class="thumbnail">
@@ -693,8 +693,8 @@
                             ?></div>
                     </div>
                 </div>
-                <!------adimage--------->
-                <!------addetails--------->
+                <!--adimage-->
+                <!--addetails-->
                 <div class="addetails">
                     <div class="addetails_left">
                         <span style="color:#EC5324;"><b>Business Descriptions</b></span>
@@ -730,7 +730,7 @@
                             ?></div>
                     </div>
                 </div>
-                <div style="width:720px;height:39px;float:left;">
+                <div style="width:705px;height:39px;float:left;">
                     <div class="chat_details">
                         <div class="chat_curve"></div>
                         <div class="chat_style"><img src="images/chat_online.png" style="position:relative;top:3px;" />&nbsp;&nbsp;<a href="#"> I'm Offline</a></div>
@@ -759,14 +759,14 @@
                             ?> >View Full Details</a></div>
                     </div>
                 </div>
-                <!------addetails--------->
+                <!--addetails-->
             </div>
             <br/><br/>
             <?php
                 } //$fetchquery = mysql_fetch_array($searchquery)
                 } //$requestType == 'bestdeals'
                 ?>
-            <!------ad---------->
+            <!--ad-->
         </div>
         <?php
             } //$countresult > 0
@@ -775,9 +775,9 @@
             }
             ?>
     </div>
-    <!-----740------->
+    <!--740-->
 </div>
-<!-----adleft_container-------->
+<!--adleft_container-->
 <?php
     } //$requestType == 'bestdeals'
     ?>

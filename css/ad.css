@@ -210,7 +210,7 @@ width:340px;min-height:95px;height:auto;float:left;font-size:13px;padding:7px 5p
 }
 .chat_details
 {
-width:330px;height:39px;float:right;
+float: right;height: 39px;width: 382px !important;
 }
 
 .chat_details a

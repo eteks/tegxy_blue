@@ -258,7 +258,7 @@ width:340px;min-height:85px;height:auto;float:left;font-size:13px;padding:7px 5p
 }
 .chat_details
 {
-width:329px;height:39px;float:right;
+float: right;height: 39px;width: 382px;
 /*background:url(../images/details_chat_btn.png) no-repeat top;*/
 /*background-color: #075A70;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#075A70), to(#157892));
