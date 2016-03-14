@@ -20,7 +20,7 @@ $(function(){
 <link href="css/homepage.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body class="background">
-<!----------top------------->
+<!--top-->
 <div class="search_topbar" align="right">
 <div style="width:190px;height:29px;float:right;">
 <div style="float:left;"><a href="Login.php">Sign In</a>
@@ -28,7 +28,7 @@ $(function(){
 <div style="float:left;"><a href="#" style="border:none;text-decortaion:none;"><img src="images/home/register_icon.png" style="position:relative;left:-15px;" /></a></div>
 </div>
 </div>
-<!----------top------------->
+<!--top-->
 
 <?php if(isset($_POST['searchkey'])){
     $searchkey=$_POST['searchkey'];

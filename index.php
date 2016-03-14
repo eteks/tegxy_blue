@@ -133,7 +133,7 @@ Searchpage();
 <div id="SearchListRes"></div>
 <input id="searchsubmit" type="button" onclick="Searchpage();" value="Search" class="btnstyle"/></span>
 <!-- <img src="images/Green-Search-Icon.png" onClick="adv_Searchpage();" width="30" style="position:relative; top:9px; cursor:pointer; left:115px;" title="Advance Search"> -->
-<input type="button" class="btnstyle advance_btn" onclick="adv_Searchpage();" value="advance search">
+<input type="button" class="btnstyle advance_btn" onclick="adv_Searchpage();" value="Advance Search">
 <div id="suggestions" style="display: none;"> <div style="width:504px;height:auto;position: relative; z-index: 9999; display: block;text-align:left;border:1px solid #ccc;left:0px;" id="suggestionsList"> &nbsp; </div></div>
 <input type="hidden" name="searchlisthidden" id="searchlisthidden" value="" />
 

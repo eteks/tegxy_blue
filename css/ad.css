@@ -181,24 +181,24 @@ width:720px; height:30px;margin-left:20px;
 
 .singlead
 {
-width:720px;height:auto;border-top:7px solid #085C72;border-bottom:7px solid #085C72;border-left:1px solid #999;border-right:1px solid #999;margin-left:20px;border-bottom-left-radius:5px;border-bottom-right-radius:5px;border-top-left-radius:5px;border-top-right-radius:5px;
+width:650px;height:auto;border-top:7px solid #085C72;border-bottom:7px solid #085C72;border-left:1px solid #999;border-right:1px solid #999;margin-left:20px;border-bottom-left-radius:5px;border-bottom-right-radius:5px;border-top-left-radius:5px;border-top-right-radius:5px;
 }
 .adtitle
 {
-width:715px;min-height:20px;height:auto;padding:5px 0px 5px 5px;background:#F4F4F4;border-bottom:1px solid #999;
+width:645px;min-height:20px;height:auto;padding:5px 0px 5px 5px;background:#F4F4F4;border-bottom:1px solid #999;
 }
 
 .adimage
 {
-width:715px;min-height:80px;height:135px;padding:5px 0px 5px 5px;background:#fff;border-bottom:1px solid #999;
+width:645px;min-height:80px;height:135px;padding:5px 0px 5px 5px;background:#fff;border-bottom:1px solid #999;
 }
 .addetails
 {
-width:715px;min-height:115px;height:auto;padding:0px 0px 0px 5px;background:#fff;
+width:645px;min-height:115px;height:auto;padding:0px 0px 0px 5px;background:#fff;
 }
 .addetails_left
 {
-width:340px;min-height:95px;height:auto;float:left;font-size:13px;padding:7px 5px;line-height:18px;text-align:justify;
+width:275px;min-height:95px;height:auto;float:left;font-size:13px;padding:7px 5px;line-height:18px;text-align:justify;
 }
 .addetails_sep
 {
@@ -210,7 +210,7 @@ width:340px;min-height:95px;height:auto;float:left;font-size:13px;padding:7px 5p
 }
 .chat_details
 {
-width:329px;height:39px;float:right;
+width:330px;height:39px;float:right;
 }
 
 .chat_details a
