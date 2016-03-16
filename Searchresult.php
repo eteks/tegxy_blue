@@ -505,7 +505,7 @@
             <a <?php
                 if (isset($_SESSION['LID'])) {
                 ?> target="_blank"  href="<?php
-                echo 'ManageProfile.php?user=' . base64_encode($_SESSION['Type']);
+                echo 'Advertisement.php?user=' . base64_encode($_SESSION['Type']);
                 ?>" <?php
                 } //isset($_SESSION['LID'])
                 else {
