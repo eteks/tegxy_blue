@@ -120,24 +120,24 @@
             </div>
             <div class="admain_container">
                 <div id="searchResults">
-                    <!-----admain_container-------->
+                    <!--admain_container-->
                     <?php
                         $path = '';
                         include("Searchresult.php");
                         ?>
-                    <!-----admain_container-------->
+                    <!--admain_container-->
                 </div>
-                <!-----adright_container-------->
+                <!--adright_container-->
                 <?php
                     include("Advertisementcolumn.php");
                     ?>
-                <!-----adright_container-------->
+                <!--adright_container-->
             </div>
         </div>
         <?php
             include("Footer.php");
             ?>
-        <!----------mid------------->
+        <!--mid-->
         <!--Load Javascript-->
         <script>
             if(google.loader.ClientLocation)
@@ -204,7 +204,7 @@
                     <div class="registrd_usr" align="center"><label><input id="sradio" onClick="onclicksignup();" name="Radiochkselection" type="radio"/>Join XYGET.com</label></div>
                 </div>
                 <div style="width:100%;height:30px;"></div>
-                <!-------toggle1----------->
+                <!--toggle1-->
                 <div class="toggle1">
                     <form id="Freeuserlogin">
                         <div id="signin">
@@ -270,8 +270,8 @@
                         </div>
                     </div>
                 </div>
-                <!-------toggle1----------->
-                <!-------toggle2----------->
+                <!--toggle1-->
+                <!--toggle2-->
                 <div class="toggle2" style="display:none;">
                     <p style="margin-left:auto;margin-right:auto;margin-top:-60px;text-align:center;color:#F7862A;">Forgot Password</p>
                     <div style="width:360px;margin-left:auto;margin-right:auto;background:#F99F57;padding:30px 40px 30px 30px;border-radius:10px;-webkit-box-shadow: 0px 0px 3px 3px #999;box-shadow: 0px 0px 3px 3px #999;">
@@ -290,7 +290,7 @@
                         </div>
                     </div>
                 </div>
-                <!-------toggle2----------->
+                <!--toggle2-->
             </div>
         </div>
         <script>

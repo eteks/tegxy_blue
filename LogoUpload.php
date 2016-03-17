@@ -90,7 +90,7 @@ $FetchSlot=db_fetch_array($SelectSlot)?>
 	<img src="images/upload-icon.png" /> upload</span>&nbsp;&nbsp;
 	<span id="GalleryImageDisp"></span><br/>
 	<em><span class="alertmsg">(gif,jpg,png Files Only - Below 1MB - Recommended size 500X400)</span></em> -->
-
+	
 	<input type="hidden" name="LogoImage" id="LogoImage" value="" />
 	<span onclick="FileUploadValidate('LogoImage','doc','UploadLogoList','Document/Logo/');" style="cursor:pointer;">
 	<img src="images/upload-icon.png" />&nbsp;upload</span>

@@ -16,35 +16,27 @@
 function Searchpage()
 {
 var pro_search =$("#searchid").val();
-
 var comp_name = $("#comp_searchid").val();
-//alert(comp_name);
-
 if(comp_name !="" && pro_search !="")
 {
 var searchKey = $("#searchid").val();
-//alert("enter1");
 }
 
 if(comp_name !="" && pro_search =="")
 {
 var searchKey = $("#comp_searchid").val();
-//alert("enter2");
 }
+
 if(comp_name =="" && pro_search !="")
 {
 var searchKey = $("#searchid").val();
-//alert("enter3");
 }
+
 if(pro_search =="" && comp_name =="")
 {
 var requestType="company";
-//alert(requestType);
-
 alert("Please Enter Company Name OR Product Name");
 return false;
-
-
 }
 else if(pro_search =="" && comp_name !="")
 {
@@ -265,12 +257,12 @@ window.location.href="Searchpage.php?action=Add&searchkey="+searchKey+"&requestt
     }
     }
     if($requestType=='company'){?>
-<!-----adleft_container-------->
+<!--adleft_container-->
 <div class="adleft_container">
     <div style="width:100%;height:40px;float:left;" align="right"></div>
-    <!-----250------->
+    <!--250-->
     <div style="width:250px;height:auto;float:left;">
-        <!-----relatedsearch------->
+        <!--relatedsearch-->
         <div class="adrelatedsearch">
             <div id="relatedresultsbox" style="display:<?php if($searchkey=='' ){echo 'none';} else echo 'block'; ?>" >
                 <div class="adleftaccordiaon_top" >Related Searches</div>
@@ -294,10 +286,10 @@ window.location.href="Searchpage.php?action=Add&searchkey="+searchKey+"&requestt
             </div>
             <div class="adleftaccordion_btm" ></div>
         </div>
-        <!-----relatedsearch------->
+        <!--relatedsearch-->
     </div>
-    <!-----250------->
-    <!-----740------->
+    <!--250-->
+    <!--740-->
     <div style="position:absolute; left:320px; top:150px;" align="center">
 
     <fieldset style="width:650px;">
@@ -386,7 +378,7 @@ window.location.href="Searchpage.php?action=Add&searchkey="+searchKey+"&requestt
 
     	<!--<input type="text" id="city_name" name="city_name" style="width:260px; height:25px; display:none;"/>-->
 
-    	<span id="ShowAreaList"><select id="Area" style="width:260px; height:25px;" name="Area"></select>
+    	<span id="ShowAreaList"><select id="Area" style="width:260px; height:25px;" name="Area"><option value="">--Select Area--</option></select>
     	<input type="hidden" name="city_name" id="city_name" value="" /></span>	</td>
       </tr>
 
@@ -403,10 +395,10 @@ window.location.href="Searchpage.php?action=Add&searchkey="+searchKey+"&requestt
 
     </div>
 </div>
-<!-----adleft_container-------->
+<!--adleft_container-->
 <?php }
     if($requestType=='bestdeals'){?>
-<!-----adleft_container-------->
+<!--adleft_container-->
 <div class="adleft_container">
     <div style="width:100%;height:55px;float:left;" align="right">
         <div class="post_anadd">
@@ -416,9 +408,9 @@ window.location.href="Searchpage.php?action=Add&searchkey="+searchKey+"&requestt
             </a>
         </div>
     </div>
-    <!-----250------->
+    <!--250-->
     <div style="width:250px;height:auto;float:left;">
-        <!-----relatedsearch------->
+        <!--relatedsearch-->
         <div class="adrelatedsearch">
             <div id="relatedresultsbox" style="display:<?php if($searchkey=='' ){echo 'none';} else echo 'block'; ?>" >
                 <div class="adleftaccordiaon_top" >Related Searches</div>
@@ -454,11 +446,11 @@ window.location.href="Searchpage.php?action=Add&searchkey="+searchKey+"&requestt
             </div>
             <div class="adleftaccordion_btm" ></div>
         </div>
-        <!-----relatedsearch------->
+        <!--relatedsearch-->
     </div>
-    <!-----250------->
-    <!-----740------->
+    <!--250-->
+    <!--740-->
 
 </div>
-<!-----adleft_container-------->
+<!--adleft_container-->
 <?php }?>

@@ -1,4 +1,4 @@
-<div class="adright_container">
+ <div class="adright_container">
 <?php
 $selectadquery = db_query("SELECT ADV_Existornew,ADV_Selection,ADV_Name,ADV_Imagepath,ADV_Description,ADV_Selectionfk FROM ".TABLE_ADVERTISEMENT." limit 3");
 while(list($adv_existornew,$adv_selection,$adv_name,$adv_imagepath,$adv_description,$adv_selectionfk) = db_fetch_array($selectadquery))
@@ -39,7 +39,7 @@ $adv_description = $gy_desp;
 <div class="right_singlead">
 <div class="right_adtitle"><?php echo $adv_title ;?></div>
 <div style="width:290px;min-height:107px;">
-<div class="right_adimg"><img width="107" height="107" src="<?php echo $adv_imagepath;?>" /></div>
+<div class="right_adimg"><img width="100" height="107" src="<?php echo $adv_imagepath;?>" /></div>
 <div class="right_addesp"><?php echo $adv_description; ?></div>
 </div>
 </div>
