@@ -27,7 +27,7 @@ $Logo_Fetch = db_fetch_array($Logo);
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Tracemein</title>
+<title>XYget.com</title>
 <link rel="icon" href="images/favicon.ico">
 <link rel="stylesheet" href="css/frontpage.css" type="text/css" />
 <link rel="stylesheet" href="css/Advertisement.css" type="text/css" />
@@ -85,14 +85,16 @@ line-height:30px;
 
 <div id="Profile_View_Grid" class="advbg">
 <div style="text-align:center" id="Advalert"></div>
-<input type="text" id="Advertise"  />
+<!-- <input type="text" id="Advertise"  /> -->
+<input type="hidden" id="Advertise"  />
 <input type="hidden" id="Advertiselevel" />
 <div id="Firstleveladv" style="display:block;">
 <table  align="center"  border="0" cellpadding="0" cellspacing="0" >
 <tr><td colspan="7" height="10"></td></tr>
 <tr>
 <td colspan="2">&nbsp;</td>
-<td><input type="button" onclick="Createnewadv();" value="Create New" /></td>
+<!-- <td><input type="button" onclick="Createnewadv();" value="Create New" /></td> -->
+<td><input type="button" onclick="Selectcreatenewadv();" value="Create New" /></td>
 <td>&nbsp;</td>
 <td><input type="button" onclick="Renewadv();" value="Renew Existing" /></td>
 <td colspan="2">&nbsp;</td>
@@ -124,7 +126,7 @@ while(list($ADV_Id,$ADV_Name)=db_fetch_array($SelectSector))
 </fieldset>
 </div>
 
-<div id="Selectiongrid" style="display:none;">
+<!-- <div id="Selectiongrid" style="display:none;">
 <table align="center" border="0" cellpadding="0" cellspacing="0" >
 <tr>
 <td colspan="2">&nbsp;</td>
@@ -134,7 +136,7 @@ while(list($ADV_Id,$ADV_Name)=db_fetch_array($SelectSector))
 <td colspan="2">&nbsp;</td>
 <tr><td colspan="7" height="10"></td></tr>
 </tr></table>
-</div>
+</div> -->
 
 
 

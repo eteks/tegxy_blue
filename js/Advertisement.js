@@ -207,8 +207,10 @@ function Advertisementedit(editid,user)
 
 function ShowAdvertisementedit()
 {
+	// alert("ShowAdvertisementedit");
 if (xmlhttp.readyState == 4) 
 	{
+		// alert("yes");
 		var response = xmlhttp.responseText;
 		if (response != "") 
 		{ 
@@ -223,6 +225,7 @@ if (xmlhttp.readyState == 4)
 			DocId('Linkselection').checked  = true;
 			else
 			{
+				alert(Res[1]);
 			DocId('Advname').value  = Res[1];	
 			DocId('Linkselectionn').checked  = true;
 			DocId('Linkurladv').value = Res[6];
@@ -231,8 +234,20 @@ if (xmlhttp.readyState == 4)
 			if(Res[2]==2)
 			{
 			Selectcreatenewadv();	
+			//newly added
+			//*****
+			DocId('Advname').value  = Res[1];	
+			//*****
+			alert(Res[7]);
 			DocId('ADVImage').value  = Res[7];
-			DocId('ADVImageDisp').innerHTML  = Res[8];
+			alert(Res[8]);
+			// DocId('ADVImageDisp').innerHTML  = Res[8];
+
+			// '<img width="30" height="30" src="'+Res[8]+'" />
+			// &nbsp;&nbsp;<span style="color: #00677D;cursor: pointer;font-size: 11px;font-weight: bold;" 
+			// onclick="DeleteFromFolder('+Res[8]+',"ADVImageDisp","ADVImage","2");" >Delete</span>&nbsp;&nbsp;';
+
+			DocId('ADVImageDisp').innerHTML  = "<img width='30' height='30' src="+Res[8]+">";
 			DocId('Advdescription').value  = Res[9];
 			}
 			if(Res[10]!='')

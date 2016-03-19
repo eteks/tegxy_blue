@@ -181,6 +181,7 @@ function showOnClickPage()
 
 function OnClickStatusInActive(id,startData) 
 { 
+	// alert("inactive");
 	document.getElementById('tr_'+id).style.color = '#ffff00'; 
 	n=confirm("Do you want to In-Active this Detail?"); 
 	if (n==true) 
