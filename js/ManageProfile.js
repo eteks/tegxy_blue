@@ -551,17 +551,17 @@ function ShowClearSpecificData(obj,obj2)
 }
 
 function GridShowHide(PageId,GridId,Show,Type)
-{
-if(Show=='Page')
 {	
-document.getElementById(PageId).style.display='block';
-document.getElementById(GridId).style.display='none';
-}
-else
-{
-document.getElementById(PageId).style.display='none';
-document.getElementById(GridId).style.display='block';
-}
+	if(Show=='Page')
+	{	
+		document.getElementById(PageId).style.display='block';
+		document.getElementById(GridId).style.display='none';
+	}
+	else
+	{
+		document.getElementById(PageId).style.display='none';
+		document.getElementById(GridId).style.display='block';
+	}
 }
 
 
