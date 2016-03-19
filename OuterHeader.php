@@ -25,7 +25,6 @@ $.post("sessionupdate.php"); // Sends request to update.php
 <script type="text/javascript">
 var $login = jQuery.noConflict();
 $login(document).ready(function(){
-
     $login('.main_container').click(function(){
         $login('#login-content').hide();
         })
@@ -33,11 +32,14 @@ $login(document).ready(function(){
     $login('#login-trigger').click(function(){
         $login(this).next('#login-content').slideToggle();
         $login(this).toggleClass('active');
-
+        // if(e.target.id != '#login-content'){
+        //     $login(this).next('#login-content').slideToggle();          
+        // }
         if ($login(this).hasClass('active')) $login(this).find('span').html('&#x25B2;')
             else $login(this).find('span').html('&#x25BC;')
         })
 });
+
 function ValidateLogin()
 {
 if(DocId('UserName').value=='')

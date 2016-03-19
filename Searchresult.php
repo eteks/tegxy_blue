@@ -268,7 +268,7 @@
             echo '\'' . $requestType . '\'' . ',' . '\'' . $searchkey . '\'';
             ?>,'2',<?php
             echo $type2;
-            ?>);" >View Gallery</a></div>
+            ?>);" >Grid</a></div>
         <!--ad-->
         <div id="mainsearchcontent">
             <?php
@@ -627,7 +627,7 @@
             echo '\'' . $requestType . '\'' . ',' . '\'' . $searchkey . '\'';
             ?>,'2',<?php
             echo $type2;
-            ?>);" >View Gallery</a></div>
+            ?>);" >Grid</a></div>
         <!--ad-->
         <div id="mainsearchcontent">
             <?php
