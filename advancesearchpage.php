@@ -12,7 +12,6 @@
     }
 </script>
 <script>
-
 function Searchpage()
 {
 var pro_search =$("#searchid").val();
@@ -41,12 +40,14 @@ return false;
 else if(pro_search =="" && comp_name !="")
 {
 var requestType="company";
-//alert(requestType);
+alert(requestType);
+$('#searchid').addClass('hide_text');
 }
 else if(pro_search !="" && comp_name =="")
 {
 var requestType="bestdeals";
-//alert(requestType);
+alert(requestType);
+$('#comp_searchid').hide();
 }
 else if(pro_search !="" && comp_name !="")
 {
@@ -293,103 +294,90 @@ window.location.href="Searchpage.php?action=Add&searchkey="+searchKey+"&requestt
     <div style="position:absolute; left:320px; top:150px;" align="center">
 
     <fieldset style="width:650px;">
-    <legend style="font-size:18px;">Advance Search</legend>
+        <legend style="font-size:18px;">Advance Search</legend>
 
-    <table width="600" border="0" cellpadding="5" cellspacing="5" align="center">
-      <tr>
-        <td colspan="3" align="right">
-        <input id="searchsubmit" type="button" onClick="window.location.href='index.php'" value="<< BACK" class=""/>    </td>
-      </tr>
+        <table width="600" border="0" cellpadding="5" cellspacing="5" align="center">
+            <tr>
+                <td colspan="3" align="right">
+                <input id="searchsubmit" type="button" onClick="window.location.href='index.php'" value="<< BACK" class=""/>    </td>
+            </tr>
 
-      <tr>
-        <td width="129">Company Name </td>
-        <td width="17">:</td>
-        <td width="404" align="left">
-
-    <div class="comp_content">
-
-    <input type="text" class="comp_search" id="comp_searchid" placeholder="Search for Company Name" />
-    <div id="SearchListRes" style="left:224px;width:260px!important;"></div>
-    <input type="hidden"  id="c_name" name="c_name" />
-
-    <input type="hidden" id="comp_id" name="comp_id"/>
-
-    <input type="hidden" id="Sector_id" name="Sector_id"/>
-
-    <div id="comp_result"></div>
-    </div>    </td>
-      </tr>
-      <tr>
-        <td>Product Name</td>
-        <td>:</td>
-        <td width="404" align="left">
-            <div class="content">
-    <input type="text" class="search_pro" id="searchid" placeholder="Search for Product" />
-    <div id="SearchListPro" style="left:224px;width:260px!important;"></div>
-    <div id="result"></div>
-    </div>    </td>
-      </tr>
-      <tr>
-        <td>Industry</td>
-        <td>:</td>
-        <td>
-
-
-     <input type="text" id="Sector_name" name="Sector_name" style="width:260px; height:25px; display:none;"/>
-
-    <select name="Sector" id="Sector" class="inp-text" style="width:260px; height:28px;">
-    <option value="">--Select Industry--</option>
-    <?php $SelectSector=db_query("Select Id,S_Name From ".TABLE_SECTOR." WHERE Status=1 order by S_Name asc");
-    while(list($MSeId,$MSeName)=db_fetch_array($SelectSector))
-    {?>
-    <option  value="<?php echo $MSeId; ?>"  ><?php echo $MSeName; ?></option><?php
-    }?>
-    </select>    </td>
-      </tr>
-      <tr>
-        <td>City</td>
-        <td>:</td>
-        <td>
-
-    <?php /*?> <select name="SelCountry" style="display:none;" id="SelCountry" onChange="return OnclickCountry(this.value,'SelCountry','SelState','SelCity','BArea','BPincode');"  class="inp-text" >
-    <?php $SelectCountry=db_query("Select Id,Country_Name From ".TABLE_GENERALCOUNTRYMASTER." WHERE Status=1 order by  Country_Name asc");
-    while(list($MCId,$MCName)=db_fetch_array($SelectCountry))
-    {?>
-    <option  value="<?php echo $MCId; ?>" ><?php echo $MCName; ?></option><?php
-    }?>
-    </select><?php */?>
-
-     <!--<input type="text" id="state_name" name="state_name" style="width:260px; height:25px; display:none;"/>-->
-     <select id="search_city" name="search_city" class="memberinput" style="width:260px; height:25px;" onChange="GET_City(this.value);">
-       <option value="" selected="selected">--Select City--</option>
-       <?php
-    $SelectArea=db_query("Select Id, Area From ".TABLE_GENERALAREAMASTER." WHERE Status=1 AND A_Country='1' Order by Id asc");
-    while(list($Id,$Area)=db_fetch_array($SelectArea))
-    { ?>
-       <option  value="<?php echo $Id; ?>"><?php echo $Area; ?></option>
-       <?php } ?>
-     </select>
-     <input type="hidden" value="<?php getCitydetails($comp_city);?>" name="comp_city" id="comp_city" />    </td>
-      </tr>
-      <tr>
-        <td>Area</td>
-        <td>:</td>
-        <td>
-
-    	<!--<input type="text" id="city_name" name="city_name" style="width:260px; height:25px; display:none;"/>-->
-
-    	<span id="ShowAreaList"><select id="Area" style="width:260px; height:25px;" name="Area"><option value="">--Select Area--</option></select>
-    	<input type="hidden" name="city_name" id="city_name" value="" /></span>	</td>
-      </tr>
-
-
-      <tr>
-
-        <td colspan="3" align="center" >
-
-    <input id="searchsubmit" type="button" onClick="Searchpage();" value="Search" class="btnstyle" style="margin-right:30px;" /></td>
-      </tr>
-    </table>
+            <tr>
+                <td width="129">Company Name </td>
+                <td width="17">:</td>
+                <td width="404" align="left">
+                    <div class="comp_content">
+                        <input type="text" class="comp_search" id="comp_searchid" placeholder="Search for Company Name" />
+                        <div id="SearchListRes" style="left:224px;width:260px!important;"></div>
+                        <input type="hidden"  id="c_name" name="c_name" />
+                        <input type="hidden" id="comp_id" name="comp_id"/>
+                        <input type="hidden" id="Sector_id" name="Sector_id"/>
+                        <div id="comp_result"></div>
+                    </div>    
+                </td>
+            </tr>
+            <tr>
+                <td>Product Name</td>
+                <td>:</td>
+                <td width="404" align="left">
+                    <div class="content">
+                        <input type="text" class="search_pro" id="searchid" placeholder="Search for Product" />
+                        <div id="SearchListPro" style="left:224px;width:260px!important;"></div>
+                        <div id="result"></div>
+                    </div>    
+                </td>
+            </tr>
+            <tr>
+                <td>Industry</td>
+                <td>:</td>
+                <td>
+                    <input type="text" id="Sector_name" name="Sector_name" style="width:260px; height:25px; display:none;"/>
+                    <select name="Sector" id="Sector" class="inp-text" style="width:260px; height:28px;">
+                        <option value="">--Select Industry--</option>
+                        <?php $SelectSector=db_query("Select Id,S_Name From ".TABLE_SECTOR." WHERE Status=1 order by S_Name asc");
+                        while(list($MSeId,$MSeName)=db_fetch_array($SelectSector))
+                        {?>
+                        <option  value="<?php echo $MSeId; ?>"  ><?php echo $MSeName; ?></option><?php
+                        }?>
+                    </select>   
+                 </td>
+            </tr>
+            <tr>
+                <td>City</td>
+                <td>:</td>
+                <td>
+                    <?php /*?> <select name="SelCountry" style="display:none;" id="SelCountry" onChange="return OnclickCountry(this.value,'SelCountry','SelState','SelCity','BArea','BPincode');"  class="inp-text" >
+                    <?php $SelectCountry=db_query("Select Id,Country_Name From ".TABLE_GENERALCOUNTRYMASTER." WHERE Status=1 order by  Country_Name asc");
+                    while(list($MCId,$MCName)=db_fetch_array($SelectCountry))
+                    {?>
+                    <option  value="<?php echo $MCId; ?>" ><?php echo $MCName; ?></option><?php
+                    }?>
+                    </select><?php */?>
+                     <!--<input type="text" id="state_name" name="state_name" style="width:260px; height:25px; display:none;"/>-->
+                    <select id="search_city" name="search_city" class="memberinput" style="width:260px; height:25px;" onChange="GET_City(this.value);">
+                        <option value="" selected="selected">--Select City--</option>
+                           <?php
+                        $SelectArea=db_query("Select Id, Area From ".TABLE_GENERALAREAMASTER." WHERE Status=1 AND A_Country='1' Order by Id asc");
+                        while(list($Id,$Area)=db_fetch_array($SelectArea))
+                        { ?>
+                           <option  value="<?php echo $Id; ?>"><?php echo $Area; ?></option>
+                           <?php } ?>
+                    </select>
+                    <input type="hidden" value="<?php getCitydetails($comp_city);?>" name="comp_city" id="comp_city" />    </td>
+            </tr>
+            <tr>
+                <td>Area</td>
+                <td>:</td>
+                <td>
+                	<!--<input type="text" id="city_name" name="city_name" style="width:260px; height:25px; display:none;"/>-->
+    	           <span id="ShowAreaList"><select id="Area" style="width:260px; height:25px;" name="Area"><option value="">--Select Area--</option></select>
+        	       <input type="hidden" name="city_name" id="city_name" value="" /></span>	</td>
+            </tr>
+            <tr>
+                <td colspan="3" align="center" >
+                <input id="searchsubmit" type="button" onClick="Searchpage();" value="Search" class="btnstyle" style="margin-right:30px;" /></td>
+            </tr>
+        </table>
     </fieldset>
 
 

@@ -41,7 +41,6 @@ return false;
 <input id="UserName" name="UserName" type="text" placeholder="Username" autofocus autocomplete="off" />   
 </fieldset>
 <fieldset id="actions" style="background:none;margin: 9px 0 0;">
-
 <table cellpadding="0" cellspacing="0" border="0">
   <tr>
     <td><input type="submit" id="Submit" name="Submit" value="Submit"></td>

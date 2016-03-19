@@ -14,7 +14,7 @@ $FetProfileDetails = db_fetch_array($ProfileDetails);
 include("ScriptStyleView.php");
 ?>
 <link href="css/homepage.css" rel="stylesheet" type="text/css" media="all" />
-<!--------LOGIN FORM----------->
+<!--LOGIN FORM-->
 <script>setInterval("update()", 5000); // Update every 10 seconds
 //to find online user status
 function update()
@@ -54,7 +54,7 @@ return false;
 }
 }
 </script>
-<!------------LOGIN FORM---------------->
+<!--LOGIN FORM-->
 <div class="search_topbar" >
 
 <?php
@@ -69,8 +69,8 @@ if ($_SESSION['LID'] == '') {
 
 	<ul>
 		<li id="login">
-			<a id="login-trigger" href="#" style="margin:0px;color:#fff;font-size:14px;font-weight:normal;margin-top:-5px;">
-				Sign In
+			<a id="login-trigger" href="#" style="width:200px;margin:0px;color:#fff;font-size:14px;font-weight:normal;margin-top:-5px;">
+			Business User Sign In
 			</a>
 			<div id="login-content" style="margin-top:20px;">
 				<form  method="post" action="Login.php" onSubmit="return ValidateLogin();">
