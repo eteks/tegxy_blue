@@ -1,51 +1,51 @@
 <script language="javascript" type="text/javascript">
-$(function()
-{
-	var btnUpload=$('#UploadLogo');
-	var status=$('#UploadLogoStatus');
-	new AjaxUpload(btnUpload, {
-	action: 'LogoUploader.php',
-	name: 'uploadfile',
-	onSubmit: function(file, ext)
-	{
-	 if (! (ext && /^(jpg|png|jpeg|gif)$/.test(ext))){ 
-     // extension is not allowed 
-	status.text('Only JPG, PNG or GIF files are allowed');
-	return false;
-	}
+// $(function()
+// {
+// 	var btnUpload=$('#UploadLogo');
+// 	var status=$('#UploadLogoStatus');
+// 	new AjaxUpload(btnUpload, {
+// 	action: 'LogoUploader.php',
+// 	name: 'uploadfile',
+// 	onSubmit: function(file, ext)
+// 	{
+// 	 if (! (ext && /^(jpg|png|jpeg|gif)$/.test(ext))){ 
+//      // extension is not allowed 
+// 	status.text('Only JPG, PNG or GIF files are allowed');
+// 	return false;
+// 	}
 	
-	var TempFileSize = $('#LAppendFileCt').val();
-	var FileSize = $('#FileSize').val();
-	var Check = parseInt(TempFileSize) + parseInt(FileSize);
-	if(parseInt($('#FileSizeLimit').val()) < parseInt(Check))
-	{
-	alert('Can not upload');
-	return false;
-	}
+// 	var TempFileSize = $('#LAppendFileCt').val();
+// 	var FileSize = $('#FileSize').val();
+// 	var Check = parseInt(TempFileSize) + parseInt(FileSize);
+// 	if(parseInt($('#FileSizeLimit').val()) < parseInt(Check))
+// 	{
+// 	alert('Can not upload');
+// 	return false;
+// 	}
 	
-	status.text('Uploading...');
-	},
-	onComplete: function(file, response)
-	{
-		//On completion clear the status
-		status.text('');
-		//Add uploaded file to list
-		var bb=response.substr(0,7)
-		var idd=response.replace('success',' ');
-		var idb =idd.replace(/^\s*|\s*$/g,'');
-		var idFile = idb.split("###");
-		if(bb=="success")
-		{
-			$("#UploadLogoList").load("LogoDisp.php");
-			$("#FileSize").val(idFile[2]);
-			status.text('Uploaded Successfully.');
-		}
-		else 
-		{
-			status.text(response);
-		}
-	}});
-});
+// 	status.text('Uploading...');
+// 	},
+// 	onComplete: function(file, response)
+// 	{
+// 		//On completion clear the status
+// 		status.text('');
+// 		//Add uploaded file to list
+// 		var bb=response.substr(0,7)
+// 		var idd=response.replace('success',' ');
+// 		var idb =idd.replace(/^\s*|\s*$/g,'');
+// 		var idFile = idb.split("###");
+// 		if(bb=="success")
+// 		{
+// 			$("#UploadLogoList").load("LogoDisp.php");
+// 			$("#FileSize").val(idFile[2]);
+// 			status.text('Uploaded Successfully.');
+// 		}
+// 		else 
+// 		{
+// 			status.text(response);
+// 		}
+// 	}});
+// });
 
 function deleteLogo(id,idd)
 {
