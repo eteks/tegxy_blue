@@ -238,9 +238,7 @@ if (xmlhttp.readyState == 4)
 			//*****
 			DocId('Advname').value  = Res[1];	
 			//*****
-			alert(Res[7]);
 			DocId('ADVImage').value  = Res[7];
-			alert(Res[8]);
 			// DocId('ADVImageDisp').innerHTML  = Res[8];
 
 			// '<img width="30" height="30" src="'+Res[8]+'" />

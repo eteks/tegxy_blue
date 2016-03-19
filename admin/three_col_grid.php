@@ -108,7 +108,7 @@ $WhereCont=(isset($WhereCont) && !empty($WhereCont) ? trim($WhereCont) : '');
 							// 		echo "<span  onclick=\"return OnClickStatusActive('$id','$startdata')\" style=\"text-decoration:underline;cursor:pointer\">In-Active</span>";
 							// 	}  
 							// }
-								if($Register_Fetch['PS_Status']==1)
+								if($Register_Fetch['PS_Status']==1 || $Register_Fetch['ADV_Status']==1)
 								{ 
 									echo "<span  onclick=\"return OnClickStatusInActive('$id','$startdata')\" style=\"text-decoration:underline;cursor:pointer\">Active</span>";
 								}

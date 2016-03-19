@@ -57,6 +57,8 @@
 <li><a  class="navlink" id="OpenProfile_9" onclick="GridShowHide('ContactEntryLevel','ContactEntryGrid','Grid','');">Contact Info</a>
 </li>
 <?php } if($FetProfileDetails['RGT_PaymentStatus']=='1'){?>
+<li><a  class="navlink" id="OpenProfile_12" onclick="GridShowHide('AdvertisementEntryLevel','AdvertisementEntryGrid','Grid','');">Advertisement</a>
+</li>
 <li><a  class="navlink" id="OpenProfile_10" >Settings</a>
 </li>
 <li><a  class="navlink" id="OpenProfile_11" >Chat</a>

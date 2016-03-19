@@ -48,7 +48,7 @@ orientation: 'vertical'
 
 $(document).ready(function()
 {
-<?php  for($i=1;$i<=11;$i++)
+<?php  for($i=1;$i<=12;$i++)
 {?>
 	$("#OpenProfile_<?php echo $i ;?>").click(function()
 	{
@@ -90,6 +90,7 @@ $(document).ready(function()
 <div id="Profile_9" style="display:none;"><?php  include("ContactInfo.php");?></div>
 <div id="Profile_10" style="display:none;"><?php include("ChangePassword.php");?></div>
 <div id="Profile_11" style="display:none;"><?php include("companychat.php");?></div>
+<div id="Profile_12" style="display:none;"><?php include("Advertisement.php");?></div>
 </div>
 </div>
 <div class="clear"></div>

@@ -1,7 +1,7 @@
 <div class="heading" style="text-align:center">Contact Info</div>
 <div id="personal" style="margin-left:50px; padding-bottom:30px;width:680px;">
 <div id="ContactEntryLevel"  style="display:block;">
-<div class="pagination handsym" onclick="GridShowHide('ContactEntryLevel','ContactEntryGrid','Grid','');" style="line-height: 49px;"><img width="30" height="30" src="images/Back-icon.png" title="Back"></div><div style="clear:both"></div>
+<div class="pagination handsym" onclick="GridShowHide('ContactEntryLevel','ContactEntryGrid','Page','');" style="line-height: 49px;"><img width="30" height="30" src="images/Back-icon.png" title="Back"></div><div style="clear:both"></div>
 <fieldset id="Fields">
 <input type="hidden" id="ContactStateData" value="0"  />
 <input type="hidden" id="ContactExistId" />
