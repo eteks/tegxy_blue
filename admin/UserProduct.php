@@ -28,8 +28,7 @@ $ValidCheckRel=db_query($ValidCheckSql);
 $CountValidRel=db_num_rows($ValidCheckRel);
 $fileName   = 'UserProduct';
 ?>
-<div id="advertisement_div" style="display:block;">
-
+<!-- <div id="advertisement_div" style="display:block;">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 <td width="30%" height="24" align="right"><span class="feildstxt">Display Name</span></td>
 <td width="2%" height="24" align="center"><span class="feildstxt">:</span></td>
@@ -87,7 +86,7 @@ include_once('opt_Table.php'); ?>
 </td>
 </tr>
 </table>
-</div>
+</div> -->
 <div id="ScrollText" style="overflow:auto;">
 <input type="hidden" id="SearchFilterFieldList" name="SearchFilterFieldList" value="" />
 <input type="hidden" id="SearchFilterField" name="SearchFilterField" value="" />
@@ -130,7 +129,7 @@ if($WhereCont=='')
 $WhereCont = ' where 1';
 $Verified='A';
 $gridHead = 'Product List Details';
-$colHead  = array("Sl.No.",'', "PS_Display",'',"Status");
+$colHead  = array("Sl.No.",'', "Product Name",'',"Status");
 include_once('three_col_grid.php');
 ?>
 </div>

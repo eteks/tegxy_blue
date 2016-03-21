@@ -29,7 +29,7 @@ $CountValidRel=db_num_rows($ValidCheckRel);
 $fileName   = 'Advertisement';
 ?>
 
-<div id="advertisement_div" style="display:block;">
+<!-- <div id="advertisement_div" style="display:block;">
 <?php 
 // echo "post_id", $_POST['data-id'];
 $data_id = $_POST['data_id'];
@@ -94,7 +94,7 @@ include_once('opt_Table.php'); ?>
 </td>
 </tr>
 </table>
-</div>
+</div> -->
 <div id="ScrollText" style="overflow:auto;">
 <input type="hidden" id="SearchFilterFieldList" name="SearchFilterFieldList" value="" />
 <input type="hidden" id="SearchFilterField" name="SearchFilterField" value="" />
