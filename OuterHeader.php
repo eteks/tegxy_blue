@@ -14,7 +14,7 @@ $FetProfileDetails = db_fetch_array($ProfileDetails);
 include("ScriptStyleView.php");
 ?>
 <link href="css/homepage.css" rel="stylesheet" type="text/css" media="all" />
-<!--------LOGIN FORM----------->
+<!--LOGIN FORM-->
 <script>setInterval("update()", 5000); // Update every 10 seconds
 //to find online user status
 function update()
@@ -25,7 +25,6 @@ $.post("sessionupdate.php"); // Sends request to update.php
 <script type="text/javascript">
 var $login = jQuery.noConflict();
 $login(document).ready(function(){
-
     $login('.main_container').click(function(){
         $login('#login-content').hide();
         })
@@ -33,11 +32,14 @@ $login(document).ready(function(){
     $login('#login-trigger').click(function(){
         $login(this).next('#login-content').slideToggle();
         $login(this).toggleClass('active');
-
+        // if(e.target.id != '#login-content'){
+        //     $login(this).next('#login-content').slideToggle();          
+        // }
         if ($login(this).hasClass('active')) $login(this).find('span').html('&#x25B2;')
             else $login(this).find('span').html('&#x25BC;')
         })
 });
+
 function ValidateLogin()
 {
 if(DocId('UserName').value=='')
@@ -54,7 +56,7 @@ return false;
 }
 }
 </script>
-<!------------LOGIN FORM---------------->
+<!--LOGIN FORM-->
 <div class="search_topbar" >
 
 <?php
@@ -69,8 +71,8 @@ if ($_SESSION['LID'] == '') {
 
 	<ul>
 		<li id="login">
-			<a id="login-trigger" href="#" style="margin:0px;color:#fff;font-size:14px;font-weight:normal;margin-top:-5px;">
-				Sign In
+			<a id="login-trigger" href="#" style="width:200px;margin:0px;color:#fff;font-size:14px;font-weight:normal;margin-top:-5px;">
+			Business User Sign In
 			</a>
 			<div id="login-content" style="margin-top:20px;">
 				<form  method="post" action="Login.php" onSubmit="return ValidateLogin();">

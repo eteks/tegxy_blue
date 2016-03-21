@@ -268,7 +268,7 @@
             echo '\'' . $requestType . '\'' . ',' . '\'' . $searchkey . '\'';
             ?>,'2',<?php
             echo $type2;
-            ?>);" >View Gallery</a></div>
+            ?>);" >Grid</a></div>
         <!--ad-->
         <div id="mainsearchcontent">
             <?php
@@ -501,11 +501,11 @@
 <!--adleft_container-->
 <div class="adleft_container">
     <div style="width:100%;height:55px;float:left;" align="right">
-        <div class="post_anadd">
+    <!--     <div class="post_anadd">
             <a <?php
                 if (isset($_SESSION['LID'])) {
                 ?> target="_blank"  href="<?php
-                echo 'ManageProfile.php?user=' . base64_encode($_SESSION['Type']);
+                echo 'Advertisement.php?user=' . base64_encode($_SESSION['Type']);
                 ?>" <?php
                 } //isset($_SESSION['LID'])
                 else {
@@ -515,7 +515,7 @@
                 <div class="post_addtxt">Post a Free Ad</div>
                 <div class="post_findtxt">To find your Best Deal</div>
             </a>
-        </div>
+        </div> -->
     </div>
     <!--250-->
     <div style="width:250px;height:auto;float:left;">
@@ -627,7 +627,7 @@
             echo '\'' . $requestType . '\'' . ',' . '\'' . $searchkey . '\'';
             ?>,'2',<?php
             echo $type2;
-            ?>);" >View Gallery</a></div>
+            ?>);" >Grid</a></div>
         <!--ad-->
         <div id="mainsearchcontent">
             <?php

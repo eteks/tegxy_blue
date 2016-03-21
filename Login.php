@@ -59,7 +59,7 @@ return false;
 
   </tr>
 </table>
-
+<span style="color: red;font-size: 10px;">Sign In For Business user only</span>
 
 </fieldset>
 </form>

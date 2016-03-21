@@ -80,16 +80,16 @@ $WhereCont=(isset($WhereCont) && !empty($WhereCont) ? trim($WhereCont) : '');
                       <tr>
                         <td colspan="4"  height="2"></td>
                       </tr>
-                      <?php	while($Register_Fetch=db_fetch_array($Register_Result))
+                         <?php	while($Register_Fetch=db_fetch_array($Register_Result))
                         { ?>
                         <?php $id=$Register_Fetch['0']; 
                               $startdata=isset($_REQUEST['startdata'])?$_REQUEST['startdata']:0; ?>
-                      <tr id="tr_<?php echo $id ?>" <?php if(isset($optId) && !empty($optId)) if ($id == $optId) echo 'style="font-weight:bold; color: orange;"'; 
+                      <tr id="tr_<?php echo $id ?>" <?php if ($id == $optId) echo 'style="font-weight:bold; color: orange;"'; 
 					  else if ($_REQUEST['id'] == $id) echo 'style="color: #ffff00;"';
 					  else echo 'style="color: #fff;"'; ?>>
                         <td width="5%" align="center" class="gridtxt1"><?php echo $Sno; ?></td>
                         <td width="30%" align="center" class="gridtxt1"><?php echo $Register_Fetch[1]; ?></td>
-                        <?php if(isset($SectorName) && !empty($SectorName)) if($SectorName == 'yes'){?>
+                        <?php if($SectorName == 'yes'){?>
                         <td width="22%" align="center" class="gridtxt1"><?php echo ShowSectName($Register_Fetch[2]); ?></td>
                         <?php } else {?>
                         <td width="22%" align="center" class="gridtxt1"><?php echo $Register_Fetch[2]; ?></td>
@@ -109,7 +109,7 @@ $WhereCont=(isset($WhereCont) && !empty($WhereCont) ? trim($WhereCont) : '');
 							}
 							?>
 						</td>
-                        <?php if(isset($Verified) && !empty($Verified)) if($Verified=='A'){?>
+                        <?php if($Verified=='A'){?>
                         <td align="center" class="gridtxt1">
 						<?php 
 							if($CheckModulePrevilage[3]==1)

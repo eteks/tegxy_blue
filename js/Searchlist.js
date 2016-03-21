@@ -5,7 +5,6 @@ $(document).click(function(){
 $("#SearchListRes").fadeOut('slow');
 $("#SearchListPro").fadeOut('slow');
 });
-
 $("#searchlist").focus(function() {this.val=''; });
 
 $("#searchlist").keyup(function(event){

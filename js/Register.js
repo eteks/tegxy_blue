@@ -171,7 +171,6 @@ $('#terms_con').val('1');
 }
 else
 {
-$('#terms').fadeOut('slow');
 $('#terms_con').val('0');
 }
 });

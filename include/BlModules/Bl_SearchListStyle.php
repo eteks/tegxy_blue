@@ -119,13 +119,13 @@ $yearofestablishment = explode('-',$fetchquery['RGT_YrofEstablish']);
 $Compnamedisp = '<span style="cursor:pointer;" title="'.$fetchquery['RGT_CompName'].'">'.$Compnamefixlimit.'</span><span style="color:#007088;"> (Since - '.$yearofestablishment[2].')</span>';
 ?>
 <div class="singlead">
-<!----title---->
+<!--title-->
 <div class="adtitle">
 <div style="width:550px;color:#EC5324;float:left;"><b><?php echo $Compnamedisp ;?></b></div>
 <?php /*?><div class="rating">Rating <span><img src="images/rating_star.png" /><img src="images/rating_star.png" /><img src="images/rating_star.png" /></span> 3.0</div><?php */?>
 </div>
-<!----title--------->
-<!------adimage--------->
+<!--title-->
+<!--adimage-->
 <div class="adimage">
 <div class="company_logo" align="right"><a href="#thumb" class="thumbnail">
 <img src="<?php if($fetchquery['RGT_PK']!=''){ echo getLogodetails($fetchquery['RGT_PK'],$path); } else { echo 'images/default/no_image.png'; }?>"  width="124" height="115" /><span><img  src="<?php if($fetchquery['RGT_PK']!=''){ echo getLogodetails($fetchquery['RGT_PK'],$path); } else { echo 'images/default/no_image.png'; }?>" width="220" height="220" /></span></a></div>
@@ -143,8 +143,8 @@ $dispareas = getOperatingAreas($fetchquery['RGT_PK']);?>
 <div><span> Break Time : <?php echo $fetchquery['RGT_BreaktimeFrom'];?> - <?php echo $fetchquery['RGT_BreaktimeTo'];?></span></div>
 </div>
 </div>
-<!------adimage--------->
-<!------addetails--------->
+<!--adimage-->
+<!--addetails-->
 <div class="addetails">
 <div class="addetails_left">
 <span style="color:#EC5324;"><b>Company Details</b></span>
@@ -188,7 +188,7 @@ if($fetchquery['RGT_Area']!=''){ getAreadetails($fetchquery['RGT_Area']);}  if($
 </div>
 <?php }?>
 </div>
-<!------addetails--------->
+<!--addetails-->
 </div><br /></br>
 <?php }} else{?><tr><td>No Records Found</td></tr><?php }}
 if($Type=='1' && $requestType=='bestdeals' ){
@@ -199,13 +199,13 @@ $yearofestablishment = explode('-',get_data_from_registration($fetchquery['PS_Us
 $Compnamedisp = $Compnamefixlimit.'<span style="color:#007088;"> (Since - '.$yearofestablishment[2].')</span>';
 ?>
 <div class="singlead">
-<!----title---->
+<!--title-->
 <div class="adtitle">
 <div style="width:550px;color:#EC5324;float:left;"><b><?php echo $Compnamedisp ;?></b></div>
 <?php /*?><div class="rating">Rating <span><img src="images/rating_star.png" /><img src="images/rating_star.png" /><img src="images/rating_star.png" /></span> 3.0</div>
 <?php */?></div>
-<!----title--------->
-<!------adimage--------->
+<!--title-->
+<!--adimage-->
 <div class="adimage">
 <div class="company_logo">
 <a href="#thumb" class="thumbnail">
@@ -225,8 +225,8 @@ echo '<span> Unit :'.' '.$fetchquery['PS_Unit'].'</span>';
 ?></div>
 </div>
 </div>
-<!------adimage--------->
-<!------addetails--------->
+<!--adimage-->
+<!--addetails-->
 <div class="addetails">
 <div class="addetails_left">
 <span style="color:#EC5324;"><b>Business Descriptions</b></span><div style="height:10px;"></div>
@@ -262,7 +262,7 @@ $user_id = get_data_from_registration($fetchquery['PS_User_Fk'],RGT_ProfileUrl);
 <div class="full_det"><a <?php  if(isset($_SESSION['LID'])){?> target="_blank"  href="<?php echo 'Bestdealsajax.php?type='.base64_encode(get_data_from_registration($fetchquery['PS_User_Fk'],RGT_Type)).'&user='.$user_id.'&BDId='.$fetchquery['PS_Id'];?>" <?php } else {?> class="pop firstviewmore" onclick="getUserProfile('<?php echo $user_id ;?>','<?php echo $fetchquery['PS_Id'];?>','<?php echo base64_encode(get_data_from_registration($fetchquery['PS_User_Fk'],RGT_Type));?>');" <?php }?> >View Full Details</a>
 </div>
 </div>
-<!------addetails--------->
+<!--addetails-->
 </div><br/><br/>
 <div class="clear"></div>
 <?php }} else{?><tr><td>No Records Found</td></tr><?php }}

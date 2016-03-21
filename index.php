@@ -14,9 +14,12 @@ db_connect();
 <script type="text/javascript" src="js/Common.js"></script>
 <script type="text/javascript" src="js/Searchlist.js"></script>
 <script type="text/javascript">
+
 function Searchpage()
 {
+
 var searchKey = $("#searchlist").val();
+
 if(searchKey=="")
 { 
 alert("Please Enter the Search Box Value");
@@ -30,6 +33,7 @@ var userCity=$("#userCity").val();
 var userArea;
 if(selectarea=='')
 userArea=$("#selectarea").val();
+
 else
 userArea=selectarea;
 window.location.href="Searchpage.php?action=Add&searchkey="+searchKey+"&requesttype="+requestType+"&usercity="+userCity+"&userarea="+userArea+"&type2=1";
@@ -46,7 +50,6 @@ userArea=$("#selectarea").val();
 else
 userArea=selectarea;
 window.location.href="adv_search.php?action=Add&searchkey="+searchKey+"&requesttype="+requestType+"&usercity="+userCity+"&userarea="+userArea+"&type2=1";
-
 }
 function Searchusingenterkey(e)
 {

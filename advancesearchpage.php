@@ -401,12 +401,12 @@ window.location.href="Searchpage.php?action=Add&searchkey="+searchKey+"&requestt
 <!--adleft_container-->
 <div class="adleft_container">
     <div style="width:100%;height:55px;float:left;" align="right">
-        <div class="post_anadd">
+       <!--  <div class="post_anadd">
             <a <?php  if(isset($_SESSION['LID'])){?> target="_blank"  href="<?php echo 'ManageProfile.php?user='.base64_encode($_SESSION['Type']);?>" <?php } else {?> class="pop firstviewmore" onclick="Postafreead();" <?php }?> title="View More" style="text-decoration: none;">
                 <div class="post_addtxt">Post a Free Ad</div>
                 <div class="post_findtxt">To find your Best Deal</div>
             </a>
-        </div>
+        </div> -->
     </div>
     <!--250-->
     <div style="width:250px;height:auto;float:left;">
@@ -448,6 +448,128 @@ window.location.href="Searchpage.php?action=Add&searchkey="+searchKey+"&requestt
         </div>
         <!--relatedsearch-->
     </div>
+    <div style="width:740px;height:auto;float:left;">
+
+<div style="width:740px; height:30px;display:none;" align="center">
+<input type="radio" id="requestTypeCom" name="requestType"  value="company" title="Company" onClick="changesearchtype();" /><label for="requestTypeCom" >Company</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<input type="radio" name="requestType" id="requestTypedeals" checked="checked" value="bestdeals" title="Product" onClick="changesearchtype();" /><label for="requestTypedeals">Product</label>
+</div>
+<?php /*?><div style="width:740px; height:50px;">
+<div style="width:610px;height:30px;border:1px solid #999;margin-left:40px;float:left;">
+<div class="adsearch_lookfor" ><select class="search_lookfor">
+<option>Looking for</option>
+<option>Supplier</option>
+<option>Buyer</option>
+</select>
+</div>
+<div class="adsearch_sep"></div>
+<div class="adsearch_txbox" ><input autocomplete="off" name="searchkey" id="searchlist" placeholder="Please Enter Company Name to Search" autofocus value="<?php echo $searchkey;?>" type="text" style="width:390px;height:25px;border:none;padding-left:10px;" /><div id="SearchListRes"></div></div>
+</div>
+<div class="adsearch" align="center"><a href="#" onclick="searchResult($('#searchlist').val(),'');">Search</a></div>
+</div><?php */?>
+<div style="width:740px; height:50px;">
+<div class="adsearch_txbox" >
+
+<input type="text" autocomplete="off" name="searchkey" id="searchlist"  style="width:600px;height:30px;border:1px solid #999;" placeholder="Please Enter Product / Service / Job title to Search" autofocus value="<?php echo $searchkey;?>" onKeyUp="Searchusingenterkey(event);"  /><!-- onkeypress="Searchusingenterkey(event);" -->
+<div id="SearchListRes"></div>
+
+</div>
+<div class="adsearch" align="center"><a href="#" onClick="searchResult($('#searchlist').val(),'','<?php echo $_REQUEST['type2'];?>');">Search</a></div>
+</div>
+<?php if($countresult>0){?>
+<div class="adsearchresult_menu"><a id="Searchdisplaytypelist" class="active" href="#" onClick="SearchListStyle(<?php echo '\''.$requestType.'\''.','.'\''.$searchkey.'\''; ?>,'1',<?php echo $type2 ;?>);">List</a> | <a id="Searchdisplaytypegrid" href="#" onClick="SearchListStyle(<?php echo '\''.$requestType.'\''.','.'\''.$searchkey.'\''; ?>,'2',<?php echo $type2 ;?>);" >View Gallery</a></div>
+
+<!--ad-->
+<div id="mainsearchcontent">
+<?php 
+if($requestType=='bestdeals'){ 
+while($fetchquery=mysql_fetch_array($searchquery)){
+$yearofestablishment = explode('-',get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_YrofEstablish'));
+ if(strlen(stripslashes(get_company_name($fetchquery['PS_Id'])))>25){ $Compnamefixlimit = substr(stripslashes(get_company_name($fetchquery['PS_Id'])),0,25).'...' ;} else { $Compnamefixlimit =  stripslashes(get_company_name($fetchquery['PS_Id']));} 
+ 
+if($yearofestablishment[2]!='')
+$Since = '<span style="color:#007088;"> (Since - '.$yearofestablishment[2].')</span>';
+else
+$Since ='';
+$Compnamedisp = $Compnamefixlimit.$Since; 
+
+?>
+
+<div class="singlead">
+<!--title-->
+<div class="adtitle">
+<div style="width:550px;color:#EC5324;float:left;"><b><?php echo $Compnamedisp; ?></b></div>
+
+<?php /*?><div class="rating">Rating <span><img src="images/rating_star.png" /><img src="images/rating_star.png" /><img src="images/rating_star.png" /></span> 3.0</div>
+<?php */?></div>
+<!--title-->
+<!--adimage-->
+<div class="adimage">
+<div class="company_logo">
+<a href="#thumb" class="thumbnail">
+<img src="<?php if($fetchquery['PS_CoverImg']!=''){ echo $fetchquery['PS_CoverImg']; } else { echo 'images/default/no_image.png'; }?>"  width="124" height="115" /><span><img src="<?php if($fetchquery['PS_CoverImg']!=''){ echo $fetchquery['PS_CoverImg']; } else { echo 'images/default/no_image.png'; }?>" width="220" height="220" /></span></a>
+
+</div>
+<div>
+<div><?php echo $fetchquery['PS_Display']?></div>     
+<div><?php 
+if($fetchquery['PS_Price']!=''&&$fetchquery['PS_Price']!='0'){
+echo '<span> Price :'.' '.$fetchquery['PS_Price'].' '.CurrencyName($fetchquery['PS_Currency']).'</span>';
+}
+if($fetchquery['PS_Unit']!=''){
+echo '<span> Unit :'.' '.$fetchquery['PS_Unit'].'</span>';
+}
+
+?></div> 
+</div>   
+</div>
+<!--adimage-->
+<!--addetails-->
+<div class="addetails">
+<div class="addetails_left">
+<span style="color:#EC5324;"><b>Business Descriptions</b></span><div style="height:10px;"></div>
+<?php if(strlen($fetchquery['PS_Description'])>150){ echo substr($fetchquery['PS_Description'],0,150).'...'; } else {echo $fetchquery['PS_Description']; } ?></div>
+<div class="addetails_sep"></div>
+<div class="addetails_right">
+<span style="color:#EC5324;"><b>Contact Details</b></span><div style="height:10px"></div>
+<?php
+getAreadetails(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Area'));  
+getCitydetails(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_City'));
+getStatedetails(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_State'));
+getPindetails(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Pincode'));
+getCountrydetails2(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Country'));
+?>
+<div><?php if(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Mobile')!='') echo 'Phone: '.get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Mobile') ;else echo  'Phone: '. get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Landline') ;?></div>
+<div><?php echo 'Email: '.get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Email') ;?></div>
+</div>
+</div>
+
+<div style="width:705px;height:39px;float:left;">
+<div class="chat_details">
+<div class="chat_curve"></div>
+<div class="chat_style"><img src="images/chat_online.png" style="position:relative;top:3px;" />&nbsp;&nbsp;<a href="#"> I'm Offline</a>
+</div>
+<div class="chat_fullcurve"></div>
+
+<?php  
+if(get_data_from_registration($fetchquery['PS_User_Fk'],RGT_Type)==3)
+$user_id = $fetchquery['PS_User_Fk'];
+else
+$user_id = get_data_from_registration($fetchquery['PS_User_Fk'],RGT_ProfileUrl);
+?>
+<div class="full_det"><a <?php  if(isset($_SESSION['LID'])){?> target="_blank"  href="<?php echo 'Bestdealsajax.php?type='.base64_encode(get_data_from_registration($fetchquery['PS_User_Fk'],RGT_Type)).'&user='.$user_id.'&BDId='.$fetchquery['PS_Id'];?>" <?php } else {?> class="pop firstviewmore" onClick="getUserProfile('<?php echo $user_id ;?>','<?php echo $fetchquery['PS_Id'];?>','<?php echo base64_encode(get_data_from_registration($fetchquery['PS_User_Fk'],RGT_Type));?>');" <?php }?> >View Full Details</a></div>
+</div>
+</div>
+<!--addetails-->
+</div><br/><br/>
+<?php }}?>
+<!--ad-->
+</div>
+
+<?php } else{ echo '<center class="msgalert">No Product Found</center>' ;}?>
+
+</div>
     <!--250-->
     <!--740-->
 

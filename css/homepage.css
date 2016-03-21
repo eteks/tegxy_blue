@@ -993,7 +993,7 @@ padding:0px 20px;
 {
 color:#EB5324;
 }
-#searchsubmit{
+#searchsubmit, #search_submit,#searchsubmit1 {
 	top:9px;
 }
 #advancesearch_btn{
@@ -1003,7 +1003,7 @@ color:#EB5324;
 	cursor: pointer;
 }
 
-#comp_searchid ,#searchid 	{
+#comp_searchid ,#searchid{
     border: 1px solid #000;
     font-size: 14px;
     padding: 5px;

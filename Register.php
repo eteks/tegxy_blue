@@ -189,7 +189,7 @@ to continue browsing XYget.com</p>
 </tr>
 
 <tr>
-<td class="twenty"><label for="input-one" class="floatleft"><b>Busniess Details </b></label></td>
+<td class="twenty"><label for="input-one" class="floatleft"><b>Business Details </b></label></td>
 <td class="ten"> : </td> 
 <td class="seventy">
 
