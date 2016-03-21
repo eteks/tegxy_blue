@@ -52,6 +52,7 @@ $("#Advertiselevel").val(1);
 
 function Selectcreatenewadv()
 {
+	$('#Renewgrid').hide();
 $("#Advnamegrid").show();
 $("#Selectexistgrid").hide();
 $("#Selectnewgrid").show();
