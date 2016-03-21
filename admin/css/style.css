@@ -348,3 +348,7 @@ a.next {
 	font-size:12px;
 	color:#FF0000;
 }
+
+.view_class {
+    margin: 45px;
+}

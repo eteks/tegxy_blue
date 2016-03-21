@@ -46,7 +46,7 @@ $Logo_Fetch = db_fetch_array($Logo);
 			<!-- <td><input type="button" onclick="Createnewadv();" value="Create New" /></td> -->
 			<td><input type="button" onclick="Selectcreatenewadv();" value="Create New" /></td>
 			<td>&nbsp;</td>
-			<td><input type="button" onclick="Renewadv();" value="Renew Existing" /></td>
+			<td><input type="button" onclick="Renewadv();" value="Edit Existing" /></td>
 			<td colspan="2">&nbsp;</td>
 			</tr>
 			<tr><td colspan="7" height="10"></td></tr>
@@ -336,12 +336,13 @@ $Logo_Fetch = db_fetch_array($Logo);
 
 		<table width="100%" border="0" cellpadding="0" cellspacing="0" >
 		<tr><td colspan="2" height="10"></td></tr>
-		<tr><td  height="5"><input type="button" onclick="Secondleveladv();" value="Back" /></td><td  height="5" align="right"><input type="button" onclick="Fourthleveladv();" value="Next" />&nbsp;<input type="button"  value="Cancel" onclick="window.location.href='index.php'" /></td></tr>
+		<!-- <tr><td  height="5"><input type="button" onclick="Secondleveladv();" value="Back" /></td><td  height="5" align="right"><input type="button" onclick="Fourthleveladv();" value="Next" />&nbsp;<input type="button"  value="Cancel" onclick="window.location.href='index.php'" /></td></tr> -->
+		<tr><td height="5"><input type="button" onclick="Secondleveladv();" value="Back" /></td><td  height="5"><input type="button" onclick="AddAdvertisement(<?php echo $LID;?>);" value="Submit" />&nbsp;<input type="button"  value="Cancel" onclick="window.location.href='index.php'" /></td></tr>
 		<tr><td colspan="2" height="10"></td></tr>
 		</table>
 		</div>
 
-		<div id="Fourthleveladv" style="display:none;">
+		<!-- <div id="Fourthleveladv" style="display:none;">
 		<fieldset>
 		<legend>Checkout</legend>
 		<table width="100%" border="0" cellpadding="0" cellspacing="0" >
@@ -353,7 +354,7 @@ $Logo_Fetch = db_fetch_array($Logo);
 		<tr><td height="5"><input type="button" onclick="Thirdleveladv();" value="Back" /></td><td  height="5"><input type="button" onclick="AddAdvertisement(<?php echo $LID;?>);" value="Submit" />&nbsp;<input type="button"  value="Cancel" onclick="window.location.href='index.php'" /></td></tr>
 		<tr><td colspan="2" height="10"></td></tr>
 		</table>
-		</div>
+		</div> -->
 	</div>
 </div>
 </div>

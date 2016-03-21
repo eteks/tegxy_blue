@@ -682,3 +682,17 @@ function ShowPaymentInActive()
 		}
 	}
 }
+
+function advertisement_view(id,startdata){
+	var str = "data_id="+id;
+	var url = "Advertisement.php";
+	xmlhttp.open("POST", url, true);  
+	xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+	xmlhttp.send(str);
+	xmlhttp.onreadystatechange = showadvertisement_view 
+}
+
+function showadvertisement_view() 
+{
+	document.getElementById('advertisement_div').style.display='block';		
+}

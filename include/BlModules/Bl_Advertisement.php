@@ -74,7 +74,8 @@ echo "Added Successfully######";
 else
 {
 db_query("UPDATE ".TABLE_ADVERTISEMENT." SET ADV_Existornew='".$advertiselevel."',ADV_Selection='".$advselectiontype."',ADV_Name='".$advname."',ADV_Selectionfk='".$advselectionlist."',ADV_Linkyouradvto='".$advlinkselection."',ADV_Url='".$advlinkurl."',ADV_Imagepath='".$advimage."',ADV_Description='".$advdescription."',ADV_Displayformate='".$advisplayformate."',ADV_Targetpage='".$advtargetpage."',ADV_Sector='".$advsector."',ADV_Totalaudience='".$advaudience."',ADV_From='".ChangeDateforDB($advfromtimeline)."',ADV_To='".ChangeDateforDB($advtotimeline)."',ADV_Createdon=Now(),ADV_TotalAmount='".$advamount."', ADV_TotalBudget='".$advbudget."' WHERE ADV_Id='".$advertise."'");
-echo "Renewed Successfully######";	
+// echo "Renewed Successfully######";
+echo "Updated Successfully######";		
 }
 
 }
