@@ -927,6 +927,17 @@ function list_featured()
         echo '<li>No Featured Company</li>';
 }
 
+function list_featured_product()
+{
+    $featuredquery = db_query("SELECT PS_Display FROM " . TABLE_PRODUCTSERVICE . " WHERE PS_Featured=0 AND PS_Status = 1 LIMIT 10");
+    if (db_num_rows($featuredquery) > 0) {
+        while ($fetchfeatured = db_fetch_array($featuredquery)) {
+            echo '<li>' . $fetchfeatured['PS_Display'] . '</li>';
+        }
+    } else
+        echo '<li>No Featured Products</li>';
+}
+
 function find_user_online($userid)
 {
     $findonline = db_query("SELECT RGT_PK FROM " . TABLE_REGISTRATION . " WHERE RGT_LastActiveTime > NOW()-10 AND RGT_ProfileUrl='$userid' ");

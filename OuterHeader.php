@@ -77,7 +77,7 @@ if ($_SESSION['LID'] == '') {
 			<div id="login-content" style="margin-top:20px;">
 				<form  method="post" action="Login.php" onSubmit="return ValidateLogin();">
 					<fieldset id="inputs" style="border:none;background:none;padding: 7px 10px;">
-						<input id="UserName" class="loginfont" name="UserName" style="color:#000;font-family: Arial,Helvetica,sans-serif;" type="text" placeholder="Username / Email Id / Mobile Number" autofocus autocomplete="off" />
+						<input id="UserName" class="loginfont" name="UserName" style="color:#000;font-family: Arial,Helvetica,sans-serif;" type="text" placeholder="Username / Email Id" autofocus autocomplete="off" />
 						<input id="PassWord" class="loginfont" style="color:#000;font-family: Arial,Helvetica,sans-serif;" name="PassWord" type="password" placeholder="Password"  autocomplete="off" />
 					</fieldset>
 					<fieldset id="actions" style="border:none;background:none;">
