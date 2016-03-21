@@ -95,7 +95,7 @@ $WhereCont = ' where 1';
 $Verified='A';		
 $gridHead = 'Product List Details';
 
-$colHead  = array("Sl.No.",'', "PS_Display",'',"Status");
+$colHead  = array("Sl.No.",'', "Product Name",'',"Status");
 include_once('../../three_col_grid.php');
 // $colHead  = array("Sl.No.", "Product Code", "Product Name", "Status","Verification","Action");
 // include_once('../../five_col_grid.php');
