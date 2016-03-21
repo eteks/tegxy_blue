@@ -97,8 +97,35 @@ $adv_description = $gy_desp;
 <div class="right_singlead">
 <div class="right_adtitle"><?php echo $adv_title ;?></div>
 <div style="width:290px;min-height:107px;">
-<div class="right_adimg"><img width="100" height="107" src="<?php echo $adv_imagepath;?>" /></div>
-<div class="right_addesp"><?php echo $adv_description; ?></div>
+<div style="width:290px;min-height:107px;">
+<div class="right_adimg">
+
+<?php if($adv_imagepath !="") { ?>
+<img width="107" height="107" src="<?php echo $adv_imagepath;?>" style="border:solid 1px #999;"  onclick="view_product('<?php echo $adv_title; ?>','<?php echo getCitydetails($comp_city);?>','<?php echo getAreadetails($comp_area); ?>','<?php echo "bestdeals"; ?>');"/>
+<?php } else { ?>
+
+<img width="107" height="107" src="images/no_image.png" onclick="view_product('<?php echo $adv_title; ?>','<?php echo getCitydetails($comp_city);?>','<?php echo getAreadetails($comp_area); ?>','<?php echo "bestdeals"; ?>');"/>
+
+
+<?php } ?>
+</div>
+<div class="right_addesp" onclick="view_product('<?php echo $adv_title; ?>','<?php echo getCitydetails($comp_city);?>','<?php echo getAreadetails($comp_area); ?>','<?php echo "bestdeals"; ?>');">
+
+<span style="font-weight:bold;"><?php echo $adv_title ;?></span>
+<br />
+
+<?php 
+$count=strlen($adv_description);
+$displaydata=(substr($adv_description,0,80));
+if($count>80){ 
+
+ echo $displaydata.= '<a href="#"  style="font-weight:bold; color:#F90;text-decoration:none;" ><span> <br>View More.. </span></a>'; 
+ 
+}
+else {  echo $displaydata; }
+?>
+
+</div>
 </li>
 
 <?php } ?>

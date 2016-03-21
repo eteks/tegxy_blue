@@ -169,7 +169,7 @@ $Logo_Fetch = db_fetch_array($Logo);
 			<td colspan="2">&nbsp;</td>
 			<td>Image</td>
 			<td>&nbsp;</td>
-			<td><input type="hidden" name="ADVImage" id="ADVImage" value="" /><span onclick="FileUploadValidate('ADVImage','doc','ADVImageDisp','Document/advertisement/');"  style="cursor:pointer;"><img src="images/upload-icon.png" /> upload</span>&nbsp;&nbsp;<span id="ADVImageDisp"></span></td>
+			<td><input type="hidden" name="ADVImage" id="ADVImage" value="" /><span onclick="FileUploadValidate('ADVImage','doc','ADVImageDisp','Document/Advertisement/');"  style="cursor:pointer;"><img src="images/upload-icon.png" /> upload</span>&nbsp;&nbsp;<span id="ADVImageDisp"></span></td>
 			<td colspan="2">&nbsp;</td>
 			</tr>
 			<tr><td colspan="7" height="5"></td></tr>
