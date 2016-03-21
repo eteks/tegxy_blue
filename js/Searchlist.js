@@ -353,6 +353,7 @@ $(".search_pro").keyup(function(event){
 	// $("#SearchListRes").css("width",width);
 	 // alert(event.keyCode);
 	 var searchlist = $(".search_pro").val();
+	 // alert('searchlist'+searchlist);
 
 	 if(searchlist.length)
 	 {

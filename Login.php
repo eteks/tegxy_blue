@@ -44,7 +44,7 @@ return false;
 <div class="validation text-align-c" id="msgdisplay"><?php if($_REQUEST["msg"]=="1") { ?>Invalid Username or Password!<?php }?></div>
 <div style="height:15px;"></div>
 <fieldset id="inputss" style="background:none;">
-<input id="UserName" name="UserName" type="text" placeholder="Username / Email Id / Mobile Number" autofocus autocomplete="off" />   
+<input id="UserName" name="UserName" type="text" placeholder="Username / Email Id" autofocus autocomplete="off" />   
 <input id="PassWord" name="PassWord" type="password" placeholder="Password"  autocomplete="off" />
 </fieldset>
 <fieldset id="actions" style="background:none;margin: 9px 0 0;">

@@ -33,6 +33,7 @@ define('TABLE_PRODUCTCATEGORY', 'tbl_productcategory');
 define('TABLE_PRODUCTSUBCATEGORY', 'tbl_productsubcategory');
 define('TABLE_PRODUCTTYPE', 'tbl_producttype');
 define('TABLE_ADMINPRODUCT','tbl_adminproduct');
+define('TABLE_PRODUCTSERVICE', 'tbl_productservice');
 define('TABLE_PRODUCTSPECIFICATION','tbl_productspecification');
 
 define('TABLE_AREAMASTER',' tbl_areamaster');
