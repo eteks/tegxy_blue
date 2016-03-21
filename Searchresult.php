@@ -501,7 +501,7 @@
 <!--adleft_container-->
 <div class="adleft_container">
     <div style="width:100%;height:55px;float:left;" align="right">
-        <div class="post_anadd">
+    <!--     <div class="post_anadd">
             <a <?php
                 if (isset($_SESSION['LID'])) {
                 ?> target="_blank"  href="<?php
@@ -515,7 +515,7 @@
                 <div class="post_addtxt">Post a Free Ad</div>
                 <div class="post_findtxt">To find your Best Deal</div>
             </a>
-        </div>
+        </div> -->
     </div>
     <!--250-->
     <div style="width:250px;height:auto;float:left;">

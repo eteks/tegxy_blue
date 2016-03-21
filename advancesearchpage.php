@@ -12,6 +12,7 @@
     }
 </script>
 <script>
+
 function Searchpage()
 {
 var pro_search =$("#searchid").val();
@@ -40,14 +41,12 @@ return false;
 else if(pro_search =="" && comp_name !="")
 {
 var requestType="company";
-alert(requestType);
-$('#searchid').addClass('hide_text');
+//alert(requestType);
 }
 else if(pro_search !="" && comp_name =="")
 {
 var requestType="bestdeals";
-alert(requestType);
-$('#comp_searchid').hide();
+//alert(requestType);
 }
 else if(pro_search !="" && comp_name !="")
 {
@@ -294,90 +293,103 @@ window.location.href="Searchpage.php?action=Add&searchkey="+searchKey+"&requestt
     <div style="position:absolute; left:320px; top:150px;" align="center">
 
     <fieldset style="width:650px;">
-        <legend style="font-size:18px;">Advance Search</legend>
+    <legend style="font-size:18px;">Advance Search</legend>
 
-        <table width="600" border="0" cellpadding="5" cellspacing="5" align="center">
-            <tr>
-                <td colspan="3" align="right">
-                <input id="searchsubmit" type="button" onClick="window.location.href='index.php'" value="<< BACK" class=""/>    </td>
-            </tr>
+    <table width="600" border="0" cellpadding="5" cellspacing="5" align="center">
+      <tr>
+        <td colspan="3" align="right">
+        <input id="searchsubmit" type="button" onClick="window.location.href='index.php'" value="<< BACK" class=""/>    </td>
+      </tr>
 
-            <tr>
-                <td width="129">Company Name </td>
-                <td width="17">:</td>
-                <td width="404" align="left">
-                    <div class="comp_content">
-                        <input type="text" class="comp_search" id="comp_searchid" placeholder="Search for Company Name" />
-                        <div id="SearchListRes" style="left:224px;width:260px!important;"></div>
-                        <input type="hidden"  id="c_name" name="c_name" />
-                        <input type="hidden" id="comp_id" name="comp_id"/>
-                        <input type="hidden" id="Sector_id" name="Sector_id"/>
-                        <div id="comp_result"></div>
-                    </div>    
-                </td>
-            </tr>
-            <tr>
-                <td>Product Name</td>
-                <td>:</td>
-                <td width="404" align="left">
-                    <div class="content">
-                        <input type="text" class="search_pro" id="searchid" placeholder="Search for Product" />
-                        <div id="SearchListPro" style="left:224px;width:260px!important;"></div>
-                        <div id="result"></div>
-                    </div>    
-                </td>
-            </tr>
-            <tr>
-                <td>Industry</td>
-                <td>:</td>
-                <td>
-                    <input type="text" id="Sector_name" name="Sector_name" style="width:260px; height:25px; display:none;"/>
-                    <select name="Sector" id="Sector" class="inp-text" style="width:260px; height:28px;">
-                        <option value="">--Select Industry--</option>
-                        <?php $SelectSector=db_query("Select Id,S_Name From ".TABLE_SECTOR." WHERE Status=1 order by S_Name asc");
-                        while(list($MSeId,$MSeName)=db_fetch_array($SelectSector))
-                        {?>
-                        <option  value="<?php echo $MSeId; ?>"  ><?php echo $MSeName; ?></option><?php
-                        }?>
-                    </select>   
-                 </td>
-            </tr>
-            <tr>
-                <td>City</td>
-                <td>:</td>
-                <td>
-                    <?php /*?> <select name="SelCountry" style="display:none;" id="SelCountry" onChange="return OnclickCountry(this.value,'SelCountry','SelState','SelCity','BArea','BPincode');"  class="inp-text" >
-                    <?php $SelectCountry=db_query("Select Id,Country_Name From ".TABLE_GENERALCOUNTRYMASTER." WHERE Status=1 order by  Country_Name asc");
-                    while(list($MCId,$MCName)=db_fetch_array($SelectCountry))
-                    {?>
-                    <option  value="<?php echo $MCId; ?>" ><?php echo $MCName; ?></option><?php
-                    }?>
-                    </select><?php */?>
-                     <!--<input type="text" id="state_name" name="state_name" style="width:260px; height:25px; display:none;"/>-->
-                    <select id="search_city" name="search_city" class="memberinput" style="width:260px; height:25px;" onChange="GET_City(this.value);">
-                        <option value="" selected="selected">--Select City--</option>
-                           <?php
-                        $SelectArea=db_query("Select Id, Area From ".TABLE_GENERALAREAMASTER." WHERE Status=1 AND A_Country='1' Order by Id asc");
-                        while(list($Id,$Area)=db_fetch_array($SelectArea))
-                        { ?>
-                           <option  value="<?php echo $Id; ?>"><?php echo $Area; ?></option>
-                           <?php } ?>
-                    </select>
-                    <input type="hidden" value="<?php getCitydetails($comp_city);?>" name="comp_city" id="comp_city" />    </td>
-            </tr>
-            <tr>
-                <td>Area</td>
-                <td>:</td>
-                <td>
-                	<!--<input type="text" id="city_name" name="city_name" style="width:260px; height:25px; display:none;"/>-->
-    	           <span id="ShowAreaList"><select id="Area" style="width:260px; height:25px;" name="Area"><option value="">--Select Area--</option></select>
-        	       <input type="hidden" name="city_name" id="city_name" value="" /></span>	</td>
-            </tr>
-            <tr>
-                <td colspan="3" align="center" >
-                <input id="searchsubmit" type="button" onClick="Searchpage();" value="Search" class="btnstyle" style="margin-right:30px;" /></td>
-            </tr>
-        </table>
+      <tr>
+        <td width="129">Company Name </td>
+        <td width="17">:</td>
+        <td width="404" align="left">
+
+    <div class="comp_content">
+
+    <input type="text" class="comp_search" id="comp_searchid" placeholder="Search for Company Name" />
+    <div id="SearchListRes" style="left:224px;width:260px!important;"></div>
+    <input type="hidden"  id="c_name" name="c_name" />
+
+    <input type="hidden" id="comp_id" name="comp_id"/>
+
+    <input type="hidden" id="Sector_id" name="Sector_id"/>
+
+    <div id="comp_result"></div>
+    </div>    </td>
+      </tr>
+      <tr>
+        <td>Product Name</td>
+        <td>:</td>
+        <td width="404" align="left">
+            <div class="content">
+    <input type="text" class="search_pro" id="searchid" placeholder="Search for Product" />
+    <div id="SearchListPro" style="left:224px;width:260px!important;"></div>
+    <div id="result"></div>
+    </div>    </td>
+      </tr>
+      <tr>
+        <td>Industry</td>
+        <td>:</td>
+        <td>
+
+
+     <input type="text" id="Sector_name" name="Sector_name" style="width:260px; height:25px; display:none;"/>
+
+    <select name="Sector" id="Sector" class="inp-text" style="width:260px; height:28px;">
+    <option value="">--Select Industry--</option>
+    <?php $SelectSector=db_query("Select Id,S_Name From ".TABLE_SECTOR." WHERE Status=1 order by S_Name asc");
+    while(list($MSeId,$MSeName)=db_fetch_array($SelectSector))
+    {?>
+    <option  value="<?php echo $MSeId; ?>"  ><?php echo $MSeName; ?></option><?php
+    }?>
+    </select>    </td>
+      </tr>
+      <tr>
+        <td>City</td>
+        <td>:</td>
+        <td>
+
+    <?php /*?> <select name="SelCountry" style="display:none;" id="SelCountry" onChange="return OnclickCountry(this.value,'SelCountry','SelState','SelCity','BArea','BPincode');"  class="inp-text" >
+    <?php $SelectCountry=db_query("Select Id,Country_Name From ".TABLE_GENERALCOUNTRYMASTER." WHERE Status=1 order by  Country_Name asc");
+    while(list($MCId,$MCName)=db_fetch_array($SelectCountry))
+    {?>
+    <option  value="<?php echo $MCId; ?>" ><?php echo $MCName; ?></option><?php
+    }?>
+    </select><?php */?>
+
+     <!--<input type="text" id="state_name" name="state_name" style="width:260px; height:25px; display:none;"/>-->
+     <select id="search_city" name="search_city" class="memberinput" style="width:260px; height:25px;" onChange="GET_City(this.value);">
+       <option value="" selected="selected">--Select City--</option>
+       <?php
+    $SelectArea=db_query("Select Id, Area From ".TABLE_GENERALAREAMASTER." WHERE Status=1 AND A_Country='1' Order by Id asc");
+    while(list($Id,$Area)=db_fetch_array($SelectArea))
+    { ?>
+       <option  value="<?php echo $Id; ?>"><?php echo $Area; ?></option>
+       <?php } ?>
+     </select>
+     <input type="hidden" value="<?php getCitydetails($comp_city);?>" name="comp_city" id="comp_city" />    </td>
+      </tr>
+      <tr>
+        <td>Area</td>
+        <td>:</td>
+        <td>
+
+    	<!--<input type="text" id="city_name" name="city_name" style="width:260px; height:25px; display:none;"/>-->
+
+    	<span id="ShowAreaList"><select id="Area" style="width:260px; height:25px;" name="Area"><option value="">--Select Area--</option></select>
+    	<input type="hidden" name="city_name" id="city_name" value="" /></span>	</td>
+      </tr>
+
+
+      <tr>
+
+        <td colspan="3" align="center" >
+
+    <input id="searchsubmit" type="button" onClick="Searchpage();" value="Search" class="btnstyle" style="margin-right:30px;" /></td>
+      </tr>
+    </table>
     </fieldset>
 
 
@@ -389,12 +401,12 @@ window.location.href="Searchpage.php?action=Add&searchkey="+searchKey+"&requestt
 <!--adleft_container-->
 <div class="adleft_container">
     <div style="width:100%;height:55px;float:left;" align="right">
-        <div class="post_anadd">
+       <!--  <div class="post_anadd">
             <a <?php  if(isset($_SESSION['LID'])){?> target="_blank"  href="<?php echo 'ManageProfile.php?user='.base64_encode($_SESSION['Type']);?>" <?php } else {?> class="pop firstviewmore" onclick="Postafreead();" <?php }?> title="View More" style="text-decoration: none;">
                 <div class="post_addtxt">Post a Free Ad</div>
                 <div class="post_findtxt">To find your Best Deal</div>
             </a>
-        </div>
+        </div> -->
     </div>
     <!--250-->
     <div style="width:250px;height:auto;float:left;">
@@ -436,6 +448,128 @@ window.location.href="Searchpage.php?action=Add&searchkey="+searchKey+"&requestt
         </div>
         <!--relatedsearch-->
     </div>
+    <div style="width:740px;height:auto;float:left;">
+
+<div style="width:740px; height:30px;display:none;" align="center">
+<input type="radio" id="requestTypeCom" name="requestType"  value="company" title="Company" onClick="changesearchtype();" /><label for="requestTypeCom" >Company</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<input type="radio" name="requestType" id="requestTypedeals" checked="checked" value="bestdeals" title="Product" onClick="changesearchtype();" /><label for="requestTypedeals">Product</label>
+</div>
+<?php /*?><div style="width:740px; height:50px;">
+<div style="width:610px;height:30px;border:1px solid #999;margin-left:40px;float:left;">
+<div class="adsearch_lookfor" ><select class="search_lookfor">
+<option>Looking for</option>
+<option>Supplier</option>
+<option>Buyer</option>
+</select>
+</div>
+<div class="adsearch_sep"></div>
+<div class="adsearch_txbox" ><input autocomplete="off" name="searchkey" id="searchlist" placeholder="Please Enter Company Name to Search" autofocus value="<?php echo $searchkey;?>" type="text" style="width:390px;height:25px;border:none;padding-left:10px;" /><div id="SearchListRes"></div></div>
+</div>
+<div class="adsearch" align="center"><a href="#" onclick="searchResult($('#searchlist').val(),'');">Search</a></div>
+</div><?php */?>
+<div style="width:740px; height:50px;">
+<div class="adsearch_txbox" >
+
+<input type="text" autocomplete="off" name="searchkey" id="searchlist"  style="width:600px;height:30px;border:1px solid #999;" placeholder="Please Enter Product / Service / Job title to Search" autofocus value="<?php echo $searchkey;?>" onKeyUp="Searchusingenterkey(event);"  /><!-- onkeypress="Searchusingenterkey(event);" -->
+<div id="SearchListRes"></div>
+
+</div>
+<div class="adsearch" align="center"><a href="#" onClick="searchResult($('#searchlist').val(),'','<?php echo $_REQUEST['type2'];?>');">Search</a></div>
+</div>
+<?php if($countresult>0){?>
+<div class="adsearchresult_menu"><a id="Searchdisplaytypelist" class="active" href="#" onClick="SearchListStyle(<?php echo '\''.$requestType.'\''.','.'\''.$searchkey.'\''; ?>,'1',<?php echo $type2 ;?>);">List</a> | <a id="Searchdisplaytypegrid" href="#" onClick="SearchListStyle(<?php echo '\''.$requestType.'\''.','.'\''.$searchkey.'\''; ?>,'2',<?php echo $type2 ;?>);" >View Gallery</a></div>
+
+<!--ad-->
+<div id="mainsearchcontent">
+<?php 
+if($requestType=='bestdeals'){ 
+while($fetchquery=mysql_fetch_array($searchquery)){
+$yearofestablishment = explode('-',get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_YrofEstablish'));
+ if(strlen(stripslashes(get_company_name($fetchquery['PS_Id'])))>25){ $Compnamefixlimit = substr(stripslashes(get_company_name($fetchquery['PS_Id'])),0,25).'...' ;} else { $Compnamefixlimit =  stripslashes(get_company_name($fetchquery['PS_Id']));} 
+ 
+if($yearofestablishment[2]!='')
+$Since = '<span style="color:#007088;"> (Since - '.$yearofestablishment[2].')</span>';
+else
+$Since ='';
+$Compnamedisp = $Compnamefixlimit.$Since; 
+
+?>
+
+<div class="singlead">
+<!--title-->
+<div class="adtitle">
+<div style="width:550px;color:#EC5324;float:left;"><b><?php echo $Compnamedisp; ?></b></div>
+
+<?php /*?><div class="rating">Rating <span><img src="images/rating_star.png" /><img src="images/rating_star.png" /><img src="images/rating_star.png" /></span> 3.0</div>
+<?php */?></div>
+<!--title-->
+<!--adimage-->
+<div class="adimage">
+<div class="company_logo">
+<a href="#thumb" class="thumbnail">
+<img src="<?php if($fetchquery['PS_CoverImg']!=''){ echo $fetchquery['PS_CoverImg']; } else { echo 'images/default/no_image.png'; }?>"  width="124" height="115" /><span><img src="<?php if($fetchquery['PS_CoverImg']!=''){ echo $fetchquery['PS_CoverImg']; } else { echo 'images/default/no_image.png'; }?>" width="220" height="220" /></span></a>
+
+</div>
+<div>
+<div><?php echo $fetchquery['PS_Display']?></div>     
+<div><?php 
+if($fetchquery['PS_Price']!=''&&$fetchquery['PS_Price']!='0'){
+echo '<span> Price :'.' '.$fetchquery['PS_Price'].' '.CurrencyName($fetchquery['PS_Currency']).'</span>';
+}
+if($fetchquery['PS_Unit']!=''){
+echo '<span> Unit :'.' '.$fetchquery['PS_Unit'].'</span>';
+}
+
+?></div> 
+</div>   
+</div>
+<!--adimage-->
+<!--addetails-->
+<div class="addetails">
+<div class="addetails_left">
+<span style="color:#EC5324;"><b>Business Descriptions</b></span><div style="height:10px;"></div>
+<?php if(strlen($fetchquery['PS_Description'])>150){ echo substr($fetchquery['PS_Description'],0,150).'...'; } else {echo $fetchquery['PS_Description']; } ?></div>
+<div class="addetails_sep"></div>
+<div class="addetails_right">
+<span style="color:#EC5324;"><b>Contact Details</b></span><div style="height:10px"></div>
+<?php
+getAreadetails(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Area'));  
+getCitydetails(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_City'));
+getStatedetails(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_State'));
+getPindetails(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Pincode'));
+getCountrydetails2(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Country'));
+?>
+<div><?php if(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Mobile')!='') echo 'Phone: '.get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Mobile') ;else echo  'Phone: '. get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Landline') ;?></div>
+<div><?php echo 'Email: '.get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Email') ;?></div>
+</div>
+</div>
+
+<div style="width:705px;height:39px;float:left;">
+<div class="chat_details">
+<div class="chat_curve"></div>
+<div class="chat_style"><img src="images/chat_online.png" style="position:relative;top:3px;" />&nbsp;&nbsp;<a href="#"> I'm Offline</a>
+</div>
+<div class="chat_fullcurve"></div>
+
+<?php  
+if(get_data_from_registration($fetchquery['PS_User_Fk'],RGT_Type)==3)
+$user_id = $fetchquery['PS_User_Fk'];
+else
+$user_id = get_data_from_registration($fetchquery['PS_User_Fk'],RGT_ProfileUrl);
+?>
+<div class="full_det"><a <?php  if(isset($_SESSION['LID'])){?> target="_blank"  href="<?php echo 'Bestdealsajax.php?type='.base64_encode(get_data_from_registration($fetchquery['PS_User_Fk'],RGT_Type)).'&user='.$user_id.'&BDId='.$fetchquery['PS_Id'];?>" <?php } else {?> class="pop firstviewmore" onClick="getUserProfile('<?php echo $user_id ;?>','<?php echo $fetchquery['PS_Id'];?>','<?php echo base64_encode(get_data_from_registration($fetchquery['PS_User_Fk'],RGT_Type));?>');" <?php }?> >View Full Details</a></div>
+</div>
+</div>
+<!--addetails-->
+</div><br/><br/>
+<?php }}?>
+<!--ad-->
+</div>
+
+<?php } else{ echo '<center class="msgalert">No Product Found</center>' ;}?>
+
+</div>
     <!--250-->
     <!--740-->
 

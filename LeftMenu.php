@@ -51,7 +51,7 @@
 
 </div> 
 </li>-->
-<li><a  class="navlink" id="OpenProfile_8" onclick="GridShowHide('ProductEntryLevel','ProductEntryGrid','Grid','');">Xbit</a>
+<li><a  class="navlink" id="OpenProfile_8" onclick="GridShowHide('ProductEntryLevel','ProductEntryGrid','Grid','');">Product</a>
 </li>
 <?php if($FetProfileDetails['RGT_PaymentStatus']=='1'){?>
 <li><a  class="navlink" id="OpenProfile_9" onclick="GridShowHide('ContactEntryLevel','ContactEntryGrid','Grid','');">Contact Info</a>
