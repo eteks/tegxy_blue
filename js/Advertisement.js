@@ -178,7 +178,8 @@ if (xmlhttp.readyState == 4)
 		if (response != "") 
 		{ 
 			var Res = response.split('######');
-			DocId('Advalert').innerHTML  = Res[0];
+			// DocId('Advalert').innerHTML  = Res[0];
+			alert(Res[0]);
 			Advformreset();
 		}
 	}
@@ -225,7 +226,7 @@ if (xmlhttp.readyState == 4)
 			DocId('Linkselection').checked  = true;
 			else
 			{
-				alert(Res[1]);
+				// alert(Res[1]);
 			DocId('Advname').value  = Res[1];	
 			DocId('Linkselectionn').checked  = true;
 			DocId('Linkurladv').value = Res[6];

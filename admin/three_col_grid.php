@@ -117,7 +117,9 @@ $WhereCont=(isset($WhereCont) && !empty($WhereCont) ? trim($WhereCont) : '');
 									echo "<span  onclick=\"return OnClickStatusActive('$id','$startdata')\" style=\"text-decoration:underline;cursor:pointer\">In-Active</span>";
 								}  
 							?>
+							<span onclick="return advertisement_view('<?php echo $id; ?>','<?php echo $startdata; ?>',this);" style="text-decoration:underline;cursor:pointer" >View</span>
 						</td>
+
                       </tr>
                       <tr>
                         <td height="2" colspan="5" align="center"></td>

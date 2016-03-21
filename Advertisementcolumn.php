@@ -1,6 +1,60 @@
- <div class="adright_container">
+<script>
+function view_product(pro,com_city,comp_area,req_type)
+{ 
+//alert(pro);
+//alert(com_city);
+//alert(comp_area);
+//alert(req_type);
+//
+//var searchKery1 = pro;
+//alert(searchKey1);
+//var userCity = com_city;
+//alert(userCity);
+//var userArea = comp_area;
+//alert(userArea);
+//var requestType = req_type;
+//alert(requestType);
+//alert(searchKey);
+//
+//var userCity = document.getElementById('comp_city').value;
+////alert(userCity);
+//var userArea = document.getElementById('comp_area').value;
+////alert(userArea);
+//var requestType = document.getElementById('requestType').value;
+////alert(requestType);
+
+window.open("Searchpage.php?action=Add&searchkey="+pro+"&requesttype="+req_type+"&usercity="+com_city+"&userarea="+comp_area+"&type2=1");
+
+//window.location.href="Searchpage.php?action=Add&searchkey="+searchKery+"";
+
+}
+
+</script>
+<div class="adright_container">
+<script type="text/javascript" src="js/Searchlist.js"></script>
+<script type="text/javascript" src="adver/jquery.min.js"></script>
+    <link rel="stylesheet" href="adver/style.css" type="text/css" media="screen" />
+    <script src="adver/jcarousellite_1.0.1c4.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(function () {
+                $(".newsticker-jcarousellite").jCarouselLite({
+                    vertical: true,
+                    hoverPause: true,
+                    visible: 4,
+                    auto: 5000,
+                    speed: 300
+                });
+            });
+</script>
+
+
+
+
+<div class="newsticker-jcarousellite" style="width:300px; height:500px;">
+<ul>
+
 <?php
-$selectadquery = db_query("SELECT ADV_Existornew,ADV_Selection,ADV_Name,ADV_Imagepath,ADV_Description,ADV_Selectionfk FROM ".TABLE_ADVERTISEMENT." limit 3");
+$selectadquery = db_query("SELECT ADV_Existornew,ADV_Selection,ADV_Name,ADV_Imagepath,ADV_Description,ADV_Selectionfk FROM ".TABLE_ADVERTISEMENT." where ADV_Status=1");
 while(list($adv_existornew,$adv_selection,$adv_name,$adv_imagepath,$adv_description,$adv_selectionfk) = db_fetch_array($selectadquery))
 {
 $adv_title       = $adv_name;
@@ -36,12 +90,25 @@ $adv_description = $gy_desp;
 }
 }
 ?>
+
+
+<li>
+<div style="cursor:pointer;">
 <div class="right_singlead">
-	<div class="right_adtitle"><?php echo $adv_title ;?></div>
-	<div style="width:290px;min-height:107px;">
-	<div class="right_adimg"><img width="100" height="107" src="<?php echo $adv_imagepath;?>" /></div>
-	<div class="right_addesp"><?php echo $adv_description; ?></div>
-	</div>
-</div>
-<?php }?>
-</div>
+<div class="right_adtitle"><?php echo $adv_title ;?></div>
+<div style="width:290px;min-height:107px;">
+<div class="right_adimg"><img width="100" height="107" src="<?php echo $adv_imagepath;?>" /></div>
+<div class="right_addesp"><?php echo $adv_description; ?></div>
+</li>
+
+<?php } ?>
+
+</ul></div>
+
+   
+    </div>
+
+
+
+
+
