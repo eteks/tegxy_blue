@@ -24,7 +24,7 @@ $LocDisplay = CountryName($RGT_Country).StringAppend(StateName($RGT_State),' , '
 
 
 <div style="width:950px;height:30px;background:#136578;color:#fff;margin-left:auto;margin-right:auto;">
-<div style="width:130px;height:20px;float:left;padding-top:5px;font-size:14px;padding-left:10px;">Xbit</div>
+<div style="width:130px;height:20px;float:left;padding-top:5px;font-size:14px;padding-left:10px;">Product</div>
 <div style="width:535px;height:20px;float:left;padding-top:5px;font-size:14px;"></div>
 
 </div>

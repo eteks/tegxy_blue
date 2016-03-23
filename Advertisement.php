@@ -118,7 +118,7 @@ $Logo_Fetch = db_fetch_array($Logo);
 			<td>
 			<select id="Selectiontype" name="Selectiontype" onchange="AdvSelection(this.value,<?php echo $LID;?>)" >
 			<option value="">-- Select --</option>
-			<option value="1">Xbit</option>
+			<option value="1">Product</option>
 			<option value="2">Events</option>
 			<option value="3">Gallery</option>
 			</select>
@@ -249,7 +249,7 @@ $Logo_Fetch = db_fetch_array($Logo);
 		<option value="1">Index </option>
 		<option value="2">Admin</option>
 		<option value="3">Search(Companies)</option>
-		<option value="4">Search(Xbit)</option>
+		<option value="4">Search(Product)</option>
 		</select></td>
 		<td colspan="2">&nbsp;</td>
 		</tr>
