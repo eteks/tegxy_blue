@@ -29,22 +29,27 @@ $login(document).ready(function(){
         $login('#login-content').hide();
         })
 
-    $login('#login-trigger').click(function(){
-        $login(this).next('#login-content').slideToggle();
+    $login(document).on("click", function (e) {
+        if(!$login(e.target).is("#login-trigger") && $login('#login-content').has(e.target).length == 0)
+        $login("#login-content").fadeOut();
+    });
+
+    $login('#login-trigger').click(function(e){
+        e.stopPropagation();
+        $login(this).next('#login-content').fadeIn();
         $login(this).toggleClass('active');
-        // if(e.target.id != '#login-content'){
-        //     $login(this).next('#login-content').slideToggle();          
-        // }
+
         if ($login(this).hasClass('active')) $login(this).find('span').html('&#x25B2;')
             else $login(this).find('span').html('&#x25BC;')
         })
+
 });
 
 function ValidateLogin()
 {
 if(DocId('UserName').value=='')
 {
-alert("Please Enter the User Name / Email Id / Mobile Number");
+alert("Please Enter the User Name / Email Id");
 DocId('UserName').focus();
 return false;
 }

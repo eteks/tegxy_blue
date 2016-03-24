@@ -15,11 +15,15 @@ db_connect();
 <script type="text/javascript" src="js/Searchlist.js"></script>
 <script type="text/javascript">
 
-function Searchpage()
-{
+function Searchpage(e){
 
+if($('#SearchListRes').children().hasClass('no_matches')){
+	e.stopPropagation();
+	$('#SearchListRes').next('input').removeClass('btnstyle');
+	$('#SearchListRes').next('input').addClass('no_result');
+	alert('Please Enter Company Name OR Product Name');
+}else{
 var searchKey = $("#searchlist").val();
-
 if(searchKey=="")
 { 
 alert("Please Enter the Search Box Value");
@@ -28,6 +32,7 @@ return false;
 }
 else{
 var requestType=$("input[name='requestType']:checked").val();
+alert('requestType saerch pafge'+requestType);
 var userCity=$("#userCity").val();
 //alert(userCity);
 var userArea;
@@ -37,6 +42,7 @@ userArea=$("#selectarea").val();
 else
 userArea=selectarea;
 window.location.href="Searchpage.php?action=Add&searchkey="+searchKey+"&requesttype="+requestType+"&usercity="+userCity+"&userarea="+userArea+"&type2=1";
+}
 }
 }
 function adv_Searchpage()
@@ -55,6 +61,7 @@ function Searchusingenterkey(e)
 {
 // look for window.event in case event isn't passed in
 }
+
 </script>
 <style type="text/css">
 #ListCityRes{
@@ -117,6 +124,20 @@ function Searchusingenterkey(e)
 	font-weight:bold;
 	color: #131E9F;
 }
+.no_result{
+	visibility: disabled;
+	border: medium none;
+    color: #ffffff;
+    cursor: pointer;
+    float: right;
+    font-family: Arial;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 2px 10px 6px;
+    position: relative;
+    right: 310px;
+    text-decoration: none
+}
 </style>
 </head>
 <body class="background">
@@ -138,9 +159,9 @@ function Searchusingenterkey(e)
 			<input type="radio" name="requestType" id="requestTypedeals" value="bestdeals" title="Xbit" onclick="changesearchtype();" /><label for="requestTypedeals" >Products</label>
 		</div>
 		<div style="width:990px;height:55px;" align="center">
-			<input type="text" autocomplete="off" name="searchkey" id="searchlist"  class="mainsearchbox" placeholder="Please Enter Company Name / Sector / Keyword to Search" autofocus value="" onkeypress="Searchusingenterkey(event);" />
+			<input type="text" autocomplete="off" name="searchkey" id="searchlist"  class="mainsearchbox" placeholder="Please Enter Company Name to Search" autofocus value="" onkeypress="Searchusingenterkey(event);" />
 			<div id="SearchListRes"></div>
-			<input id="searchsubmit" type="button" onclick="Searchpage();" value="Search" class="btnstyle"/>
+			<input id="searchsubmit" type="button" onclick="Searchpage(event);" value="Search" class="btnstyle"/>
 			<!-- <img src="images/Green-Search-Icon.png" onClick="adv_Searchpage();" width="30" style="position:relative; top:9px; cursor:pointer; left:115px;" title="Advance Search"> -->
 			<input type="button" class="btnstyle advance_btn" onclick="adv_Searchpage();" value="Advance Search">
 			<div id="suggestions" style="display: none;"> <div style="width:504px;height:auto;position: relative; z-index: 9999; display: block;text-align:left;border:1px solid #ccc;left:0px;" id="suggestionsList"> &nbsp; </div></div>

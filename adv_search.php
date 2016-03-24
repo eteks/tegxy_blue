@@ -436,7 +436,7 @@ $("#searchlist").focusout(function(){
 <div id="signup" style="pointer-events:none;">
 <div style="width:230px;background:#fff;padding:20px;border-radius:10px;">
 <p align="center" style="color:#F7862A;font-size:14px;">Just takes few seconds to be a part of <br/>XYGET Community</p>
-<div id="FRmsg" style="height:20px;color:#EC4211;font-size:16px;text-shadow:1px 1px 1px #aaa;font-style:italic;"></div>
+<div id="FRmsg" style="color: red !important;font-size: 11px;font-style: italic;height: 20px;text-shadow: 1px 1px 1px #aaa;padding-bottom: 12px;"></div>
 <form onclick='return false;' id="Freeuserreg" >
 <input type="hidden" id="Fcountry" name="Fcountry"  />
 <input type="hidden" id="Fcity" name="Fcity"  />

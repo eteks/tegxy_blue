@@ -210,7 +210,7 @@
                         <div id="signin">
                             <div style="width:230px;background:#fff;padding:20px;border-radius:10px;">
                                 <p align="center" style="color:#F7862A;">Sign In</p>
-                                <div id="Fmsg" style="height:20px;color:#EC4211;font-size:16px;text-shadow:1px 1px 1px #aaa;font-style:italic;"></div>
+                                <div id="Fmsg" style="color: red !important;font-size: 11px;font-style: italic;height: 20px;text-shadow: 1px 1px 1px #aaa;padding-bottom: 12px;"></div>
                                 <div class="field">
                                     <div class="labeldiv">Username:</div>
                                     <div class="txtboxdiv"><input type="text" name="FLusername" autocomplete="off" id="FLusername" class="txtbox" /></div>
@@ -234,7 +234,7 @@
                     <div id="signup" style="pointer-events:none;">
                         <div style="width:230px;background:#fff;padding:20px;border-radius:10px;">
                             <p align="center" style="color:#F7862A;font-size:14px;">Just takes few seconds to be a part of <br/>XYGET Community</p>
-                            <div id="FRmsg" style="height:20px;color:#EC4211;font-size:16px;text-shadow:1px 1px 1px #aaa;font-style:italic;"></div>
+                            <div id="FRmsg" style="color: red !important;font-size: 11px;font-style: italic;height: 20px;text-shadow: 1px 1px 1px #aaa;padding-bottom: 12px;"></div>
                             <form onclick='return false;' id="Freeuserreg" >
                                 <input type="hidden" id="Fcountry" name="Fcountry"  />
                                 <input type="hidden" id="Fcity" name="Fcity"  />
@@ -248,7 +248,7 @@
                                 </div>
                                 <div class="field">
                                     <div class="labeldiv">Mobile No.:</div>
-                                    <div class="txtboxdiv"><input onkeyup="checkNumber(this);" type="text" autocomplete="off" name="Fmobileno" id="Fmobileno" class="txtbox" /></div>
+                                    <div class="txtboxdiv"><input onkeyup="checkNumber(this);" type="text" autocomplete="off" name="Fmobileno" id="Fmobileno" class="txtbox" maxlength="10" /></div>
                                 </div>
                                 <div class="field">
                                     <div class="labeldiv">Email Id:</div>

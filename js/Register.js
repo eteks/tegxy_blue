@@ -27,6 +27,20 @@ DocId('PCityGrid').innerHTML='<select></select>';
 //DocId('txtHint').innerHTML='';
 }
 
+function Email_check(){
+	var emailVal = $('#Email').val(); // assuming this is a input text field
+    $.post('Emailcheck.php?email_check=true', {'Email' : emailVal}, function(data) {
+        if(data.trim()=='exist'){
+        alert('Email Id already Exists');
+        $('#Email').val('');
+         return false
+        }
+        else {
+         return true;
+        }
+    });
+}
+
 function ValidateFirstLevel()
 {
 	
@@ -56,13 +70,13 @@ DocId('Sector').focus();
 return false;
 }
 
-
-else if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(DocId('Email').value)))
+else if	(!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(DocId('Email').value))
 {
 alert("Please Enter the Valid Email Id");	
 DocId('Email').focus();
 return false;
 }
+
 else if(DocId('User_Name').value=='')
 {
 alert("Please Enter the User Name");	
@@ -211,7 +225,11 @@ DocId('Mobile').focus();
 return false;
 }
 
-
+else if(!DocId('Mobile').value.match(/^\d{10}$/))  
+{  
+	alert('Please Enter Mobile number with 10 digits')
+	return false;  
+} 
 
 if(DocId('bus_details').value =='1')
 {
@@ -407,6 +425,11 @@ function FreeUserRegister()
 	DocId('Fmobileno').focus();
 	return false;
 	}
+	else if(!DocId('Fmobileno').value.match(/^\d{10}$/))  
+	{  
+		DocId('FRmsg').innerHTML="Please Enter Mobile number with 10 digits";
+		return false;  
+	} 
 	else if(FemailId=='')
 	{
 	DocId('FRmsg').innerHTML="Please Enter the Email";
@@ -414,6 +437,7 @@ function FreeUserRegister()
 	return false;
 	}
 	else if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(DocId('FemailId').value)))
+		
 	{
 	DocId('FRmsg').innerHTML="Please Enter the Valid Email Id";
 	DocId('FemailId').focus();

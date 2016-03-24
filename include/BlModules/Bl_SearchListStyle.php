@@ -17,13 +17,10 @@ if($_REQUEST['action']=='Listview'){
 //TO SEARCH AND FIND THE MERGED SQL
 $findcitymatch=get_Search_Id(TABLE_GENERALAREAMASTER,"Id","Area",$userCity);
 $querycitymatch ="AND RGT_City IN (".$findcitymatch.")";
-
-
-
 if($type2 == 1)
 {
 if($searchkey!='')
-$searchsql = "`RGT_CompName` LIKE  '$searchkey%'  AND";
+$searchsql = "`RGT_CompName` LIKE  '$searchkey%'";//
 else
 $searchsql ="";
 }
@@ -75,7 +72,8 @@ $citymatchdata.=$fetchcitymatch['RGT_PK'].',';
 $citymatchdata=substr($citymatchdata,0,-1);
 }
 
-$queryprodname=db_query("SELECT Id FROM ".TABLE_ADMINPRODUCT." WHERE ProductName LIKE '$searchkey%'");
+// $queryprodname=db_query("SELECT Id FROM ".TABLE_ADMINPRODUCT." WHERE ProductName LIKE '$searchkey%'");
+$queryprodname=db_query("SELECT PS_Id FROM ".TABLE_PRODUCTSERVICE." WHERE PS_Display LIKE '$searchkey%' AND PS_Status=1");
 while($fetchprodid=mysql_fetch_array($queryprodname)){
 $matchingids.=$fetchprodid['Id'].',';
 }
