@@ -9,7 +9,7 @@ include("CommonHeader.php");?>
 include("ProfileLeft.php");?>
 <div id="contentcolumn">
 <div class="innertube">
-<center><h2 style="position:relative;color:#E76524;font-weight:bold;text-align:center;padding:5px 0px;">Xbit</h2></center>
+<center><h2 style="position:relative;color:#E76524;font-weight:bold;text-align:center;padding:5px 0px;">Product</h2></center>
 
 <?php if($EnableCount>0){?>
 <div style="width:85%;height:40px;margin-right:auto;">

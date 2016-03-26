@@ -3,7 +3,7 @@ $sqltot="SELECT PS_Id,PS_Display FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_User_Fk
 $SqlRun=db_query($sqltot);
 $Count = db_num_rows($SqlRun);
 ?>
-<div style="width:96%;margin:-3% 1% 0 1%;padding:1% 0 1% 0;text-align:center;background:url(images/title_ornage.png) no-repeat center;color:#fff;"><b>Xbit</b></div>
+<div style="width:96%;margin:-3% 1% 0 1%;padding:1% 0 1% 0;text-align:center;background:url(images/title_ornage.png) no-repeat center;color:#fff;"><b>Product</b></div>
 <div style="width:85%;margin:-2px 1% 0 1%;border:1px solid #9EA9B5;border-radius:5px 5px;padding:0px 7px; text-align:justify;font-size:13px;background:#F1F1F1;height:<?php if($Count>0) echo '180px'; else ''; ?>;">
 <div style="width:96%;height:5px;"></div>
 <div style="width:96%;height:130px;" align="center">
@@ -18,7 +18,7 @@ if($Count>0){
 
 <?php if(XbitImage($PS_Id)!='') {?>
 <img src="<?php echo XbitImage($PS_Id);?>" width="200" height="125" /><?php } else {?><img src="images/no_image.png"  width="200" height="125" /><?php }?><hr style="color:#eee;" /><span style="line-height:16px;"><?php echo $PS_Display;?></span></a></li>
-<?php }} else echo '<div  style="height:55px;"></div><div style="height:75px;text-align:center;"><li class="als-item coldefault">No Xbit</li></div>' ;?>
+<?php }} else echo '<div  style="height:55px;"></div><div style="height:75px;text-align:center;"><li class="als-item coldefault">No Product</li></div>' ;?>
 </ul>
 </div>
 <span class="als-next"><img src="images/right_arrow.png" alt="next" title="next" /></span>

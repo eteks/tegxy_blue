@@ -89,12 +89,12 @@ function deleteGallery(id,proid,idd)
 	}
 }
 </script>
-<div class="heading" style="text-align:center">Xbit</div>
+<div class="heading" style="text-align:center">Product</div>
 <div id="personal" style="margin-left:<?php if(base64_decode($_REQUEST['user'])=='3'){?>157px<?php } else{ ?>50px<?php }?>; padding-bottom:30px;width:680px;">
 <div id="ProductEntryLevel"  style="display:block;">
 <?php //if(base64_decode($_REQUEST['user'])!='3'){?><div class="pagination handsym" onclick="GridShowHide('ProductEntryLevel','ProductEntryGrid','Grid','');" style="line-height: 49px;"><img width="30" height="30" src="images/Back-icon.png" title="Back"></div><?php //}?><div style="clear:both"></div>
 <fieldset id="Fields">
-<legend>Xbit</legend>
+<legend>Product</legend>
 <input type="hidden" id="ProdStateData" value="0"  />
 <input type="hidden" id="ProExistId" />
 <input type="hidden" id="Prodt_Id"  />
