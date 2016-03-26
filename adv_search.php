@@ -210,33 +210,31 @@ $('#comp_searchid').click(function(){
 
 
 $(function(){
-$(".search_pro").keyup(function()
-{
-var searchid = $(this).val();
-//alert(searchid);
-var comp_name = $('#c_name').val();
-//alert(comp_name);
-var c_id = $('#comp_id').val();
-//alert(c_id);
-if(comp_name !="") {
-var dataString = 'search='+searchid+"&c_name="+c_name+"&c_id="+c_id;
-}
-else { var dataString = 'search='+searchid;  } //alert(dataString);
-if(searchid!='')
-{
-	$.ajax({
-	type: "POST",
-	url: "autocomplete/search.php",
-	data: dataString,
-	cache: false,
-	success: function(html)
-	{
-	$("#result").html(html).show();
-	//alert(result);
-	}
-	});
-}return false;
-});
+// $("#searchid").keyup(function()
+// {
+// var searchid = $(this).val();
+// var searchresult = $("#SearchListPro li[class='selected'] a").text().split('**');
+// var type2 = searchresult[5];
+// var assign = $("#type2").val(type2);
+// if(searchid !="") {
+// var dataString = 'search='+searchid+'type2'+assign;
+// }
+// else { var dataString = 'search='+searchid;  } //alert(dataString);
+// if(searchid!='')
+// {
+// 	$.ajax({
+// 	type: "POST",
+// 	url: "autocomplete/search.php",
+// 	data: dataString,
+// 	cache: false,
+// 	success: function(html)
+// 	{
+// 	$("#result").html(html).show();
+// 	//alert(result);
+// 	}
+// 	});
+// }return false;
+// });
 
 
 jQuery("#result").click(function(e){

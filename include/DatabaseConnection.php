@@ -728,14 +728,13 @@ function getRelatedSearchBestdeals($ps_id, $ps_fk, $citymatchdata)
 
 
 
-                /**
-                 * echo '<a onclick="';
-                 * echo 'searchResult(';
-                 * echo "'".$fetchrelatedproduct['PS_Display']."'";
-                 * echo ');';
-                 * echo '" class="navlink" style="color:#1274C0;text-decoration:none;">'.$fetchrelatedproduct['PS_Display'].'</a>';
-                 * echo '</li>';
-                 */
+                echo '<a onclick="';
+                echo 'searchResult(';
+                echo "'".$fetchrelatedproduct['PS_Display']."'";
+                echo ');';
+                echo '" class="navlink" style="color:#1274C0;text-decoration:none;">'.$fetchrelatedproduct['PS_Display'].'</a>';
+                echo '</li>';
+                 
 
 
             }

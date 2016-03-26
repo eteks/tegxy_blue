@@ -346,13 +346,13 @@ $("#comp_searchid").keyup(function(event){
 		}
 
 });
-$(".search_pro").keyup(function(event){
-	var offset = $(".search_pro").offset();
-	var width = $(".search_pro").width()-2;
+$("#searchid").keyup(function(event){
+	var offset = $("#searchid").offset();
+	var width = $("#searchid").width()-2;
 	// $("#SearchListRes").css("left",offset.left);
 	// $("#SearchListRes").css("width",width);
 	 // alert(event.keyCode);
-	 var searchlist = $(".search_pro").val();
+	 var searchlist = $("#searchid").val();
 	 // alert('searchlist'+searchlist);
 
 	 if(searchlist.length)
@@ -361,20 +361,17 @@ $(".search_pro").keyup(function(event){
 		 {
 			 $("#loading").css("visibility","visible");
 				getUrl = "include/BlModules/Bl_SearchList.php?action=4";
-
 			 $.ajax({
 			   type: "POST",
 			   url: getUrl,
 			   data: "data="+searchlist,
-			   success: function(msg){
-				if(msg != 0)
-				{
+			   success: function(msg){			  
+				if(msg != 0){
 				  $("#SearchListPro").fadeIn("slow").html(msg);
 				  $("#SearchListPro").css('border','1px solid #8789E7');
 				  $("#SearchListPro").css('background','none repeat scroll 0 0 #FFFFFF');
 				}
-				else
-				{
+				else{
 				  $("#SearchListPro").fadeIn("slow");
 				  if(Chkstatus==1)
 				  {
@@ -503,7 +500,7 @@ $(".search_pro").keyup(function(event){
 				 window.location.href="Searchpage.php?action=Add&searchkey="+$('#searchlist').val()+"&requesttype="+requestType+"&usercity="+userCityy+"&userarea="+userArea+"&type2="+type2;
 				}
 				else
-				searchResult($('.search_pro').val(),searchresult[3],type2);
+				searchResult($('#searchid').val(),searchresult[3],type2);
 
 			 break;
 			}
@@ -523,6 +520,7 @@ $("#SearchListRes").mouseover(function(){
 	});
 	$(this).find("li a:first-child").click(function () {
           var searchresult = $(this).text().split('**');
+          // alert('searchresult'+searchresult[0]);
 		  $("#searchlist").val(searchresult[0]);
 		  if(Chkstatus==1)
 		  {
@@ -532,6 +530,7 @@ $("#SearchListRes").mouseover(function(){
 		  }
 		  var type2;
           type2 = searchresult[5];
+          // alert('type2'+type2);
 		  $("#type2").val(type2);
 		  if($("#Searchmodel").val()==1)
           {
@@ -548,7 +547,7 @@ $("#SearchListRes").mouseover(function(){
 			userCityy = 'Pondicherry';
 			userArea  = '';
 			}
-			window.location.href="Searchpage.php?action=Add&searchkey="+$('#searchlist').val()+"&requesttype="+requestType+"&usercity="+userCityy+"&userarea="+searchresult[3]+"&type2="+type2;
+			window.location.href="Searchpage.php?action=Add&searchkey="+$('#searchlist').val()+"&requesttype="+requestType+"&usercity="+userCityy+"&userarea="+searchresult[3]+"&type2=1";
 		  }
 		  else
 		  searchResult($('#searchlist').val(),searchresult[3],type2);

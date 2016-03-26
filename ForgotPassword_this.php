@@ -14,7 +14,7 @@ include("Mailer/class.phpmailer.php");
 </head>
 <body onload="document.LoginForm.UserName.focus();Disappear();" class="background">
 <script type="text/javascript">
-function ValidateLogin()
+function ValidateUser()
 {
 if(DocId('UserName').value=='')
 {
@@ -33,15 +33,14 @@ return false;
 <div style="width:990px;height:auto;margin-left:auto;margin-right:auto;">
 <div align="center" style="width:990px;height:82px; margin-top:40px;"><a href="index.php" style="border:none;text-decoration:none;"><div style="font-weight: bold; margin-top: 80px; font-family: Trebuchet MS; font-size: 80px;text-shadow: 4px 4px #000000;"><span style="color:#00667C;">X</span><span style="color:#C31118;">Y</span><span style="color:#00667C;">GET</span><span style="color:#C31118;font-size:55px;">.COM</span></div></a></div>
 <div id="personal" style="width:990px; padding-bottom:90px; margin-top:40px;height:475px;">
-<form id="LoginForm" name="LoginForm"  method="post" action="ForgotPassword.php" onsubmit="return ValidateLogin();">
+<form id="LoginForm" name="LoginForm"  method="post" action="ForgotPassword.php" onsubmit="return ValidateUser();">
 <h1>Forgot Password</h1>
-<div class="validation text-align-c" id="msgdisplay"><?php $_REQUEST['msg'] = (isset($_REQUEST['msg']) ? $_REQUEST['msg'] : ''); if($_REQUEST["msg"]=="1") { ?>Invalid Email Id / Mobile Number!<?php } if($_REQUEST["msg"]=="2") { ?>Password has been Sent to your Email Id and Mobile!<?php }?></div>
+<div class="validation text-align-c" id="msgdisplay"><?php $_REQUEST['msg'] = (isset($_REQUEST['msg']) ? $_REQUEST['msg'] : ''); if($_REQUEST["msg"]=="1") { ?>Invalid Email Id!<?php } if($_REQUEST["msg"]=="2") { ?>Password has been Sent to your Email Id and Mobile!<?php }?></div>
 <div style="height:15px;"></div>
 <fieldset id="inputss" style="background:none;">
 <input id="UserName" name="UserName" type="text" placeholder="Username" autofocus autocomplete="off" />   
 </fieldset>
 <fieldset id="actions" style="background:none;margin: 9px 0 0;">
-
 <table cellpadding="0" cellspacing="0" border="0">
   <tr>
     <td><input type="submit" id="Submit" name="Submit" value="Submit"></td>
@@ -127,8 +126,5 @@ header("Location:ForgotPassword.php?msg=2");
 }
 else
 header("Location:ForgotPassword.php?msg=1");
-}
-
-
- 
+} 
 ?>

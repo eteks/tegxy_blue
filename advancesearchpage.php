@@ -54,7 +54,7 @@ var requestType="bestdeals";
 else if(pro_search !="" && comp_name !="")
 {
 var requestType="bestdeals";
-//alert(requestType);
+// alert('2'+requestType);
 }
 
 var userCity1=$("#city_name").val();
@@ -430,16 +430,15 @@ function showGeneralArea()
 </div>
 <!--adleft_container-->
 <?php }
-    if($requestType=='bestdeals'){?>
-<!--adleft_container-->
+    if($requestType=='bestdeals'){?><!--adleft_container-->
 <div class="adleft_container">
     <div style="width:100%;height:55px;float:left;" align="right">
-        <div class="post_anadd">
+  <!--       <div class="post_anadd">
             <a <?php  if(isset($_SESSION['LID'])){?> target="_blank"  href="<?php echo 'ManageProfile.php?user='.base64_encode($_SESSION['Type']);?>" <?php } else {?> class="pop firstviewmore" onclick="Postafreead();" <?php }?> title="View More" style="text-decoration: none;">
                 <div class="post_addtxt">Post a Free Ad</div>
                 <div class="post_findtxt">To find your Best Deal</div>
             </a>
-        </div>
+        </div> -->
     </div>
     <!--250-->
     <div style="width:250px;height:auto;float:left;">
@@ -461,24 +460,7 @@ function showGeneralArea()
                             if ($requestType=='bestdeals'){
                             list_featured_product();
                             }
-                        ?>
-                         
-                      <!--   <li class="deal" style="height:45px;">
-                            <div style="float:left;"><img src="images/atomic_erp.png" width="35" height="45" /></div>
-                            &nbsp;
-                            <div style="float:left;line-height:14px;padding-left:10px;">Atomic ERP<br/><span style="font-size:10px;">Information Technology</span></div>
-                        </li>
-                        <li class="deal" style="height:45px;">
-                            <div style="float:left;"><img src="images/atomic_hms.png" width="35" height="45" /></div>
-                            &nbsp;
-                            <div style="float:left;line-height:14px;padding-left:10px;">Atomic HRMS<br/><span style="font-size:10px;">Information Technology</span></div>
-                        </li>
-                        <li class="deal" style="height:45px;">
-                            <div style="float:left;"><img src="images/academicka.png" width="35" height="45" /></div>
-                            &nbsp;
-                            <div style="float:left;line-height:14px;padding-left:10px;">Atomic Academica<br/><span style="font-size:10px;">Information Technology</span></div>
-                        </li> -->
-                      
+                        ?>               
                     </ul>
                 </div>
             </div>
