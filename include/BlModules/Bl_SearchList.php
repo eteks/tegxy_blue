@@ -76,7 +76,7 @@ if($_REQUEST['action']=='2'){
 		echo "</ul>";
 	}
 	else
-		echo 0;		
+		echo '<div style="text-align:left;font-family:verdana;font-size:11px;width:498px;padding:2px 4px;" class="no_matches">No Matches Found</div>';	
 }
 if($_REQUEST['action']=='3'){
 	//if (trim($str1) != '') $str1 = trim($str1);

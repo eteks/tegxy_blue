@@ -49,7 +49,7 @@ var requestType="company";
 else if(pro_search !="" && comp_name =="")
 {
 var requestType="bestdeals";
-//alert(requestType);
+// alert('requestType adv'+requestType);
 }
 else if(pro_search !="" && comp_name !="")
 {
@@ -83,9 +83,6 @@ else if(industry_c =="" && industry_p !="")
 {
 var industry=$("#Sector").val();
 }
-
-
-
 //alert(industry);
 
 // if(selectarea=='')
@@ -98,10 +95,42 @@ var industry=$("#Sector").val();
 // }
 
 window.location.href="Searchpage.php?action=Add&searchkey="+searchKey+"&requesttype="+requestType+"&usercity="+userCity+"&industry="+industry+"&type2=1";
-
-
 }
 </script>
+<script>
+
+function GET_City(city_id)
+{
+//alert(city_id);
+    createXmlObject();
+    var ran_unrounded=Math.random()*100000;
+    var ran_number=Math.floor(ran_unrounded);
+    //var Country = document.getElementById('SelCountry').value;
+    //var State = document.getElementById('SelState').value;
+    var str = "Action=Get_City&City="+city_id+"&r="+ran_number;
+    var url = "include/BlModules/Bl_CountryStateCity.php";
+    //alert(url);
+    xmlhttp.open("POST", url, true);  
+    xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+    xmlhttp.send(str);
+    xmlhttp.onreadystatechange = showGeneralArea
+}
+
+function showGeneralArea() 
+{ 
+    if (xmlhttp.readyState == 4) 
+    {
+        var response = xmlhttp.responseText;
+        if (response != "") 
+        {
+    //alert(response);
+            document.getElementById('ShowAreaList').innerHTML = response;
+        }
+    }
+}
+
+</script>
+
 <style type="text/css">
     ul.leftsidebarlist
     {
@@ -185,25 +214,25 @@ window.location.href="Searchpage.php?action=Add&searchkey="+searchKey+"&requestt
 
     if(isset($findcitymatch) || isset($findareamatch)){
     $wherec = "AND RGT_City= $findcitymatch $queryareamatch ";
-    $querycitymatch1=db_query("SELECT RGT_PK FROM ".TABLE_REGISTRATION." WHERE  RGT_Status=1 ".$wherec."");
+    $querycitymatch1=db_query("SELECT RGT_PK FROM ".TABLE_REGISTRATION." WHERE  RGT_Status=1 AND RGT_PaymentStatus=1 ".$wherec."");
     while($fetchcitymatch=mysql_fetch_array($querycitymatch1)){
     $citymatchdata.=$fetchcitymatch['RGT_PK'].',';
     }
     $citymatchdata=substr($citymatchdata,0,-1);
     }
 
-    $queryprodname=db_query("SELECT Id FROM ".TABLE_ADMINPRODUCT." WHERE ProductName LIKE '$searchkey%'");
+    $queryprodname=db_query("SELECT PS_Id FROM ".TABLE_PRODUCTSERVICE." WHERE PS_Display LIKE '$searchkey%' AND PS_Status=1");
     while($fetchprodid=mysql_fetch_array($queryprodname)){
-    $matchingids.=$fetchprodid['Id'].',';
+    $matchingids.=$fetchprodid['PS_Id'].',';
     }
     $matchingids=substr($matchingids,0,-1);
     if($searchkey!='')
     {
     // Based On Keyword, Display
-    $findproductmatch     = get_Search_Id(TABLE_ADMINPRODUCT, "Id", "ProductName", $searchkey);
+    $findproductmatch     = get_Search_Id(TABLE_PRODUCTSERVICE, "PS_Id", "PS_Display AND PS_Status=1", $searchkey);
 
     $findkeywordmatch     = get_Search_Id(TABLE_PRODUCTSERVICE, "PS_Id", "PS_Keyword", $searchkey);
-    $finddisplaymatch     = get_Search_Id(TABLE_PRODUCTSERVICE, "PS_Id", "PS_Display", $searchkey);
+    $finddisplaymatch     = get_Search_Id(TABLE_PRODUCTSERVICE, "PS_Id", "PS_Display AND PS_Status=1", $searchkey);
 
     if($findproductmatch!='' || $findkeywordmatch!='' || $finddisplaymatch!='' )
     {
@@ -305,7 +334,8 @@ window.location.href="Searchpage.php?action=Add&searchkey="+searchKey+"&requestt
       </tr>
 
       <tr>
-        <td width="129">Company Name </td>
+        <td width="129">Company Name
+        <span style="color:#F00;">*</span> </td>
         <td width="17">:</td>
         <td width="404" align="left">
 
@@ -487,7 +517,9 @@ window.location.href="Searchpage.php?action=Add&searchkey="+searchKey+"&requestt
     </div>    </td>
       </tr>
       <tr>
-        <td>Product Name</td>
+        <td>Product Name
+        <span style="color:#F00;">*</span>
+        </td>
         <td>:</td>
         <td width="404" align="left">
             <div class="content">
@@ -548,10 +580,7 @@ window.location.href="Searchpage.php?action=Add&searchkey="+searchKey+"&requestt
         <span id="ShowAreaList"><select id="Area" style="width:260px; height:25px;" name="Area"><option value="">--Select Area--</option></select>
         <input type="hidden" name="city_name" id="city_name" value="" /></span> </td>
       </tr>
-
-
       <tr>
-
         <td colspan="3" align="center" >
 
     <input id="searchsubmit" type="button" onClick="Searchpage();" value="Search" class="btnstyle" style="margin-right:30px;" /></td>

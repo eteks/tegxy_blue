@@ -664,7 +664,7 @@ function getRelatedSearchComp($sectordata, $alreadylisteddetails, $findcitymatch
     else
         $area = '';
 
-    $queryrelated = db_query("SELECT RGT_CompName FROM  " . TABLE_REGISTRATION . " WHERE RGT_Status=1 AND RGT_Type=2  AND  RGT_Sector IN ('" . $sectordata . "')  AND RGT_PK NOT IN ('" . $alreadylisteddetails . "') AND RGT_City =$findcitymatch $area ");
+    $queryrelated = db_query("SELECT RGT_CompName FROM  " . TABLE_REGISTRATION . " WHERE RGT_Status=1 AND RGT_Type=2  AND RGT_PaymentStatus=1 AND  RGT_Sector IN ('" . $sectordata . "')  AND RGT_PK NOT IN ('" . $alreadylisteddetails . "') AND RGT_City =$findcitymatch $area");
     $countresult  = mysql_num_rows($queryrelated);
     if ($countresult > 0) {
         while ($Fetchrelated = mysql_fetch_array($queryrelated)) {
@@ -918,7 +918,7 @@ function ProfileUrl($Id)
 
 function list_featured()
 {
-    $featuredquery = db_query("SELECT RGT_CompName FROM " . TABLE_REGISTRATION . " WHERE RGT_Featured=0 AND RGT_Type = 2 LIMIT 10");
+    $featuredquery = db_query("SELECT RGT_CompName FROM " . TABLE_REGISTRATION . " WHERE RGT_Featured=0 AND RGT_Type = 2 AND RGT_Status=1 AND RGT_PaymentStatus=1 order by RGT_CompName asc LIMIT 10");
     if (db_num_rows($featuredquery) > 0) {
         while ($fetchfeatured = db_fetch_array($featuredquery)) {
             echo '<li>' . $fetchfeatured['RGT_CompName'] . '</li>';
@@ -929,7 +929,7 @@ function list_featured()
 
 function list_featured_product()
 {
-    $featuredquery = db_query("SELECT PS_Display FROM " . TABLE_PRODUCTSERVICE . " WHERE PS_Featured=0 AND PS_Status = 1 LIMIT 10");
+    $featuredquery = db_query("SELECT PS_Display FROM " . TABLE_PRODUCTSERVICE . " WHERE PS_Featured=0 AND PS_Status = 1 order by PS_Display asc LIMIT 10");
     if (db_num_rows($featuredquery) > 0) {
         while ($fetchfeatured = db_fetch_array($featuredquery)) {
             echo '<li>' . $fetchfeatured['PS_Display'] . '</li>';

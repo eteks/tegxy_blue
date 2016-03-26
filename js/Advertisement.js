@@ -53,16 +53,13 @@ $("#Advertiselevel").val(1);
 function Selectcreatenewadv()
 {
 	$('#Renewgrid').hide();
-$("#Advnamegrid").show();
-$("#Selectexistgrid").hide();
-$("#Selectnewgrid").show();
-$("#Nextprocess").show();
-Advformresetsecondlevel();
-$("#Advertiselevel").val(2);
-
-
+	$("#Advnamegrid").show();
+	$("#Selectexistgrid").hide();
+	$("#Selectnewgrid").show();
+	$("#Nextprocess").show();
+	Advformresetsecondlevel();
+	$("#Advertiselevel").val(2);
 }
-
 
 function Firstleveladv()
 {
@@ -161,14 +158,75 @@ function AddAdvertisement(user)
 	var Advtotimeline = DocId('Totimeline').value;
 	var Advamount = DocId('Advamount').value;
 	var Advbudget = DocId('Advbudget').value;
-	var Advertise = DocId('Advertise').value;
-	
+	var Advertise = DocId('Advertise').value;	
 	var str = "action=2&user="+user+"&Advname="+Advname+"&Advselectionlist="+Advselectionlist+"&Advlinkselection="+Advlinkselection+"&Advlinkurl="+Advlinkurl+"&Advimage="+Advimage+"&Advdescription="+Advdescription+"&Advisplayformate="+Advisplayformate+"&Advtargetpage="+Advtargetpage+"&Advlocation="+Advlocation+"&Advsector="+Advsector+"&Advaudience="+Advaudience+"&Advfromtimeline="+Advfromtimeline+"&Advtotimeline="+Advtotimeline+"&Advamount="+Advamount+"&Advbudget="+Advamount+"&Advertise="+Advertise+"&Advertiselevel="+Advertiselevel+"&Advselectiontype="+Advselectiontype+"&r="+ran_number;
 	var url = "include/BlModules/Bl_Advertisement.php";
-	xmlhttp.open("POST", url, true);  
-	xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
-	xmlhttp.send(str);
-	xmlhttp.onreadystatechange = ShowAdvertisement
+	
+	// if(DocId('Targetpage').value=='' || DocId('AdvLocation').value=='' || DocId('AdvSector').value=='' || DocId('Advaudience').value=='' || DocId('Fromtimeline').value=='' || DocId('Totimeline').value=='' || DocId('Advamount').value=='' || DocId('Advbudget').value==''){
+		
+	if(DocId('Targetpage').value==''){
+		$('#Targetpage').addClass('error');
+	}
+	else{
+		$('#Targetpage').removeClass('error');
+	}
+	
+	if(DocId('AdvLocation').value==''){
+		$('#AdvLocation').addClass('error');
+	}
+	else{
+		$('#AdvLocation').removeClass('error');
+	}
+
+	if(DocId('AdvSector').value==''){
+		$('#AdvSector').addClass('error');
+	}
+	else{	
+		$('#AdvSector').removeClass('error');
+	}
+
+	if(DocId('Advaudience').value==''){
+		$('#Advaudience').addClass('error');
+	}
+	else{
+		$('#Advaudience').removeClass('error');
+	}
+
+	if((DocId('Fromtimeline').value=='')){
+		$('#Fromtimeline').addClass('error');
+	}
+	else{
+		$('#Fromtimeline').removeClass('error');
+	}
+
+	if((DocId('Totimeline').value=='')){
+		$('#Totimeline').addClass('error');
+	}
+	else{
+		$('#Totimeline').removeClass('error');
+	}
+
+	if((DocId('Advamount').value=='')){
+		$('#Advamount').addClass('error');
+	}else{
+		$('#Advamount').removeClass('error');
+	}
+
+	if((DocId('Advbudget').value=='')){
+		$('#Advbudget').addClass('error');
+	}else{
+		$('#Advbudget').removeClass('error');
+	}
+	if(($('#Targetpage') || $('#AdvLocation') || $('#AdvSector') || $('#Advaudience') || $('#Fromtimeline') || $('#Totimeline') || $('#Advamount') || $('#Advbudget')).hasClass('error')){
+		xmlhttp.open("POST", url, false);
+		alert('Please Enter all the required fields');
+	}
+	else{		
+		xmlhttp.open("POST", url, true);  
+		xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+		xmlhttp.send(str);
+		xmlhttp.onreadystatechange = ShowAdvertisement
+	}
 }
 
 function ShowAdvertisement()
@@ -272,3 +330,56 @@ $('#Fromtimeline').val();
 $('#Totimeline').val();	
 alert($('#Fromtimeline').val()+$('#Totimeline').val())
 }
+
+$(document).ready(function(){	
+
+	// prev and next process for first step
+	$('.adv_next').click(function(){
+		// alert('comes');
+	    element = $(this).parents('.next_ad');
+	    // alert(element.html());	 
+        if($('#Advname,#Advdescription').val() == ''){
+	        	// alert('comes AD');
+	           $('#Advname,#Advdescription').addClass('error');
+	           element.show();
+        }	       
+  	    else{
+	        element.hide();
+	        
+	        $('#Firstleveladv').next('.next_ad').show();
+	    }
+	    // return false;
+	});
+
+    // validation code when click previous button
+    $('.adv_previous_format').click(function(){
+        element = $(this).parents('.next_ad');
+        element.hide();
+        element.prev().children('.next_ad').show();
+        return false;
+    });
+
+    // next click for step2
+    $('.ad_next_format').click(function(){
+    	// alert('next');
+    	element = $(this).parents('.next_ad');
+    	// alert(element.html());
+		if ($('#Firstformate').is(':checked')){
+			element.hide();
+			$('#Thirdleveladv').show();
+		}
+		else{
+			$('#ad_next_format').addClass('error');
+			element.show();
+		} 
+    });
+    // step3
+    $('.adv_previous_format1').click(function(){
+        element = $(this).parents('.next_ad1');
+        // alert(element.html());
+        element.hide();
+        element.prev('.next_ad').show();
+        return false;        
+    });
+
+});

@@ -167,13 +167,13 @@ to continue browsing XYget.com</p>
 <tr>
 <td class="twenty"><label for="input-ten" class="floatleft">Email<span style="color:#F00;">*</span></label></td>
 <td class="ten"> : </td>
-<td class="seventy"><input class="inp-text" name="Email"  id="Email" type="text" size="30" autocomplete="off" /></td></tr>
+<td class="seventy"><input class="inp-text" name="Email"  id="Email" type="text" size="30" autocomplete="off" onkeyup="Email_check();" /></td></tr>
 <tr>
 
 <tr>
 <td class="twenty"><label for="input-eight" class="floatleft">Mobile Number<span style="color:#F00;">*</span></label></td>
 <td class="ten"> : </td>
-<td class="seventy"><input class="inp-text" name="Mobile"  id="Mobile" type="text" size="30" autocomplete="off"  onkeyup="checkNumber(this);" /></td>
+<td class="seventy"><input class="inp-text" name="Mobile"  id="Mobile" type="text" size="30" autocomplete="off" maxlength="10"  onkeyup="checkNumber(this);" /></td>
 </tr>
 
 <tr>
