@@ -75,9 +75,9 @@ db_connect();
             $searchquery1 = db_query("SELECT * FROM  " . TABLE_REGISTRATION . " WHERE  $searchsql RGT_Status=1 AND RGT_Type=2 $querycitymatch  $queryareamatch");
             $searchquery2 = db_query("SELECT * FROM  " . TABLE_REGISTRATION . " WHERE  $searchsql RGT_Status=1 AND RGT_Type=2 $querycitymatch  $queryareamatch");
             $countresult  = mysql_num_rows($searchquery);
-            while ($fetchquery = mysql_fetch_array($searchquery1)) {
-                $relatedsearch .= $fetchquery['RGT_Sector'] . ',';
-            } 
+            // while ($fetchquery = mysql_fetch_array($searchquery1)) {
+            //     $relatedsearch .= $fetchquery['RGT_Sector'] . ',';
+            // } 
         } 
         else if ($requestType == 'bestdeals') {
             $searchtTitle = "Xbit List";//db connection
@@ -144,7 +144,7 @@ db_connect();
             } 
         } 
         $relatedsearch  = substr($relatedsearch, 0, -1);
-        $relatedsearch1 = substr($relatedsearch1, 0, -1);
+        $relatedsearch1 = substr($relatedsearch1, 0, -1);         
     } 
 
 //related list detatils
@@ -234,7 +234,7 @@ db_connect();
         <?php
             if ($countresult > 0) { 
             ?>
-   <!--      <div class="adsearchresult_menu"><a id="Searchdisplaytypelist" class="active" href="#" onclick="SearchListStyle(<?php
+        <div class="adsearchresult_menu"><a id="Searchdisplaytypelist" class="active" href="#" onclick="SearchListStyle(<?php
             echo '\'' . $requestType . '\'' . ',' . '\'' . $searchkey . '\'';
             ?>,'1',<?php
             echo $type2;
@@ -242,7 +242,8 @@ db_connect();
             echo '\'' . $requestType . '\'' . ',' . '\'' . $searchkey . '\'';
             ?>,'2',<?php
             echo $type2;
-            ?>);" >Grid</a></div> -->
+            ?>);" >View Gallery</a>
+        </div> 
         <!--ad-->
         <div id="mainsearchcontent">
             <?php 
@@ -486,7 +487,7 @@ db_connect();
             <div id="relatedresultsbox" style="display:<?php
                 if ($searchkey == '') {
                     echo 'none';
-                } //$searchkey == ''
+                } 
                 else
                     echo 'block';
                 ?>" >
@@ -496,7 +497,7 @@ db_connect();
                         <?php
                             if ($requestType == 'bestdeals') {
                                 getRelatedSearchBestdeals($relatedsearch, $relatedsearch1, $citymatchdata);
-                            } //$requestType == 'bestdeals'
+                            } 
                             ?>
                     </ul>
                 </div>
@@ -547,15 +548,16 @@ db_connect();
         <?php
             if ($countresult > 0) {       
             ?>
-       <!--  <div class="adsearchresult_menu"><a id="Searchdisplaytypelist" class="active" href="#" onclick="SearchListStyle(<?php
-            //echo '\'' . $requestType . '\'' . ',' . '\'' . $searchkey . '\'';
+         <div class="adsearchresult_menu"><a id="Searchdisplaytypelist" class="active" href="#" onclick="SearchListStyle(<?php
+            echo '\'' . $requestType . '\'' . ',' . '\'' . $searchkey . '\'';
             ?>,'1',<?php
-            //echo $type2;
+            echo $type2;
             ?>);">List</a> | <a id="Searchdisplaytypegrid" href="#" onclick="SearchListStyle(<?php
-            //echo '\'' . $requestType . '\'' . ',' . '\'' . $searchkey . '\'';
+            echo '\'' . $requestType . '\'' . ',' . '\'' . $searchkey . '\'';
             ?>,'2',<?php
-            //echo $type2;
-            ?>);" >Grid</a></div> -->
+            echo $type2;
+            ?>);" >View Gallery</a>
+        </div>
         <!--ad-->
         <div id="mainsearchcontent">
             <?php if($requestType=='bestdeals'){                        

@@ -567,7 +567,7 @@ function SearchListStyle(RequestType,SearchKey,Type,type2)
 	  url: url,
 	  data: data,
 	  success: function(data, status){
-        $('#mainsearchcontent').html(data);
+	  	$('#mainsearchcontent').html(data);
         
 		},
 	  error: function(xhr, desc, err) {
@@ -647,9 +647,7 @@ o.value = o.value.replace(/[^0-9.]+/g,'');
 function searchResult(searchKey,selectarea,type2){
     var searchKey=searchKey;
     $("#searchlist").val(searchKey);
-    // var requestType=$("input[name='requestType']:checked").val();
-	
-	if($('#requestTypeCom').attr('checked'))
+  	if($('#requestTypeCom').attr('checked'))
 	requestType = 'company';
 	else
 	requestType = 'bestdeals';

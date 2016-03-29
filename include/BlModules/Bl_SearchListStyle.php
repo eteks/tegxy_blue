@@ -52,9 +52,15 @@ $relatedsearch = '';
 $searchtTitle="Company List";
 
 //db connection
-$searchquery=db_query("SELECT * FROM  ".TABLE_REGISTRATION." WHERE  $searchsql RGT_Status=1 AND RGT_Type=2 $querycitymatch ");
-$searchquery1=db_query("SELECT * FROM  ".TABLE_REGISTRATION." WHERE  $searchsql RGT_Status=1 AND RGT_Type=2 $querycitymatch ");
-$searchquery2=db_query("SELECT * FROM  ".TABLE_REGISTRATION." WHERE  $searchsql RGT_Status=1 AND RGT_Type=2 $querycitymatch");
+if($searchsql!=''){
+$searchquery=db_query("SELECT * FROM  ".TABLE_REGISTRATION." WHERE  $searchsql AND RGT_Status=1 AND RGT_Type=2");
+$searchquery1=db_query("SELECT * FROM  ".TABLE_REGISTRATION." WHERE  $searchsql AND RGT_Status=1 AND RGT_Type=2");
+$searchquery2=db_query("SELECT * FROM  ".TABLE_REGISTRATION." WHERE  $searchsql AND RGT_Status=1 AND RGT_Type=2");
+}else{
+$searchquery=db_query("SELECT * FROM  ".TABLE_REGISTRATION." WHERE RGT_Status=1 AND RGT_Type=2");
+$searchquery1=db_query("SELECT * FROM  ".TABLE_REGISTRATION." WHERE  RGT_Status=1 AND RGT_Type=2");
+$searchquery2=db_query("SELECT * FROM  ".TABLE_REGISTRATION." WHERE RGT_Status=1 AND RGT_Type=2");
+}
 $countresult=mysql_num_rows($searchquery);
 while($fetchquery=mysql_fetch_array($searchquery1)){
 $relatedsearch.=$fetchquery['RGT_Sector'].',';
@@ -62,8 +68,12 @@ $relatedsearch.=$fetchquery['RGT_Sector'].',';
 }
 else if($requestType=='bestdeals'){
 $searchtTitle="Xbit List";
-//db connection
-
+//db connection    
+    $searchquery=db_query("SELECT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Display LIKE '$searchkey%' AND PS_Status=1 ");
+    $searchquery1=db_query("SELECT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Display LIKE '$searchkey%' AND PS_Status=1 ");
+    $searchquery2=db_query("SELECT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Display LIKE '$searchkey%' AND PS_Status=1");
+    $searchquery3=db_query("SELECT DISTINCT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Display LIKE '$searchkey%' AND PS_Status=1 ");
+    $countresult=mysql_num_rows($searchquery);   
 if(isset($findcitymatch)){
 $querycitymatch1=db_query("SELECT RGT_PK FROM ".TABLE_REGISTRATION." WHERE RGT_City= $findcitymatch AND RGT_Status=1 ");
 while($fetchcitymatch=mysql_fetch_array($querycitymatch1)){
@@ -78,8 +88,8 @@ while($fetchprodid=mysql_fetch_array($queryprodname)){
 $matchingids.=$fetchprodid['Id'].',';
 }
 $matchingids=substr($matchingids,0,-1);
-$relatedsearch1='';
-    if($matchingids!=''&&$citymatchdata!=''){
+$relatedsearch1='';       
+   if($matchingids!=''&&$citymatchdata!=''){
         $searchquery=db_query("SELECT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Fk IN (".$matchingids.") AND PS_User_Fk IN (".$citymatchdata.") ");
         $searchquery1=db_query("SELECT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Fk IN (".$matchingids.") AND PS_User_Fk IN (".$citymatchdata.") ");
         $searchquery2=db_query("SELECT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Fk IN (".$matchingids.") AND PS_User_Fk IN (".$citymatchdata.") ");

@@ -43,7 +43,7 @@ $("#searchlist").keyup(function(event){
 				  $("#SearchListRes").fadeIn("slow");
 				  if(Chkstatus==1)
 				  {
-		 		  $("#SearchListRes").html('<div style="text-align:left;font-family:verdana;font-size:11px;width:498px;padding:2px 4px;" class="no_matches">No Matches Found</div>');
+		 		  $("#SearchListRes").html('<div style="text-align:left;font-family:verdana;font-size:11px;width:498px;padding:2px 4px;" class="no_matches">Sorry! No such item found</div>');
 				  $("#SearchListRes").css('border','1px solid #8789E7');
 				  $("#SearchListRes").css('background','none repeat scroll 0 0 #FFFFFF');
 				  }
@@ -210,7 +210,7 @@ $("#comp_searchid").keyup(function(event){
 				  $("#SearchListRes").fadeIn("slow");
 				  if(Chkstatus==1)
 				  {
-				  $("#SearchListRes").html('<div style="text-align:left;font-family:verdana;font-size:11px;width:498px;padding:2px 4px;" class="no_matches">No Matches Found</div>');
+				  $("#SearchListRes").html('<div style="text-align:left;font-family:verdana;font-size:11px;width:498px;padding:2px 4px;" class="no_matches">Sorry! No such item found</div>');
 				  $("#SearchListRes").css('border','1px solid #8789E7');
 				  $("#SearchListRes").css('background','none repeat scroll 0 0 #FFFFFF');
 				  }
@@ -375,7 +375,7 @@ $("#searchid").keyup(function(event){
 				  $("#SearchListPro").fadeIn("slow");
 				  if(Chkstatus==1)
 				  {
-				  $("#SearchListPro").html('<div style="text-align:left;font-family:verdana;font-size:11px;width:498px;padding:2px 4px;" class="no_matches">No Matches Found</div>');
+				  $("#SearchListPro").html('<div style="text-align:left;font-family:verdana;font-size:11px;width:498px;padding:2px 4px;" class="no_matches">Sorry! No such item found</div>');
 				  $("#SearchListPro").css('border','1px solid #8789E7');
 				  $("#SearchListPro").css('background','none repeat scroll 0 0 #FFFFFF');
 				  }
@@ -592,7 +592,7 @@ $("#userCityselect").keyup(function(event){
 				else
 				{
 				  $("#ListCityRes").fadeIn("slow");
-				  $("#ListCityRes").html('<div style="text-align:left;font-family:verdana;font-size:11px;width:278px;padding:2px 4px;" class="no_matches">No Matches Found</div>');
+				  $("#ListCityRes").html('<div style="text-align:left;font-family:verdana;font-size:11px;width:278px;padding:2px 4px;" class="no_matches">Sorry! No such item found</div>');
 				}
 				$("#loading").css("visibility","hidden");
 			   }

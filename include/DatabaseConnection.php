@@ -692,8 +692,8 @@ function getRelatedSearchComp($sectordata, $alreadylisteddetails, $findcitymatch
 }
 function getRelatedSearchBestdeals($ps_id, $ps_fk, $citymatchdata)
 {
-
     if ($citymatchdata != '')
+
         $wherecon = "AND PS_User_Fk IN (" . $citymatchdata . ")";
 
     if ($ps_id != '' || $ps_fk != '') {
