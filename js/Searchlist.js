@@ -10,10 +10,10 @@ $("#searchlist").focus(function() {this.val=''; });
 $("#searchlist").keyup(function(event){
 	var offset = $("#searchlist").offset();
 	var width = $("#searchlist").width()-2;
-	if($('#requestTypedeals').attr('checked'))
-	Chkstatus = 2;
-	else
+	if($('#requestTypeCom').attr('checked'))
 	Chkstatus = 1;
+	else
+	Chkstatus = 2;
 
 	$("#SearchListRes").css("left",offset.left);
 	$("#SearchListRes").css("width",width);
