@@ -647,8 +647,13 @@ o.value = o.value.replace(/[^0-9.]+/g,'');
 function searchResult(searchKey,selectarea,type2){
     var searchKey=searchKey;
     $("#searchlist").val(searchKey);
-    var requestType=$("input[name='requestType']:checked").val();
-    // alert("searchresult"+$("input[name='requestType']:checked").html());
+    // var requestType=$("input[name='requestType']:checked").val();
+	
+	if($('#requestTypeCom').attr('checked'))
+	requestType = 'company';
+	else
+	requestType = 'bestdeals';
+
     var userCity=$("#userCity").val();
 	var userArea;
 	if(selectarea=='')
