@@ -72,7 +72,7 @@ $searchtTitle="Xbit List";
     $searchquery=db_query("SELECT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Display LIKE '$searchkey%' AND PS_Status=1 ");
     $searchquery1=db_query("SELECT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Display LIKE '$searchkey%' AND PS_Status=1 ");
     $searchquery2=db_query("SELECT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Display LIKE '$searchkey%' AND PS_Status=1");
-    $searchquery3=db_query("SELECT DISTINCT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Display LIKE '$searchkey%' AND PS_Status=1 ");
+    $searchquery3=db_query("SELECT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Display LIKE '$searchkey%' AND PS_Status=1 ");
     $countresult=mysql_num_rows($searchquery);   
 if(isset($findcitymatch)){
 $querycitymatch1=db_query("SELECT RGT_PK FROM ".TABLE_REGISTRATION." WHERE RGT_City= $findcitymatch AND RGT_Status=1 ");
@@ -85,23 +85,23 @@ $citymatchdata=substr($citymatchdata,0,-1);
 // $queryprodname=db_query("SELECT Id FROM ".TABLE_ADMINPRODUCT." WHERE ProductName LIKE '$searchkey%'");
 $queryprodname=db_query("SELECT PS_Id FROM ".TABLE_PRODUCTSERVICE." WHERE PS_Display LIKE '$searchkey%' AND PS_Status=1");
 while($fetchprodid=mysql_fetch_array($queryprodname)){
-$matchingids.=$fetchprodid['Id'].',';
+$matchingids.=$fetchprodid['PS_Id'].',';
 }
-$matchingids=substr($matchingids,0,-1);
+$matchingids=substr($matchingids,0,-1); 
 $relatedsearch1='';       
-   if($matchingids!=''&&$citymatchdata!=''){
-        $searchquery=db_query("SELECT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Fk IN (".$matchingids.") AND PS_User_Fk IN (".$citymatchdata.") ");
-        $searchquery1=db_query("SELECT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Fk IN (".$matchingids.") AND PS_User_Fk IN (".$citymatchdata.") ");
-        $searchquery2=db_query("SELECT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Fk IN (".$matchingids.") AND PS_User_Fk IN (".$citymatchdata.") ");
-        $searchquery3=db_query("SELECT DISTINCT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Fk IN (".$matchingids.") AND PS_User_Fk IN (".$citymatchdata.") ");
-        $countresult=mysql_num_rows($searchquery);
-        while($fetchquery=mysql_fetch_array($searchquery1)){
-            $relatedsearch.=$fetchquery['PS_Id'].',';
-        }
-        while($fetchquery1=mysql_fetch_array($searchquery3)){
-            $relatedsearch1.=$fetchquery1['PS_Fk'].',';
-        }
-    }
+   // if($matchingids!=''&&$citymatchdata!=''){     
+   //      $searchquery=db_query("SELECT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Fk IN (".$matchingids.") AND PS_User_Fk IN (".$citymatchdata.") ");
+   //      $searchquery1=db_query("SELECT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Fk IN (".$matchingids.") AND PS_User_Fk IN (".$citymatchdata.") ");
+   //      $searchquery2=db_query("SELECT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Fk IN (".$matchingids.") AND PS_User_Fk IN (".$citymatchdata.") ");
+   //      $searchquery3=db_query("SELECT DISTINCT * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Fk IN (".$matchingids.") AND PS_User_Fk IN (".$citymatchdata.") ");
+   //      $countresult=mysql_num_rows($searchquery);
+   //      while($fetchquery=mysql_fetch_array($searchquery1)){
+   //          $relatedsearch.=$fetchquery['PS_Id'].',';
+   //      }
+   //      while($fetchquery1=mysql_fetch_array($searchquery3)){
+   //          $relatedsearch1.=$fetchquery1['PS_Fk'].',';
+   //      }
+   //  }
 }
 $relatedsearch=substr($relatedsearch, 0, -1);
 $relatedsearch1=substr($relatedsearch1, 0, -1);
