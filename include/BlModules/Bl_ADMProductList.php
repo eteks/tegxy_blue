@@ -5,8 +5,8 @@ db_connect();
 
 	$str1 = addslashes($_POST['data']);
 	if (trim($str1) != '') $str1 = trim($str1);
-	$Whecon = "Where `ProductName` like '".$str1."%'";
-	$sql    = "SELECT  ProductName FROM  ".TABLE_ADMINPRODUCT."  ".$Whecon." Order by ProductName asc limit 0,5";
+	$Whecon = "Where `PS_Display` like '".$str1."%'";
+	$sql    = "SELECT  PS_Display FROM  ".tbl_productservice."  ".$Whecon." Order by PS_Display asc limit 0,5";
 	
 	$result = db_query($sql) or die(db_error());
 	if(db_num_rows($result))
@@ -14,7 +14,7 @@ db_connect();
 		echo '<ul class="list">';
 		while($row = db_fetch_array($result))
 		{	
-			$str = strtolower($row['ProductName']);
+			$str = strtolower($row['PS_Display']);
 			if($str1!=""){
 				$start = strpos($str, $str1);
 				$end = similar_text($str, $str1);

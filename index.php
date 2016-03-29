@@ -16,7 +16,6 @@ db_connect();
 <script type="text/javascript">
 
 function Searchpage(e){
-
 if($('#SearchListRes').children().hasClass('no_matches')){
 	e.stopPropagation();
 	$('#SearchListRes').next('input').removeClass('btnstyle');
@@ -32,16 +31,16 @@ return false;
 }
 else{
 var requestType=$("input[name='requestType']:checked").val();
-alert('requestType saerch pafge'+requestType);
+// alert('requestType saerch pafge'+requestType);
+var type2 = 1;
 var userCity=$("#userCity").val();
 //alert(userCity);
 var userArea;
 if(selectarea=='')
 userArea=$("#selectarea").val();
-
 else
 userArea=selectarea;
-window.location.href="Searchpage.php?action=Add&searchkey="+searchKey+"&requesttype="+requestType+"&usercity="+userCity+"&userarea="+userArea+"&type2=1";
+window.location.href="Searchpage.php?action=Add&searchkey="+searchKey+"&requesttype="+requestType+"&usercity="+userCity+"&userarea="+userArea+"&type2="+type2;
 }
 }
 }
@@ -49,6 +48,7 @@ function adv_Searchpage()
 {
 searchKey = $("#searchlist").val();
 var requestType=$("input[name='requestType']:checked").val();
+// alert('requestType index'+requestType);
 var userCity=$("#userCity").val();
 var userArea;
 if(selectarea=='')

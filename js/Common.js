@@ -567,7 +567,7 @@ function SearchListStyle(RequestType,SearchKey,Type,type2)
 	  url: url,
 	  data: data,
 	  success: function(data, status){
-        $('#mainsearchcontent').html(data);
+	  	$('#mainsearchcontent').html(data);
         
 		},
 	  error: function(xhr, desc, err) {
@@ -647,21 +647,25 @@ o.value = o.value.replace(/[^0-9.]+/g,'');
 function searchResult(searchKey,selectarea,type2){
     var searchKey=searchKey;
     $("#searchlist").val(searchKey);
-    var requestType=$("input[name='requestType']:checked").val();
+  	if($('#requestTypeCom').attr('checked'))
+	requestType = 'company';
+	else
+	requestType = 'bestdeals';
+
     var userCity=$("#userCity").val();
 	var userArea;
 	if(selectarea=='')
 	userArea=$("#selectarea").val();
 	else
-	userArea=selectarea;
-	
+	userArea=selectarea;	
 	if(type2=='')
-	type2 = $("#type2").val();
+	type2 = $("#type2").val();		
 	else
 	type2 = type2 ;
 	
     var url = "include/BlModules/Bl_SearchResults.php"; //url
 	var data ="action=Add&searchkey="+searchKey+"&requesttype="+requestType+"&usercity="+userCity+"&userarea="+userArea+"&type2="+type2; //data
+   
      $.ajax({ 
 	  type: 'POST',
 	  url: url,

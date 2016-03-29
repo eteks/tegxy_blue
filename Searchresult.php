@@ -38,7 +38,7 @@ db_connect();
 <?php
     if (isset($_REQUEST['searchkey'])) {
         $searchkey   = $_REQUEST['searchkey'];
-        $requestType = $_REQUEST['requesttype'];
+        $requestType = $_REQUEST['requesttype'];      
         $userCity    = $_REQUEST['usercity'];
         if (isset($_REQUEST['userarea'])) {
             $userArea = AreaName($_REQUEST['userarea']);
@@ -63,80 +63,72 @@ db_connect();
                 $searchsql = "`RGT_CompName` LIKE  '$searchkey%'  AND";
             else
                 $searchsql = "";
-        } //$type2 == 1
-        // else if ($type2 == 3) {
-        //     $findkeywordmatch = get_Search_Id(TABLE_KEYWORDMST, "Kd_Id", "Kd_Keyword", $searchkey);
-        //     if ($findkeywordmatch != '')
-        //         $findkeywordmatchIds = get_Search_Id(TABLE_MEMBERKEYWORD, "Mk_MemFk", "Mk_KeywordFk", $findkeywordmatch);
-        //     if ($findkeywordmatchIds != '')
-        //         $searchsql = "`RGT_PK` IN (" . $findkeywordmatchIds . ") AND";
-        //     else
-        //         $searchsql = "";
-        // } //$type2 == 3
-        // else {
-        //     $findsectormatch = get_Search_Id(TABLE_SECTOR, "Id", "S_Name", $searchkey);
-        //     if ($findsectormatch != '')
-        //         $searchsql = "RGT_Sector IN (" . $findsectormatch . ") AND";
-        //     else
-        //         $searchsql = '';
-        // }
+        }       
         $relatedsearch        = '';
         $relatedsearch1       = '';
         $alreadylisteddetails = '';
         $citymatchdata        = '';
         $countresult          = '';
         if ($requestType == 'company') {
-            $searchtTitle = "Company List";
-            //db connection
+            $searchtTitle = "Company List";//db connection
             $searchquery  = db_query("SELECT * FROM  " . TABLE_REGISTRATION . " WHERE  $searchsql RGT_Status=1 AND RGT_Type=2 $querycitymatch  $queryareamatch");
             $searchquery1 = db_query("SELECT * FROM  " . TABLE_REGISTRATION . " WHERE  $searchsql RGT_Status=1 AND RGT_Type=2 $querycitymatch  $queryareamatch");
             $searchquery2 = db_query("SELECT * FROM  " . TABLE_REGISTRATION . " WHERE  $searchsql RGT_Status=1 AND RGT_Type=2 $querycitymatch  $queryareamatch");
             $countresult  = mysql_num_rows($searchquery);
-            while ($fetchquery = mysql_fetch_array($searchquery1)) {
-                $relatedsearch .= $fetchquery['RGT_Sector'] . ',';
-            } //$fetchquery = mysql_fetch_array($searchquery1)
-        } //$requestType == 'company'
+            // while ($fetchquery = mysql_fetch_array($searchquery1)) {
+            //     $relatedsearch .= $fetchquery['RGT_Sector'] . ',';
+            // } 
+        } 
         else if ($requestType == 'bestdeals') {
-            $searchtTitle = "Xbit List";
-            //db connection
+            $searchtTitle = "Xbit List";//db connection
+            $searchquery  = db_query("SELECT * FROM " . TABLE_PRODUCTSERVICE . "  WHERE PS_Display LIKE '$searchkey%' AND PS_Status=1");
+            $searchquery1  = db_query("SELECT * FROM " . TABLE_PRODUCTSERVICE . "  WHERE PS_Display LIKE '$searchkey%' AND PS_Status=1");
+            $searchquery2  = db_query("SELECT * FROM " . TABLE_PRODUCTSERVICE . "  WHERE PS_Display LIKE '$searchkey%' AND PS_Status=1");
+
+            $countresult  = mysql_num_rows($searchquery);
+            // while ($fetchquery = mysql_fetch_array($searchquery)) {
+            //     $relatedsearch .= $fetchquery['PS_Display'] . ',';
+            // } 
+
             if (isset($findcitymatch) || isset($findareamatch)) {
                 $wherec          = "AND RGT_City= $findcitymatch $queryareamatch ";
                 $querycitymatch1 = db_query("SELECT RGT_PK FROM " . TABLE_REGISTRATION . " WHERE  RGT_Status=1 " . $wherec . "");
                 while ($fetchcitymatch = mysql_fetch_array($querycitymatch1)) {
                     $citymatchdata .= $fetchcitymatch['RGT_PK'] . ',';
-                } //$fetchcitymatch = mysql_fetch_array($querycitymatch1)
+                } 
                 $citymatchdata = substr($citymatchdata, 0, -1);
-            } //isset($findcitymatch) || isset($findareamatch)
+            }
             $matchingids   = '';
             $queryprodname = db_query("SELECT PS_Id FROM " . TABLE_PRODUCTSERVICE . " WHERE PS_Display LIKE '$searchkey%'");
             while ($fetchprodid = mysql_fetch_array($queryprodname)) {
                 $matchingids .= $fetchprodid['PS_Id'] . ',';
-            } //$fetchprodid = mysql_fetch_array($queryprodname)
+            } 
             $matchingids = substr($matchingids, 0, -1);
             if ($searchkey != '') {
-                // Based On Keyword, Display
+                // Based On Keyword, Display             
                 $findproductmatch = get_Search_Id(TABLE_PRODUCTSERVICE, "PS_Id", "PS_Display", $searchkey);
                 $findkeywordmatch = get_Search_Id(TABLE_PRODUCTSERVICE, "PS_Id", "PS_Keyword", $searchkey);
-                $finddisplaymatch = get_Search_Id(TABLE_PRODUCTSERVICE, "PS_Id", "PS_Display", $searchkey);
+                $finddisplaymatch = get_Search_Id(TABLE_PRODUCTSERVICE, "PS_Id", "PS_Display", $searchkey);           
+
                 if ($findproductmatch != '' || $findkeywordmatch != '' || $finddisplaymatch != '') {
                     $con = " AND (PS_Display=''";
                     if ($findproductmatch != '') {
                         $con .= " OR ";
                         $con .= "PS_Fk IN (" . $findproductmatch . ")";
-                    } //$findproductmatch != ''
+                    } 
                     if ($findkeywordmatch != '') {
                         $con .= " OR ";
                         $con .= "PS_Id IN (" . $findkeywordmatch . ")";
-                    } //$findkeywordmatch != ''
+                    } 
                     if ($finddisplaymatch != '') {
                         $con .= " OR ";
                         $con .= "PS_Id IN (" . $finddisplaymatch . ")";
-                    } //$finddisplaymatch != ''
+                    } 
                     $con .= ")";
-                } //$findproductmatch != '' || $findkeywordmatch != '' || $finddisplaymatch != ''
+                }
                 else
                     $con = "AND PS_Display=''";
-            } //$searchkey != ''
+            }
             if ($citymatchdata != '') {
                 $searchquery  = db_query("SELECT * FROM " . TABLE_PRODUCTSERVICE . " WHERE PS_User_Fk IN (" . $citymatchdata . ") $con");
                 $searchquery1 = db_query("SELECT * FROM " . TABLE_PRODUCTSERVICE . " WHERE PS_User_Fk IN (" . $citymatchdata . ") $con");
@@ -145,36 +137,35 @@ db_connect();
                 $countresult  = mysql_num_rows($searchquery);
                 while ($fetchquery = mysql_fetch_array($searchquery1)) {
                     $relatedsearch .= $fetchquery['PS_Id'] . ',';
-                } //$fetchquery = mysql_fetch_array($searchquery1)
+                } 
                 while ($fetchquery1 = mysql_fetch_array($searchquery3)) {
                     $relatedsearch1 .= $fetchquery1['PS_Fk'] . ',';
-                } //$fetchquery1 = mysql_fetch_array($searchquery3)
-            } //$citymatchdata != ''
-        } //$requestType == 'bestdeals'
+                } 
+            } 
+        } 
         $relatedsearch  = substr($relatedsearch, 0, -1);
-        $relatedsearch1 = substr($relatedsearch1, 0, -1);
-    } //isset($_REQUEST['searchkey'])
-    if (isset($searchquery2)) {
-        while ($fetchquery = db_fetch_array($searchquery2)) {
+        $relatedsearch1 = substr($relatedsearch1, 0, -1);         
+    } 
+
+//related list detatils
+    if (isset($searchquery2)) {       
+        while ($fetchquery = db_fetch_array($searchquery2)) {       
             if ($requestType == 'company') {
                 $alreadylisteddetails .= $fetchquery['RGT_PK'] . ',';
-            } //$requestType == 'company'
+            } 
             if ($requestType == 'bestdeals') {
                 $alreadylisteddetails .= $fetchquery['PS_Id'] . ',';
-            } //$requestType == 'bestdeals'
+            } 
             $finaldetails = substr($alreadylisteddetails, 0, -1);
             ;
-        } //$fetchquery = db_fetch_array($searchquery2)
-    } //isset($searchquery2)
+        }
+    } 
 
       if ($requestType == 'company') {
     ?>
-<!--adleft_container-->
 <div class="adleft_container">
-    <div style="width:100%;height:40px;float:left;" align="right"></div>
-    <!--250-->
-    <div style="width:250px;height:auto;float:left;">
-        <!--relatedsearch-->
+    <div style="width:100%;height:40px;float:left;" align="right"></div> 
+    <div style="width:250px;height:auto;float:left;">      
         <div class="adrelatedsearch">
             <div id="relatedresultsbox" style="display:<?php
                 if ($searchkey == '') {
@@ -221,52 +212,29 @@ db_connect();
                 </div>
             </div>
             <div class="adleftaccordion_btm" ></div>
-        </div>
-        <!--relatedsearch-->
-    </div>
-    <!--250-->
-    <!--740-->
+        </div><!--relatedsearch-->
+    </div>  
     <div style="width:740px;height:auto;float:left;">
         <div style="width:740px; height:30px;display:none;" align="center">
             <input type="radio" id="requestTypeCom" name="requestType" checked="checked" value="company" title="Company" onclick="changesearchtype();" /><label for="requestTypeCom" >Company</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="radio" name="requestType" id="requestTypedeals"  value="bestdeals" title="Xbit"onclick="changesearchtype();" /><label for="requestTypedeals" >Products</label>
-        </div>
-        <?php
-            /*?>
-        <div style="width:740px; height:50px;">
-            <div style="width:610px;height:30px;border:1px solid #999;margin-left:40px;float:left;">
-                <div class="adsearch_lookfor" >
-                    <select class="search_lookfor">
-                        <option>Looking for</option>
-                        <option>Supplier</option>
-                        <option>Buyer</option>
-                    </select>
-                </div>
-                <div class="adsearch_sep"></div>
-                <div class="adsearch_txbox" >
-                    <input autocomplete="off" name="searchkey" id="searchlist" placeholder="Please Enter Company Name to Search" autofocus value="<?php echo $searchkey;?>" type="text" style="width:390px;height:25px;border:none;padding-left:10px;" />
-                    <div id="SearchListRes"></div>
-                </div>
-            </div>
-            <div class="adsearch" align="center"><a href="#" onclick="searchResult($('#searchlist').val(),'');">Search</a></div>
-        </div>
-        <?php */
-            ?>
+        </div>        
         <div style="width:740px; height:50px;">
             <div class="adsearch_txbox" >
                 <input type="text" autocomplete="off" name="searchkey" id="searchlist"  style="width:600px;height:30px;border:1px solid #999;" placeholder="Please Enter Company Name / Sector / Keyword to Search" autofocus value="<?php
                     echo $searchkey;
                     ?>"  onkeyup="Searchusingenterkey(event);"  /><!-- onkeypress="Searchusingenterkey(event);" -->
-                <div id="SearchListRes"></div>
+            <div id="SearchListRes"></div>
             </div>
             <div class="adsearch" align="center"><a href="#" onclick="searchResult($('#searchlist').val(),'','<?php
                 echo $_REQUEST['type2'];
-                ?>');">Search</a></div>
+                ?>');">Search</a>
+            </div>
         </div>
         <?php
             if ($countresult > 0) { 
             ?>
-   <!--      <div class="adsearchresult_menu"><a id="Searchdisplaytypelist" class="active" href="#" onclick="SearchListStyle(<?php
+        <div class="adsearchresult_menu"><a id="Searchdisplaytypelist" class="active" href="#" onclick="SearchListStyle(<?php
             echo '\'' . $requestType . '\'' . ',' . '\'' . $searchkey . '\'';
             ?>,'1',<?php
             echo $type2;
@@ -274,32 +242,25 @@ db_connect();
             echo '\'' . $requestType . '\'' . ',' . '\'' . $searchkey . '\'';
             ?>,'2',<?php
             echo $type2;
-            ?>);" >Grid</a></div> -->
+            ?>);" >View Gallery</a>
+        </div> 
         <!--ad-->
         <div id="mainsearchcontent">
-
             <?php 
                 if($requestType=='company'){
-                    while($fetchquery = mysql_fetch_array($searchquery)) {
+                 while($fetchquery = mysql_fetch_array($searchquery)) {
                     $yearofestablishment = explode('-',$fetchquery['RGT_YrofEstablish']);
                  if(strlen(stripslashes($fetchquery['RGT_CompName']))>25){ $Compnamefixlimit = substr(stripslashes($fetchquery['RGT_CompName']),0,25).'...' ;} else { $Compnamefixlimit =  stripslashes($fetchquery['RGT_CompName']);} 
                 $Compnamedisp = '<span style="cursor:pointer;" title="'.$fetchquery['RGT_CompName'].'">'.$Compnamefixlimit.'</span><span style="color:#007088;"> (Since - '.$yearofestablishment[0].')</span>'; 
             ?>
         
-            <div class="singlead">
-                <!--title-->
+            <div class="singlead">               
                 <div class="adtitle">
                     <div style="width:550px;color:#EC5324;float:left;"><b><?php
                         echo $Compnamedisp;
-                        ?></b></div>
-                    <?php
-                        /*?>
-                    <div class="rating">Rating <span><img src="images/rating_star.png" /><img src="images/rating_star.png" /><img src="images/rating_star.png" /></span> 3.0</div>
-                    <?php */
-                        ?>
-                </div>
-                <!--title-->
-                <!--adimage-->
+                        ?></b>
+                    </div>                   
+                </div>               
                 <div class="adimage">
                     <div class="company_logo" align="right"><a href="#thumb" class="thumbnail">
                         <img src="<?php
@@ -351,9 +312,7 @@ db_connect();
                             echo $fetchquery['RGT_BreaktimeTo'];
                             ?></span></div>
                     </div>
-                </div>
-                <!--adimage-->
-                <!--addetails-->
+                </div>                
                 <div class="addetails" style="min-height:135px;">
                     <div class="addetails_left">
                         <span style="color:#EC5324;"><b>Company Details</b></span>
@@ -399,7 +358,7 @@ db_connect();
                             else
                                 $dispkeyword = getMemberKeywords($fetchquery['RGT_PK']);
                             echo $dispkeyword;
-                            ?></span></span><?php //}
+                            ?></span><?php //}
                             ?>
                     </div>
                     <div class="addetails_sep" style="min-height:135px;"></div>
@@ -500,6 +459,7 @@ db_connect();
 <?php
     } //$requestType == 'company'
     if ($requestType == 'bestdeals') {
+
     ?>
 <!--adleft_container-->
 <div class="adleft_container">
@@ -527,7 +487,7 @@ db_connect();
             <div id="relatedresultsbox" style="display:<?php
                 if ($searchkey == '') {
                     echo 'none';
-                } //$searchkey == ''
+                } 
                 else
                     echo 'block';
                 ?>" >
@@ -537,7 +497,7 @@ db_connect();
                         <?php
                             if ($requestType == 'bestdeals') {
                                 getRelatedSearchBestdeals($relatedsearch, $relatedsearch1, $citymatchdata);
-                            } //$requestType == 'bestdeals'
+                            } 
                             ?>
                     </ul>
                 </div>
@@ -571,27 +531,7 @@ db_connect();
             <input type="radio" id="requestTypeCom" name="requestType"  value="company" title="Company" onclick="changesearchtype();" /><label for="requestTypeCom" >Company</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="radio" name="requestType" id="requestTypedeals" checked="checked" value="bestdeals" title="Xbit" onclick="changesearchtype();" /><label for="requestTypedeals">Products</label>
         </div> -->
-        <?php
-            /*?>
-        <div style="width:740px; height:50px;">
-            <div style="width:610px;height:30px;border:1px solid #999;margin-left:40px;float:left;">
-                <div class="adsearch_lookfor" >
-                    <select class="search_lookfor">
-                        <option>Looking for</option>
-                        <option>Supplier</option>
-                        <option>Buyer</option>
-                    </select>
-                </div>
-                <div class="adsearch_sep"></div>
-                <div class="adsearch_txbox" >
-                    <input autocomplete="off" name="searchkey" id="searchlist" placeholder="Please Enter Company Name to Search" autofocus value="<?php echo $searchkey;?>" type="text" style="width:390px;height:25px;border:none;padding-left:10px;" />
-                    <div id="SearchListRes"></div>
-                </div>
-            </div>
-            <div class="adsearch" align="center"><a href="#" onclick="searchResult($('#searchlist').val(),'');">Search</a></div>
-        </div>
-        <?php */
-            ?>
+      
         <div style="width:740px; height:50px;">
             <div class="adsearch_txbox" >
                 <input type="text" autocomplete="off" name="searchkey" id="searchlist"  style="width:600px;height:30px;border:1px solid #999;" placeholder="Please Enter Product / Service to Search" autofocus value="<?php
@@ -601,12 +541,14 @@ db_connect();
             </div>
             <div class="adsearch" align="center"><a href="#" onclick="searchResult($('#searchlist').val(),'','<?php
                 echo $_REQUEST['type2'];
-                ?>');">Search</a></div>
+                ?>');">Search</a>
+            </div>
         </div>
+
         <?php
-            if ($countresult > 0) {
+            if ($countresult > 0) {       
             ?>
-        <div class="adsearchresult_menu"><a id="Searchdisplaytypelist" class="active" href="#" onclick="SearchListStyle(<?php
+         <div class="adsearchresult_menu"><a id="Searchdisplaytypelist" class="active" href="#" onclick="SearchListStyle(<?php
             echo '\'' . $requestType . '\'' . ',' . '\'' . $searchkey . '\'';
             ?>,'1',<?php
             echo $type2;
@@ -614,11 +556,11 @@ db_connect();
             echo '\'' . $requestType . '\'' . ',' . '\'' . $searchkey . '\'';
             ?>,'2',<?php
             echo $type2;
-            ?>);" >Grid</a></div>
+            ?>);" >View Gallery</a>
+        </div>
         <!--ad-->
         <div id="mainsearchcontent">
-            <?php 
-            if($requestType=='bestdeals'){ 
+            <?php if($requestType=='bestdeals'){                        
             while($fetchquery=mysql_fetch_array($searchquery)){
             $yearofestablishment = explode('-',get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_YrofEstablish'));
              if(strlen(stripslashes(get_company_name($fetchquery['PS_Id'])))>25){ $Compnamefixlimit = substr(stripslashes(get_company_name($fetchquery['PS_Id'])),0,25).'...' ;} else { $Compnamefixlimit =  stripslashes(get_company_name($fetchquery['PS_Id']));} 
@@ -634,15 +576,8 @@ db_connect();
                 <div class="adtitle">
                     <div style="width:550px;color:#EC5324;float:left;"><b><?php
                         echo $Compnamedisp;
-                        ?></b></div>
-                    <?php
-                        /*?>
-                    <div class="rating">Rating <span><img src="images/rating_star.png" /><img src="images/rating_star.png" /><img src="images/rating_star.png" /></span> 3.0</div>
-                    <?php */
-                        ?>
-                </div>
-                <!--title-->
-                <!--adimage-->
+                        ?></b></div>                  
+                </div>               
                 <div class="adimage">
                     <div class="company_logo">
                         <a href="#thumb" class="thumbnail">
@@ -675,9 +610,7 @@ db_connect();
                             } //$fetchquery['PS_Unit'] != ''
                             ?></div>
                     </div>
-                </div>
-                <!--adimage-->
-                <!--addetails-->
+                </div>              
                 <div class="addetails">
                     <div class="addetails_left">
                         <span style="color:#EC5324;"><b>Business Descriptions</b></span>
@@ -742,7 +675,7 @@ db_connect();
                             ?> >View Full Details</a></div>
                     </div>
                 </div>
-                <!--addetails-->
+                
             </div>
             <br/><br/>
             <?php
