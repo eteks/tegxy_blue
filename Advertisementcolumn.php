@@ -33,6 +33,7 @@ window.open("Searchpage.php?action=Add&searchkey="+pro+"&requesttype="+req_type+
 <div class="adright_container">
 <script type="text/javascript" src="js/Searchlist.js"></script>
 <script type="text/javascript" src="adver/jquery.min.js"></script>
+<script type="text/javascript" src="js/View.js" ></script>
     <link rel="stylesheet" href="adver/style.css" type="text/css" media="screen" />
     <script src="adver/jcarousellite_1.0.1c4.js" type="text/javascript"></script>
         <script type="text/javascript">
@@ -54,8 +55,8 @@ window.open("Searchpage.php?action=Add&searchkey="+pro+"&requesttype="+req_type+
 <ul>
 
 <?php
-$selectadquery = db_query("SELECT ADV_Existornew,ADV_Selection,ADV_Name,ADV_Imagepath,ADV_Description,ADV_Selectionfk FROM ".TABLE_ADVERTISEMENT." where ADV_Status=1");
-while(list($adv_existornew,$adv_selection,$adv_name,$adv_imagepath,$adv_description,$adv_selectionfk) = db_fetch_array($selectadquery))
+$selectadquery = db_query("SELECT ADV_Id,ADV_Existornew,ADV_Selection,ADV_Name,ADV_Imagepath,ADV_Description,ADV_Selectionfk FROM ".TABLE_ADVERTISEMENT." where ADV_Status=1");
+while(list($adv_id,$adv_existornew,$adv_selection,$adv_name,$adv_imagepath,$adv_description,$adv_selectionfk) = db_fetch_array($selectadquery))
 {
 $adv_title       = $adv_name;
 
@@ -101,7 +102,8 @@ $adv_description = $gy_desp;
 <div class="right_adimg">
 
 <?php if($adv_imagepath !="") { ?>
-<img width="107" height="107" src="<?php echo $adv_imagepath;?>" style="border:solid 1px #999;"  onclick="view_product('<?php echo $adv_title; ?>','<?php echo getCitydetails($comp_city);?>','<?php echo getAreadetails($comp_area); ?>','<?php echo "bestdeals"; ?>');"/>
+<!-- <img width="107" height="107" src="<?php echo $adv_imagepath;?>" style="border:solid 1px #999;"  onclick="view_product('<?php echo $adv_title; ?>','<?php echo getCitydetails($comp_city);?>','<?php echo getAreadetails($comp_area); ?>','<?php echo "bestdeals"; ?>');"/> -->
+<img width="107" height="107" onclick="ProfileViewGrid('AdViewMore.php?user=10&BDId=<?php echo $adv_id;?>');" src="<?php echo $adv_imagepath;?>" style="border:solid 1px #999;"/>
 <?php } else { ?>
 
 <img width="107" height="107" src="images/no_image.png" onclick="view_product('<?php echo $adv_title; ?>','<?php echo getCitydetails($comp_city);?>','<?php echo getAreadetails($comp_area); ?>','<?php echo "bestdeals"; ?>');"/>
