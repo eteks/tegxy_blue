@@ -30,7 +30,7 @@ $FCKeditor = new FCKeditor('ProfDescribe');
 $FCKeditor->BasePath = 'fckeditor/';
 $FCKeditor->Height = 300;
 $FCKeditor->Width = 550;
-//$FCKeditor->Value = stripslashes($FetProfileDetails["RGT_ProfileDesp"]);
+$FCKeditor->Value = stripslashes($FetProfileDetails["RGT_ProfileDesp"]);
 $FCKeditor->Create();
 ?>
 </td>

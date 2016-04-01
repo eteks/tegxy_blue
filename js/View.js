@@ -192,6 +192,7 @@ if (xmlhttp.readyState == 4)
 
 function ProfileViewGrid(page)
 {
-    // alert(page);
+    alert(page);
 $("#Profile_View_Grid").load(page);	
+alert($("#Profile_View_Grid").html());
 }
