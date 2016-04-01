@@ -352,7 +352,7 @@ var LCFile         ='Bl_ProductLocList.php';
 <tr><td colspan="3" height="10"></td></tr>
 <tr>
 <td colspan="3" align="center">
-<input type="button" onclick="AddProduct(<?php echo base64_decode($_REQUEST['user']);?>);" class="submit-btn" id="ProductSmt" name="ProSmt" value="Add" />
+<!-- <input type="button" onclick="AddProduct(<?php echo base64_decode($_REQUEST['user']);?>);" class="submit-btn" id="ProductSmt" name="ProSmt" value="Add" /> -->
 <input type="button" onclick="ProductReset();" class="submit-btn" value="Reset" />
 <input type="button" value="Cancel" class="submit-btn" onclick="GridShowHide('ProductEntryLevel','ProductEntryGrid','Grid','');" />
 </td> 

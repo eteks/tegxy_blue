@@ -1,35 +1,3 @@
-<script>
-function view_product(pro,com_city,comp_area,req_type)
-{ 
-//alert(pro);
-//alert(com_city);
-//alert(comp_area);
-//alert(req_type);
-//
-//var searchKery1 = pro;
-//alert(searchKey1);
-//var userCity = com_city;
-//alert(userCity);
-//var userArea = comp_area;
-//alert(userArea);
-//var requestType = req_type;
-//alert(requestType);
-//alert(searchKey);
-//
-//var userCity = document.getElementById('comp_city').value;
-////alert(userCity);
-//var userArea = document.getElementById('comp_area').value;
-////alert(userArea);
-//var requestType = document.getElementById('requestType').value;
-////alert(requestType);
-
-// window.open("Searchpage.php?action=Add&searchkey="+pro+"&requesttype="+req_type+"&usercity="+com_city+"&userarea="+comp_area+"&type2=1");
-alert('hai');
-//window.location.href="Searchpage.php?action=Add&searchkey="+searchKery+"";
-
-}
-
-</script>
 <div class="adright_container">
     <script type="text/javascript" src="js/Searchlist.js"></script>
     <script type="text/javascript" src="adver/jquery.min.js"></script>
@@ -92,7 +60,12 @@ alert('hai');
             <li>
                 <div style="cursor:pointer;">
                     <div class="right_singlead">
-                        <div class="right_adtitle"><?php echo $adv_title ;?></div>
+                        <div class="right_adtitle"> 
+                            <a  <?php if ($_SESSION['LID'] != '') {?> href="<?php echo $rgt_profilreurl; ?>" target="_blank" 
+                            <?php } else {?> class="pop firstviewmore" onclick="getUserProfile('<?php echo $rgt_profilreurl; ?>','','');" 
+                            <?php } ?> >   <?php echo $adv_title ;?>
+                            </a>
+                        </div>
                        <!--  <div style="width:290px;min-height:107px;"> -->
                         <div style="width:290px;min-height:107px;">
                             <div class="right_adimg">                     
