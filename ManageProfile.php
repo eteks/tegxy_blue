@@ -30,11 +30,11 @@ db_query("DELETE FROM ".TABLE_PROFILEDETAILS."  WHERE PDS_Fk='".session_id()."'"
 <link href="css/CalendarControl.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/ajaxupload.3.5.js" ></script>
 
-<!---------chat script css--------------->
+<!--chat script css-->
 <link type="text/css" rel="stylesheet" media="all" href="css/chat.css" />
 <link type="text/css" rel="stylesheet" media="all" href="css/screen.css" />
 
-<!---------chat script css  ends --------------->
+<!--chat script css  ends-->
 
 <link href="css/Profile.css" rel="stylesheet" type="text/css" />
 
@@ -96,8 +96,8 @@ $(document).ready(function()
 <div class="clear"></div>
 <?php include("Footer.php");?>
 
-<!-----chat script---->
+<!--chat script-->
 <script type="text/javascript" src="js/chat.js"></script>
-<!-----chat script---->
+<!--chat script-->
 </body>
 </html>

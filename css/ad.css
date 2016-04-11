@@ -303,6 +303,10 @@ width:107px;min-height:107px;float:left;
 {
 width:170px;min-height:80px;float:left;font-size:12px;padding-left:8px;padding-right:5px;
 }
+.right_addesp > a{
+  color: black;
+  text-decoration: none;
+}
 
 #footer{
 width: 100%;

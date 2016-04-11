@@ -899,6 +899,13 @@ function get_data_from_registration($userfk, $tofetch)
 
 }
 
+function get_data_from_registration_ads($userfk, $tofetch)
+{     $querydetails = db_query("SELECT $tofetch FROM " . TABLE_REGISTRATION . " WHERE RGT_PK=$userfk ");
+    $fetchdetails = mysql_fetch_array($querydetails);
+    return $fetchdetails[$tofetch];
+
+}
+
 function get_data_from_table($tablename, $tofetch, $where, $value)
 {
     $querydata = db_query("SELECT $tofetch FROM " . $tablename . " WHERE $where = $value");

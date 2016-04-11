@@ -1,6 +1,7 @@
 <?php include_once("../Configuration.php");
 include_once("../DatabaseConnection.php");
 db_connect();
+include("../../../Mailer/class.phpmailer.php");
 $_REQUEST['DisplayName'] = (isset($_REQUEST['DisplayName']) ? $_REQUEST['DisplayName'] : '');
 $_REQUEST['Product'] = (isset($_REQUEST['Product']) ? $_REQUEST['Product'] : '');
 $_REQUEST['IndustryList'] = (isset($_REQUEST['IndustryList']) ? $_REQUEST['IndustryList'] : '');
@@ -49,126 +50,158 @@ $CoverImgPath2     = filesize('../../'.$CoverImgPath);
 
 if($Action=='1')
 {
-if($ExistId=='')
-{
-	
-/*//Begin  product checking with admin product
-// product check with admin product
-$Pro_Chk_ADMPro = db_query("SELECT * FROM ".TABLE_ADMINPRODUCT." WHERE ProductName='".$Name."'");	
-if(db_num_rows($Pro_Chk_ADMPro)>0)
-{
-list($ADMProduct_Id) = db_fetch_array($Pro_Chk_ADMPro);
-//admin product check with admin product relativity		
-$ADMPro_Chk_ADMProRelativity = db_query("SELECT * FROM ".TABLE_PRODUCTRELATIVITY." WHERE  Category_fk='".$Category."' AND `SubCategory_fk`='".$SubCategory."' AND `ProductType_fk`='".$Type."' AND Product_fk='".$ADMProduct_Id."'");
-if(db_num_rows($ADMPro_Chk_ADMProRelativity)==0) 
-// Admin product relativity	insertion
-db_query("INSERT INTO ".TABLE_PRODUCTRELATIVITY." SET `Category_fk`='".$Category."',`SubCategory_fk`='".$SubCategory."',`ProductType_fk`='".$Type."', Product_fk='".$ADMProduct_Id."',`Createdby`='".$UId."',`Createdon`=NOW(),UserOrAdmin='user'");
-}
-else
-{   
-// Admin new product insertion
-$ADMProduct_LastId = db_query("SELECT ProductCode,Id FROM ".TABLE_ADMINPRODUCT." ORDER BY Id DESC LIMIT 1");
-$ADMProduct_LastId_Fet = db_fetch_array($ADMProduct_LastId);
-$ADMProd_Code = 'PRO'.($ADMProduct_LastId_Fet['Id']+1);
+	if($ExistId=='')
+	{
+		
+	/*//Begin  product checking with admin product
+	// product check with admin product
+	$Pro_Chk_ADMPro = db_query("SELECT * FROM ".TABLE_ADMINPRODUCT." WHERE ProductName='".$Name."'");	
+	if(db_num_rows($Pro_Chk_ADMPro)>0)
+	{
+	list($ADMProduct_Id) = db_fetch_array($Pro_Chk_ADMPro);
+	//admin product check with admin product relativity		
+	$ADMPro_Chk_ADMProRelativity = db_query("SELECT * FROM ".TABLE_PRODUCTRELATIVITY." WHERE  Category_fk='".$Category."' AND `SubCategory_fk`='".$SubCategory."' AND `ProductType_fk`='".$Type."' AND Product_fk='".$ADMProduct_Id."'");
+	if(db_num_rows($ADMPro_Chk_ADMProRelativity)==0) 
+	// Admin product relativity	insertion
+	db_query("INSERT INTO ".TABLE_PRODUCTRELATIVITY." SET `Category_fk`='".$Category."',`SubCategory_fk`='".$SubCategory."',`ProductType_fk`='".$Type."', Product_fk='".$ADMProduct_Id."',`Createdby`='".$UId."',`Createdon`=NOW(),UserOrAdmin='user'");
+	}
+	else
+	{   
+	// Admin new product insertion
+	$ADMProduct_LastId = db_query("SELECT ProductCode,Id FROM ".TABLE_ADMINPRODUCT." ORDER BY Id DESC LIMIT 1");
+	$ADMProduct_LastId_Fet = db_fetch_array($ADMProduct_LastId);
+	$ADMProd_Code = 'PRO'.($ADMProduct_LastId_Fet['Id']+1);
 
-db_query("INSERT INTO ".TABLE_ADMINPRODUCT." SET `ProductCode`='".$ADMProd_Code."',`ProductName`='".$Name."',`Status`='1',`Verify`='0',`Createdby`='".$UId."',`Createdon`=NOW(),UserOrAdmin='user'");
-$ADMProduct_Id=db_insert_id(); 
+	db_query("INSERT INTO ".TABLE_ADMINPRODUCT." SET `ProductCode`='".$ADMProd_Code."',`ProductName`='".$Name."',`Status`='1',`Verify`='0',`Createdby`='".$UId."',`Createdon`=NOW(),UserOrAdmin='user'");
+	$ADMProduct_Id=db_insert_id(); 
 
-db_query("INSERT INTO ".TABLE_PRODUCTRELATIVITY." SET `Category_fk`='".$Category."',`SubCategory_fk`='".$SubCategory."',`ProductType_fk`='".$Type."', Product_fk='".$ADMProduct_Id."',`Createdby`='".$UId."',`Createdon`=NOW(),UserOrAdmin='user'");	
-}
-//End Nm product checking with admin product	*/
-
-
-$checkexist      = db_query("SELECT Kd_Id FROM ".TABLE_KEYWORDMST." WHERE Kd_Keyword='".$Name."'");	
-$fetchcheckexist = db_fetch_array($checkexist);
-if(db_num_rows($checkexist)>0)
-$keyid = $fetchcheckexist['Kd_Id'];
-else
-{
-db_query("INSERT INTO ".TABLE_KEYWORDMST." SET Kd_IndustryFk='".$IndustryList."', Kd_Keyword='".$Name."', Kd_CreatedOn=Now(), Kd_ModifiedOn=Now()");
-$keyid = db_insert_id();
-}
-	
-db_query("INSERT INTO ".TABLE_PRODUCTSERVICE." SET PS_User_Fk='".$UId."',PS_Mode='".$Mode."',PS_Fk='".$keyid."',PS_IndustryFk='".$IndustryList."',PS_CategoryFk='".$Category."',PS_SubCategoryFk='".$SubCategory."',PS_TypeFk='".$Type."',PS_Display='".$DisplayName."',PS_Description='".$Descr."',PS_BusinessType='".$BusType."',PS_Keyword='".$Keyword."',PS_Brochure='".$PdfPath."',PS_CoverImg='".$CoverImgPath."',PS_Price='".$Price."',PS_Currency='".$Currency."',PS_Unit='".$Unit."',PS_CreatedOn=Now(),PS_ModifiedOn=Now() ");
-$InsertId = db_insert_id();
-
-if($PdfPath!='')
-db_query("INSERT INTO ".TABLE_STOREFILESIZE." SET SFS_UserFk='".$UId."',SFS_Fk='".$InsertId."',SFS_Mode='5',SFS_FileSize='".$PdfPath2."',SFS_CreatedOn=NOw(),SFS_ModifiedOn=NOw() ");
-
-if($CoverImgPath!='')
-db_query("INSERT INTO ".TABLE_STOREFILESIZE." SET SFS_UserFk='".$UId."',SFS_Fk='".$InsertId."',SFS_Mode='6',SFS_FileSize='".$CoverImgPath2."',SFS_CreatedOn=NOw(),SFS_ModifiedOn=NOw() ");
+	db_query("INSERT INTO ".TABLE_PRODUCTRELATIVITY." SET `Category_fk`='".$Category."',`SubCategory_fk`='".$SubCategory."',`ProductType_fk`='".$Type."', Product_fk='".$ADMProduct_Id."',`Createdby`='".$UId."',`Createdon`=NOW(),UserOrAdmin='user'");	
+	}
+	//End Nm product checking with admin product	*/
 
 
-echo 'Added Successfullly';
-}
-else
-{
-$checkexist      = db_query("SELECT Kd_Id FROM ".TABLE_KEYWORDMST." WHERE Kd_Keyword='".$Name."'");	
-$fetchcheckexist = db_fetch_array($checkexist);
-if(db_num_rows($checkexist)>0)
-$keyid = $fetchcheckexist['Kd_Id'];
-else
-{
-db_query("INSERT INTO ".TABLE_KEYWORDMST." SET Kd_IndustryFk='".$IndustryList."', Kd_Keyword='".$Name."', Kd_CreatedOn=Now(), Kd_ModifiedOn=Now()");
-$keyid = db_insert_id();
-}	
-db_query("UPDATE ".TABLE_PRODUCTSERVICE." SET PS_Mode='".$Mode."',PS_Fk='".$keyid."',PS_IndustryFk='".$IndustryList."', PS_CategoryFk='".$Category."',PS_SubCategoryFk='".$SubCategory."',PS_TypeFk='".$Type."',PS_Display='".$DisplayName."',PS_Description='".$Descr."',PS_BusinessType='".$BusType."',PS_Keyword='".$Keyword."',PS_Brochure='".$PdfPath."',PS_CoverImg='".$CoverImgPath."',PS_ModifiedOn=Now(),PS_Price='".$Price."',PS_Currency='".$Currency."',PS_Unit='".$Unit."' WHERE PS_Id='".$ExistId."'");
-$InsertId = $ExistId;
+		$checkexist      = db_query("SELECT Kd_Id FROM ".TABLE_KEYWORDMST." WHERE Kd_Keyword='".$Name."'");	
+		$fetchcheckexist = db_fetch_array($checkexist);
+		if(db_num_rows($checkexist)>0)
+		$keyid = $fetchcheckexist['Kd_Id'];
+		else
+		{
+		db_query("INSERT INTO ".TABLE_KEYWORDMST." SET Kd_IndustryFk='".$IndustryList."', Kd_Keyword='".$Name."', Kd_CreatedOn=Now(), Kd_ModifiedOn=Now()");
+		$keyid = db_insert_id();
+		}
+			
+		db_query("INSERT INTO ".TABLE_PRODUCTSERVICE." SET PS_User_Fk='".$UId."',PS_Mode='".$Mode."',PS_Fk='".$keyid."',PS_IndustryFk='".$IndustryList."',PS_CategoryFk='".$Category."',PS_SubCategoryFk='".$SubCategory."',PS_TypeFk='".$Type."',PS_Display='".$DisplayName."',PS_Description='".$Descr."',PS_BusinessType='".$BusType."',PS_Keyword='".$Keyword."',PS_Brochure='".$PdfPath."',PS_CoverImg='".$CoverImgPath."',PS_Price='".$Price."',PS_Currency='".$Currency."',PS_Unit='".$Unit."',PS_CreatedOn=Now(),PS_ModifiedOn=Now() ");
+		$InsertId = db_insert_id();
 
-if($PdfPath!='')
-{
+		if($PdfPath!='')
+		db_query("INSERT INTO ".TABLE_STOREFILESIZE." SET SFS_UserFk='".$UId."',SFS_Fk='".$InsertId."',SFS_Mode='5',SFS_FileSize='".$PdfPath2."',SFS_CreatedOn=NOw(),SFS_ModifiedOn=NOw() ");
 
-$sqlCheck = db_query("SELECT * FROM ".TABLE_STOREFILESIZE." WHERE SFS_UserFk='".$UId."' AND  SFS_Mode='5' AND SFS_Fk='".$InsertId."' ");
+		if($CoverImgPath!='')
+		db_query("INSERT INTO ".TABLE_STOREFILESIZE." SET SFS_UserFk='".$UId."',SFS_Fk='".$InsertId."',SFS_Mode='6',SFS_FileSize='".$CoverImgPath2."',SFS_CreatedOn=NOw(),SFS_ModifiedOn=NOw() ");
+		echo 'Added Successfullly';
+		//email admin approval
+		if($_REQUEST['val']==1)
+		{
+		$Details = db_query("SELECT reg.RGT_Email,reg.RGT_OwnerName,pro.PS_Display FROM ".TABLE_REGISTRATION." as reg INNER JOIN `tbl_productservice` as pro ON pro.PS_User_Fk=reg.RGT_PK where RGT_Status=1");
 
-if(db_num_rows($sqlCheck)>0)
-db_query("UPDATE ".TABLE_STOREFILESIZE." SET SFS_FileSize='".$PdfPath2."' WHERE  SFS_UserFk='".$UId."' AND  SFS_Mode='5' AND SFS_Fk='".$InsertId."' ");
-else
-db_query("INSERT INTO ".TABLE_STOREFILESIZE." SET SFS_UserFk='".$UId."',SFS_Fk='".$InsertId."',SFS_Mode='5',SFS_FileSize='".$PdfPath2."',SFS_CreatedOn=NOw(),SFS_ModifiedOn=NOw() ");
+		$FetDetails = db_fetch_array($Details);
+		$ToAddress = $FetDetails['RGT_Email'];
+		$ToName    = $FetDetails['RGT_OwnerName'];
+		$ProductName = $FetDetails['PS_Display'];
 
-}
+		$Message     = "<table border='0' cellpadding='0' cellspacing='0'  style='font-size: 12px; line-height: 25px;font-family:Arial, Helvetica, sans-serif; padding-left:5px;'>
+		<tr><td height='10'></td></tr>
+		<tr><td style='color:#006DB8;font-size:15px;'>Dear ".$ToName.",</td></tr>
+		<tr><td ><p>Your Product was Successfullly posted</p><p>Your Product Details are,</p></td></tr>
+		<tr><td >
+		<table width='100%' border='0' cellpadding='0' cellspacing='0'  style='font-size: 12px; line-height: 25px;font-family:Arial, Helvetica, sans-serif;padding-left:5px;'>
+		<tr>
+		<td width='20%'>Username</td>
+		<td width='3%'>:</td>
+		<td width='77%'>".$ProductName ."</td>
+		</tr>
+		<tr>
+		</table>
+		</td></tr>
+		</table>";
+		$mailContent = file_get_contents("../../../MailTemplate.php");
+		$Message = str_replace('MSGCONTENT',$Message, $mailContent);
+		$Message = str_replace('../../../images/',HTTP_SERVER.'../../../images/', $Message);
+		$Subject='Confirmation Mail';
+		$FromName='XYget';
+		$FromAddress='services@tracemein.com';
+		PHP_Mailer($Message,$Subject,$ToAddress,$ToName,$FromAddress,$FromName,'','');
+		}
+		//email admin approval
+	}
+	else
+	{
+		$checkexist      = db_query("SELECT Kd_Id FROM ".TABLE_KEYWORDMST." WHERE Kd_Keyword='".$Name."'");	
+		$fetchcheckexist = db_fetch_array($checkexist);
+		if(db_num_rows($checkexist)>0)
+		$keyid = $fetchcheckexist['Kd_Id'];
+		else
+		{
+		db_query("INSERT INTO ".TABLE_KEYWORDMST." SET Kd_IndustryFk='".$IndustryList."', Kd_Keyword='".$Name."', Kd_CreatedOn=Now(), Kd_ModifiedOn=Now()");
+		$keyid = db_insert_id();
+		}	
+		db_query("UPDATE ".TABLE_PRODUCTSERVICE." SET PS_Mode='".$Mode."',PS_Fk='".$keyid."',PS_IndustryFk='".$IndustryList."', PS_CategoryFk='".$Category."',PS_SubCategoryFk='".$SubCategory."',PS_TypeFk='".$Type."',PS_Display='".$DisplayName."',PS_Description='".$Descr."',PS_BusinessType='".$BusType."',PS_Keyword='".$Keyword."',PS_Brochure='".$PdfPath."',PS_CoverImg='".$CoverImgPath."',PS_ModifiedOn=Now(),PS_Price='".$Price."',PS_Currency='".$Currency."',PS_Unit='".$Unit."' WHERE PS_Id='".$ExistId."'");
+		$InsertId = $ExistId;
 
-if($CoverImgPath!='')
-{
-$sqlCheckk = db_query("SELECT * FROM ".TABLE_STOREFILESIZE." WHERE  SFS_UserFk='".$UId."' AND  SFS_Mode='6' AND SFS_Fk='".$InsertId."'");	
+		if($PdfPath!='')
+		{
 
-if(db_num_rows($sqlCheckk)>0)
-db_query("UPDATE ".TABLE_STOREFILESIZE." SET SFS_FileSize='".$CoverImgPath2."' WHERE  SFS_UserFk='".$UId."' AND  SFS_Mode='6' AND SFS_Fk='".$InsertId."' ");
-else
-db_query("INSERT INTO ".TABLE_STOREFILESIZE." SET SFS_UserFk='".$UId."',SFS_Fk='".$InsertId."',SFS_Mode='6',SFS_FileSize='".$CoverImgPath2."',SFS_CreatedOn=NOw(),SFS_ModifiedOn=NOw() ");
+		$sqlCheck = db_query("SELECT * FROM ".TABLE_STOREFILESIZE." WHERE SFS_UserFk='".$UId."' AND  SFS_Mode='5' AND SFS_Fk='".$InsertId."' ");
 
-}
-echo 'Updated Successfullly';
-}
+		if(db_num_rows($sqlCheck)>0)
+		db_query("UPDATE ".TABLE_STOREFILESIZE." SET SFS_FileSize='".$PdfPath2."' WHERE  SFS_UserFk='".$UId."' AND  SFS_Mode='5' AND SFS_Fk='".$InsertId."' ");
+		else
+		db_query("INSERT INTO ".TABLE_STOREFILESIZE." SET SFS_UserFk='".$UId."',SFS_Fk='".$InsertId."',SFS_Mode='5',SFS_FileSize='".$PdfPath2."',SFS_CreatedOn=NOw(),SFS_ModifiedOn=NOw() ");
 
-db_query("UPDATE ".TABLE_PRODUCTSERVICEGALLERY." SET PSG_PSFk='".$InsertId."' Where PSG_UserFk ='".$UId."' AND PSG_PSFk ='Pro1'");
+		}
 
-db_query("UPDATE ".TABLE_STOREFILESIZE." SET SFS_Fk='".$InsertId."' WHERE  SFS_UserFk='".$UId."' AND  SFS_Mode='7' AND SFS_Fk='Pro1' ");
+		if($CoverImgPath!='')
+		{
+		$sqlCheckk = db_query("SELECT * FROM ".TABLE_STOREFILESIZE." WHERE  SFS_UserFk='".$UId."' AND  SFS_Mode='6' AND SFS_Fk='".$InsertId."'");	
 
-db_query("UPDATE ".TABLE_SPECIFICATION." SET SP_PsFk='".$InsertId."' Where SP_UserFk ='".$UId."' AND SP_PsFk ='Pro1'");
-db_query("UPDATE ".TABLE_LOCATION." SET LN_PSFk='".$InsertId."' Where LN_UserFk ='".$UId."' AND LN_PSFk ='Pro1'");
+		if(db_num_rows($sqlCheckk)>0)
+		db_query("UPDATE ".TABLE_STOREFILESIZE." SET SFS_FileSize='".$CoverImgPath2."' WHERE  SFS_UserFk='".$UId."' AND  SFS_Mode='6' AND SFS_Fk='".$InsertId."' ");
+		else
+		db_query("INSERT INTO ".TABLE_STOREFILESIZE." SET SFS_UserFk='".$UId."',SFS_Fk='".$InsertId."',SFS_Mode='6',SFS_FileSize='".$CoverImgPath2."',SFS_CreatedOn=NOw(),SFS_ModifiedOn=NOw() ");
+
+		}
+		echo 'Updated Successfullly';
+	}
+
+	db_query("UPDATE ".TABLE_PRODUCTSERVICEGALLERY." SET PSG_PSFk='".$InsertId."' Where PSG_UserFk ='".$UId."' AND PSG_PSFk ='Pro1'");
+
+	db_query("UPDATE ".TABLE_STOREFILESIZE." SET SFS_Fk='".$InsertId."' WHERE  SFS_UserFk='".$UId."' AND  SFS_Mode='7' AND SFS_Fk='Pro1' ");
+
+	db_query("UPDATE ".TABLE_SPECIFICATION." SET SP_PsFk='".$InsertId."' Where SP_UserFk ='".$UId."' AND SP_PsFk ='Pro1'");
+	db_query("UPDATE ".TABLE_LOCATION." SET LN_PSFk='".$InsertId."' Where LN_UserFk ='".$UId."' AND LN_PSFk ='Pro1'");
 }
 if($Action=='2')
 {
 	
-$ImgPath=db_query("Select PS_Brochure,PS_CoverImg FROM ".TABLE_PRODUCTSERVICE." WHERE PS_Id='".$ExistId."'") or die(db_error());
-$FetImgPath = db_fetch_array($ImgPath);
-@unlink("../../".$FetImgPath['PS_Brochure']);	
-@unlink("../../".$FetImgPath['PS_CoverImg']);	
+	$ImgPath=db_query("Select PS_Brochure,PS_CoverImg FROM ".TABLE_PRODUCTSERVICE." WHERE PS_Id='".$ExistId."'") or die(db_error());
+	$FetImgPath = db_fetch_array($ImgPath);
+	@unlink("../../".$FetImgPath['PS_Brochure']);	
+	@unlink("../../".$FetImgPath['PS_CoverImg']);	
 
-$InImgPath=db_query("Select PSG_ImgPath FROM ".TABLE_PRODUCTSERVICEGALLERY." where PSG_UserFk='".$UId."' and PSG_PSFk='".$ExistId."'") or die(db_error());
-while($InFetImgPath = db_fetch_array($InImgPath))
-{
-@unlink("../../".$InFetImgPath['PSG_ImgPath']);	
-}
+	$InImgPath=db_query("Select PSG_ImgPath FROM ".TABLE_PRODUCTSERVICEGALLERY." where PSG_UserFk='".$UId."' and PSG_PSFk='".$ExistId."'") or die(db_error());
+	while($InFetImgPath = db_fetch_array($InImgPath))
+	{
+	@unlink("../../".$InFetImgPath['PSG_ImgPath']);	
+	}
 
-db_query("DELETE FROM  ".TABLE_PRODUCTSERVICE." WHERE PS_Id='".$ExistId."'");
-db_query("DELETE FROM ".TABLE_PRODUCTSERVICEGALLERY." WHERE PSG_UserFk='".$UId."' AND PSG_PSFk ='".$ExistId."'");
-db_query("DELETE FROM ".TABLE_SPECIFICATION." WHERE SP_UserFk='".$UId."' AND SP_PsFk ='".$ExistId."'");
-db_query("DELETE FROM ".TABLE_LOCATION." WHERE LN_UserFk='".$UId."' AND LN_PSFk ='".$ExistId."'");
-db_query("DELETE FROM  ".TABLE_STOREFILESIZE." WHERE SFS_UserFk='".$UId."' AND	SFS_Fk='".$ExistId."' AND (SFS_Mode=5 || SFS_Mode=6 || SFS_Mode=7)");
+	db_query("DELETE FROM  ".TABLE_PRODUCTSERVICE." WHERE PS_Id='".$ExistId."'");
+	db_query("DELETE FROM ".TABLE_PRODUCTSERVICEGALLERY." WHERE PSG_UserFk='".$UId."' AND PSG_PSFk ='".$ExistId."'");
+	db_query("DELETE FROM ".TABLE_SPECIFICATION." WHERE SP_UserFk='".$UId."' AND SP_PsFk ='".$ExistId."'");
+	db_query("DELETE FROM ".TABLE_LOCATION." WHERE LN_UserFk='".$UId."' AND LN_PSFk ='".$ExistId."'");
+	db_query("DELETE FROM  ".TABLE_STOREFILESIZE." WHERE SFS_UserFk='".$UId."' AND	SFS_Fk='".$ExistId."' AND (SFS_Mode=5 || SFS_Mode=6 || SFS_Mode=7)");
 
 
-echo 'Deleted Successfullly';
+	echo 'Deleted Successfullly';
 }
 if($Action=='3')
 {

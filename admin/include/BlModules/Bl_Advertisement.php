@@ -58,6 +58,7 @@ if($_REQUEST['action']=='delete' || $_REQUEST['action']=='status' || $_REQUEST['
 include_once("../Configuration.php");
 include_once("../DatabaseConnection.php");
 db_connect();
+include("../../../Mailer/class.phpmailer.php");
 
 $CheckModulePrevilage = PermissionList($_SESSION['Admin_Id'],'ModuleList',$ModuleId);
 
@@ -71,8 +72,41 @@ db_query("DELETE FROM ".TABLE_PRODUCTRELATIVITY." where Product_fk =".$_REQUEST[
 if($_REQUEST['action']=='status')
 {
 db_query("UPDATE ".tbl_advertisement." SET ADV_Status='".$_REQUEST['val']."' where ADV_Id=".$_REQUEST['id']."");
-
 $optId = $_REQUEST['id'];
+//email admin approval
+if($_REQUEST['val']==1)
+{
+$Details = db_query("SELECT reg.RGT_Email,reg.RGT_OwnerName,adv.ADV_Name FROM ".TABLE_REGISTRATION." as reg INNER JOIN `tbl_advertisement` as adv ON adv.ADV_Userfk=reg.RGT_PK where RGT_Status=1");
+
+$FetDetails = db_fetch_array($Details);
+$ToAddress = $FetDetails['RGT_Email'];
+$ToName    = $FetDetails['RGT_OwnerName'];
+$AdvertisementName = $FetDetails['ADV_Name'];
+
+$Message     = "<table border='0' cellpadding='0' cellspacing='0'  style='font-size: 12px; line-height: 25px;font-family:Arial, Helvetica, sans-serif; padding-left:5px;'>
+<tr><td height='10'></td></tr>
+<tr><td style='color:#006DB8;font-size:15px;'>Dear ".$ToName.",</td></tr>
+<tr><td ><p>Your Advertisement was approved by the XYget Admin</p><p>Your Advertisement Details are,</p></td></tr>
+<tr><td >
+<table width='100%' border='0' cellpadding='0' cellspacing='0'  style='font-size: 12px; line-height: 25px;font-family:Arial, Helvetica, sans-serif;padding-left:5px;'>
+<tr>
+<td width='20%'>Username</td>
+<td width='3%'>:</td>
+<td width='77%'>".$AdvertisementName."</td>
+</tr>
+<tr>
+</table>
+</td></tr>
+</table>";
+$mailContent = file_get_contents("../../../MailTemplate.php");
+$Message = str_replace('MSGCONTENT',$Message, $mailContent);
+$Message = str_replace('../../../images/',HTTP_SERVER.'../../../images/', $Message);
+$Subject='Confirmation Mail';
+$FromName='XYget';
+$FromAddress='services@tracemein.com';
+PHP_Mailer($Message,$Subject,$ToAddress,$ToName,$FromAddress,$FromName,'','');
+}
+//email admin approval
 }
 if($_REQUEST['action']=='verify')
 {
