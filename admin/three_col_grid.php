@@ -6,11 +6,11 @@ $WhereCont=(isset($WhereCont) && !empty($WhereCont) ? trim($WhereCont) : '');
 	$totalrecord=$rtot;  $pagesize=10;
 	$noofpages=$totalrecord/$pagesize;
 	if (!isset($_REQUEST['startdata']) || trim($_REQUEST['startdata'])=='' || trim($_REQUEST['startdata'])=='0')
-	$startdata=0;
+		$startdata=0;
 	else
-	$startdata=$_REQUEST['startdata'];
+		$startdata=$_REQUEST['startdata'];
 	$count=$startdata;
-        $_REQUEST['startdata'] = (isset($_REQUEST['startdata']) ? $_REQUEST['startdata'] : '');
+    $_REQUEST['startdata'] = (isset($_REQUEST['startdata']) ? $_REQUEST['startdata'] : '');
   
 	if($_REQUEST["startdata"]=="0")
 	{	$i=1; 	}
@@ -56,18 +56,17 @@ $WhereCont=(isset($WhereCont) && !empty($WhereCont) ? trim($WhereCont) : '');
                                 <td width="5%"  align="center" valign="top"><?php echo $colHead[0] ?></td>
                                 <td width="30%" align="center" valign="top"><?php echo $colHead[1] ?></td>
                                 <td width="22%" align="center" valign="top"><?php echo $colHead[2] ?></td>
-                                <td width="20%" align="center" valign="top"><?php echo $colHead[3] ?></td>
+                                <!-- <td width="20%" align="center" valign="top"><?php echo $colHead[3] ?></td> -->
                                 <?php if(isset($Verified) && !empty($Verified)) if($Verified=='A'){
 								$colspan=6;
 								?>
-                                <td align="center" valign="top"><?php echo $colHead[4] ?></td>
-                                <td width="23%" align="center" valign="top"><?php echo $colHead[5] ?></td>
+                                <td align="center" valign="top" width="20%"><?php echo $colHead[4] ?></td>
                                 <?php } else {
 								$colspan=5;
 								?>
                                 <td width="23%" align="center" valign="top"><?php echo $colHead[4] ?></td>
                                 <?php }?>
-                               
+                                <td align="center" valign="top">Action</td>
                           </tr>
                         </table>
                         </td>
@@ -90,11 +89,7 @@ $WhereCont=(isset($WhereCont) && !empty($WhereCont) ? trim($WhereCont) : '');
 					  else echo 'style="color: #fff;"'; ?>>
                         <td width="5%" align="center" class="gridtxt1"><?php echo $Sno; ?></td>
                         <td width="30%" align="center" class="gridtxt1"><?php echo $Register_Fetch[1]; ?></td>
-                        <?php if(isset($SectorName) && !empty($SectorName)) if($SectorName == 'yes'){?>
-                        <td width="22%" align="center" class="gridtxt1"><?php echo ShowSectName($Register_Fetch[2]); ?></td>
-                        <?php } else {?>
-                        <td width="22%" align="center" class="gridtxt1"><?php echo $Register_Fetch[2]; ?></td>
-                        <?php }?>
+                        
                         <td width="20%" align="center" class="gridtxt1">
 						<?php 
 							// if($CheckModulePrevilage[3]==1)
@@ -108,18 +103,46 @@ $WhereCont=(isset($WhereCont) && !empty($WhereCont) ? trim($WhereCont) : '');
 							// 		echo "<span  onclick=\"return OnClickStatusActive('$id','$startdata')\" style=\"text-decoration:underline;cursor:pointer\">In-Active</span>";
 							// 	}  
 							// }
-								if($Register_Fetch['PS_Status']==1 || $Register_Fetch['ADV_Status']==1)
-								{ 
-									echo "<span  onclick=\"return OnClickStatusInActive('$id','$startdata')\" style=\"text-decoration:underline;cursor:pointer\">Active</span>";
+								if(isset($Register_Fetch['PS_Status'])){
+									if($Register_Fetch['PS_Status']==1 )
+									{ 
+										echo "<span  onclick=\"return OnClickStatusInActive('$id','$startdata')\" style=\"text-decoration:underline;cursor:pointer\">Active</span>";
+									}
+									else
+									{
+										echo "<span  onclick=\"return OnClickStatusActive('$id','$startdata')\" style=\"text-decoration:underline;cursor:pointer\">In-Active</span>";
+									} 
 								}
-								else
-								{
-									echo "<span  onclick=\"return OnClickStatusActive('$id','$startdata')\" style=\"text-decoration:underline;cursor:pointer\">In-Active</span>";
+								if(isset($Register_Fetch['ADV_Status'])){
+									if($Register_Fetch['ADV_Status']==1)
+									{ 
+										echo "<span  onclick=\"return OnClickStatusInActive('$id','$startdata')\" style=\"text-decoration:underline;cursor:pointer\">Active</span>";
+									}
+									else
+									{
+										echo "<span  onclick=\"return OnClickStatusActive('$id','$startdata')\" style=\"text-decoration:underline;cursor:pointer\">In-Active</span>";
+									}
 								}  
 							?>
 							<!-- <span onclick="return advertisement_view('<?php echo $id; ?>','<?php echo $startdata; ?>',this);" style="text-decoration:underline;cursor:pointer" >View</span> -->
 						</td>
-
+						<td width="25%" align="center" class="gridtxt1">
+						<?php 
+							if($CheckModulePrevilage[3]==1)
+							{
+							echo "<span onclick=\"return OnclickEdit('$id','$startdata'); \" style=\"cursor:pointer\">Edit</span> &nbsp;/&nbsp;";
+							} ?>
+							<?php
+							if($CheckModulePrevilage[4]==1)
+							{
+							echo "<span onclick=\"return OnClickDelete('$id','$startdata')\"  style=\"text-decoration:underline;cursor:pointer\">Delete</span> &nbsp;/&nbsp;";
+							} ?>
+							<?php
+							if($CheckModulePrevilage[1]==1)
+							{ 
+							echo "<span onclick=\"return OnclickView('$id','$startdata',this); \" style=\"cursor:pointer\" >View</span>";
+							} ?>
+                        </td>
                       </tr>
                       <tr>
                         <td height="2" colspan="5" align="center"></td>

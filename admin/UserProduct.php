@@ -13,7 +13,7 @@ $CheckModulePrevilage = PermissionList($_SESSION['Admin_Id'],'ModuleList',$Modul
 
 // include("include/BlModules/Bl_Productlist.php");
 $_REQUEST['id'] = (isset($_REQUEST['id']) ? $_REQUEST['id'] : '');
-$Select=db_query("Select * from ".tbl_productservice. " where PS_Status='1'");
+$Select=db_query("Select * from ".TABLE_PRODUCTSERVICE. " where PS_Status='1'");
 $Fetch=db_fetch_array($Select);
 $_REQUEST['startdata'] = (isset($_REQUEST['startdata']) ? $_REQUEST['startdata'] : '');
 if($_REQUEST['startdata']=='')

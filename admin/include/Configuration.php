@@ -3,7 +3,7 @@ ob_start();
 session_start();
 
 define('DB_SERVER','localhost');
-define('DB_SERVER_PASSWORD','root');
+define('DB_SERVER_PASSWORD','');
 define('DB_SERVER_USERNAME','root');
 define('DB_DATABASE','xyget.com');
 define('HTTP_URL','localhost/tegxy_blue');
@@ -35,7 +35,7 @@ define('TABLE_PRODUCTTYPE', 'tbl_producttype');
 define('TABLE_ADMINPRODUCT','tbl_adminproduct');
 define('TABLE_PRODUCTSERVICE', 'tbl_productservice');
 define('TABLE_PRODUCTSPECIFICATION','tbl_productspecification');
-
+define('TABLE_ADVERTISEMENT','tbl_advertisement');
 define('TABLE_AREAMASTER',' tbl_areamaster');
 define('TABLE_PINCODEMASTER',' tbl_pincodemaster');
 define('TABLE_ADVCURRENCY', 'tbl_adv_currency');

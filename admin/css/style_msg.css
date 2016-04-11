@@ -160,4 +160,12 @@ a:hover{
 	cursor:pointer;
 	
 }
+.textareas,.multiple_check{
+	border:1px #4f4f4f solid;
+	font-size:12px;
+	color: #FFFFFF;
+	font-family:Arial, Helvetica, sans-serif;
+	background:#121212 ;
+	width:160px;
+}
 
