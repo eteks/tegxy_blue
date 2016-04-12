@@ -59,6 +59,8 @@ function Selectcreatenewadv()
 	$("#Nextprocess").show();
 	Advformresetsecondlevel();
 	$("#Advertiselevel").val(2);
+	//newly added by kalai
+	$('#ADVImageDisp').html('');
 }
 
 function Firstleveladv()
@@ -301,11 +303,9 @@ if (xmlhttp.readyState == 4)
 			DocId('ADVImage').value  = Res[7];
 			// DocId('ADVImageDisp').innerHTML  = Res[8];
 
-			// '<img width="30" height="30" src="'+Res[8]+'" />
-			// &nbsp;&nbsp;<span style="color: #00677D;cursor: pointer;font-size: 11px;font-weight: bold;" 
-			// onclick="DeleteFromFolder('+Res[8]+',"ADVImageDisp","ADVImage","2");" >Delete</span>&nbsp;&nbsp;';
+			DocId('ADVImageDisp').innerHTML  ='<img width="30" height="30" src="'+Res[8]+'" />\
+			&nbsp;&nbsp;<span style="color: #00677D;cursor: pointer;font-size: 11px;font-weight: bold;" onclick="DeleteFromFolder(\''+Res[8]+'\',\'ADVImageDisp\',\'ADVImage\');" >Delete</span>&nbsp;&nbsp;';
 
-			DocId('ADVImageDisp').innerHTML  = "<img width='30' height='30' src="+Res[8]+">";
 			DocId('Advdescription').value  = Res[9];
 			}
 			if(Res[10]!='')

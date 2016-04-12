@@ -3,7 +3,7 @@ include_once("include/Configuration.php");
 include_once(PAGE_DBCONNECTION);
 db_connect();
 
-$UId              = trim($_SESSION['LID']);
+$UId = trim($_SESSION['LID']);
 
 
 if(isset($_GET["imageid"]) && $_GET["imageid"]!="")

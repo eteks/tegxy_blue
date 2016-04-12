@@ -4,8 +4,35 @@ include_once("../DatabaseConnection.php");
 db_connect();
 
 $UId   = trim($_SESSION['LID']);
-if($_REQUEST['action']==1)
-@unlink("../../".$_REQUEST['path']);	
+// if($_REQUEST['action']==1)
+// @unlink("../../".$_REQUEST['path']);	
+
+if($_REQUEST['action']==1){
+	// echo "action 1";
+	// echo "Select LG_Id,LG_Logo FROM ".TABLE_LOGO." where LG_Id='".$_REQUEST['id']."'";
+	// select image name
+	$image=db_query("Select LG_Id,LG_Logo FROM ".TABLE_LOGO." where LG_Id='".$_REQUEST['id']."'") or die(db_error());
+	if(db_num_rows($image)>0)
+	{
+		// echo "count",db_num_rows($image);
+		$image_row=db_fetch_array($image);
+		$image_name=$image_row["LG_Logo"];
+		$check=db_query("Delete from ".TABLE_LOGO." where LG_Id='".$_REQUEST['id']."'") or die(db_error());
+		db_query("DELETE FROM  ".TABLE_STOREFILESIZE." WHERE SFS_UserFk='".$UId."' AND	SFS_Fk='".$_REQUEST['id']."' AND SFS_Mode=1");
+
+		if($check)
+		{
+			// remove from folder too
+			@unlink($image_name);
+			echo "ok DELETE FROM  ".TABLE_STOREFILESIZE." WHERE SFS_UserFk='".$UId."' AND	SFS_Fk='".$_REQUEST['id']."' AND SFS_Mode=1";
+		}
+		else
+		{
+			echo "Oops, there is some problem";
+		}
+	}	
+}
+	
 
 
 if($_REQUEST['action']==2)

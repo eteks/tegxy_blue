@@ -1,6 +1,6 @@
 <script language="javascript" type="text/javascript">
 // $(function()
-// {
+// {	
 // 	var btnUpload=$('#UploadLogo');
 // 	var status=$('#UploadLogoStatus');
 // 	new AjaxUpload(btnUpload, {
@@ -94,7 +94,14 @@ $FetchSlot=db_fetch_array($SelectSlot)?>
 	<input type="hidden" name="LogoImage" id="LogoImage" value="" />
 	<span onclick="FileUploadValidate('LogoImage','doc','UploadLogoList','Document/Logo/');" style="cursor:pointer;">
 	<img src="images/upload-icon.png" />&nbsp;upload</span>
-	<span id="UploadLogoList"></span><br/>
+	<span id="UploadLogoList">
+		<?php if($FetchSlot['LG_Logo'] == '') { ?>
+			<img width="200" height="200" src="Document/Logo/no_logo.png" id="uploadcompany_logo">
+		<?php } else{ ?>
+			<img width="200" height="200" src="<?php echo $FetchSlot['LG_Logo']; ?>" id="uploadcompany_logo">
+			<span onclick="DeleteLogoFromFolder('<?php echo $FetchSlot['LG_Id']; ?>','<?php echo $FetchSlot['LG_Logo']; ?>','UploadLogoList','LogoImage');" style="color: #00677D;cursor: pointer;font-size: 11px;font-weight: bold;">Delete</span>	
+		<?php } ?>
+	</span><br/>
 	<em><span class="alertmsg">(gif,jpg,png Files Only - Below 1MB - Recommended size 148X155)</span></em>
 </td>
 </tr>

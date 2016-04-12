@@ -1944,6 +1944,7 @@ DocId('ConfirmPassword').value=''
 
 function FileUploadValidate(HImage,doc,ImageDisp,Path)
 {
+	// alert("yes");
 	// alert(HImage);
 	// alert(doc);
 	// alert(ImageDisp);

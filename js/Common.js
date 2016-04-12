@@ -363,10 +363,23 @@ $("#ProCategoryListId").val(res[3]);
 
 function FileUploader(obj1,obj2,obj3,obj4)
 {
-if($("#"+obj3).html()!='')
+	// alert("FileUploader");
+//newly added by kalai for logo upload
+//start
+if(obj3 == "UploadLogoList"){
+	value = $("#uploadcompany_logo").attr('src');
+	if(value == "Document/Logo/no_logo.png" || $("#"+obj3).html() == ""){
+		window.open ("FileUploader.php?idname="+obj1+"&objtype="+obj2+"&disp="+obj3+"&path="+obj4,"File Uploader","menubar=1,resizable=1,scrollbars=1,width=300,height=300"); 
+	}
+	else
+		alert("Please Delete the file");
+}
+//end
+else if($("#"+obj3).html()!='')
 alert("Please Delete the file");
-else
+else{
 window.open ("FileUploader.php?idname="+obj1+"&objtype="+obj2+"&disp="+obj3+"&path="+obj4,"File Uploader","menubar=1,resizable=1,scrollbars=1,width=300,height=300"); 
+}
 }
 
 
@@ -633,6 +646,22 @@ $("#"+disp).html("");
 $("#"+data).html("");
 }	
 }
+function DeleteLogoFromFolder(id,path,disp,data)
+{
+ n=confirm("Do you want to delete");
+if(n==true)
+{
+createXmlObject();
+var str = "action=1&path="+path+"&id="+id;
+var url = "include/BlModules/Bl_FileDelete.php";
+xmlhttp.open("POST", url, true);  
+xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+xmlhttp.send(str);
+$("#"+disp).html("");
+$("#"+data).html("");
+}	
+}
+
 
 function Numbercharacteronly(o,w)						
 {
