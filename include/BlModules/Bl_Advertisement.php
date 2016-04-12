@@ -69,9 +69,8 @@ $advertiselevel               =  $_REQUEST['Advertiselevel'];
 if($advertise =='')
 {
 db_query("INSERT INTO ".TABLE_ADVERTISEMENT." SET ADV_Userfk='".$user."',ADV_Existornew='".$advertiselevel."',ADV_Selection='".$advselectiontype."',ADV_Name='".$advname."',ADV_Selectionfk='".$advselectionlist."',ADV_Linkyouradvto='".$advlinkselection."',ADV_Url='".$advlinkurl."',ADV_Imagepath='".$advimage."',ADV_Description='".$advdescription."',ADV_Displayformate='".$advisplayformate."',ADV_Targetpage='".$advtargetpage."',ADV_Sector='".$advsector."',ADV_Totalaudience='".$advaudience."',ADV_From='".ChangeDateforDB($advfromtimeline)."',ADV_To='".ChangeDateforDB($advtotimeline)."',ADV_Createdon=Now(),ADV_TotalAmount='".$advamount."', ADV_TotalBudget='".$advbudget."'");
-echo "Added Successfully######";
 //email admin approval
-if($_REQUEST['val']==1)
+if(isset($_POST["submit"]))
 {
 $Details = db_query("SELECT reg.RGT_Email,reg.RGT_OwnerName,adv.ADV_Name FROM ".TABLE_REGISTRATION." as reg INNER JOIN `tbl_advertisement` as adv ON adv.ADV_Userfk=reg.RGT_PK where RGT_Status=1");
 
@@ -101,9 +100,15 @@ $Message = str_replace('../../../images/',HTTP_SERVER.'../../../images/', $Messa
 $Subject='Confirmation Mail';
 $FromName='XYget';
 $FromAddress='services@tracemein.com';
-PHP_Mailer($Message,$Subject,$ToAddress,$ToName,$FromAddress,$FromName,'','');
+ $retval =PHP_Mailer($Message,$Subject,$ToAddress,$ToName,$FromAddress,$FromName,'','');
+if( $retval == true ) {
+            echo "Message sent successfully...";
+         }else {
+            echo "Message could not be sent...";
+ }
 }
 //email admin approval	
+echo "Added Successfully######";
 }
 else
 {

@@ -1,4 +1,3 @@
-
 function positionInfo(object) {
 
   var p_elm = object;

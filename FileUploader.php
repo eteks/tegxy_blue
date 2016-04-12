@@ -22,7 +22,7 @@ $FilePath = $_REQUEST['path'];
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>File Uploader</title>
-<link rel="stylesheet" type="text/css" href="css/memberprofile.css" media="screen" />
+<!-- <link rel="stylesheet" type="text/css" href="css/memberprofile.css" media="screen" /> -->
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript">
 function checkopenerclose()
@@ -34,17 +34,15 @@ function uploadimagecheck()
 	var imagePath = $('#ImgUpload').val();
 	var pathLength = imagePath.length;
 	var lastDot = imagePath.lastIndexOf(".");
-	var fileType = imagePath.substring(lastDot,pathLength);
-	
-	var file = document.getElementById('ImgUpload').files[0];
-	// alert(file);
+	var fileType = imagePath.substring(lastDot,pathLength);	
+	var file = document.getElementById('ImgUpload').files[0];	
 	var FileSize = $('#FileSize').val();
 	var Check = parseInt(file.size) + parseInt(FileSize);
 	if(parseInt($('#FileSizeLimit').val()) < parseInt(Check))
 	{
 	alert('Can not upload');
 	return false;
-	}
+	}	
 	<?php if($allowExt=="doc"){ ?>
 	if((fileType == ".gif") || (fileType == ".jpg") || (fileType == ".png") || (fileType == ".GIF") || (fileType == ".JPG") || (fileType == ".PNG"))
 	{

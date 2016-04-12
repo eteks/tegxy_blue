@@ -102,7 +102,7 @@
                     <span style="display:none;">Select Area in <span id="citydisplayname"  >Pondicherry</span>?</span>
                 </div>
                 <div style="width:200px;height:20px;padding-top:13px;float:left;margin-left:100px;">
-                    <select name="selectarea" id="selectarea"  style="border:none;color:#007088;background:#F4F4F4;text-align: right;" >
+                    <select name="selectarea" id="selectarea"  style="border:none;color:#007088;background:#F4F4F4;text-align: right;padding:0 10px 0 20px" >
                     <?php
                         $cityyidd = get_Search_Id(TABLE_GENERALAREAMASTER, "Id", "Area", $_REQUEST['usercity']);
                         if ($cityyidd != '')

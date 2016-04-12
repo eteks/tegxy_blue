@@ -292,25 +292,29 @@ db_connect();
                             echo getOperatingAreas($fetchquery['RGT_PK']);
                             ?>"><?php
                             echo $dispareas;
-                            ?></span></span></div>
+                            ?></span></span>
+                        </div>
                         <div style="height:5px;"></div>
                         <div><span>Working Days : <?php
                             echo $fetchquery['RGT_WorkingdayFrom'];
                             ?> - <?php
                             echo $fetchquery['RGT_WorkingdayTo'];
-                            ?></span></div>
+                            ?></span>
+                        </div>
                         <div style="height:5px;"></div>
                         <div><span>Business Timing : <?php
                             echo $fetchquery['RGT_OfficetimeFrom'];
                             ?> - <?php
                             echo $fetchquery['RGT_OfficetimeTo'];
-                            ?></span></div>
+                            ?></span>
+                        </div>
                         <div style="height:5px;"></div>
                         <div><span> Break Time : <?php
                             echo $fetchquery['RGT_BreaktimeFrom'];
                             ?> - <?php
                             echo $fetchquery['RGT_BreaktimeTo'];
-                            ?></span></div>
+                            ?></span>
+                        </div>
                     </div>
                 </div>                
                 <div class="addetails" style="min-height:135px;">
@@ -399,10 +403,12 @@ db_connect();
                                 echo 'Phone: ' . $fetchquery['RGT_Landline'];
                             else
                                 echo 'Phone: ' . $fetchquery['RGT_Mobile'];
-                            ?></div>
+                            ?>
+                        </div>
                         <div><?php
                             echo 'Email: ' . $fetchquery['RGT_Email'];
-                            ?></div>
+                            ?>
+                        </div>
                     </div>
                 </div>
                 <div style="width:705px;height:39px;float:left;">
@@ -418,7 +424,8 @@ db_connect();
                             else {
                             ?> <img src="images/chatoffine.png" style="position:relative;top:3px;" />&nbsp;&nbsp;<span style="color:#fff;">I'm offline.</span><?php
                             }
-                            ?></div>
+                            ?>
+                        </div>
                         <div class="chat_fullcurve"></div>
                         <div class="full_det"><a <?php
                             if ($_SESSION['LID'] != '') {
@@ -431,7 +438,8 @@ db_connect();
                             echo $fetchquery['RGT_ProfileUrl'];
                             ?>','','');" <?php
                             }
-                            ?>   target="_blank"> View Full Details</a></div>
+                            ?>   target="_blank"> View Full Details</a>
+                        </div>
                     </div>
                     <?php
                         } //$fetchquery['RGT_PaymentStatus'] == '1'
@@ -600,7 +608,8 @@ db_connect();
                     <div>
                         <div><?php
                             echo $fetchquery['PS_Display'];
-                            ?></div>
+                            ?>
+                        </div>
                         <div><?php
                             if ($fetchquery['PS_Price'] != '' && $fetchquery['PS_Price'] != '0') {
                                 echo '<span> Price :' . ' ' . $fetchquery['PS_Price'] . ' ' . CurrencyName($fetchquery['PS_Currency']) . '</span>';
@@ -608,7 +617,8 @@ db_connect();
                             if ($fetchquery['PS_Unit'] != '') {
                                 echo '<span> Unit :' . ' ' . $fetchquery['PS_Unit'] . '</span>';
                             } //$fetchquery['PS_Unit'] != ''
-                            ?></div>
+                            ?>
+                        </div>
                     </div>
                 </div>              
                 <div class="addetails">
@@ -640,10 +650,12 @@ db_connect();
                                 echo 'Phone: ' . get_data_from_registration($fetchquery['PS_User_Fk'], 'RGT_Mobile');
                             else
                                 echo 'Phone: ' . get_data_from_registration($fetchquery['PS_User_Fk'], 'RGT_Landline');
-                            ?></div>
+                            ?>
+                        </div>
                         <div><?php
                             echo 'Email: ' . get_data_from_registration($fetchquery['PS_User_Fk'], 'RGT_Email');
-                            ?></div>
+                            ?>
+                        </div>
                     </div>
                 </div>
                 <div style="width:705px;height:39px;float:left;">
@@ -674,8 +686,7 @@ db_connect();
                             }
                             ?> >View Full Details</a></div>
                     </div>
-                </div>
-                
+                </div>                
             </div>
             <br/><br/>
             <?php

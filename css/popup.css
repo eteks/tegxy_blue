@@ -22,7 +22,7 @@
 	margin: 0 auto;
 	z-index: 100;
 }
-.background_overlay { position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 1; background:black; opacity: 0.5;}
+.background_overlay { position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 3; background:black; opacity: 0.5;}
 .formdiv
 {
 min-width:330px;width:auto;height:250px;margin-left:auto;margin-right:auto;background:#fffff;padding:20px;padding-top:10px;border-radius:10px;font-family:Arial, Helvetica, sans-serif;

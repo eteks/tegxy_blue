@@ -351,7 +351,8 @@ $Logo_Fetch = db_fetch_array($Logo);
 				</form>
 			</fieldset>
 			<fieldset>
-				<legend>Select YourBudget / Timeline For This Ad</legend>
+		<!-- 		<legend>Select YourBudget / Timeline For This Ad</legend> -->
+					<legend>Select Timeline For This Ad</legend>
 				<form id="Formtimeline">
 					<table width="100%" border="0" cellpadding="0" cellspacing="0" >
 						<tr><td colspan="7" height="10"></td></tr>
@@ -365,7 +366,7 @@ $Logo_Fetch = db_fetch_array($Logo);
 							<td colspan="2">&nbsp;</td>
 						</tr>
 						<tr><td colspan="7" height="5"></td></tr>
-						<tr>
+				<!-- 		<tr>
 							<td colspan="2">&nbsp;</td>
 							<td>Total Amount:</td>
 							<td>&nbsp;</td>
@@ -383,7 +384,7 @@ $Logo_Fetch = db_fetch_array($Logo);
 							<td>&nbsp;</td>
 							<td><input type="text" id="Advbudget" name="Advbudget" /></td>
 							<td colspan="2">&nbsp;</td>
-						</tr>
+						</tr> -->
 						<tr><td colspan="7" height="10"></td></tr>
 					</table>
 				</form>

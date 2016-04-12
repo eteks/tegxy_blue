@@ -89,21 +89,20 @@ if($Action=='1')
 		db_query("INSERT INTO ".TABLE_KEYWORDMST." SET Kd_IndustryFk='".$IndustryList."', Kd_Keyword='".$Name."', Kd_CreatedOn=Now(), Kd_ModifiedOn=Now()");
 		$keyid = db_insert_id();
 		}
-			
+		
 		db_query("INSERT INTO ".TABLE_PRODUCTSERVICE." SET PS_User_Fk='".$UId."',PS_Mode='".$Mode."',PS_Fk='".$keyid."',PS_IndustryFk='".$IndustryList."',PS_CategoryFk='".$Category."',PS_SubCategoryFk='".$SubCategory."',PS_TypeFk='".$Type."',PS_Display='".$DisplayName."',PS_Description='".$Descr."',PS_BusinessType='".$BusType."',PS_Keyword='".$Keyword."',PS_Brochure='".$PdfPath."',PS_CoverImg='".$CoverImgPath."',PS_Price='".$Price."',PS_Currency='".$Currency."',PS_Unit='".$Unit."',PS_CreatedOn=Now(),PS_ModifiedOn=Now() ");
-		$InsertId = db_insert_id();
+		$InsertId = db_insert_id();		
 
 		if($PdfPath!='')
 		db_query("INSERT INTO ".TABLE_STOREFILESIZE." SET SFS_UserFk='".$UId."',SFS_Fk='".$InsertId."',SFS_Mode='5',SFS_FileSize='".$PdfPath2."',SFS_CreatedOn=NOw(),SFS_ModifiedOn=NOw() ");
 
 		if($CoverImgPath!='')
 		db_query("INSERT INTO ".TABLE_STOREFILESIZE." SET SFS_UserFk='".$UId."',SFS_Fk='".$InsertId."',SFS_Mode='6',SFS_FileSize='".$CoverImgPath2."',SFS_CreatedOn=NOw(),SFS_ModifiedOn=NOw() ");
-		echo 'Added Successfullly';
-		//email admin approval
-		if($_REQUEST['val']==1)
-		{
-		$Details = db_query("SELECT reg.RGT_Email,reg.RGT_OwnerName,pro.PS_Display FROM ".TABLE_REGISTRATION." as reg INNER JOIN `tbl_productservice` as pro ON pro.PS_User_Fk=reg.RGT_PK where RGT_Status=1");
+		echo 'Added Successfullly';	
 
+		//email admin approval
+		if(isset($_POST["submit"])){
+		$Details = db_query("SELECT reg.RGT_Email,reg.RGT_OwnerName,pro.PS_Display FROM ".TABLE_REGISTRATION." as reg INNER JOIN `tbl_productservice` as pro ON pro.PS_User_Fk=reg.RGT_PK where reg.RGT_Status=1 ");
 		$FetDetails = db_fetch_array($Details);
 		$ToAddress = $FetDetails['RGT_Email'];
 		$ToName    = $FetDetails['RGT_OwnerName'];
@@ -127,12 +126,18 @@ if($Action=='1')
 		$mailContent = file_get_contents("../../../MailTemplate.php");
 		$Message = str_replace('MSGCONTENT',$Message, $mailContent);
 		$Message = str_replace('../../../images/',HTTP_SERVER.'../../../images/', $Message);
-		$Subject='Confirmation Mail';
+		$Subject='Confirmation Mail after Product Posted';
 		$FromName='XYget';
 		$FromAddress='services@tracemein.com';
-		PHP_Mailer($Message,$Subject,$ToAddress,$ToName,$FromAddress,$FromName,'','');
-		}
-		//email admin approval
+		$retval = PHP_Mailer($Message,$Subject,$ToAddress,$ToName,$FromAddress,$FromName,'','');
+		 if( $retval == true ) {
+            echo "Message sent successfully...";
+         }else {
+            echo "Message could not be sent...";
+         }
+         }
+		//email admin approval	
+
 	}
 	else
 	{

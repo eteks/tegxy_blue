@@ -93,7 +93,7 @@ db_connect();?>
 <span style="display:none;">Select Area in <span id="citydisplayname"  >Pondicherry</span>?</span>
 </div> -->
 <!-- <div style="width:200px;height:20px;padding-top:13px;float:left;margin-left:100px;">
-<select name="selectarea" id="selectarea"  style="border:none;color:#007088;background:#F4F4F4;text-align: right;" >
+<select name="selectarea" id="selectarea"  style="border:none;color:#007088;background:#F4F4F4;text-align: right;padding:0 10px 0 20px" >
 	<?php
 // 	$cityyidd=get_Search_Id(TABLE_GENERALAREAMASTER,"Id","Area",$_REQUEST['usercity']);
 //     if($cityyidd!='')
@@ -404,7 +404,7 @@ $("#searchlist").focusout(function(){
 <div id="signin">
 <div style="width:230px;background:#fff;padding:20px;border-radius:10px;">
 <p align="center" style="color:#F7862A;">Sign In</p>
-<div id="Fmsg" style="height:20px;color:#EC4211;font-size:16px;text-shadow:1px 1px 1px #aaa;font-style:italic;"></div>
+<div id="Fmsg" style="color: red !important;font-size: 11px;font-style: italic;height: 20px;text-shadow: 1px 1px 1px #aaa;padding-bottom: 12px;"></div>
 <div class="field">
 <div class="labeldiv">Username:</div>
 <div class="txtboxdiv"><input type="text" name="FLusername" autocomplete="off" id="FLusername" class="txtbox" /></div>
