@@ -81,11 +81,11 @@ db_connect();
         } 
         else if ($requestType == 'bestdeals') {
             $searchtTitle = "Xbit List";//db connection
-            $searchquery  = db_query("SELECT * FROM " . TABLE_PRODUCTSERVICE . "  WHERE PS_Display LIKE '$searchkey%' AND PS_Status=1");
+            $searchquery_deals  = db_query("SELECT * FROM " . TABLE_PRODUCTSERVICE . "  WHERE PS_Display LIKE '$searchkey%' AND PS_Status=1");
             $searchquery1  = db_query("SELECT * FROM " . TABLE_PRODUCTSERVICE . "  WHERE PS_Display LIKE '$searchkey%' AND PS_Status=1");
             $searchquery2  = db_query("SELECT * FROM " . TABLE_PRODUCTSERVICE . "  WHERE PS_Display LIKE '$searchkey%' AND PS_Status=1");
 
-            $countresult  = mysql_num_rows($searchquery);
+            $countresult_deals  = mysql_num_rows($searchquery_deals);
             // while ($fetchquery = mysql_fetch_array($searchquery)) {
             //     $relatedsearch .= $fetchquery['PS_Display'] . ',';
             // } 
@@ -554,7 +554,7 @@ db_connect();
         </div>
 
         <?php
-            if ($countresult > 0) {       
+            if ($countresult_deals > 0) {       
             ?>
          <div class="adsearchresult_menu"><a id="Searchdisplaytypelist" class="active" href="#" onclick="SearchListStyle(<?php
             echo '\'' . $requestType . '\'' . ',' . '\'' . $searchkey . '\'';
@@ -568,8 +568,8 @@ db_connect();
         </div>
         <!--ad-->
         <div id="mainsearchcontent">
-            <?php if($requestType=='bestdeals'){                        
-            while($fetchquery=mysql_fetch_array($searchquery)){
+            <?php if($requestType=='bestdeals'){                                 
+            while($fetchquery=mysql_fetch_array($searchquery_deals)){
             $yearofestablishment = explode('-',get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_YrofEstablish'));
              if(strlen(stripslashes(get_company_name($fetchquery['PS_Id'])))>25){ $Compnamefixlimit = substr(stripslashes(get_company_name($fetchquery['PS_Id'])),0,25).'...' ;} else { $Compnamefixlimit =  stripslashes(get_company_name($fetchquery['PS_Id']));} 
              
