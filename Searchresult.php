@@ -69,15 +69,16 @@ db_connect();
         $alreadylisteddetails = '';
         $citymatchdata        = '';
         $countresult          = '';
-        if ($requestType == 'company') {
+        if ($requestType == 'company') {         
             $searchtTitle = "Company List";//db connection
-            $searchquery  = db_query("SELECT * FROM  " . TABLE_REGISTRATION . " WHERE  $searchsql RGT_Status=1 AND RGT_Type=2 $querycitymatch  $queryareamatch");
-            $searchquery1 = db_query("SELECT * FROM  " . TABLE_REGISTRATION . " WHERE  $searchsql RGT_Status=1 AND RGT_Type=2 $querycitymatch  $queryareamatch");
-            $searchquery2 = db_query("SELECT * FROM  " . TABLE_REGISTRATION . " WHERE  $searchsql RGT_Status=1 AND RGT_Type=2 $querycitymatch  $queryareamatch");
+            $searchquery  = db_query("SELECT * FROM  " . TABLE_REGISTRATION . " WHERE  $searchsql RGT_Status=1 AND RGT_Type=2");
+            $searchquery1 = db_query("SELECT * FROM  " . TABLE_REGISTRATION . " WHERE  $searchsql RGT_Status=1 AND RGT_Type=2");
+            $searchquery2 = db_query("SELECT * FROM  " . TABLE_REGISTRATION . " WHERE  $searchsql RGT_Status=1 AND RGT_Type=2");
             $countresult  = mysql_num_rows($searchquery);
-            // while ($fetchquery = mysql_fetch_array($searchquery1)) {
-            //     $relatedsearch .= $fetchquery['RGT_Sector'] . ',';
-            // } 
+            
+            while($fetchquery = mysql_fetch_array($searchquery1)){               
+                $relatedsearch.= $fetchquery['RGT_Sector'].',';            
+            }             
         } 
         else if ($requestType == 'bestdeals') {
             $searchtTitle = "Xbit List";//db connection
@@ -177,19 +178,14 @@ db_connect();
                 <div class="adleftaccordiaon_top" >Related Searches</div>
                 <div style="width:245px;height:auto;border:1px solid #C0C0C0;" >
                     <ul class="relatedsearch_ul">
-                        <?php
-                            if ($requestType == 'company') {
-                                if ($_REQUEST['type2'] == 1) {
-                                    getKeywordCompListFromSearchedCompany($_REQUEST['searchkey']);
-                                } //$_REQUEST['type2'] == 1
-                                if ($_REQUEST['type2'] == 2) {
-                                    getKeywordListFromSearchedIndustry($_REQUEST['searchkey']);
-                                } //$_REQUEST['type2'] == 2
-                                if ($_REQUEST['type2'] == 3) {
-                                    getKeywordCompListFromSearchedKeyword($_REQUEST['searchkey']);
-                                } //$_REQUEST['type2'] == 3
-                            } //getRelatedSearchComp($relatedsearch,$finaldetails,$findcitymatch,$findareamatch);
-                            ?>
+                  <?php
+                        if($requestType=='company'){
+                        if($_REQUEST['type2']==1){ getKeywordCompListFromSearchedCompany($_REQUEST['searchkey']);  }  
+                        if($_REQUEST['type2']==2){ getKeywordListFromSearchedIndustry($_REQUEST['searchkey']);     }
+                        if($_REQUEST['type2']==3){ getKeywordCompListFromSearchedKeyword($_REQUEST['searchkey']);  }
+                        } 
+                        //getRelatedSearchComp($relatedsearch,$finaldetails,$findcitymatch,$findareamatch);
+                        ?> 
                     </ul>
                 </div>
             </div>
@@ -233,6 +229,7 @@ db_connect();
         </div>
         <?php
             if ($countresult > 0) { 
+               
             ?>
         <div class="adsearchresult_menu"><a id="Searchdisplaytypelist" class="active" href="#" onclick="SearchListStyle(<?php
             echo '\'' . $requestType . '\'' . ',' . '\'' . $searchkey . '\'';

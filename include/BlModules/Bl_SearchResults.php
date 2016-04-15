@@ -5,4 +5,3 @@ db_connect();
 $path='../../';
 include("../../Searchresult.php");?>
 
-
