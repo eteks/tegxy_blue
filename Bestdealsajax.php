@@ -156,6 +156,10 @@ $login(document).ready(function(){
 <?php include("BDViewMore.php");?>
 </div>
 
+<!-- <div id="Ads_View_Grid">
+<?php /* include("ADViewMore.php");*/?>
+</div> -->
+
 </body>
 <?php include("ProfileFooter.php");?>
 </html>

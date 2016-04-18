@@ -23,7 +23,7 @@
 <tr>
 <td>Description</td>
 <td> :&nbsp;</td>
-<td><textarea id="EventsDesp" name="EventsDesp" class="inp-text"  style="width:538px;"  ></textarea></td>
+<td><textarea id="EventsDesp" name="EventsDesp" class="inp-text"  style="width:538px;font-family:Arial,Helvetica,sans-serif;"  ></textarea></td>
 </tr>
 <tr><td colspan="3" height="10"></td></tr>
 <tr>

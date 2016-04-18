@@ -196,3 +196,11 @@ function ProfileViewGrid(page)
 $("#Profile_View_Grid").load(page);	
 // alert($("#Profile_View_Grid").html());
 }
+
+// function AdsViewGrid(page)
+// {
+//     // alert(page);
+// $("#Ads_View_Grid").load(page);	
+// // alert($("#Profile_View_Grid").html());
+// }
+

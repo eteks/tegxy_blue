@@ -1157,13 +1157,13 @@ function getKeywordCompListFromSearchedCompany($searchkey)
         if ($ResIndustryIds != '') {
 
             //company list
-            $queryrelated = db_query("SELECT RGT_CompName FROM " . TABLE_REGISTRATION . " WHERE RGT_Status=1 AND RGT_Type=2 AND  RGT_Sector IN (" . $ResIndustryIds . ") AND RGT_PK NOT IN (" . $CompanyIds . ")");
+            $queryrelated = db_query("SELECT RGT_CompName FROM " . TABLE_REGISTRATION . " WHERE RGT_PaymentStatus=1 AND RGT_Status=1 AND RGT_Type=2 AND  RGT_Sector IN (" . $ResIndustryIds . ") AND RGT_PK NOT IN (" . $CompanyIds . ") order by RGT_CompName asc LIMIT 10");
             $countresult  = mysql_num_rows($queryrelated);
             if ($countresult > 0) {
                 while ($Fetchrelated = mysql_fetch_array($queryrelated)) {
                     $orginal = $Fetchrelated['RGT_CompName'];
                     $count   = strlen($Fetchrelated['RGT_CompName']);
-                    if ($count > 15) {
+                    if ($count > 20) {
                         $displaydata = (substr($Fetchrelated['RGT_CompName'], 0, 15));
                         $displaydata .= '...';
                     } else {
@@ -1180,27 +1180,27 @@ function getKeywordCompListFromSearchedCompany($searchkey)
             }
             //keyword list
 
-            $queryrelated2 = db_query("SELECT Kd_Keyword FROM " . TABLE_KEYWORDMST . " WHERE Kd_Status=1 and Kd_Keyword!='' and Kd_IndustryFk  IN (" . $ResIndustryIds . ") ");
-            $countresult2  = mysql_num_rows($queryrelated2);
-            if ($countresult2 > 0) {
-                while ($Fetchrelated2 = mysql_fetch_array($queryrelated2)) {
-                    $orginal2 = $Fetchrelated2['Kd_Keyword'];
-                    $count2   = strlen($Fetchrelated2['Kd_Keyword']);
-                    if ($count2 > 15) {
-                        $displaydata2 = (substr($Fetchrelated2['Kd_Keyword'], 0, 15));
-                        $displaydata2 .= '...';
-                    } else {
-                        $displaydata2 = $Fetchrelated2['Kd_Keyword'];
-                    }
-                    echo '<li>';
-                    echo '<a onclick="';
-                    echo 'searchResult(';
-                    echo "'$orginal2'";
-                    echo ',\'\',3);';
-                    echo '" class="navlink" ><span>' . $displaydata2 . '</span></a>';
-                    echo '</li>';
-                }
-            }
+            // $queryrelated2 = db_query("SELECT Kd_Keyword FROM " . TABLE_KEYWORDMST . " WHERE Kd_Status=1 and Kd_Keyword!='' and Kd_IndustryFk  IN (" . $ResIndustryIds . ") ");
+            // $countresult2  = mysql_num_rows($queryrelated2);
+            // if ($countresult2 > 0) {
+            //     while ($Fetchrelated2 = mysql_fetch_array($queryrelated2)) {
+            //         $orginal2 = $Fetchrelated2['Kd_Keyword'];
+            //         $count2   = strlen($Fetchrelated2['Kd_Keyword']);
+            //         if ($count2 > 15) {
+            //             $displaydata2 = (substr($Fetchrelated2['Kd_Keyword'], 0, 15));
+            //             $displaydata2 .= '...';
+            //         } else {
+            //             $displaydata2 = $Fetchrelated2['Kd_Keyword'];
+            //         }
+            //         echo '<li>';
+            //         echo '<a onclick="';
+            //         echo 'searchResult(';
+            //         echo "'$orginal2'";
+            //         echo ',\'\',3);';
+            //         echo '" class="navlink" ><span>' . $displaydata2 . '</span></a>';
+            //         echo '</li>';
+            //     }
+            // }
 
 
 

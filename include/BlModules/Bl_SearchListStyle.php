@@ -207,72 +207,83 @@ $yearofestablishment = explode('-',get_data_from_registration($fetchquery['PS_Us
 $Compnamedisp = $Compnamefixlimit.'<span style="color:#007088;"> (Since - '.$yearofestablishment[2].')</span>';
 ?>
 <div class="singlead">
-<!--title-->
-<div class="adtitle">
-<div style="width:550px;color:#EC5324;float:left;"><b><?php echo $Compnamedisp ;?></b></div>
-<?php /*?><div class="rating">Rating <span><img src="images/rating_star.png" /><img src="images/rating_star.png" /><img src="images/rating_star.png" /></span> 3.0</div>
-<?php */?></div>
-<!--title-->
-<!--adimage-->
-<div class="adimage">
-<div class="company_logo">
-<a href="#thumb" class="thumbnail">
-<img src="<?php if($fetchquery['PS_CoverImg']!=''){ echo $fetchquery['PS_CoverImg']; } else { echo 'images/default/no_image.png'; }?>"  width="124" height="115" /><span><img src="<?php if($fetchquery['PS_CoverImg']!=''){ echo $fetchquery['PS_CoverImg']; } else { echo 'images/default/no_image.png'; }?>" width="220" height="220" /></span></a>
+    <div class="adtitle"><!--title-->
+        <div style="width:550px;color:#EC5324;float:left;"><b><?php echo $Compnamedisp ;?></b></div>
+        <?php /*?><div class="rating">Rating <span><img src="images/rating_star.png" /><img src="images/rating_star.png" /><img src="images/rating_star.png" /></span> 3.0</div>
+        <?php */?>  
+    </div><!--title-->
+    <div class="adimage"><!--adimage-->
+        <div class="company_logo">
+            <a href="#thumb" class="thumbnail">
+                <img src="<?php if($fetchquery['PS_CoverImg']!=''){ echo $fetchquery['PS_CoverImg']; } else { echo 'images/default/no_image.png'; }?>"  width="124" height="115" />
+                <span>
+                    <img src="<?php if($fetchquery['PS_CoverImg']!=''){ echo $fetchquery['PS_CoverImg']; } else { echo 'images/default/no_image.png'; }?>" width="220" height="220" />
+                </span>
+            </a>
+        </div>
+        <div>
+            <div><?php echo $fetchquery['PS_Display']?></div>
+            <div>
+                <?php
+                if($fetchquery['PS_Price']!=''&&$fetchquery['PS_Price']!='0'){
+                echo '<span> Price :'.' '.$fetchquery['PS_Price'].' '.CurrencyName($fetchquery['PS_Currency']).'</span>';
+                }
+                if($fetchquery['PS_Unit']!=''){
+                echo '<span> Unit :'.' '.$fetchquery['PS_Unit'].'</span>';
+                }
 
+                ?>
+            </div>
+        </div>
+    </div><!--adimage-->
+    <div class="addetails"><!--addetails-->
+        <div class="addetails_left">
+            <span style="color:#EC5324;"><b>Business Descriptions</b></span>
+            <div style="height:10px;"></div>
+            <?php if(strlen($fetchquery['PS_Description'])>150){ echo substr($fetchquery['PS_Description'],0,150).'...'; } else {echo $fetchquery['PS_Description']; } ?>
+        </div>
+        <div class="addetails_sep"></div>
+        <div class="addetails_right">
+            <span style="color:#EC5324;"><b>Contact Details</b></span>
+            <div style="height:10px"></div>
+            <?php
+            getAreadetails(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Area'));
+            getCitydetails(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_City'));
+            getStatedetails(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_State'));
+            getPindetails(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Pincode'));
+            getCountrydetails2(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Country'));
+            ?>
+            <div>
+                <?php if(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Mobile')!='') echo 'Phone: '.get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Mobile') ;else echo  'Phone: '. get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Landline') ;?>
+            </div>
+            <div>
+                <?php echo 'Email: '.get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Email') ;?>
+            </div>
+        </div>
+    </div><!--addetails-->
+    <div style="width:720px;height:39px;float:left;">
+        <div class="chat_details">
+            <div class="chat_curve"></div>
+            <div class="chat_style">
+                <img src="images/chat_online.png" style="position:relative;top:3px;" />&nbsp;&nbsp;
+                <a href="#"> I'm Offline</a>
+            </div>
+            <div class="chat_fullcurve"></div>
+            <?php
+            if(get_data_from_registration($fetchquery['PS_User_Fk'],RGT_Type)==3)
+            $user_id = $fetchquery['PS_User_Fk'];
+            else
+            $user_id = get_data_from_registration($fetchquery['PS_User_Fk'],RGT_ProfileUrl);
+            ?>
+            <div class="full_det">
+                <a <?php  if(isset($_SESSION['LID'])){?> target="_blank"  href="<?php echo 'Bestdealsajax.php?type='.base64_encode(get_data_from_registration($fetchquery['PS_User_Fk'],RGT_Type)).'&user='.$user_id.'&BDId='.$fetchquery['PS_Id'];?>" <?php } else {?> class="pop firstviewmore" onclick="getUserProfile('<?php echo $user_id ;?>','<?php echo $fetchquery['PS_Id'];?>','<?php echo base64_encode(get_data_from_registration($fetchquery['PS_User_Fk'],RGT_Type));?>');" <?php }?> >
+                View Full Details
+                </a>
+            </div>
+        </div>
+    </div><br/><br/>
+    <div class="clear"></div>
 </div>
-<div>
-<div><?php echo $fetchquery['PS_Display']?></div>
-<div><?php
-if($fetchquery['PS_Price']!=''&&$fetchquery['PS_Price']!='0'){
-echo '<span> Price :'.' '.$fetchquery['PS_Price'].' '.CurrencyName($fetchquery['PS_Currency']).'</span>';
-}
-if($fetchquery['PS_Unit']!=''){
-echo '<span> Unit :'.' '.$fetchquery['PS_Unit'].'</span>';
-}
-
-?></div>
-</div>
-</div>
-<!--adimage-->
-<!--addetails-->
-<div class="addetails">
-<div class="addetails_left">
-<span style="color:#EC5324;"><b>Business Descriptions</b></span><div style="height:10px;"></div>
-<?php if(strlen($fetchquery['PS_Description'])>150){ echo substr($fetchquery['PS_Description'],0,150).'...'; } else {echo $fetchquery['PS_Description']; } ?></div>
-<div class="addetails_sep"></div>
-<div class="addetails_right">
-<span style="color:#EC5324;"><b>Contact Details</b></span><div style="height:10px"></div>
-<?php
-getAreadetails(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Area'));
-getCitydetails(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_City'));
-getStatedetails(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_State'));
-getPindetails(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Pincode'));
-getCountrydetails2(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Country'));
-?>
-<div><?php if(get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Mobile')!='') echo 'Phone: '.get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Mobile') ;else echo  'Phone: '. get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Landline') ;?></div>
-<div><?php echo 'Email: '.get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_Email') ;?></div>
-
-</div>
-</div>
-<div style="width:720px;height:39px;float:left;">
-<div class="chat_details">
-<div class="chat_curve"></div>
-<div class="chat_style"><img src="images/chat_online.png" style="position:relative;top:3px;" />&nbsp;&nbsp;<a href="#"> I'm Offline</a>
-</div>
-<div class="chat_fullcurve"></div>
-<?php
-
-if(get_data_from_registration($fetchquery['PS_User_Fk'],RGT_Type)==3)
-$user_id = $fetchquery['PS_User_Fk'];
-else
-$user_id = get_data_from_registration($fetchquery['PS_User_Fk'],RGT_ProfileUrl);
-?>
-<div class="full_det"><a <?php  if(isset($_SESSION['LID'])){?> target="_blank"  href="<?php echo 'Bestdealsajax.php?type='.base64_encode(get_data_from_registration($fetchquery['PS_User_Fk'],RGT_Type)).'&user='.$user_id.'&BDId='.$fetchquery['PS_Id'];?>" <?php } else {?> class="pop firstviewmore" onclick="getUserProfile('<?php echo $user_id ;?>','<?php echo $fetchquery['PS_Id'];?>','<?php echo base64_encode(get_data_from_registration($fetchquery['PS_User_Fk'],RGT_Type));?>');" <?php }?> >View Full Details</a>
-</div>
-</div>
-<!--addetails-->
-</div><br/><br/>
-<div class="clear"></div>
 <?php }} else{?><tr><td>No Records Found</td></tr><?php }}
 
 if($Type=='2' && $requestType=='company' ){

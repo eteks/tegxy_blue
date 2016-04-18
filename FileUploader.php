@@ -22,7 +22,7 @@ $FilePath = $_REQUEST['path'];
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>File Uploader</title>
-<link rel="stylesheet" type="text/css" href="css/memberprofile.css" media="screen" />
+<!-- <link rel="stylesheet" type="text/css" href="css/memberprofile.css" media="screen" /> -->
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript">
 function checkopenerclose()
@@ -34,17 +34,15 @@ function uploadimagecheck()
 	var imagePath = $('#ImgUpload').val();
 	var pathLength = imagePath.length;
 	var lastDot = imagePath.lastIndexOf(".");
-	var fileType = imagePath.substring(lastDot,pathLength);
-	
-	var file = document.getElementById('ImgUpload').files[0];
-	// alert(file);
+	var fileType = imagePath.substring(lastDot,pathLength);	
+	var file = document.getElementById('ImgUpload').files[0];	
 	var FileSize = $('#FileSize').val();
 	var Check = parseInt(file.size) + parseInt(FileSize);
 	if(parseInt($('#FileSizeLimit').val()) < parseInt(Check))
 	{
 	alert('Can not upload');
 	return false;
-	}
+	}	
 	<?php if($allowExt=="doc"){ ?>
 	if((fileType == ".gif") || (fileType == ".jpg") || (fileType == ".png") || (fileType == ".GIF") || (fileType == ".JPG") || (fileType == ".PNG"))
 	{
@@ -109,26 +107,25 @@ if($_POST['Upload']=='Upload')
 				$mainMesage = $newlogo;
 			}
 		}?>
-		<script type="text/javascript" language="javascript">			
+		<script type="text/javascript" language="javascript">	
 			window.opener.document.getElementById('<?php echo $_REQUEST['fieldName']; ?>').value="<?php echo $mainMesage;?>";
-			
 			<?php if($_REQUEST['objtype']=='pdf')
 			{?>
 			window.opener.document.getElementById('<?php echo $_REQUEST['Disp']; ?>').innerHTML='<a href="<?php echo $mainMesage;?>" target="_blank"><img width="30" height="30" src="images/pdf.png"></a>&nbsp;&nbsp;<span style="color: #00677D;cursor: pointer;font-size: 11px;font-weight: bold;" onclick="DeleteFromFolder(\'<?php echo $mainMesage;?>\',\'<?php echo $_POST['Disp'];?>\',\'<?php echo $_REQUEST['fieldName']; ?>\');" >Delete</span>&nbsp;&nbsp;';
 			<?php }
-			else if($_POST['Disp']=='UploadLogoList'){ ?>
-			
-			// var files = '<?php echo $_FILES["ImgUpload"]; ?>';
-			// $.ajax({
-   //               type: "POST",
-   //               url: "LogoUploader.php",
-   //               // data: 'file_name='+file_name+'&tmp_name='+tmp_name+'&file_size='+file_size,
-   //               data :files,
-   //               cache: false,
-   //               success: function(data) {
-   //               	alert(data);
-   //               }
-   //          });		
+			else if($_POST['Disp']=='UploadLogoList'){ 
+				//newly added by kalai
+				$logo_path = $mainMesage;
+				$Check = db_query("SELECT LG_Id,LG_Logo FROM ".TABLE_LOGO." WHERE LG_UserFk='".$UId."'");
+				list($LG_Id,$LG_Logo) =db_fetch_array($Check);
+				if(db_num_rows($Check)>0)
+					$sql = "UPDATE ".TABLE_LOGO." SET LG_Logo='".$logo_path."',LG_ModifiedOn=NOW() WHERE LG_Id='".$LG_Id."'";
+				else
+					$sql = "INSERT INTO ".TABLE_LOGO." set  LG_UserFk='".$UId."', LG_Logo='".$logo_path."',LG_CreatedOn=NOW(),LG_ModifiedOn=NOW()";
+				$insert=db_query($sql) or die(db_error());
+				$cc=db_insert_id();
+
+			?>
 			window.opener.document.getElementById('<?php echo $_POST['Disp']; ?>').innerHTML='<img width="200" height="200" src="<?php echo $mainMesage;?>" />&nbsp;&nbsp;<span style="color: #00677D;cursor: pointer;font-size: 11px;font-weight: bold;" onclick="DeleteFromFolder(\'<?php echo $mainMesage;?>\',\'<?php echo $_POST['Disp'];?>\',\'<?php echo $_REQUEST['fieldName']; ?>\');" >Delete</span>&nbsp;&nbsp;';
 			<?php } 
 			else{?>

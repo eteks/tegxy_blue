@@ -127,7 +127,7 @@ if(isset($WhereCont) && !empty($WhereCont))
 if($WhereCont=='')
 $WhereCont = ' where 1';
 $Verified='A';		
-$gridHead = 'Product List Details';
+$gridHead = 'Advertisement List Details';
 
 $colHead  = array("Sl.No.",'', "Advertisement Name",'',"Status");
 include_once('../../three_col_grid.php');
