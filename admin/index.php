@@ -1,4 +1,5 @@
 <?php include("Header.php");?>
+
 <style>
 	#passwordStrength	{	height:10px;display:block;float:left;}
 	.strength0	{	width:150px;background:#cccccc;		}

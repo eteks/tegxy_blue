@@ -1,4 +1,5 @@
 <?php include_once("include/Configuration.php");
+
 include_once(PAGE_DBCONNECTION);
 db_connect();
 
@@ -43,7 +44,7 @@ $fileName   = 'Advertisement';
 <input type="hidden" id="startdata" name="startdata" value="<?php echo $_REQUEST['startdata'] ?>" />
 <input type="hidden" id="hidSearchFilterFieldList" name="hidSearchFilterFieldList" value="<?php echo $_REQUEST['SearchFilterFieldList'] ?>" />
 <input type="hidden" id="hidSearchFilterField" name="hidSearchFilterField" value="<?php echo $_REQUEST['SearchFilterField'] ?>" />
-<form>
+<form method="post" id="post_advertisement" enctype="multipart/form-data" action="">
 	<table>
 		<tr>
 			<td class="feildstxt">Advetisement Title</td>
@@ -109,7 +110,7 @@ $fileName   = 'Advertisement';
 			<td><input type="file" name="adv_image" class="menu"></td>
 		</tr>
 	</table>
-	<input type="submit" name="submit" value="Submit" />
+	<input type="submit" name="advertisement" value="Submit" id="advertisement_submit" />
 </form>
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" >
 <tr>

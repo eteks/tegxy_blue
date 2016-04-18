@@ -1,4 +1,5 @@
 <?php include_once("include/Configuration.php");
+	 
 include_once(PAGE_DBCONNECTION);
 db_connect();
 
@@ -15,8 +16,30 @@ $ModuleCatList = PermissionList($_SESSION['Admin_Id'],'ModuleList_fk'); ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?php echo $Title;?></title>
 <?php include("ScriptStyle.php"); ?>
+<script type="text/javascript">
+$(document).ready(function (e) {
+	$("#post_advertisement").live('submit',function(e) {
+		var formdata = new FormData($(this)[0]);
+		e.preventDefault();
+		$.ajax({
+			url: "form_upload.php", // Url to which the request is send
+			type: "POST",             // Type of request to be send, called as method
+			data: formdata, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+			async: false,
+			contentType: false,       // The content type used when sending data to the server.
+			cache: false,             // To unable request pages to be cached
+			processData:false,        // To send DOMDocument or non processed data file it is set to false
+			success: function(data){   // A function to be called if request succeeds
+				alert(data);
+				location.reload();
+			}
+		});
+	});
+});
+</script>
 </head>
 <body style="height:100% !important;">
+
 <input type="hidden" name="Keycal" id="Keycal" />
 <table width="1000" height="100%" border="0" align="center" cellpadding="0"  cellspacing="0">
 <tr>
