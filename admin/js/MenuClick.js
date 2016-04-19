@@ -25,7 +25,7 @@ function OnclickMenu(obj,Extra,obj1,startdata,optid)
 		str = "s="+obj+"&ModuleId="+Extra+"&optid="+optid+"&r="+ran_number;
 		
 	var url = ""+obj1+".php";
-	// alert(url+'?'+str); 
+	//alert(url+'?'+str); 
 	xmlhttp.open("POST", url, true);  
 	xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
 	xmlhttp.send(str);

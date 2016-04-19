@@ -1,27 +1,4 @@
-<?php 
-include_once("include/Configuration.php");
-include_once(PAGE_DBCONNECTION);
-db_connect();
-$PageName = basename($_SERVER['SCRIPT_FILENAME'],'.php');
-if($_REQUEST['user']=='')
-{
-$LID = $_SESSION['LID'];
-$Chk = "RGT_PK='".$LID."'";
-}
-else
-{
-$LID = $_REQUEST['user'];
-$Chk = "RGT_ProfileUrl='".$LID."'";
-}
-$ProfileDetails=db_query("SELECT * FROM ".TABLE_REGISTRATION." WHERE ".$Chk." AND RGT_Type=2");
-$FetProfileDetails = db_fetch_array($ProfileDetails);
-if($_REQUEST['user'])
-$LID = $FetProfileDetails['RGT_PK'];
-if($LID=='')
-header("Location:Login.php");
-$Logo=db_query("SELECT LG_Logo FROM ".TABLE_LOGO." WHERE LG_UserFk ='".$LID."'");
-$Logo_Fetch = db_fetch_array($Logo);
-?>
+
 <script type="text/javascript" src="js/CalendarControl.js"></script>
 <script type="text/javascript" src="js/Common.js"></script>
 <script type="text/javascript" src="js/Advertisement.js"></script>

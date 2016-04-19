@@ -6,8 +6,9 @@ db_connect();
 include("include/BlModules/Bl_General.php");
 $PageName = basename($_SERVER['SCRIPT_FILENAME'],'.php');
 
-if(!isset($_SESSION['Admin_Id']))
-header("location:Login.php");
+if(!isset($_SESSION['Admin_Id'])){
+	header("location:Login.php");	
+}
 
 $ModuleId = $_REQUEST['ModuleId'];
 $CheckModulePrevilage = PermissionList($_SESSION['Admin_Id'],'ModuleList',$ModuleId);
@@ -44,7 +45,8 @@ $fileName   = 'Advertisement';
 <input type="hidden" id="startdata" name="startdata" value="<?php echo $_REQUEST['startdata'] ?>" />
 <input type="hidden" id="hidSearchFilterFieldList" name="hidSearchFilterFieldList" value="<?php echo $_REQUEST['SearchFilterFieldList'] ?>" />
 <input type="hidden" id="hidSearchFilterField" name="hidSearchFilterField" value="<?php echo $_REQUEST['SearchFilterField'] ?>" />
-<form method="post" id="post_advertisement" enctype="multipart/form-data" action="">
+<form method="post" id="post_advertisement" enctype="multipart/form-data" action="index.php">
+	<input type="hidden" id="formname" name="formname" value="PostAdv" />
 	<table>
 		<tr>
 			<td class="feildstxt">Advetisement Title</td>

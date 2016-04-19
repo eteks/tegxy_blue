@@ -42,4 +42,7 @@ include("include/BlModules/Bl_AreaMaster.php");
 if($_REQUEST['formname']=='PincodeMasterForm')
 include("include/BlModules/Bl_PincodeMaster.php");
 
+if($_REQUEST['formname']=='PostAdv')
+include("include/BlModules/Bl_Advertisement.php");
+
  ?>

@@ -69,24 +69,23 @@ db_connect();
         $alreadylisteddetails = '';
         $citymatchdata        = '';
         $countresult          = '';
-        if ($requestType == 'company') {         
+        if ($requestType == 'company') {
             $searchtTitle = "Company List";//db connection
-            $searchquery  = db_query("SELECT * FROM  " . TABLE_REGISTRATION . " WHERE  $searchsql RGT_Status=1 AND RGT_Type=2");
-            $searchquery1 = db_query("SELECT * FROM  " . TABLE_REGISTRATION . " WHERE  $searchsql RGT_Status=1 AND RGT_Type=2");
-            $searchquery2 = db_query("SELECT * FROM  " . TABLE_REGISTRATION . " WHERE  $searchsql RGT_Status=1 AND RGT_Type=2");
+            $searchquery  = db_query("SELECT * FROM  " . TABLE_REGISTRATION . " WHERE  $searchsql RGT_Status=1 AND RGT_Type=2 $querycitymatch  $queryareamatch");
+            $searchquery1 = db_query("SELECT * FROM  " . TABLE_REGISTRATION . " WHERE  $searchsql RGT_Status=1 AND RGT_Type=2 $querycitymatch  $queryareamatch");
+            $searchquery2 = db_query("SELECT * FROM  " . TABLE_REGISTRATION . " WHERE  $searchsql RGT_Status=1 AND RGT_Type=2 $querycitymatch  $queryareamatch");
             $countresult  = mysql_num_rows($searchquery);
-            
-            while($fetchquery = mysql_fetch_array($searchquery1)){               
-                $relatedsearch.= $fetchquery['RGT_Sector'].',';            
-            }             
+            // while ($fetchquery = mysql_fetch_array($searchquery1)) {
+            //     $relatedsearch .= $fetchquery['RGT_Sector'] . ',';
+            // } 
         } 
         else if ($requestType == 'bestdeals') {
             $searchtTitle = "Xbit List";//db connection
-            $searchquery_deals  = db_query("SELECT * FROM " . TABLE_PRODUCTSERVICE . "  WHERE PS_Display LIKE '$searchkey%' AND PS_Status=1");
+            $searchquery  = db_query("SELECT * FROM " . TABLE_PRODUCTSERVICE . "  WHERE PS_Display LIKE '$searchkey%' AND PS_Status=1");
             $searchquery1  = db_query("SELECT * FROM " . TABLE_PRODUCTSERVICE . "  WHERE PS_Display LIKE '$searchkey%' AND PS_Status=1");
             $searchquery2  = db_query("SELECT * FROM " . TABLE_PRODUCTSERVICE . "  WHERE PS_Display LIKE '$searchkey%' AND PS_Status=1");
 
-            $countresult_deals  = mysql_num_rows($searchquery_deals);
+            $countresult  = mysql_num_rows($searchquery);
             // while ($fetchquery = mysql_fetch_array($searchquery)) {
             //     $relatedsearch .= $fetchquery['PS_Display'] . ',';
             // } 
@@ -178,14 +177,19 @@ db_connect();
                 <div class="adleftaccordiaon_top" >Related Searches</div>
                 <div style="width:245px;height:auto;border:1px solid #C0C0C0;" >
                     <ul class="relatedsearch_ul">
-                  <?php
-                        if($requestType=='company'){
-                        if($_REQUEST['type2']==1){ getKeywordCompListFromSearchedCompany($_REQUEST['searchkey']);  }  
-                        if($_REQUEST['type2']==2){ getKeywordListFromSearchedIndustry($_REQUEST['searchkey']);     }
-                        if($_REQUEST['type2']==3){ getKeywordCompListFromSearchedKeyword($_REQUEST['searchkey']);  }
-                        } 
-                        //getRelatedSearchComp($relatedsearch,$finaldetails,$findcitymatch,$findareamatch);
-                        ?> 
+                        <?php
+                            if ($requestType == 'company') {
+                                if ($_REQUEST['type2'] == 1) {
+                                    getKeywordCompListFromSearchedCompany($_REQUEST['searchkey']);
+                                } //$_REQUEST['type2'] == 1
+                                if ($_REQUEST['type2'] == 2) {
+                                    getKeywordListFromSearchedIndustry($_REQUEST['searchkey']);
+                                } //$_REQUEST['type2'] == 2
+                                if ($_REQUEST['type2'] == 3) {
+                                    getKeywordCompListFromSearchedKeyword($_REQUEST['searchkey']);
+                                } //$_REQUEST['type2'] == 3
+                            } //getRelatedSearchComp($relatedsearch,$finaldetails,$findcitymatch,$findareamatch);
+                            ?>
                     </ul>
                 </div>
             </div>
@@ -229,7 +233,6 @@ db_connect();
         </div>
         <?php
             if ($countresult > 0) { 
-               
             ?>
         <div class="adsearchresult_menu"><a id="Searchdisplaytypelist" class="active" href="#" onclick="SearchListStyle(<?php
             echo '\'' . $requestType . '\'' . ',' . '\'' . $searchkey . '\'';
@@ -551,7 +554,7 @@ db_connect();
         </div>
 
         <?php
-            if ($countresult_deals > 0) {       
+            if ($countresult > 0) {       
             ?>
          <div class="adsearchresult_menu"><a id="Searchdisplaytypelist" class="active" href="#" onclick="SearchListStyle(<?php
             echo '\'' . $requestType . '\'' . ',' . '\'' . $searchkey . '\'';
@@ -565,8 +568,8 @@ db_connect();
         </div>
         <!--ad-->
         <div id="mainsearchcontent">
-            <?php if($requestType=='bestdeals'){                                 
-            while($fetchquery=mysql_fetch_array($searchquery_deals)){
+            <?php if($requestType=='bestdeals'){                        
+            while($fetchquery=mysql_fetch_array($searchquery)){
             $yearofestablishment = explode('-',get_data_from_registration($fetchquery['PS_User_Fk'],'RGT_YrofEstablish'));
              if(strlen(stripslashes(get_company_name($fetchquery['PS_Id'])))>25){ $Compnamefixlimit = substr(stripslashes(get_company_name($fetchquery['PS_Id'])),0,25).'...' ;} else { $Compnamefixlimit =  stripslashes(get_company_name($fetchquery['PS_Id']));} 
              

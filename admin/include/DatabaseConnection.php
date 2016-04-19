@@ -186,7 +186,7 @@ function PermissionList($string='',$string1='*',$string2='')
 		{
 			if($string2!='')
 			{
-			$SelectPermissionArray[$SelectPermission_Ftch[0]]=1;
+				$SelectPermissionArray[$SelectPermission_Ftch[0]]=1;
 			}
 			else
 			{

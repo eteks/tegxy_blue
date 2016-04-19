@@ -1,20 +1,22 @@
 <?php include_once("include/Configuration.php");
 include_once(PAGE_DBCONNECTION);
 db_connect();
-$_SESSION['chatuser'] = $_SESSION['LID'];
-$_SESSION['chatuser_name'] = $_SESSION['UserName'];
-// print_r ($_SESSION['Type']);
-if($_SESSION['LID']=='')
-header("Location:index.php");
-$LID   = $_SESSION['LID'];
-$ProfileDetails=db_query("SELECT * FROM ".TABLE_REGISTRATION." WHERE RGT_PK='".$LID."' AND RGT_Type!=1");
-$FetProfileDetails = db_fetch_array($ProfileDetails);
-$UId   = trim($_SESSION['LID']);
+
+if(isset($_SESSION['LID'])){
+	$LID   = $_SESSION['LID'];
+	$ProfileDetails=db_query("SELECT * FROM ".TABLE_REGISTRATION." WHERE RGT_PK='".$LID."' AND RGT_Type!=1");
+	
+	$FetProfileDetails = db_fetch_array($ProfileDetails);
+	$UId   = trim($_SESSION['LID']);
+	$_SESSION['chatuser'] = $_SESSION['LID'];
+	$_SESSION['chatuser_name'] = $_SESSION['UserName'];
+}else{
+	header("Location:index.php");
+}
 
 db_query("DELETE FROM ".TABLE_PROFILEDETAILS."  WHERE PDS_Fk='".session_id()."'");
 
 ?>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -79,10 +81,8 @@ $(document).ready(function()
 <!-- Establishment Profile -->
 <div id="Profile_1"  style="display:<?php if(base64_decode($_REQUEST['user'])!=''){?>none<?php }else{ ?>block<?php }?>;" ><?php include("CompanyDetails.php");?></div>
 <div id="Profile_2" style="display:none;"><?php  include("OwnerDetails.php");?></div>
-<!-- Content Management -->
 <div id="Profile_3"  style="display:none;"><?php  include("Profile.php");?></div>
 <div id="Profile_4" style="display:none;"><?php  include("Events.php");?></div>
-<!-- Image Management -->
 <div id="Profile_5" style="display:none;"><?php  include("LogoUpload.php");?></div>
 <div id="Profile_6" style="display:none;"><?php  include("Gallery.php");?></div>
 <div id="Profile_7" style="display:none;"><?php  include("HeaderSet.php");?></div>
@@ -100,4 +100,3 @@ $(document).ready(function()
 <script type="text/javascript" src="js/chat.js"></script>
 <!--chat script-->
 </body>
-</html>

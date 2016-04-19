@@ -1,8 +1,8 @@
 <?php 
-$LID = 0;
-
+//$LID = 0;
 if(isset($_SESSION['LID']))
 {
+
 $SP = 'Logout.php';
 $SPT = 'Sign Out';
 }
@@ -12,8 +12,11 @@ $SP = 'Login.php';
 $SPT = 'Sign In';
 }
 $Chk = "RGT_PK='".$_SESSION['LID']."'";
+
 $ProfileDetails=db_query("SELECT * FROM ".TABLE_REGISTRATION." WHERE ".$Chk." AND RGT_Type!=1");
 $FetProfileDetails = db_fetch_array($ProfileDetails);
+
+
 ?>
 <script>setInterval("update()", 5000); // Update every 10 seconds 
 //to find online user status
