@@ -114,7 +114,7 @@ include_once('../../five_col_grid.php');
 
  } 
 
-if($_REQUEST["Pcatid"]!="") {  // sub product search
+if(isset($_REQUEST["Pcatid"])) {  // sub product search
 include_once("../Configuration.php");
 include_once("../DatabaseConnection.php");
 db_connect();

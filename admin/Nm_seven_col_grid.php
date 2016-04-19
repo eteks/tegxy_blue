@@ -5,14 +5,17 @@ $tot=mysql_query($sqltot);
 $rtot=@mysql_num_rows($tot);
 $totalrecord=$rtot;  $pagesize=10;
 $noofpages=$totalrecord/$pagesize;
-if (!isset($_REQUEST['startdata']) || trim($_REQUEST['startdata'])=='' || trim($_REQUEST['startdata'])=='0')
-$startdata=0;
-else
-$startdata=$_REQUEST['startdata'];
+if (!isset($_REQUEST['startdata']) || trim($_REQUEST['startdata'])=='' || trim($_REQUEST['startdata'])=='0'){
+	$startdata=0;	
+}
+else{
+	$startdata=$_REQUEST['startdata'];	
+}
+
 $count=$startdata;
-if($_REQUEST["startdata"]=="0")
+if(isset($_REQUEST["startdata"]))
 {	$i=1; 	}
-elseif($_REQUEST["startdata"]!="0")
+elseif(!isset($_REQUEST["startdata"]))
 { 	$i=$_REQUEST["startdata"]+1; 	}
 else
 { 	$i=1; }
@@ -37,7 +40,7 @@ $Sno=$startdata + 1;
 				<tr>
 					<td width="7" align="left" valign="top"><img src="images/gridbox/sub_l_bg.gif" width="7" height="28" /></td>
 					<td align="left" valign="top" class="sub_title">
-						<?php if($ComDisp =='Yes'){echo $gridHeadSec;} else if($Disp=='Yes'){ echo $gridHeademart;} else  {echo $gridHead; }?>
+						<?php if(isset($ComDisp) || isset($Disp)){ if($ComDisp =='Yes'){echo $gridHeadSec;} else if($Disp=='Yes'){ echo $gridHeademart;}} else  {echo $gridHead; }?>
 					</td>
 					<td width="6" align="right" valign="top"><img src="images/gridbox/sub_r_bg.gif" width="6" height="28" /></td>
 				</tr>
@@ -84,7 +87,10 @@ $Sno=$startdata + 1;
 										while($Register_Fetch=db_fetch_array($Register_Result))
 										{
 										$id=$Register_Fetch['0']; 
-										$startdata=$_REQUEST['startdata']; ?>
+										if(isset($_REQUEST['startdata'])){
+										$startdata=$_REQUEST['startdata'];	
+										}
+										 ?>
 									<tr id="tr_<?php if(isset($id) && !empty($id)) echo $id ?>" <?php $_REQUEST['id'] = (isset($_REQUEST['id']) ? $_REQUEST['id'] : ''); if(isset($optId) && !empty($optId)) if ($id == $optId) echo 'style="font-weight:bold; color: orange;"'; 
 									else  if ($_REQUEST['id'] == $id) echo 'style="color: #ffff00;"';
 									else echo 'style="color: #fff;"'; ?>>

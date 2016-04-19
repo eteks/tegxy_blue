@@ -89,7 +89,7 @@ $WhereCont=(isset($WhereCont) && !empty($WhereCont) ? trim($WhereCont) : '');
 					  else echo 'style="color: #fff;"'; ?>>
                         <td width="5%" align="center" class="gridtxt1"><?php echo $Sno; ?></td>
                         <td width="30%" align="center" class="gridtxt1"><?php echo $Register_Fetch[1]; ?></td>
-                        <?php if($SectorName == 'yes'){?>
+                        <?php if(isset($SectorName)){?>
                         <td width="22%" align="center" class="gridtxt1"><?php echo ShowSectName($Register_Fetch[2]); ?></td>
                         <?php } else {?>
                         <td width="22%" align="center" class="gridtxt1"><?php echo $Register_Fetch[2]; ?></td>
@@ -109,7 +109,7 @@ $WhereCont=(isset($WhereCont) && !empty($WhereCont) ? trim($WhereCont) : '');
 							}
 							?>
 						</td>
-                        <?php if($Verified=='A'){?>
+                        <?php if(isset($Verified)){if($Verified=='A'){?>
                         <td align="center" class="gridtxt1">
 						<?php 
 							if($CheckModulePrevilage[3]==1)
@@ -125,7 +125,7 @@ $WhereCont=(isset($WhereCont) && !empty($WhereCont) ? trim($WhereCont) : '');
 							}
 							?>
 						</td>
-                        <?php }?>
+                        <?php }}?>
                         <td width="23%" align="center" class="gridtxt1">
 						<?php 
 						 if($CheckModulePrevilage[3]==1)

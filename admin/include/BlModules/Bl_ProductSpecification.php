@@ -1,4 +1,6 @@
-<?php  ob_start();
+<?php  
+print_r($_POST);
+ob_start();
 $ModuleId = $_REQUEST['ModuleId'];
 $_POST['ProdSpec'] = (isset($_POST['ProdSpec']) ? $_POST['ProdSpec'] : '');
 $_REQUEST['ProdSpec'] = (isset($_REQUEST['ProdSpec']) ? $_REQUEST['ProdSpec'] : '');

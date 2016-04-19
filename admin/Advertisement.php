@@ -49,6 +49,19 @@ $fileName   = 'Advertisement';
 	<input type="hidden" id="formname" name="formname" value="PostAdv" />
 	<table>
 		<tr>
+			<td colspan="3" align="center">
+				<span id="msgdisplay">&nbsp;
+					<?php $_REQUEST['s'] = (isset($_REQUEST['s']) ? $_REQUEST['s'] : '');
+						if($_REQUEST['s']==1){ echo "Added Successfully!"; }
+						if($_REQUEST['s']==2){ echo "Already Exist!"; }
+						if($_REQUEST['s']==3){ echo "Deleted Successfully"; }
+						if($_REQUEST['s']==4){ echo "Status Updated Successfully"; }
+						if($_REQUEST['s']==5){ echo "Updated Successfully"; }
+					?>
+				</span>
+			</td>
+		</tr>
+		<tr>
 			<td class="feildstxt">Advetisement Title</td>
 			<td>:</td>
 			<td><input type="text" class="input" name="adv_title" value=""></td>

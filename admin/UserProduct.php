@@ -20,10 +20,11 @@ if($_REQUEST['startdata']=='')
 $_REQUEST['startdata']=0;
 if($_REQUEST['startdata']==-1)
 $_REQUEST['startdata']=0;
+if(isset($_REQUEST['action'])){
 if($_REQUEST['action']=='edit')
-	$ValidCheckSql ="Select * FROM ".TABLE_PRODUCTRELATIVITY." WHERE  Product_fk='".$_REQUEST['id']."'";
+{	$ValidCheckSql ="Select * FROM ".TABLE_PRODUCTRELATIVITY." WHERE  Product_fk='".$_REQUEST['id']."'";}}
 else
-	$ValidCheckSql ="Select * FROM ".TABLE_PRODUCTRELATIVITY." WHERE  Ses_Id='".session_id()."'";
+	{$ValidCheckSql ="Select * FROM ".TABLE_PRODUCTRELATIVITY." WHERE  Ses_Id='".session_id()."'";}
 $ValidCheckRel=db_query($ValidCheckSql);
 $CountValidRel=db_num_rows($ValidCheckRel);
 $fileName   = 'UserProduct';
@@ -58,7 +59,7 @@ var cursorpointer=document.getElementById('Selpcat').focus();
 <div id="DetailList">
 <?php $_REQUEST['optid'] = (isset($_REQUEST['optid']) ? $_REQUEST['optid'] : '');
 $optId = $_REQUEST['optid'];
-$all_Sql = "Select DISTINCT a.PS_Id, a.PS_Display, a.PS_Status From ".tbl_productservice." a ";
+$all_Sql = "Select DISTINCT a.PS_Id, a.PS_Display, a.PS_Status From ".TABLE_PRODUCTSERVICE." AS a ";
 $orderBy = ' a.PS_Id ';
 $_REQUEST['SearchFilterFieldList'] = (isset($_REQUEST['SearchFilterFieldList']) ? $_REQUEST['SearchFilterFieldList'] : '');
 if($_REQUEST['SearchFilterFieldList']=='ProName')
@@ -66,9 +67,11 @@ if($_REQUEST['SearchFilterFieldList']=='ProName')
 if($_REQUEST['SearchFilterField']!='')
 $WhereCont = ' where a.PS_Display like "%'.addslashes(trim($_REQUEST['SearchFilterField'])).'%"';
 }
-if(isset($WhereCont) && !empty($WhereCont))
-if($WhereCont=='')
-$WhereCont = ' where 1';
+if(isset($WhereCont) && !empty($WhereCont)){
+	if($WhereCont==''){
+		$WhereCont = ' where 1';
+	}
+}
 $Verified='A';
 $gridHead = 'Product List Details';
 $colHead  = array("Sl.No.",'', "Product Name",'',"Status");

@@ -29,7 +29,7 @@ function OnclickMenu(obj,Extra,obj1,startdata,optid)
 	xmlhttp.open("POST", url, true);  
 	xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
 	xmlhttp.send(str);
-	xmlhttp.onreadystatechange = showNetDisplay
+	xmlhttp.onreadystatechange = showNetDisplay;
 }
 function OnclickMenu_Edit(obj,Extra,obj1,startdata,optid,SearchFilterFieldList,SearchFilterField)
 {
@@ -83,3 +83,23 @@ function OnClickLeftNavigation(str,str1)
 	}
 	//fullscreeneventchange('in');
 }
+$(document).ready(function (e) {
+ $("#post_advertisement").live('submit',function(e) {
+  var formdata = new FormData($(this)[0]);
+  e.preventDefault();
+  $.ajax({
+   url: "form_upload.php", // Url to which the request is send
+   type: "POST",             // Type of request to be send, called as method
+   data: formdata, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+   async: false,
+   contentType: false,       // The content type used when sending data to the server.
+   cache: false,             // To unable request pages to be cached
+   processData:false,        // To send DOMDocument or non processed data file it is set to false
+   success: function(data){   // A function to be called if request succeeds
+    alert(data);
+    //location.reload();
+    //OnclickMenu('0','28','Advertisement');
+   }
+  });
+ });
+});

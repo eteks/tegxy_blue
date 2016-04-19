@@ -1,8 +1,9 @@
 <link rel="stylesheet" type="text/css" href="css/style_msg.css" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <script type="text/javascript" language="javascript"  src="js/Common.js"></script>
-<script type="text/javascript" language="javascript"  src="js/MenuClick.js"></script>
+
 <script type="text/javascript" language="javascript" src="js/jquery-1.6.js"></script>
+<script type="text/javascript" language="javascript"  src="js/MenuClick.js"></script>
 <script type="text/javascript" language="javascript" src="js/jquery.scrollable.js"></script>
 <script type="text/javascript" language="javascript">
 $(document).ready(function()
