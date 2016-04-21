@@ -98,16 +98,15 @@ if($Action=='1')
 
 		if($CoverImgPath!='')
 		db_query("INSERT INTO ".TABLE_STOREFILESIZE." SET SFS_UserFk='".$UId."',SFS_Fk='".$InsertId."',SFS_Mode='6',SFS_FileSize='".$CoverImgPath2."',SFS_CreatedOn=NOw(),SFS_ModifiedOn=NOw() ");
-		echo 'Added Successfullly';	
-
+		
 		//email admin approval
-		if(isset($_POST["submit"])){
-		$Details = db_query("SELECT reg.RGT_Email,reg.RGT_OwnerName,pro.PS_Display FROM ".TABLE_REGISTRATION." as reg INNER JOIN `tbl_productservice` as pro ON pro.PS_User_Fk=reg.RGT_PK where reg.RGT_Status=1 ");
+		$Details = db_query("SELECT reg.RGT_Email,reg.RGT_OwnerName,pro.PS_Display FROM ".TABLE_REGISTRATION." as reg INNER JOIN `tbl_productservice` as pro ON pro.PS_User_Fk=reg.RGT_PK where pro.PS_Display='".$DisplayName."' AND reg.RGT_Status=1 ");
+		// echo "string","SELECT reg.RGT_Email,reg.RGT_OwnerName,pro.PS_Display FROM ".TABLE_REGISTRATION." as reg INNER JOIN `tbl_productservice` as pro ON pro.PS_User_Fk=reg.RGT_PK where pro.PS_Display='".$DisplayName."' AND reg.RGT_Status=1 ";
 		$FetDetails = db_fetch_array($Details);
 		$ToAddress = $FetDetails['RGT_Email'];
 		$ToName    = $FetDetails['RGT_OwnerName'];
 		$ProductName = $FetDetails['PS_Display'];
-
+		// echo 'ProductName',$ProductName;
 		$Message     = "<table border='0' cellpadding='0' cellspacing='0'  style='font-size: 12px; line-height: 25px;font-family:Arial, Helvetica, sans-serif; padding-left:5px;'>
 		<tr><td height='10'></td></tr>
 		<tr><td style='color:#006DB8;font-size:15px;'>Dear ".$ToName.",</td></tr>
@@ -129,14 +128,9 @@ if($Action=='1')
 		$Subject='Confirmation Mail after Product Posted';
 		$FromName='XYget';
 		$FromAddress='services@tracemein.com';
-		$retval = PHP_Mailer($Message,$Subject,$ToAddress,$ToName,$FromAddress,$FromName,'','');
-		 if( $retval == true ) {
-            echo "Message sent successfully...";
-         }else {
-            echo "Message could not be sent...";
-         }
-         }
+		PHP_Mailer($Message,$Subject,$ToAddress,$ToName,$FromAddress,$FromName,'','');		   
 		//email admin approval	
+         echo 'Added Successfullly';
 
 	}
 	else

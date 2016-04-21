@@ -70,15 +70,14 @@ if($advertise =='')
 {
 db_query("INSERT INTO ".TABLE_ADVERTISEMENT." SET ADV_Userfk='".$user."',ADV_Existornew='".$advertiselevel."',ADV_Selection='".$advselectiontype."',ADV_Name='".$advname."',ADV_Selectionfk='".$advselectionlist."',ADV_Linkyouradvto='".$advlinkselection."',ADV_Url='".$advlinkurl."',ADV_Imagepath='".$advimage."',ADV_Description='".$advdescription."',ADV_Displayformate='".$advisplayformate."',ADV_Targetpage='".$advtargetpage."',ADV_Sector='".$advsector."',ADV_Totalaudience='".$advaudience."',ADV_From='".ChangeDateforDB($advfromtimeline)."',ADV_To='".ChangeDateforDB($advtotimeline)."',ADV_Createdon=Now(),ADV_TotalAmount='".$advamount."', ADV_TotalBudget='".$advbudget."'");
 //email admin approval
-if(isset($_POST["submit"]))
-{
-$Details = db_query("SELECT reg.RGT_Email,reg.RGT_OwnerName,adv.ADV_Name FROM ".TABLE_REGISTRATION." as reg INNER JOIN `tbl_advertisement` as adv ON adv.ADV_Userfk=reg.RGT_PK where RGT_Status=1");
-
+$Details = db_query("SELECT reg.RGT_Email,reg.RGT_OwnerName,adv.ADV_Name FROM ".TABLE_REGISTRATION." as reg INNER JOIN `tbl_advertisement` as adv ON adv.ADV_Userfk=reg.RGT_Pk where adv.ADV_Name='".$advname."' AND reg.RGT_Status=1");
 $FetDetails = db_fetch_array($Details);
 $ToAddress = $FetDetails['RGT_Email'];
 $ToName    = $FetDetails['RGT_OwnerName'];
 $AdvertisementName = $FetDetails['ADV_Name'];
-
+// echo "ToAddress",$ToAddress;
+// echo "ToName",$ToName;
+// echo "AdvertisementName",$AdvertisementName;
 $Message     = "<table border='0' cellpadding='0' cellspacing='0'  style='font-size: 12px; line-height: 25px;font-family:Arial, Helvetica, sans-serif; padding-left:5px;'>
 <tr><td height='10'></td></tr>
 <tr><td style='color:#006DB8;font-size:15px;'>Dear ".$ToName.",</td></tr>
@@ -100,13 +99,8 @@ $Message = str_replace('../../../images/',HTTP_SERVER.'../../../images/', $Messa
 $Subject='Confirmation Mail';
 $FromName='XYget';
 $FromAddress='services@tracemein.com';
- $retval =PHP_Mailer($Message,$Subject,$ToAddress,$ToName,$FromAddress,$FromName,'','');
-if( $retval == true ) {
-            echo "Message sent successfully...";
-         }else {
-            echo "Message could not be sent...";
+PHP_Mailer($Message,$Subject,$ToAddress,$ToName,$FromAddress,$FromName,'','');
  }
-}
 //email admin approval	
 echo "Added Successfully######";
 }
