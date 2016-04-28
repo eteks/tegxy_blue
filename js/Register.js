@@ -227,7 +227,7 @@ return false;
 
 else if(!DocId('Mobile').value.match(/^\d{10}$/))  
 {  
-	alert('Please Enter Mobile number with 10 digits')
+	alert('Please Enter Mobile number with 10 digits');
 	return false;  
 } 
 

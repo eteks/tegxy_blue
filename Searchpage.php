@@ -115,7 +115,8 @@
                             $selectid = ($fetchquery['AM_Id'] == $_REQUEST['userarea']) ? 'selected=selected' : '';
                             echo '<option value="' . $fetchquery['AM_Id'] . '" ' . $selectid . '>' . $fetchquery['AM_Area'] . '</option>';
                         }
-                        ?></select>
+                        ?>
+                    </select>
                 </div>
             </div>
             <div class="admain_container">

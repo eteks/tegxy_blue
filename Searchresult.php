@@ -10,9 +10,9 @@ db_connect();
     function Searchusingenterkey(e)
     {
     // look for window.event in case event isn't passed in
-    if (typeof e == 'undefined' && window.event) { e = window.event; }
-    if (e.keyCode == 13)
-    searchResult($('#searchlist').val(),'','');
+    // if (typeof e == 'undefined' && window.event) { e = window.event; }
+    // if (e.keyCode == 13)
+    // searchResult($('#searchlist').val(),'','');
     }
 </script>
 <style type="text/css">
@@ -78,7 +78,8 @@ db_connect();
             
             while($fetchquery = mysql_fetch_array($searchquery1)){               
                 $relatedsearch.= $fetchquery['RGT_Sector'].',';            
-            }             
+            }
+            
         } 
         else if ($requestType == 'bestdeals') {
             $searchtTitle = "Xbit List";//db connection

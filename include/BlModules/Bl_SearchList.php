@@ -4,20 +4,18 @@ include_once("../DatabaseConnection.php");
 db_connect();
 
 	$str1 = addslashes($_POST['data']);
-if($_REQUEST['action']=='1'){	
-	//if (trim($str1) != '') $str1 = trim($str1);
-	//$Whecon = "WHERE `RGT_CompName` like '".$str1."%'";//AND
-	//$sql    = "SELECT RGT_CompName,RGT_City,RGT_Area FROM `tbl_registration`   ".$Whecon." Order by RGT_CompName asc limit 0,5";
-	//RGT_Status=1
-	if (trim($str1) != '') $str1 = trim($str1);
-	{
-	$Whecon  = "WHERE `RGT_CompName` like '".$str1."%' AND RGT_Status = '1' AND RGT_PaymentStatus = '1'";//AND
-	// $Whecon  = "WHERE `RGT_CompName` like '".$str1."%'";//AND
-	$Whecon1 = "WHERE `S_Name` like '".$str1."%'";
-	$Whecon2 = "WHERE `Kd_Keyword` like '".$str1."%'";
+	// $strc = addslashes($_POST['city_act']);
+ 	$strc =  addslashes(isset($_POST['city_act']) ? $_POST['city_act'] : 1);
+	if($_GET['action']=='1'){	
+	if ($str1 != '')	
+	{	
+	$Whecon  = "WHERE RGT_CompName like '$str1%' AND RGT_Status = '1' AND RGT_PaymentStatus = '1' AND RGT_City=".$strc."";
+	$Whecon1 = "WHERE S_Name like '".$str1."%'";
+	$Whecon2 = "WHERE Kd_Keyword like '".$str1."%'";
 	}
 	// $sql    = "SELECT `RGT_CompName` as search, RGT_City,RGT_Area, '1' as type2 FROM `tbl_registration` ".$Whecon." UNION SELECT `S_Name` as search  ,'1' as RGT_City,'b' as RGT_Area ,'2' as type2 FROM `tbl_sector`  ".$Whecon1." UNION SELECT `Kd_Keyword` as search  ,'1' as RGT_City,'b' as RGT_Area ,'3' as type2 FROM `tbl_keywordmst`  ".$Whecon2."";
-	$sql    = "SELECT `RGT_CompName` as search, RGT_City,RGT_Area, '1' as type2 FROM `tbl_registration` ".$Whecon."";
+	$sql  = "SELECT `RGT_CompName` as search, RGT_City,RGT_Area, '1' as type2 FROM `tbl_registration` ".$Whecon."";
+	// echo "SELECT `RGT_CompName` as search, RGT_City,RGT_Area, '1' as type2 FROM `tbl_registration` ".$Whecon."";
 	$result = db_query($sql) or die(db_error());
 	if(db_num_rows($result))
 	{		
@@ -44,13 +42,11 @@ if($_REQUEST['action']=='1'){
 	else
 		echo 0;
 }
-if($_REQUEST['action']=='2'){	
-
+if($_REQUEST['action']=='2'){		
 	if (trim($str1) != '') $str1 = trim($str1);
-	// $Whecon = "Where `ProductName` like '".$str1."%'";
 	$Whecon = "Where `PS_Display` like '".$str1."%' AND PS_Status='1'";
 	// $sql    = "SELECT  ProductName FROM  ".TABLE_ADMINPRODUCT."  ".$Whecon." Order by ProductName asc limit 0,5";
-	$sql    = "SELECT  PS_Display FROM  ".tbl_productservice."  ".$Whecon." Order by PS_Display asc limit 0,5";
+	$sql    = "SELECT  PS_Display FROM  ".tbl_productservice." as prods INNER JOIN `tbl_registration` as regs ON regs.RGT_PK=prods.PS_User_Fk ".$Whecon." AND RGT_City=".$strc." Order by PS_Display asc limit 0,5";
 	$result = db_query($sql) or die(db_error());
 	if(db_num_rows($result))
 	{		
