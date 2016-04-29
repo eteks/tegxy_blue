@@ -113,7 +113,35 @@ function GET_City(city_id)
     xmlhttp.open("POST", url, true);  
     xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
     xmlhttp.send(str);
-    xmlhttp.onreadystatechange = showGeneralArea
+    xmlhttp.onreadystatechange = showGeneralArea   
+    //clear the company that does not exists in a city
+    var cityVal = $('#search_city').val(); 
+    var complist = $("#comp_searchid").val();
+    var productlist = $('#searchid').val();
+    if(complist){
+        $.post('Clearcitycheck.php?city_check=true', {'Clearcity' : cityVal, 'Clearkey' : complist}, function(data) {
+            if(data.trim()=='exist'){
+                 return true;           
+            }
+            else {
+                alert('Selected item does not exists in this City');
+                $('#comp_searchid').val('');
+                 return false
+            }
+        });
+    }
+    else{
+        $.post('Clearproductcheck.php?product_check=true', {'Clearcity' : cityVal, 'Clearproduct' : productlist}, function(data) {
+            if(data.trim()=='exist'){
+                 return true;           
+            }
+            else {
+                alert('Selected item does not exists in this City');
+                $('#searchid').val('');
+                 return false
+            }
+        });
+    }
 }
 
 function showGeneralArea() 
