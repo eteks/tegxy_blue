@@ -25,7 +25,7 @@ $("#searchlist").keyup(function(event){
 	else{
 		var userCityselect_act = $("#citylisthidden").val().trim();
 	}
-	// alert('searchlist'+$("#searchlist").val());
+	// alert('searchlist'+JSON.stringify($("#citylisthidden").val()));
 	 if(searchlist.length)
 	 {	
 		 if(event.keyCode != 40 && event.keyCode != 38  && event.keyCode != 32 && event.keyCode != 13)
@@ -36,7 +36,7 @@ $("#searchlist").keyup(function(event){
 			 $.ajax({
 			   type: "POST",
 			   url: getUrl,
-			   data: "data="+searchlist+"&city_act="+userCityselect_act,
+			   data: "data="+searchlist+"&city_act="+JSON.stringify($("#citylisthidden").val().trim()),
 			   success: function(msg){
 				if(msg != 0)
 				{
@@ -190,20 +190,26 @@ $("#comp_searchid").keyup(function(event){
 	var width = $("#comp_searchid").width()-2;
 	// $("#SearchListRes").css("left",offset.left);
 	// $("#SearchListRes").css("width",width);
-	 // alert(event.keyCode);
-	 var searchlist = $("#comp_searchid").val();
-
-	 if(searchlist.length)
-	 {
-		 if(event.keyCode != 40 && event.keyCode != 38  && event.keyCode != 32 && event.keyCode != 13)
-		 {
+	// alert(event.keyCode);
+	
+	//CITY BASED SEARCH CODE
+	var searchlist = $("#comp_searchid").val();
+	if($("#search_city").val() == ''){
+		var userCityselect_act = $("#search_city").val('1');
+	}
+	else{
+		var userCityselect_act = $("#search_city").val().trim();
+	}
+	if(searchlist.length){
+		if(event.keyCode != 40 && event.keyCode != 38  && event.keyCode != 32 && event.keyCode != 13){
 			 $("#loading").css("visibility","visible");
 				getUrl = "include/BlModules/Bl_SearchList.php?action=3";
 
 			 $.ajax({
 			   type: "POST",
 			   url: getUrl,
-			   data: "data="+searchlist,
+			   // data: "data="+searchlist,
+			   data: "data="+searchlist+"&city_act="+userCityselect_act,
 			   success: function(msg){
 				if(msg != 0)
 				{
@@ -359,8 +365,13 @@ $("#searchid").keyup(function(event){
 	// $("#SearchListRes").css("width",width);
 	 // alert(event.keyCode);
 	 var searchlist = $("#searchid").val();
-	 // alert('searchlist'+searchlist);
-
+	 // alert('searchlist'+searchlist);search_city
+	if($("#search_city").val() == ''){
+		var userCityselect_act = $("#search_city").val('1');
+	}
+	else{
+		var userCityselect_act = $("#search_city").val().trim();
+	}
 	 if(searchlist.length)
 	 {
 		 if(event.keyCode != 40 && event.keyCode != 38  && event.keyCode != 32 && event.keyCode != 13)
@@ -370,7 +381,7 @@ $("#searchid").keyup(function(event){
 			 $.ajax({
 			   type: "POST",
 			   url: getUrl,
-			   data: "data="+searchlist,
+			   data: "data="+searchlist+"&city_act="+userCityselect_act,
 			   success: function(msg){			  
 				if(msg != 0){
 				  $("#SearchListPro").fadeIn("slow").html(msg);

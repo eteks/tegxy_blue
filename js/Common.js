@@ -612,23 +612,24 @@ function Togglecity(){
    
 }
 function changeArealist(citycode,selectt,key){
-    if(citycode.length == 0) {
-$('#citysuggestions').fadeOut();
-} else {
-$.ajax({
-url: "include/BlModules/Bl_ListArea.php",
-data: 'act=listarea&citycode='+citycode+'&selectt='+selectt+'&key='+key,
-success: function(msg){
-if(msg.length >0) {
-    msg =msg.split('***');
-    var arealist= msg[0];
-    var cityname= msg[1];
- $('#selectarea').html(arealist);
- $('#citydisplayname').html(cityname);
-}
-}
-});
-}
+	if(citycode.length){
+		$.ajax({
+		url: "include/BlModules/Bl_ListArea.php",
+		data: 'act=listarea&citycode='+citycode+'&selectt='+selectt+'&key='+key,
+		success: function(msg){
+		if(msg.length >0) {
+		    msg =msg.split('***');
+		    var arealist= msg[0];
+		    var cityname= msg[1];
+		 $('#selectarea').html(arealist);
+		 $('#citydisplayname').html(cityname);
+		}
+		}
+		});
+	}
+else{
+	$('#citysuggestions').fadeOut();
+	}
 }
 
 function DeleteFromFolder(path,disp,data)
@@ -749,3 +750,4 @@ $("#"+id+"  option").attr("selected", "selected");
 $("#"+text).html("Deselect All");
 }});
 }
+
