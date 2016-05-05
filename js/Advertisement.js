@@ -196,6 +196,7 @@ function AddAdvertisement(user)
 
 	if((DocId('Fromtimeline').value=='')){
 		$('#Fromtimeline').addClass('error');
+		return false;
 	}
 	else{
 		$('#Fromtimeline').removeClass('error');
@@ -203,15 +204,22 @@ function AddAdvertisement(user)
 
 	if((DocId('Totimeline').value=='')){
 		$('#Totimeline').addClass('error');
+		return false;
 	}
 	else{
 		$('#Totimeline').removeClass('error');
 	}
-
+	var from = $("#Fromtimeline").val();
+	var to = $("#Totimeline").val();
+	if(from > to){	
+	   alert("Invalid Date Range");
+	   return false;
+	}
+	
 	if((DocId('Advamount').value=='')){
-		$('#Advamount').addClass('error');
-	}else{
-		$('#Advamount').removeClass('error');
+			$('#Advamount').addClass('error');
+		}else{
+			$('#Advamount').removeClass('error');
 	}
 
 	if((DocId('Advbudget').value=='')){
@@ -223,11 +231,19 @@ function AddAdvertisement(user)
 		xmlhttp.open("POST", url, false);
 		alert('Please Enter all the required fields');
 	}
-	else{		
-		xmlhttp.open("POST", url, true);  
-		xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
-		xmlhttp.send(str);
-		xmlhttp.onreadystatechange = ShowAdvertisement
+	else{
+		if($('#Advname').val() == '' && $('#Advdescription').val() == ''){
+			xmlhttp.open("POST", url, false);
+			alert('Please Enter all the required fields ye');
+		}
+		else{
+			xmlhttp.open("POST", url, true);  
+			xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+			xmlhttp.send(str);
+			xmlhttp.onreadystatechange = ShowAdvertisement
+		}
+
+		
 	}
 }
 
@@ -241,15 +257,15 @@ if (xmlhttp.readyState == 4)
 			//sms sending process
 			var message = "hai, Your Advertisement was posted successfully";
 			var recepiant = $('#get_sesssion_for_ad').val();
-			alert('recepiant'+$('#get_sesssion_for_ad').val());		
-		    $.ajax({
-	            type: 'GET',
-	            url: 'http://bulksms.blackholesolution.com/app/smsapi/index.php',
-	            data: {'key':'55113155e7e2c','type':'text','contacts':recepiant,'senderid':'VNSPDY','msg':message},
-	               	success: function(data) {
+			// alert('recepiant'+$('#get_sesssion_for_ad').val());		
+		    // $.ajax({
+	     //        type: 'GET',
+	     //        url: 'http://bulksms.blackholesolution.com/app/smsapi/index.php',
+	     //        data: {'key':'55113155e7e2c','type':'text','contacts':recepiant,'senderid':'VNSPDY','msg':message},
+	     //           	success: function(data) {
 	                 
-	               	}
-	        }); 
+	     //           	}
+	     //    }); 
 	        //sms sending process
 			var Res = response.split('######');
 			// DocId('Advalert').innerHTML  = Res[0];
@@ -347,21 +363,17 @@ alert($('#Fromtimeline').val()+$('#Totimeline').val())
 $(document).ready(function(){	
 
 	// prev and next process for first step
-	$('.adv_next').click(function(){
-		// alert('comes');
-	    element = $(this).parents('.next_ad');
-	    // alert(element.html());	 
-        if($('#Advname,#Advdescription').val() == ''){
-	        	// alert('comes AD');
-	           $('#Advname,#Advdescription').addClass('error');
-	           element.show();
+	$('.adv_next').click(function(){		
+	    element = $(this).parents('.next_ad');	   	 
+        if($('#Advname').val() != '' && $('#Advdescription').val() != ''){	
+    		element.hide();	        
+	        $('#Firstleveladv').next('.next_ad').show();  	           
         }	       
   	    else{
-	        element.hide();
-	        
-	        $('#Firstleveladv').next('.next_ad').show();
+	        $('#Advname,#Advdescription').addClass('error');
+           	element.show();
 	    }
-	    // return false;
+	    
 	});
 
     // validation code when click previous button
@@ -373,10 +385,8 @@ $(document).ready(function(){
     });
 
     // next click for step2
-    $('.ad_next_format').click(function(){
-    	// alert('next');
-    	element = $(this).parents('.next_ad');
-    	// alert(element.html());
+    $('.ad_next_format').click(function(){    	
+    	element = $(this).parents('.next_ad');    	
 		if ($('#Firstformate').is(':checked')){
 			element.hide();
 			$('#Thirdleveladv').show();

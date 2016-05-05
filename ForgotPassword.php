@@ -35,7 +35,7 @@ return false;
 <div id="personal" style="width:990px; padding-bottom:90px; margin-top:40px;height:475px;">
 <form id="LoginForm" name="LoginForm"  method="post" action="ForgotPassword.php" onsubmit="return ValidateLogin();">
 <h1>Forgot Password</h1>
-<div class="validation text-align-c" id="msgdisplay"><?php $_REQUEST['msg'] = (isset($_REQUEST['msg']) ? $_REQUEST['msg'] : ''); if($_REQUEST["msg"]=="1") { ?>Invalid Email Id / Mobile Number!<?php } if($_REQUEST["msg"]=="2") { ?>Password has been Sent to your Email Id and Mobile!<?php }?></div>
+<div class="validation text-align-c" id="msgdisplay"><?php $_REQUEST['msg'] = (isset($_REQUEST['msg']) ? $_REQUEST['msg'] : ''); if($_REQUEST["msg"]=="1") { ?>Invalid Username!<?php } if($_REQUEST["msg"]=="2") { ?>Password has been Sent to your Email Id and Mobile!<?php }?></div>
 <div style="height:15px;"></div>
 <fieldset id="inputss" style="background:none;">
 <input id="UserName" name="UserName" type="text" placeholder="Username" autofocus autocomplete="off" />   

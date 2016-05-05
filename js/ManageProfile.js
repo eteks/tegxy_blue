@@ -34,7 +34,7 @@ function CompanyDetails()
 	if(CompanyName=='')
 	{
 	alert("Please Enter the Company Name");
-	DocId('CompanyName').focus();
+	$('#CompanyName').addClass('highlight');
 	return false;
 	}
 	/*else if(GroupName=='')
@@ -46,7 +46,7 @@ function CompanyDetails()
 	else if(Sector=='')
 	{
 	alert("Please Select the Sector");
-	DocId('Sector').focus();
+	$('#Sector').addClass('highlight');
 	return false;
 	}
 	/*else if(RequestNo=='')
@@ -64,7 +64,7 @@ function CompanyDetails()
 	else if(TypeofComp=='')
 	{
 	alert("Please Select the Company Type");
-	DocId('TypeofComp').focus();
+	$('#TypeofComp').addClass('highlight');
 	return false;
 	}
 	/*else if(EmpStr=='')
@@ -76,43 +76,49 @@ function CompanyDetails()
 	else if(Address1=='' && Address2=='')
 	{
 	alert("Please Enter the Address");
-	DocId('Address1').focus();
+	$('#Address1').addClass('highlight');
 	return false;
 	}
 	else if(SelCountry=='')
 	{
 	alert("Please Select the Country");
-	DocId('SelCountry').focus();
+	$('#SelCountry').addClass('highlight');
 	return false;
 	}
 	else if(SelState=='')
 	{
 	alert("Please Select the State");
-	DocId('SelState').focus();
+	$('#SelState').addClass('highlight');
 	return false;
 	}
 	else if(SelCity=='')
 	{
 	alert("Please Select the City");
-	DocId('SelCity').focus();
+	$('#SelCity').addClass('highlight');
 	return false;
 	}
 	else if(Mobile=='' && LandLine=='')
 	{
 	alert("Please Enter the Mobile / Landline Number");
-	DocId('Mobile').focus();
+	$('#Mobile').addClass('highlight');
 	return false;
+	}
+	else if(!DocId('Mobile').value.match(/^\d{10}$/))  
+	{  
+		alert('Please Enter Mobile number with 10 digits');
+		$('#Mobile').addClass('highlight');
+		return false;  
 	}
 	else if(Email=='')
 	{
 	alert("Please Enter the Email");
-	DocId('Email').focus();
+	$('#Email').addClass('highlight');
 	return false;
 	}
 	else if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(DocId('Email').value)))
 	{
 	alert("Please Enter the Valid Email Id");	
-	DocId('Email').focus();
+	$('#Email').addClass('highlight');
 	return false;
 	}
 
@@ -563,7 +569,6 @@ function GridShowHide(PageId,GridId,Show,Type)
 		document.getElementById(GridId).style.display='block';
 	}
 }
-
 
 function AddProduct(usertype)
 {
@@ -1746,9 +1751,7 @@ function AddContact()
 	alert("Please Enter the Fax");
 	DocId('CIFax').focus();
 	return false;
-	}
-	
-	
+	} 
 	var str = "action=1&Title="+Title+"&Address1="+Address1+"&Address2="+Address2+"&SelCountry="+SelCountry+"&SelState="+SelState+"&SelCity="+SelCity+"&BArea="+BArea+"&BPincode="+BPincode+"&LandLine="+LandLine+"&Email="+Email+"&ExistId="+ExistId+"&Person="+Person+"&Fax="+Fax;
 	var url = "include/BlModules/Bl_ContactInfo.php";
 	xmlhttp.open("POST", url, true);  

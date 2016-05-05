@@ -318,14 +318,14 @@
 							<td colspan="2">&nbsp;</td>
 						</tr>
 						<tr><td colspan="7" height="5"></td></tr>
-						<tr>
+					<!-- 	<tr>
 							<td colspan="2">&nbsp;</td>
 							<td>Total Audience:</td>
 							<td>&nbsp;</td>
 							<td><input type="text" id="Advaudience" name="Advaudience" onkeyup="checkNumber(this);" /></td>
 							<td colspan="2">&nbsp;</td>
 							<tr><td colspan="7" height="10"></td></tr>
-						</tr>
+						</tr> -->
 					</table>
 				</form>
 			</fieldset>

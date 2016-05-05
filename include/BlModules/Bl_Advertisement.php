@@ -98,13 +98,13 @@ if($InsertId){
 	$FromName='XYget';
 	$FromAddress='services@tracemein.com';	
 	$sent = mail($Message,$Subject,$ToAddress,$ToName,$FromAddress,$FromName,'','');	
-	if($sent)	   
-		{
-			echo "sucess";
-		}
-		else{
-			echo "fail";
-		}
+	// if($sent)	   
+	// 	{
+	// 		echo "sucess";
+	// 	}
+	// 	else{
+	// 		echo "fail";
+	// 	}
 }
 echo "Added Successfully######";
 }

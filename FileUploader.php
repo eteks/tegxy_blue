@@ -53,6 +53,10 @@ function uploadimagecheck()
 		alert("Please upload the valid image file");
 		return false;
 	}
+	// else if(FileSize>1048576){
+	// 	alert("Please upload the image file below 1mb");
+	// 	return false;
+	// } 
 	<?php } 
 	
 	else if($allowExt=="pdf"){ ?>

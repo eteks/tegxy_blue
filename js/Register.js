@@ -30,7 +30,7 @@ DocId('PCityGrid').innerHTML='<select></select>';
 function Email_check(){
 	var emailVal = $('#Email').val(); // assuming this is a input text field
     $.post('Emailcheck.php?email_check=true', {'Email' : emailVal}, function(data) {
-        if(data.trim()=='exist'){
+        if(data.trim()=='exist' && !data.trim()){
         alert('Email Id already Exists');
         $('#Email').val('');
          return false
@@ -267,7 +267,26 @@ alert("Please Enter the Address");
 DocId('Address1').focus();
 return false;
 }
+if(DocId('ProfileLink').value=='')
+{
+alert("Please Enter the ProfileLink");	
+DocId('ProfileLink').focus();
+return false;
+}
+var start_time = $('#timepicker_1').val();
+var end_time = $('#timepicker_2').val();
+if(start_time > end_time){
+alert('start time is always later than end time');
+return false;	
+}
 
+var start_time_brk = $('#timepicker_3').val();
+var end_time_brk = $('#timepicker_4').val();
+if(start_time_brk > end_time_brk){
+alert('start time is always later than end time');
+return false;	
+}
+	
 /*else if(DocId('SelCountry').value=='')
 {
 alert("Please Select the Country");	

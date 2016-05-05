@@ -409,7 +409,7 @@ while(list($Id,$Area)=db_fetch_array($SelectArea))
 <?php ?><tr><td colspan="3" align="left" style="font-weight:bold;">Please Set your Page Address here,</td>
 <tr><td colspan="3" height="5"></td></tr>
 
-<tr><td colspan="2"><label for="input-nine" class="float"><?php echo HTTP_URL ;?>/</label></td>
+<tr><td colspan="2"><label for="input-nine" class="float"><?php echo HTTP_URL ;?>/<span style="color:#F00;">*</span></label></td>
 <td><input class="inp-text" name="ProfileLink"  autocomplete="off" id="ProfileLink" type="text" size="30" onkeyup="urlvalidate(this);showHint(this.value)" />
 </td></tr>
 <tr><td colspan="3" align="right"><span id="txtHint"></span></td>

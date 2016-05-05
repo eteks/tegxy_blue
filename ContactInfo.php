@@ -96,7 +96,7 @@ while(list($MCId,$MCName)=db_fetch_array($SelectCountry))
 <td>Fax</td>
 <td> :&nbsp;&nbsp;</td>
 <td>
-<input class="inp-text" name="CIFax" style="width:350px;" id="CIFax" type="text" size="30" autocomplete="off"  value="<?php echo $FetContactDetails['CI_Fax'];?>" />
+<input class="inp-text" name="CIFax" style="width:350px;" id="CIFax" type="text" size="30" autocomplete="off"  value="<?php echo $FetContactDetails['CI_Fax'];?>" onkeyup="checkNumber(this);"/>
 </td>
 </tr>
 <tr><td colspan="3">&nbsp;</td></tr>
