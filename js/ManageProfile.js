@@ -58,7 +58,7 @@ function CompanyDetails()
 	else if(YearofEst=='')
 	{
 	alert("Please Select the Year Of Establishment");
-	DocId('YearofEst').focus();
+	$('#YearofEst').addClass('highlight');
 	return false;
 	}
 	else if(TypeofComp=='')

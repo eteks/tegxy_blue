@@ -86,13 +86,13 @@ $WhereCont=(isset($WhereCont) && !empty($WhereCont) ? trim($WhereCont) : '');
                         { 
                         	// echo "status",$Register_Fetch['PS_User_Fk']; 	
                         	$id=$Register_Fetch['0']; 
-                        	//smscode
-       //                  	$PKUser = db_query("SELECT PS_User_Fk FROM ".TABLE_PRODUCTSERVICE." WHERE PS_Id='".$id."'");      	
-							// $mnumberadmin = db_query("SELECT RGT_Mobile FROM ".TABLE_REGISTRATION." WHERE RGT_Pk='".$PKUser."'");
-       //          			list($mnumberadmin) = db_fetch_array($mnumberadmin);           			
-                    			
-
-                        	$startdata=isset($_REQUEST['startdata'])?$_REQUEST['startdata']:0; ?>
+                        	$startdata=isset($_REQUEST['startdata'])?$_REQUEST['startdata']:0;
+                        	$mnumberadmin = db_query("SELECT RGT_Mobile FROM ".TABLE_REGISTRATION." as r INNER JOIN ".TABLE_PRODUCTSERVICE." as p ON p.PS_User_Fk=r.RGT_PK WHERE p.PS_Id='".$id."'");
+							list($mnumberadmin) = db_fetch_array($mnumberadmin);
+							$mnumberad = db_query("SELECT RGT_Mobile FROM ".TABLE_REGISTRATION." as r INNER JOIN ".TABLE_ADVERTISEMENT." as p ON p.ADV_Userfk=r.RGT_PK WHERE p.ADV_Id='".$id."'");
+							list($mnumberad) = db_fetch_array($mnumberad);
+							echo "ads",$mnumberad;
+					 ?>
                       <tr id="tr_<?php echo $id ?>" <?php if(isset($optId) && !empty($optId)) if ($id == $optId) echo 'style="font-weight:bold; color: orange;"'; 
 					  else if ($_REQUEST['id'] == $id) echo 'style="color: #ffff00;"';
 					  else echo 'style="color: #fff;"'; ?>>
@@ -130,7 +130,7 @@ $WhereCont=(isset($WhereCont) && !empty($WhereCont) ? trim($WhereCont) : '');
 									}
 									else
 									{
-										echo "<span  onclick=\"return OnClickStatusActive('$id','$startdata')\" style=\"text-decoration:underline;cursor:pointer\">In-Active</span>";
+										echo "<span  onclick=\"return OnClickStatusActive('$id','$startdata')\" style=\"text-decoration:underline;cursor:pointer\"><input type='hidden' id='user_product_approve' value='$mnumberad'>In-Active</span>";
 									}
 								}  
 							?>
