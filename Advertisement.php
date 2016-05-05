@@ -1,4 +1,6 @@
-
+<?php $mblsql=db_query("SELECT RGT_Mobile FROM ".TABLE_REGISTRATION." WHERE RGT_Pk='".$LID."'");				
+		list($mnumber_ad)=db_fetch_array($mblsql);				
+		?>
 <script type="text/javascript" src="js/CalendarControl.js"></script>
 <script type="text/javascript" src="js/Common.js"></script>
 <script type="text/javascript" src="js/Advertisement.js"></script>
@@ -394,7 +396,10 @@
 			<table width="100%" border="0" cellpadding="0" cellspacing="0" >
 				<tr><td colspan="2" height="10"></td></tr>
 				<!-- <tr><td  height="5"><input type="button" onclick="Secondleveladv();" value="Back" /></td><td  height="5" align="right"><input type="button" onclick="Fourthleveladv();" value="Next" />&nbsp;<input type="button"  value="Cancel" onclick="window.location.href='index.php'" /></td></tr> -->
-				<tr><td height="5"><input type="button" value="Back"  class="adv_previous_format1" /></td><td  height="5"><input type="button" onclick="AddAdvertisement(<?php echo $LID;?>);" value="Submit" />&nbsp;<input type="button"  value="Cancel" onclick="window.location.href='index.php'" /></td></tr>
+				<tr><td height="5"><input type="button" value="Back"  class="adv_previous_format1" /></td><td  height="5">
+		
+				<input type="hidden" id="get_sesssion_for_ad" value="<?php echo $mnumber_ad; ?>">
+				<input type="button" onclick="AddAdvertisement(<?php echo $LID;?>);" value="Submit" />&nbsp;<input type="button"  value="Cancel" onclick="window.location.href='index.php'" /></td></tr>
 				<tr><td colspan="2" height="10"></td></tr>
 			</table>
 			</div>

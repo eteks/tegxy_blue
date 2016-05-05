@@ -745,6 +745,61 @@ function getRelatedSearchBestdeals($ps_id, $ps_fk, $citymatchdata)
         echo '<li>No Results</li>';
 
 }
+// function getRelatedSearchBestdeals($ps_id, $ps_fk){   
+//     echo "ps-->",$ps_id;
+//     echo "ps_fk",$ps_fk;
+//     if ($ps_id != '' || $ps_fk != '') {
+//         $selectcategoryfk = db_query("SELECT DISTINCT Category_fk FROM " . TABLE_PRODUCTRELATIVITY . " WHERE Product_fk IN (" . $ps_fk . ")");
+//         echo "selectcategoryfk-->","SELECT DISTINCT Category_fk FROM " . TABLE_PRODUCTRELATIVITY . " WHERE Product_fk IN (" . $ps_fk . ")";
+//         while ($fetchcategoryfk = mysql_fetch_array($selectcategoryfk)) {
+//             $categoryids .= $fetchcategoryfk['Category_fk'] . ',';
+//              echo "cat id-->",$categoryids;
+//         }
+//         $categoryids = substr($categoryids, 0, -1);
+//         echo "sub id-->",$categoryids;
+//         $selectrelatedproducts = db_query("SELECT DISTINCT * FROM " . TABLE_PRODUCTSERVICE . " WHERE PS_CategoryFk IN (" . $categoryids . ")");
+//         echo "SELECT DISTINCT * FROM " . TABLE_PRODUCTSERVICE . " WHERE PS_CategoryFk IN (" . $categoryids . ")";
+//         $countresult = mysql_num_rows($selectrelatedproducts);
+//         if ($countresult > 0) {
+
+//             while ($fetchrelatedproduct = mysql_fetch_array($selectrelatedproducts)) {
+
+
+//                 /*if($count>15){
+//                 $displaydata=(substr($fetchrelatedproduct['PS_Display'],0,15));
+//                 $displaydata.='...';
+//                 }
+//                 else {*/
+//                 $displaydata = $fetchrelatedproduct['PS_Display'];
+//                 /*}*/
+
+//                 echo '<li><span>';
+//                 echo '<a target="_blank" href="Bestdealsajax.php?user=';
+//                 echo get_data_from_registration($fetchrelatedproduct['PS_User_Fk'], RGT_ProfileUrl);
+//                 echo '&BDId=' . $fetchrelatedproduct['PS_Id'];
+//                 echo '" class="navlink">';
+//                 echo $displaydata;
+//                 echo '</a></span></li>';
+
+
+
+//                 echo '<a onclick="';
+//                 echo 'searchResult(';
+//                 echo "'".$fetchrelatedproduct['PS_Display']."'";
+//                 echo ');';
+//                 echo '" class="navlink" style="color:#1274C0;text-decoration:none;">'.$fetchrelatedproduct['PS_Display'].'</a>';
+//                 echo '</li>';
+                 
+
+
+//             }
+//         } else {
+//             echo '<li>No Results</li>';
+//         }
+//     } else
+//         echo '<li>No Results</li>';
+
+// }
 
 function nameLimiter($string, $count)
 {

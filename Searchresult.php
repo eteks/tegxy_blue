@@ -88,9 +88,12 @@ db_connect();
             $searchquery2  = db_query("SELECT * FROM " . TABLE_PRODUCTSERVICE . "  WHERE PS_Display LIKE '$searchkey%' AND PS_Status=1");
 
             $countresult_deals  = mysql_num_rows($searchquery_deals);
-            // while ($fetchquery = mysql_fetch_array($searchquery)) {
-            //     $relatedsearch .= $fetchquery['PS_Display'] . ',';
+            // while ($fetchquery = mysql_fetch_array($searchquery_deals)) {
+            //     $relatedsearch .= $fetchquery['PS_Id'] . ',';
             // } 
+            // while ($fetchquery1 = mysql_fetch_array($searchquery3)) {
+            //         $relatedsearch1 .= $fetchquery1['PS_Fk'] . ',';
+            // }
 
             if (isset($findcitymatch) || isset($findareamatch)) {
                 $wherec          = "AND RGT_City= $findcitymatch $queryareamatch ";
@@ -502,7 +505,9 @@ db_connect();
                     <ul class="relatedsearch_ul">
                         <?php
                             if ($requestType == 'bestdeals') {
-                                getRelatedSearchBestdeals($relatedsearch, $relatedsearch1, $citymatchdata);
+                                // echo "rel Products--->",$relatedsearch;
+                                // echo "rel11 Products--->",$relatedsearch1;
+                                getRelatedSearchBestdeals($relatedsearch, $relatedsearch1);
                             } 
                             ?>
                     </ul>

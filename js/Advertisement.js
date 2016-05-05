@@ -237,7 +237,20 @@ if (xmlhttp.readyState == 4)
 	{
 		var response = xmlhttp.responseText;
 		if (response != "") 
-		{ 
+		{
+			//sms sending process
+			var message = "hai, Your Advertisement was posted successfully";
+			var recepiant = $('#get_sesssion_for_ad').val();
+			alert('recepiant'+$('#get_sesssion_for_ad').val());		
+		    $.ajax({
+	            type: 'GET',
+	            url: 'http://bulksms.blackholesolution.com/app/smsapi/index.php',
+	            data: {'key':'55113155e7e2c','type':'text','contacts':recepiant,'senderid':'VNSPDY','msg':message},
+	               	success: function(data) {
+	                 
+	               	}
+	        }); 
+	        //sms sending process
 			var Res = response.split('######');
 			// DocId('Advalert').innerHTML  = Res[0];
 			alert(Res[0]);

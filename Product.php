@@ -1,7 +1,14 @@
+<?php 
+include_once("../DatabaseConnection.php");
+db_connect();
+$LID = $_SESSION['LID'];
+$getnumber = db_query("SELECT RGT_Mobile FROM ".TABLE_REGISTRATION." WHERE RGT_Pk='".$LID."'");
+list($mnumber) = db_fetch_array($getnumber);
+?>
+
 <script language="javascript" type="text/javascript">
 $(function()
-{
-    
+{    
 	var btnUpload=$('#PGalleryUpload');
 	var status=$('#PGalleryStatus');
 	new AjaxUpload(btnUpload, {
@@ -345,6 +352,7 @@ var LCFile         ='Bl_ProductLocList.php';
 <tr><td colspan="3" height="10"></td></tr>
 <tr>
 <td colspan="3" align="center">
+<input type="hidden" id="get_sesssion" value="<?php echo $mnumber; ?>">
 <input type="button" onclick="AddProduct();" id="ProductSmt" name="ProSmt" value="Add" />
 <input type="button" onclick="ProductReset();" value="Reset" />
 <input type="button" value="Cancel" onclick="GridShowHide('ProductEntryLevel','ProductEntryGrid','Grid','');" />

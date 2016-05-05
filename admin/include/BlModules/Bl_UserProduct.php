@@ -102,7 +102,16 @@ $Message = str_replace('../../../images/',HTTP_SERVER.'../../../images/', $Messa
 $Subject='Confirmation Mail';
 $FromName='XYget';
 $FromAddress='services@tracemein.com';
-PHP_Mailer($Message,$Subject,$ToAddress,$ToName,$FromAddress,$FromName,'','');
+// PHP_Mailer($Message,$Subject,$ToAddress,$ToName,$FromAddress,$FromName,'','');
+$sent = mail($Message,$Subject,$ToAddress,$ToName,$FromAddress,$FromName,'','');	
+		echo "sent--->",$sent;
+		if($sent)	   
+		{
+			echo "sucess";
+		}
+		else{
+			echo "fail";
+		}
 //email admin approval
 }
 

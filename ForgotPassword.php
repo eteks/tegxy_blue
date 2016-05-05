@@ -80,14 +80,11 @@ $ToEmail        = $PEmail;
 $ToName         = $PName;	
 $ToMobile       = $PMobile;	
 
-if($ToMobile!=''){
-    
-    
+if($ToMobile!=''){ 
     $mainusername   =9092371237;
     $mainpassword   ='icrtwicrtw';
     $receiver   = $ToMobile;
     $message    = "Dear ".$ToName.", Your Login Name : ".$UserName.",Password : ".$Password." ";
-
         require 'sms/Way2Sms.php';
         $sms            =   new Way2Sms();
         $result         =   $sms->login($mainusername, $mainpassword);
@@ -128,7 +125,5 @@ header("Location:ForgotPassword.php?msg=2");
 else
 header("Location:ForgotPassword.php?msg=1");
 }
-
-
  
 ?>

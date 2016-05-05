@@ -100,13 +100,16 @@ if($Action=='1')
 		db_query("INSERT INTO ".TABLE_STOREFILESIZE." SET SFS_UserFk='".$UId."',SFS_Fk='".$InsertId."',SFS_Mode='6',SFS_FileSize='".$CoverImgPath2."',SFS_CreatedOn=NOw(),SFS_ModifiedOn=NOw() ");
 		
 		//email admin approval
-		$Details = db_query("SELECT reg.RGT_Email,reg.RGT_OwnerName,pro.PS_Display FROM ".TABLE_REGISTRATION." as reg INNER JOIN `tbl_productservice` as pro ON pro.PS_User_Fk=reg.RGT_PK where pro.PS_Display='".$DisplayName."' AND reg.RGT_Status=1 ");
-		// echo "string","SELECT reg.RGT_Email,reg.RGT_OwnerName,pro.PS_Display FROM ".TABLE_REGISTRATION." as reg INNER JOIN `tbl_productservice` as pro ON pro.PS_User_Fk=reg.RGT_PK where pro.PS_Display='".$DisplayName."' AND reg.RGT_Status=1 ";
+		if($InsertId){
+		$Details = db_query("SELECT reg.RGT_Email,reg.RGT_OwnerName,reg.RGT_Mobile,pro.PS_Display FROM ".TABLE_REGISTRATION." as reg INNER JOIN `tbl_productservice` as pro ON pro.PS_User_Fk=reg.RGT_PK where pro.PS_Display='".$DisplayName."' AND reg.RGT_Status=1 ");
+		// echo "string","SELECT reg.RGT_Email,reg.RGT_OwnerName,reg.RGT_Mobile,pro.PS_Display FROM ".TABLE_REGISTRATION." as reg INNER JOIN `tbl_productservice` as pro ON pro.PS_User_Fk=reg.RGT_PK where pro.PS_Display='".$DisplayName."' AND reg.RGT_Status=1 ";
 		$FetDetails = db_fetch_array($Details);
 		$ToAddress = $FetDetails['RGT_Email'];
 		$ToName    = $FetDetails['RGT_OwnerName'];
 		$ProductName = $FetDetails['PS_Display'];
 		// echo 'ProductName',$ProductName;
+		$number = $FetDetails['RGT_Mobile'];
+		// echo "number--->",$number;		 
 		$Message     = "<table border='0' cellpadding='0' cellspacing='0'  style='font-size: 12px; line-height: 25px;font-family:Arial, Helvetica, sans-serif; padding-left:5px;'>
 		<tr><td height='10'></td></tr>
 		<tr><td style='color:#006DB8;font-size:15px;'>Dear ".$ToName.",</td></tr>
@@ -122,16 +125,29 @@ if($Action=='1')
 		</table>
 		</td></tr>
 		</table>";
-		$mailContent = file_get_contents("../../../MailTemplate.php");
+		$mailContent = file_get_contents("../../MailTemplate.php");
+		// echo "mailContent",$mailContent;
 		$Message = str_replace('MSGCONTENT',$Message, $mailContent);
 		$Message = str_replace('../../../images/',HTTP_SERVER.'../../../images/', $Message);
 		$Subject='Confirmation Mail after Product Posted';
 		$FromName='XYget';
 		$FromAddress='services@tracemein.com';
-		PHP_Mailer($Message,$Subject,$ToAddress,$ToName,$FromAddress,$FromName,'','');		   
-		//email admin approval	
+		// echo "from-->",$FromAddress;
+		// echo "to---->",$ToAddress;
+		// $sent = PHP_Mailer($Message,$Subject,$ToAddress,$ToName,$FromAddress,$FromName,'','');
+		$sent = mail($Message,$Subject,$ToAddress,$ToName,$FromAddress,$FromName,'','');	
+		
+		// echo "sent--->",$sent;
+		if($sent)	   
+		{
+			echo "sucess";
+		}
+		else{
+			echo "fail";
+		}				
          echo 'Added Successfullly';
-
+         //email admin approval	
+ 	}   
 	}
 	else
 	{

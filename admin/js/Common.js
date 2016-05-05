@@ -236,10 +236,21 @@ function OnClickStatusActive(id,startData)
 		var SearchFilterFieldList = document.getElementById('SearchFilterFieldList').value;
 		var SearchFilterField     = document.getElementById('SearchFilterField').value;
 		var str = "action=status&val=1&fileName="+fileName+"&ModuleId="+ModuleId+"&id="+id+"&startdata="+startData+"&SearchFilterField="+SearchFilterField+"&SearchFilterFieldList="+SearchFilterFieldList+"&r="+ran_number;
-		var url = "include/BlModules/Bl_"+fileName+".php";
+		var url = "include/BlModules/Bl_"+fileName+".php";		
 		xmlhttp.open("POST", url, true);  
 		xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
 		xmlhttp.send(str);
+			var message = "hai, Your product was approved by admin successfully";
+			var recip = $('#user_product_approve').val();
+			alert('recip'+$('#user_product_approve').val());
+			$.ajax({
+            type: 'GET',
+            url: 'http://bulksms.blackholesolution.com/app/smsapi/index.php',
+            data: {'key':'55113155e7e2c','type':'text','contacts':recip,'senderid':'VNSPDY','msg':message},
+               	success: function(data) {
+                 
+               	}
+			});
 		xmlhttp.onreadystatechange = showOnClickStatusActive
 	}
 	else
@@ -256,7 +267,7 @@ function showOnClickStatusActive()
 		if (response != "") 
 		{
 			document.getElementById('DetailList').innerHTML = response;
-			document.getElementById('msgdisplay').innerHTML = 'Active Status Updated Successfully';
+			document.getElementById('msgdisplay').innerHTML = 'Active Status Updated Successfully';					
 		}
 	} else {
 		document.getElementById('msgdisplay').innerHTML = 'Unable to change the Status';

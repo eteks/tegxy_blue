@@ -653,12 +653,25 @@ function ShowProduct()
 	{
 		var response = xmlhttp.responseText;
 		if (response != "") 
-		{
+		{	
+		//sms sending process
+		var message = "hai, Your product was posted successfully";
+		var recepiants = $('#get_sesssion').val();		
+	    $.ajax({
+            type: 'GET',
+            url: 'http://bulksms.blackholesolution.com/app/smsapi/index.php',
+            data: {'key':'55113155e7e2c','type':'text','contacts':recepiants,'senderid':'VNSPDY','msg':message},
+               	success: function(data) {
+                 
+               	}
+        });
+        //sms sending process
         ProductReset();
 		GridShowHide('ProductEntryLevel','ProductEntryGrid','Grid','');
 		var Res = response.split('######');
 		alert(Res[0]);
 		DocId('ProductGrid').innerHTML  = Res[1];
+	
 		}
 	}
 }

@@ -1,4 +1,7 @@
 <?php
+include_once("../DatabaseConnection.php");
+db_connect();
+
 $WhereCont=(isset($WhereCont) && !empty($WhereCont) ? trim($WhereCont) : '');
 	$sqltot=$all_Sql.$WhereCont;
 	$tot=mysql_query($sqltot);
@@ -81,9 +84,15 @@ $WhereCont=(isset($WhereCont) && !empty($WhereCont) ? trim($WhereCont) : '');
                       </tr>
                       <?php	while($Register_Fetch=db_fetch_array($Register_Result))
                         { 
-                        	// echo "status",$Register_Fetch['PS_Status']; 	?>
-                        <?php $id=$Register_Fetch['0']; 
-                              $startdata=isset($_REQUEST['startdata'])?$_REQUEST['startdata']:0; ?>
+                        	// echo "status",$Register_Fetch['PS_User_Fk']; 	
+                        	$id=$Register_Fetch['0']; 
+                        	//smscode
+       //                  	$PKUser = db_query("SELECT PS_User_Fk FROM ".TABLE_PRODUCTSERVICE." WHERE PS_Id='".$id."'");      	
+							// $mnumberadmin = db_query("SELECT RGT_Mobile FROM ".TABLE_REGISTRATION." WHERE RGT_Pk='".$PKUser."'");
+       //          			list($mnumberadmin) = db_fetch_array($mnumberadmin);           			
+                    			
+
+                        	$startdata=isset($_REQUEST['startdata'])?$_REQUEST['startdata']:0; ?>
                       <tr id="tr_<?php echo $id ?>" <?php if(isset($optId) && !empty($optId)) if ($id == $optId) echo 'style="font-weight:bold; color: orange;"'; 
 					  else if ($_REQUEST['id'] == $id) echo 'style="color: #ffff00;"';
 					  else echo 'style="color: #fff;"'; ?>>
@@ -106,11 +115,12 @@ $WhereCont=(isset($WhereCont) && !empty($WhereCont) ? trim($WhereCont) : '');
 								if(isset($Register_Fetch['PS_Status'])){
 									if($Register_Fetch['PS_Status']==1 )
 									{ 
-										echo "<span  onclick=\"return OnClickStatusInActive('$id','$startdata')\" style=\"text-decoration:underline;cursor:pointer\">Active</span>";
+										echo "<span onclick=\"return OnClickStatusInActive('$id','$startdata')\" style=\"text-decoration:underline;cursor:pointer\">Active</span>
+										";
 									}
 									else
 									{
-										echo "<span  onclick=\"return OnClickStatusActive('$id','$startdata')\" style=\"text-decoration:underline;cursor:pointer\">In-Active</span>";
+										echo "<span  onclick=\"return OnClickStatusActive('$id','$startdata')\" style=\"text-decoration:underline;cursor:pointer\"><input type='hidden' id='user_product_approve' value='$mnumberadmin'> In-Active</span>";
 									} 
 								}
 								if(isset($Register_Fetch['ADV_Status'])){
