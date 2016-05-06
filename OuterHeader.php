@@ -63,63 +63,60 @@ return false;
 </script>
 <!--LOGIN FORM-->
 <div class="search_topbar" >
-
-<?php
-if ($_SESSION['LID'] == '') {
-?>
-<div style="width:190px;height:29px;float:right;">
-<div style="width:70px;height:10px;float:left;">
-<?php
-    if ($PageName != 'Login' && $PageName != 'ForgotPassword') {
-?>
-<nav>
-
-	<ul>
-		<li id="login">
-			<a id="login-trigger" href="#" style="width:200px;margin:0px;color:#fff;font-size:14px;font-weight:normal;margin-top:-5px;">
-			Business User Sign In
-			</a>
-			<div id="login-content" style="margin-top:20px;">
-				<form  method="post" action="Login.php" onSubmit="return ValidateLogin();">
-					<fieldset id="inputs" style="border:none;background:none;padding: 7px 10px;">
-						<input id="UserName" class="loginfont" name="UserName" style="color:#000;font-family: Arial,Helvetica,sans-serif;" type="text" placeholder="Username / Email Id" autofocus autocomplete="off" />
-						<input id="PassWord" class="loginfont" style="color:#000;font-family: Arial,Helvetica,sans-serif;" name="PassWord" type="password" placeholder="Password"  autocomplete="off" />
-					</fieldset>
-					<fieldset id="actions" style="border:none;background:none;">
-                    	<input type="submit" id="Submit" name="Submit" value="Sign In">
-                    </fieldset>
-				</form>
-				<a href="ForgotPassword.php" style="text-decoration:none;color:#666;font-size:11px;"><span><img src="images/forgot-passwords.png" /></span>Forgot Password ?</a>
-			</div>
-		</li>
-	</ul>
-</nav>
-<?php
-    }
-?>
-</div>
-<div style="width:60px;height:10px;float:left;"><a href="Register.php">Register</a></div>
-<div style="width:60px;height:10px;float:left;"><a href="#" style="border:none;text-decortaion:none;"><img src="images/home/register_icon.png" style="position:relative;left:-15px;" /></a></div>
-</div>
-<?php
-} else {
-?>
-<div style="width:250px;height:29px;float:right;">
-<div style="float:left;"><?php
-    if ($_SESSION['Type'] == 2) {
-        if ($FetProfileDetails['RGT_PaymentStatus'] == 1) {
-?>
-<a id="login-trigger"  href="<?php
-            echo $FetProfileDetails['RGT_ProfileUrl'];
-?>" target="_blank">View Profile</a><?php
+    <?php
+    if ($_SESSION['LID'] == '') {
+    ?>
+        <div style="width:190px;height:29px;float:right;">
+        <div style="width:70px;height:10px;float:left;">
+            <?php                 
+                if($PageName != 'Login' && $PageName != 'ForgotPassword'){                
+            ?>
+                <nav>
+                	<ul>
+                		<li id="login">
+                			<a id="login-trigger" href="#" style="width:200px;margin:0px;color:#fff;font-size:14px;font-weight:normal;margin-top:-5px;">
+                			Business User Sign In
+                			</a>
+                			<div id="login-content" style="margin-top:20px;">
+                				<form  method="post" action="Login.php" onSubmit="return ValidateLogin();">
+                					<fieldset id="inputs" style="border:none;background:none;padding: 7px 10px;">
+                						<input id="UserName" class="loginfont" name="UserName" style="color:#000;font-family: Arial,Helvetica,sans-serif;" type="text" placeholder="Username / Email Id" autofocus autocomplete="off" />
+                						<input id="PassWord" class="loginfont" style="color:#000;font-family: Arial,Helvetica,sans-serif;" name="PassWord" type="password" placeholder="Password"  autocomplete="off" />
+                					</fieldset>
+                					<fieldset id="actions" style="border:none;background:none;">
+                                    	<input type="submit" id="Submit" name="Submit" value="Sign In">
+                                    </fieldset>
+                				</form>
+                				<a href="ForgotPassword.php" style="text-decoration:none;color:#666;font-size:11px;"><span><img src="images/forgot-passwords.png" /></span>Forgot Password ?</a>
+                			</div>
+                		</li>
+                	</ul>
+                </nav>
+            <?php
+                }
+            ?>
+        </div>
+        <div style="width:60px;height:10px;float:left;"><a href="Register.php">Register</a></div>
+        <div style="width:60px;height:10px;float:left;"><a href="#" style="border:none;text-decortaion:none;"><img src="images/home/register_icon.png" style="position:relative;left:-15px;" /></a></div>
+        </div>
+    <?php
+    } else{
+    ?>
+    <div style="width:250px;height:29px;float:right;">
+        <div style="float:left;"><?php
+            if ($_SESSION['Type'] == 2) {
+                if ($FetProfileDetails['RGT_PaymentStatus'] == 1) {
+        ?>
+        <a id="login-trigger"  href="<?php
+                    echo $FetProfileDetails['RGT_ProfileUrl'];
+        ?>" target="_blank">View Profile</a><?php
+                }
+        ?><a id="login-trigger" href="ManageProfile.php" target="_blank">Admin</a>
+        <?php
+            }
+        ?><a href="Logout.php">Sign Out</a></div>
+        <?php
         }
-?><a id="login-trigger" href="ManageProfile.php" target="_blank">Admin</a>
-<?php
-    }
-?><a href="Logout.php">Sign Out</a></div>
-<?php
-}
-?>
-</div>
-
+        ?>
+    </div>
 </div>

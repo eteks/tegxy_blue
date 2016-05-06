@@ -260,14 +260,14 @@ function showOnClickStatusActive()
 			var message = "hai, Your product/Advertisement was approved by admin successfully";
 			var recip = $('#user_product_approve').val();
 			// alert('recip'+$('#user_product_approve').val());
-			// $.ajax({
-	  //       type: 'GET',
-	  //       url: 'http://bulksms.blackholesolution.com/app/smsapi/index.php',
-	  //       data: {'key':'55113155e7e2c','type':'text','contacts':recip,'senderid':'VNSPDY','msg':message},
-	  //          	success: function(data) {
+			$.ajax({
+	        type: 'GET',
+	        url: 'http://bulksms.blackholesolution.com/app/smsapi/index.php',
+	        data: {'key':'55113155e7e2c','type':'text','contacts':recip,'senderid':'VNSPDY','msg':message},
+	           	success: function(data) {
 	             
-	  //          	}
-			// });					
+	           	}
+			});					
 		}
 	} else {
 		document.getElementById('msgdisplay').innerHTML = 'Unable to change the Status';

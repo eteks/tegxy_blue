@@ -36,9 +36,14 @@ function uploadimagecheck()
 	var lastDot = imagePath.lastIndexOf(".");
 	var fileType = imagePath.substring(lastDot,pathLength);	
 	var file = document.getElementById('ImgUpload').files[0];	
-	var FileSize = $('#FileSize').val();
-	var Check = parseInt(file.size) + parseInt(FileSize);
-	if(parseInt($('#FileSizeLimit').val()) < parseInt(Check))
+	// var FileSize = $('#FileSize').val();
+	var FileSize = 1000000;
+	var Check = parseInt(file.size);
+	alert('allowed size'+parseInt($('#FileSizeLimit').val()));
+	alert('current size'+Check);
+	alert(parseInt(FileSize) < parseInt(Check));
+	// if(parseInt($('#FileSizeLimit').val()) < parseInt(Check))
+	if(parseInt(FileSize) < parseInt(Check))
 	{
 	alert('Can not upload');
 	return false;

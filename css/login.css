@@ -155,8 +155,7 @@ fieldset
     margin: 25px 0 0 0;
 }
 
-#Submit, #CCancel
-{		
+#Submit, #CCancel,#Submit_f{		
     background-color: #ffb94b;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#fddb6f), to(#ffb94b));
     background-image: -webkit-linear-gradient(top, #fddb6f, #ffb94b);

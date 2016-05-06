@@ -14,7 +14,7 @@ include("Mailer/class.phpmailer.php");
 </head>
 <body onload="document.LoginForm.UserName.focus();Disappear();" class="background">
 <script type="text/javascript">
-function ValidateLogin()
+function ValidateLogin1()
 {
 if(DocId('UserName').value=='')
 {
@@ -22,8 +22,6 @@ alert("Please Enter the Username");
 DocId('UserName').focus();
 return false;
 }
-
-
 }
 </script>
 <div id="wrap">
@@ -33,7 +31,7 @@ return false;
 <div style="width:990px;height:auto;margin-left:auto;margin-right:auto;">
 <div align="center" style="width:990px;height:82px; margin-top:40px;"><a href="index.php" style="border:none;text-decoration:none;"><div style="font-weight: bold; margin-top: 80px; font-family: Trebuchet MS; font-size: 80px;text-shadow: 4px 4px #000000;"><span style="color:#00667C;">X</span><span style="color:#C31118;">Y</span><span style="color:#00667C;">GET</span><span style="color:#C31118;font-size:55px;">.COM</span></div></a></div>
 <div id="personal" style="width:990px; padding-bottom:90px; margin-top:40px;height:475px;">
-<form id="LoginForm" name="LoginForm"  method="post" action="ForgotPassword.php" onsubmit="return ValidateLogin();">
+<form id="LoginForm" name="LoginForm"  method="post" action="ForgotPassword.php" onsubmit="return ValidateLogin1();">
 <h1>Forgot Password</h1>
 <div class="validation text-align-c" id="msgdisplay"><?php $_REQUEST['msg'] = (isset($_REQUEST['msg']) ? $_REQUEST['msg'] : ''); if($_REQUEST["msg"]=="1") { ?>Invalid Username!<?php } if($_REQUEST["msg"]=="2") { ?>Password has been Sent to your Email Id and Mobile!<?php }?></div>
 <div style="height:15px;"></div>
@@ -44,7 +42,7 @@ return false;
 
 <table cellpadding="0" cellspacing="0" border="0">
   <tr>
-    <td><input type="submit" id="Submit" name="Submit" value="Submit"></td>
+    <td><input type="submit" id="Submit_f" name="Submit" value="Submit"></td>
     <td>&nbsp;&nbsp;</td>
     <td><input type="button" id="CCancel" name="CCancel" value="Cancel" onclick="window.location.href='Login.php'" /></td>
   </tr>
@@ -62,44 +60,40 @@ return false;
 </html>
 
 <?php
-
 if($_REQUEST['Submit']=='Submit')
-{
+{    
 $Username = $_REQUEST['UserName'];
 $EmailMobile = $_REQUEST['EmailMobile'];
-	
-$Check  = db_query("SELECT RGT_PK,RGT_Type,RGT_UserName,RGT_Password,RGT_Email,RGT_Mobile,RGT_OwnEmail,RGT_OwnMobile,RGT_CompName,RGT_OwnerName FROM ".TABLE_REGISTRATION." WHERE RGT_UserName='".$Username."' AND (RGT_Email='".$EmailMobile."' || RGT_Mobile='".$EmailMobile."' || RGT_OwnEmail='".$EmailMobile."' || RGT_OwnMobile='".$EmailMobile."') AND RGT_Status='1' AND RGT_Type!='3' ");
+$Check  = db_query("SELECT RGT_PK,RGT_Type,RGT_UserName,RGT_Password,RGT_Email,RGT_Mobile,RGT_OwnEmail,RGT_OwnMobile,RGT_CompName,RGT_OwnerName FROM ".TABLE_REGISTRATION." WHERE (RGT_UserName='".$Username."' || RGT_Email='".$Username."') AND RGT_Status='1' AND RGT_Type!='3' ");
 if(db_num_rows($Check)>0)
 {
 list($Lid,$Type,$UserName,$Password,$PEmail,$PMobile,$BEmail,$BMobile,$PName,$BName)=db_fetch_array($Check);	
-$_SESSION['LID']= $Lid;
+// $_SESSION['LID']= $Lid;
 $_SESSION['Type']= $Type;
 $_SESSION['UserName']= $UserName;
 
 $ToEmail        = $PEmail;	
 $ToName         = $PName;	
 $ToMobile       = $PMobile;	
-
-if($ToMobile!=''){ 
-    $mainusername   =9092371237;
-    $mainpassword   ='icrtwicrtw';
-    $receiver   = $ToMobile;
-    $message    = "Dear ".$ToName.", Your Login Name : ".$UserName.",Password : ".$Password." ";
-        require 'sms/Way2Sms.php';
-        $sms            =   new Way2Sms();
-        $result         =   $sms->login($mainusername, $mainpassword);
-        if($result) {
-            $smsStatus  =   $sms->send($receiver, $message);
-            if($smsStatus)
-                echo "Message sent successfully!!!";
-            else
-                echo "Unable to send message";
-            $sms->logout();
-        }
-        else
-            echo "Invalid Username or Password";
-}
-
+// if($ToMobile!=''){ 
+//     $mainusername   =9092371237;
+//     $mainpassword   ='icrtwicrtw';
+//     $receiver   = $ToMobile;
+//     $message    = "Dear ".$ToName.", Your Login Name : ".$UserName.",Password : ".$Password." ";
+//         require 'sms/Way2Sms.php';
+//         $sms            =   new Way2Sms();
+//         $result         =   $sms->login($mainusername, $mainpassword);
+//         if($result) {
+//             $smsStatus  =   $sms->send($receiver, $message);
+//             if($smsStatus)
+//                 echo "Message sent successfully!!!";
+//             else
+//                 echo "Unable to send message";
+//             $sms->logout();
+//         }
+//         else
+//             echo "Invalid Username or Password";
+// }
 
 $Message     = "<table border='0' cellpadding='0' cellspacing='0'  style='font-size: 12px; line-height: 25px;font-family:Arial, Helvetica, sans-serif;padding-left:5px;padding-bottom:10px;'>
 <tr><td colspan='2' height='10'></td></tr>
@@ -108,7 +102,6 @@ $Message     = "<table border='0' cellpadding='0' cellspacing='0'  style='font-s
 <tr><td colspan='2' style='padding-left:20px;font-weight:bold;'>Username : ".$UserName."</td></tr>
 <tr><td colspan='2' style='padding-left:20px;font-weight:bold;'>Password : ".base64_decode($Password)."</td></tr>
 </table>";
-
 $mailContent = file_get_contents("MailTemplate.php");
 $Message = str_replace('MSGCONTENT',$Message, $mailContent);
 $Message = str_replace('images/',HTTP_SERVER.'images/', $Message);
@@ -119,7 +112,7 @@ $ToName=$ToName;
 $FromName='XYget';
 $FromAddress='services@tracemein.com';
 PHP_Mailer($Message,$Subject,$ToAddress,$ToName,$FromAddress,$FromName,$Attachmenttemp,$Attachment);
-
+echo "to",$ToAddress;
 header("Location:ForgotPassword.php?msg=2");
 }
 else
