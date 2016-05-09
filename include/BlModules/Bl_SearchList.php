@@ -15,7 +15,6 @@ db_connect();
 	}
 	// $sql    = "SELECT `RGT_CompName` as search, RGT_City,RGT_Area, '1' as type2 FROM `tbl_registration` ".$Whecon." UNION SELECT `S_Name` as search  ,'1' as RGT_City,'b' as RGT_Area ,'2' as type2 FROM `tbl_sector`  ".$Whecon1." UNION SELECT `Kd_Keyword` as search  ,'1' as RGT_City,'b' as RGT_Area ,'3' as type2 FROM `tbl_keywordmst`  ".$Whecon2."";
 	$sql  = "SELECT `RGT_CompName` as search, RGT_City,RGT_Area, '1' as type2 FROM `tbl_registration` ".$Whecon."";
-	// echo "SELECT `RGT_CompName` as search, RGT_City,RGT_Area, '1' as type2 FROM `tbl_registration` ".$Whecon."";
 	$result = db_query($sql) or die(db_error());
 	if(db_num_rows($result))
 	{		
@@ -46,7 +45,7 @@ if($_REQUEST['action']=='2'){
 	if (trim($str1) != '') $str1 = trim($str1);
 	$Whecon = "Where `PS_Display` like '".$str1."%' AND PS_Status='1'";
 	// $sql    = "SELECT  ProductName FROM  ".TABLE_ADMINPRODUCT."  ".$Whecon." Order by ProductName asc limit 0,5";
-	$sql    = "SELECT  PS_Display FROM  ".tbl_productservice." as prods INNER JOIN `tbl_registration` as regs ON regs.RGT_PK=prods.PS_User_Fk ".$Whecon." AND RGT_City=".$strc." Order by PS_Display asc limit 0,5";
+	$sql    = "SELECT  PS_Display,RGT_City,RGT_Area FROM  ".tbl_productservice." as prods INNER JOIN `tbl_registration` as regs ON regs.RGT_PK=prods.PS_User_Fk ".$Whecon." AND RGT_City=".$strc." Order by PS_Display asc limit 0,5";
 	$result = db_query($sql) or die(db_error());
 	if(db_num_rows($result))
 	{		
@@ -67,7 +66,9 @@ if($_REQUEST['action']=='2'){
 				 
 			$final = '<span class="bold">'.$first.'</span>'.$last;
 
-			echo '<li><a href=\'javascript:void(0);\'>'.$final.'</a></li>';
+			// echo '<li><a href=\'javascript:void(0);\'>'.$final.'</a></li>';
+			echo '<li><a href=\'javascript:void(0);\'>'.$final.'<span style="display:none;">**'.$row['RGT_City'].'**'.CityName($row['RGT_City']).'**'.$row['RGT_Area'].'**'.AreaName($row['RGT_Area']).'**'.$row['type2'].'</span></a></li>';
+			
 		 }
 		echo "</ul>";
 	}

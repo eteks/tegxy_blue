@@ -690,53 +690,27 @@ function getRelatedSearchComp($sectordata, $alreadylisteddetails, $findcitymatch
     }
 
 }
-function getRelatedSearchBestdeals($ps_id, $ps_fk, $citymatchdata)
-{
-    if ($citymatchdata != '')
 
-        $wherecon = "AND PS_User_Fk IN (" . $citymatchdata . ")";
-
-    if ($ps_id != '' || $ps_fk != '') {
-        $selectcategoryfk = db_query("SELECT DISTINCT Category_fk FROM " . TABLE_PRODUCTRELATIVITY . " WHERE Product_fk IN (" . $ps_fk . ") ");
+function getRelatedSearchBestdeals($ps_id, $ps_fk){
+    if ($ps_id != '' || $ps_fk != '') {        
+        $selectcategoryfk = db_query("SELECT DISTINCT PS_CategoryFk FROM " . TABLE_PRODUCTSERVICE . " WHERE PS_Id IN (" . $ps_id . ")");
+       
         while ($fetchcategoryfk = mysql_fetch_array($selectcategoryfk)) {
-            $categoryids .= $fetchcategoryfk['Category_fk'] . ',';
+            $categoryids .= $fetchcategoryfk['PS_CategoryFk'] . ','; 
         }
         $categoryids = substr($categoryids, 0, -1);
-        $selectrelatedproducts = db_query("SELECT DISTINCT * FROM " . TABLE_PRODUCTSERVICE . " WHERE PS_CategoryFk IN (" . $categoryids . ") AND PS_Id NOT IN (" . $ps_id . ") $wherecon ");
-
+        $selectrelatedproducts = db_query("SELECT DISTINCT * FROM " . TABLE_PRODUCTSERVICE . " WHERE PS_CategoryFk IN (" . $categoryids . ") AND PS_Status=1 AND PS_Id NOT IN (" . $ps_id . ")");
         $countresult = mysql_num_rows($selectrelatedproducts);
         if ($countresult > 0) {
-
-            while ($fetchrelatedproduct = mysql_fetch_array($selectrelatedproducts)) {
-
-
-                /*if($count>15){
-                $displaydata=(substr($fetchrelatedproduct['PS_Display'],0,15));
-                $displaydata.='...';
-                }
-                else {*/
-                $displaydata = $fetchrelatedproduct['PS_Display'];
-                /*}*/
-
-                echo '<li><span>';
-                echo '<a target="_blank" href="Bestdealsajax.php?user=';
-                echo get_data_from_registration($fetchrelatedproduct['PS_User_Fk'], RGT_ProfileUrl);
-                echo '&BDId=' . $fetchrelatedproduct['PS_Id'];
-                echo '" class="navlink">';
-                echo $displaydata;
-                echo '</a></span></li>';
-
-
-
+            while ($fetchrelatedproduct = mysql_fetch_array($selectrelatedproducts)){    
+                $displaydata = $fetchrelatedproduct['PS_Display'];        
+                echo '<li>';
                 echo '<a onclick="';
                 echo 'searchResult(';
                 echo "'".$fetchrelatedproduct['PS_Display']."'";
                 echo ');';
-                echo '" class="navlink" style="color:#1274C0;text-decoration:none;">'.$fetchrelatedproduct['PS_Display'].'</a>';
-                echo '</li>';
-                 
-
-
+                echo '" class="navlink" style="color:#1274C0;text-decoration:none;"><span>'.$fetchrelatedproduct['PS_Display'].'</span></a></br>';
+                echo '</li>';     
             }
         } else {
             echo '<li>No Results</li>';
@@ -745,31 +719,33 @@ function getRelatedSearchBestdeals($ps_id, $ps_fk, $citymatchdata)
         echo '<li>No Results</li>';
 
 }
-// function getRelatedSearchBestdeals($ps_id, $ps_fk){   
-//     echo "ps-->",$ps_id;
-//     echo "ps_fk",$ps_fk;
+
+//older one
+// function getRelatedSearchBestdeals($ps_id, $ps_fk, $citymatchdata)
+// {
+//     if ($citymatchdata != '')
+
+//         $wherecon = "AND PS_User_Fk IN (" . $citymatchdata . ")";
+
 //     if ($ps_id != '' || $ps_fk != '') {
-//         $selectcategoryfk = db_query("SELECT DISTINCT Category_fk FROM " . TABLE_PRODUCTRELATIVITY . " WHERE Product_fk IN (" . $ps_fk . ")");
-//         echo "selectcategoryfk-->","SELECT DISTINCT Category_fk FROM " . TABLE_PRODUCTRELATIVITY . " WHERE Product_fk IN (" . $ps_fk . ")";
+//         $selectcategoryfk = db_query("SELECT DISTINCT Category_fk FROM " . TABLE_PRODUCTRELATIVITY . " WHERE Product_fk IN (" . $ps_fk . ") ");
 //         while ($fetchcategoryfk = mysql_fetch_array($selectcategoryfk)) {
 //             $categoryids .= $fetchcategoryfk['Category_fk'] . ',';
-//              echo "cat id-->",$categoryids;
 //         }
 //         $categoryids = substr($categoryids, 0, -1);
-//         echo "sub id-->",$categoryids;
-//         $selectrelatedproducts = db_query("SELECT DISTINCT * FROM " . TABLE_PRODUCTSERVICE . " WHERE PS_CategoryFk IN (" . $categoryids . ")");
-//         echo "SELECT DISTINCT * FROM " . TABLE_PRODUCTSERVICE . " WHERE PS_CategoryFk IN (" . $categoryids . ")";
+//         $selectrelatedproducts = db_query("SELECT DISTINCT * FROM " . TABLE_PRODUCTSERVICE . " WHERE PS_CategoryFk IN (" . $categoryids . ") AND PS_Id NOT IN (" . $ps_id . ") $wherecon ");
+
 //         $countresult = mysql_num_rows($selectrelatedproducts);
 //         if ($countresult > 0) {
 
 //             while ($fetchrelatedproduct = mysql_fetch_array($selectrelatedproducts)) {
 
 
-//                 /*if($count>15){
+//                 if($count>15){
 //                 $displaydata=(substr($fetchrelatedproduct['PS_Display'],0,15));
 //                 $displaydata.='...';
 //                 }
-//                 else {*/
+//                 else {
 //                 $displaydata = $fetchrelatedproduct['PS_Display'];
 //                 /*}*/
 

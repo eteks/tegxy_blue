@@ -641,10 +641,8 @@ function AddProduct(usertype)
 	alert("Please Add/Update Entered Location");
 	DocId('ProCountry').focus();
 	return false;
-	}
-	
-	var str = "action=1&DisplayName="+DisplayName+"&Product="+Product+"&IndustryList="+IndustryList+"&SubCategory="+SubCategory+"&Type="+Type+"&Descr="+Descr+"&BusType="+BusType+"&Keyword="+Keyword+"&r="+ran_number+"&ExistId="+ExistId+"&PdfPath="+PdfPath+"&CoverImgPath="+CoverImgPath+"&Name="+Name+"&Mode="+Mode+"&Price="+Price+"&Currency="+Currency+"&Unit="+Unit+"&UserType="+usertype;
-	
+	}	
+	var str = "action=1&DisplayName="+DisplayName+"&Product="+Product+"&IndustryList="+IndustryList+"&Category="+Category+"&SubCategory="+SubCategory+"&Type="+Type+"&Descr="+Descr+"&BusType="+BusType+"&Keyword="+Keyword+"&r="+ran_number+"&ExistId="+ExistId+"&PdfPath="+PdfPath+"&CoverImgPath="+CoverImgPath+"&Name="+Name+"&Mode="+Mode+"&Price="+Price+"&Currency="+Currency+"&Unit="+Unit+"&UserType="+usertype;	
 	var url = "include/BlModules/Bl_Product.php";
 	xmlhttp.open("POST", url, true);  
 	xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");

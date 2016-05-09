@@ -40,6 +40,7 @@ db_connect();
         $searchkey   = $_REQUEST['searchkey'];
         $requestType = $_REQUEST['requesttype'];      
         $userCity    = $_REQUEST['usercity'];
+       
         if (isset($_REQUEST['userarea'])) {
             $userArea = AreaName($_REQUEST['userarea']);
         } //isset($_REQUEST['userarea'])

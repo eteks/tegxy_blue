@@ -147,12 +147,12 @@ $(document).ready(function(){
 					$("#SearchListRes").fadeOut("slow");
 				 	var searchresult = $("#SearchListRes li[class='selected'] a").text().split('**');
 			  		$("#searchlist").val(searchresult[0]);
-					if(Chkstatus==1)
-					{
+					// if(Chkstatus==1)
+					// {
 					$("#cityvalue").html(searchresult[2]);
 					$("#userCity").val(searchresult[2]);
 					changeArealist(searchresult[1],searchresult[3],'');
-					}
+					// }
 					var type2;
 					type2     = searchresult[5];
 					$("#type2").val(type2);
@@ -160,17 +160,18 @@ $(document).ready(function(){
 					{
 					var requestType=$("input[name='requestType']:checked").val();
 					var userCityy;
-
-					if(Chkstatus==1)
-					{
+					// if(Chkstatus==1)
+					// {
 					userCityy = searchresult[2];
-					userArea  = searchresult[3];
-					}
-					else
-					{
-					userCityy = 'Pondicherry';
-					userArea = '';
-					}
+					userArea  = searchresult[4];
+					// alert('ucity'+userCityy);
+					// alert('uarea'+userArea);
+					// }
+					// else
+					// {
+					// userCityy = 'Pondicherry';
+					// userArea = '';
+					// }
 					 window.location.href="Searchpage.php?action=Add&searchkey="+$('#searchlist').val()+"&requesttype="+requestType+"&usercity="+userCityy+"&userarea="+userArea+"&type2="+type2;
 					}
 					else
@@ -320,12 +321,12 @@ $(document).ready(function(){
 					$("#SearchListRes").fadeOut("slow");
 				 	var searchresult = $("#SearchListRes li[class='selected'] a").text().split('**');
 			  		$("#searchlist").val(searchresult[0]);
-					if(Chkstatus==1)
-					{
+					// if(Chkstatus==1)
+					// {
 					$("#cityvalue").html(searchresult[2]);
 					$("#userCity").val(searchresult[2]);
 					changeArealist(searchresult[1],searchresult[3],'');
-					}
+					// }
 					var type2;
 					type2     = searchresult[5];
 					$("#type2").val(type2);
@@ -334,16 +335,16 @@ $(document).ready(function(){
 					var requestType=$("input[name='requestType']:checked").val();
 					var userCityy;
 
-					if(Chkstatus==1)
-					{
+					// if(Chkstatus==1)
+					// {
 					userCityy = searchresult[2];
-					userArea  = searchresult[3];
-					}
-					else
-					{
-					userCityy = 'Pondicherry';
-					userArea = '';
-					}
+					userArea  = searchresult[4];
+					// }
+					// else
+					// {
+					// userCityy = 'Pondicherry';
+					// userArea = '';
+					// }
 					 window.location.href="Searchpage.php?action=Add&searchkey="+$('#searchlist').val()+"&requesttype="+requestType+"&usercity="+userCityy+"&userarea="+userArea+"&type2="+type2;
 					}
 					else
@@ -490,12 +491,12 @@ $(document).ready(function(){
 					$("#SearchListPro").fadeOut("slow");
 				 	var searchresult = $("#SearchListPro li[class='selected'] a").text().split('**');
 			  		$("#searchlist").val(searchresult[0]);
-					if(Chkstatus==1)
-					{
+					// if(Chkstatus==1)
+					// {
 					$("#cityvalue").html(searchresult[2]);
 					$("#userCity").val(searchresult[2]);
 					changeArealist(searchresult[1],searchresult[3],'');
-					}
+					// }
 					var type2;
 					type2     = searchresult[5];
 					$("#type2").val(type2);
@@ -504,16 +505,16 @@ $(document).ready(function(){
 					var requestType=$("input[name='requestType']:checked").val();
 					var userCityy;
 
-					if(Chkstatus==1)
-					{
+					// if(Chkstatus==1)
+					// {
 					userCityy = searchresult[2];
-					userArea  = searchresult[3];
-					}
-					else
-					{
-					userCityy = 'Pondicherry';
-					userArea = '';
-					}
+					userArea  = searchresult[4];
+					// }
+					// else
+					// {
+					// userCityy = 'Pondicherry';
+					// userArea = '';
+					// }
 					 window.location.href="Searchpage.php?action=Add&searchkey="+$('#searchlist').val()+"&requesttype="+requestType+"&usercity="+userCityy+"&userarea="+userArea+"&type2="+type2;
 					}
 					else
@@ -539,12 +540,12 @@ $("#SearchListRes").mouseover(function(){
           var searchresult = $(this).text().split('**');
           // alert('searchresult'+searchresult[0]);
 		  $("#searchlist").val(searchresult[0]);
-		  if(Chkstatus==1)
-		  {
+		  // if(Chkstatus==1)
+		  // {
 		  $("#cityvalue").html(searchresult[2]);
 		  $("#userCity").val(searchresult[2]);
 		  changeArealist(searchresult[1],searchresult[3],'');
-		  }
+		  // }
 		  var type2;
           type2 = searchresult[5];
           // alert('type2'+type2);
@@ -553,17 +554,16 @@ $("#SearchListRes").mouseover(function(){
           {
 			var userCityy;
 			var requestType=$("input[name='requestType']:checked").val();
-
-			if(Chkstatus==1)
-			{
+			// if(Chkstatus==1)
+			// {
 			userCityy = searchresult[2];
-			userArea  = searchresult[3];
-			}
-			else
-			{
-			userCityy = 'Pondicherry';
-			userArea  = '';
-			}
+			userArea  = searchresult[4];
+			// }
+			// else
+			// {
+			// userCityy = 'Pondicherry';
+			// userArea  = '';
+			// }
 			window.location.href="Searchpage.php?action=Add&searchkey="+$('#searchlist').val()+"&requesttype="+requestType+"&usercity="+userCityy+"&userarea="+searchresult[3]+"&type2=1";
 		  }
 		  else
