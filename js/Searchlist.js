@@ -490,7 +490,7 @@ $(document).ready(function(){
 				 case 13:
 					$("#SearchListPro").fadeOut("slow");
 				 	var searchresult = $("#SearchListPro li[class='selected'] a").text().split('**');
-				 	alert('searchresult'+searchresult);
+				 	// alert('searchresult'+searchresult);
 			  		$("#searchlist").val(searchresult[0]);
 					// if(Chkstatus==1)
 					// {
