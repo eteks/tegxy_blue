@@ -392,7 +392,8 @@ $(document).ready(function(){
 			$('#Thirdleveladv').show();
 		}
 		else{
-			$('#ad_next_format').addClass('error');
+			$('#Firstformate').addClass('error');
+			$('#Firstformate').focus();
 			element.show();
 		} 
     });

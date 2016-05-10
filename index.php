@@ -329,7 +329,7 @@ function Searchusingenterkey(e)
 						<li>You represent and warrant to <b>TECHDNS</b> that all of the information provided by you to <b>TECHDNS</b> to register as an account holder and participate in the services is correct and current, and that you have all necessary right, power and authority to enter in to this service.</li>
 					</ol>
 
-					<b>6.	VIOLATIONS:</b>
+					<b>6.	Violations:</b>
 					<ol>
 						<li>Violations of system and network security are prohibited, and may result in criminal and civil liability. Examples of system and network security violations include the following:<br/>
 						a)	Any automated use of system.<br/>

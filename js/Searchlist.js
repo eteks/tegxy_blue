@@ -338,7 +338,7 @@ $(document).ready(function(){
 					// if(Chkstatus==1)
 					// {
 					userCityy = searchresult[2];
-					userArea  = searchresult[4];
+					userArea  = searchresult[3];
 					// }
 					// else
 					// {
@@ -490,6 +490,7 @@ $(document).ready(function(){
 				 case 13:
 					$("#SearchListPro").fadeOut("slow");
 				 	var searchresult = $("#SearchListPro li[class='selected'] a").text().split('**');
+				 	alert('searchresult'+searchresult);
 			  		$("#searchlist").val(searchresult[0]);
 					// if(Chkstatus==1)
 					// {

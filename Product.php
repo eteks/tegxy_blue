@@ -208,7 +208,7 @@ var CFile         ='Bl_ProductCatList.php';
   <tr>
     <td>Quantity</td>
     <td>:&nbsp;</td>
-    <td><input type="text" id="Unit" name="Unit" onkeyup="Numbercharacteronly(this);" autocomplete="off" class="inp-text" style="width:55px;" /></td>
+    <td><input type="text" id="Unit" name="Unit" onkeyup="checkNumber(this);" autocomplete="off" class="inp-text" style="width:55px;" /></td>
     <td>&nbsp;</td>
     <td>Price</td>
     <td>:&nbsp;</td>

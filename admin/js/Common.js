@@ -259,7 +259,7 @@ function showOnClickStatusActive()
 			document.getElementById('msgdisplay').innerHTML = 'Active Status Updated Successfully';
 			var message = "hai, Your product/Advertisement was approved by admin successfully";
 			var recip = $('#user_product_approve').val();
-			// alert('recip'+$('#user_product_approve').val());
+			alert('recip'+$('#user_product_approve').val());
 			$.ajax({
 	        type: 'GET',
 	        url: 'http://bulksms.blackholesolution.com/app/smsapi/index.php',

@@ -11,13 +11,13 @@
 <tr>
 <td>Upload Image</td>
 <td> :&nbsp;</td>
-<td><input type="hidden" name="EventsImage" id="EventsImage" value="" /><span onclick="FileUploader('EventsImage','doc','EventsImageDisp','Document/Events/');"  style="cursor:pointer;"><img src="images/upload-icon.png" /> upload</span>&nbsp;&nbsp;<span id="EventsImageDisp"></span><br/><em><span class="alertmsg">(gif,jpg,png Files Only - Below 1MB - Below 1MB - Recommended size 300X200)</span></em></td>
+<td><input type="hidden" name="EventsImage" id="EventsImage" value="" /><span onclick="FileUploader('EventsImage','doc','EventsImageDisp','Document/Events/');"  style="cursor:pointer;"><img src="images/upload-icon.png" /> upload</span>&nbsp;&nbsp;<span id="EventsImageDisp"></span><br/><em><span class="alertmsg">(gif,jpg,png Files Only - Below 1MB - Recommended size 300X200)</span></em></td>
 </tr>
 <tr><td colspan="3" height="10"></td></tr>
 <tr>
 <td>Title</td>
 <td> :&nbsp;</td>
-<td><input type="text"  id="EventsTitle" name="EventsTitle" class="inp-text"  style="width:538px;" /></td>
+<td><input type="text"  id="EventsTitle" name="EventsTitle" class="inp-text"  style="width:538px;font-family:Arial,Helvetica,sans-serif !important;" /></td>
 </tr>
 <tr><td colspan="3" height="10"></td></tr>
 <tr>

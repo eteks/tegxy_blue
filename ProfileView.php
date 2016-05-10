@@ -129,7 +129,7 @@ $login(document).ready(function(){
 </head>
 <body>
 <div id="maincontainer">
-    <div id="toplogo"><div id="toplogo" style="font-weight: bold; margin-top: 30px; font-family: Trebuchet MS; font-size: 40px;text-shadow: 2px 2px #000000;"><span style="color:#00667C;">X</span><span style="color:#C31118;">Y</span><span style="color:#00667C;">GET</span><span style="color:#C31118;font-size:30px;">.COM</span></div></div><!-- cursor:pointer; onclick="window.open('index.php','_self')" href="index.php"-->
+    <a style="text-decoration:none;" href="index.php"><div id="toplogo"><div id="toplogo" style="font-weight: bold; margin-top: 30px; font-family: Trebuchet MS; font-size: 40px;text-shadow: 2px 2px #000000;"><span style="color:#00667C;">X</span><span style="color:#C31118;">Y</span><span style="color:#00667C;">GET</span><span style="color:#C31118;font-size:30px;">.COM</span></div></div></a>
 <div id="title"><table width="600" height="45" cellpadding="0" style="margin-left:auto;margin-right:auto;"><tr><td valign="middle"><a href="index.php" style="text-decoration:none;"><h1><?php echo $FetProfileDetails['RGT_CompName'] ;?></h1></a></td></tr></table></div> <!-----login---->
 <div class="login">
 <?php if($_SESSION['LID']==''){ ?>

@@ -207,7 +207,7 @@ return false;
 
 else if(DocId('Email').value=='')
 {
-alert("Please Enter the Email");	
+alert("Please Enter the email id");	
 DocId('Email').focus();
 return false;
 }
@@ -230,7 +230,15 @@ else if(!DocId('Mobile').value.match(/^\d{10}$/))
 	alert('Please Enter Mobile number with 10 digits');
 	return false;  
 } 
-
+var currentdate = $('#hide_current_dob').val();
+// alert('cure'+currentdate);
+var own_dob  = $('#DOB').val();
+// alert('own_dob'+own_dob);
+if(own_dob > currentdate){		
+	$('#DOB').val('');
+	alert('Invalid Date');
+	return false;
+}
 if(DocId('bus_details').value =='1')
 {
 
@@ -285,8 +293,8 @@ var end_time_brk = $('#timepicker_4').val();
 if(start_time_brk > end_time_brk){
 alert('start time is always later than end time');
 return false;	
-}
-	
+}	
+
 /*else if(DocId('SelCountry').value=='')
 {
 alert("Please Select the Country");	
@@ -451,7 +459,7 @@ function FreeUserRegister()
 	} 
 	else if(FemailId=='')
 	{
-	DocId('FRmsg').innerHTML="Please Enter the Email";
+	DocId('FRmsg').innerHTML="Please Enter the email id";
 	DocId('FemailId').focus();
 	return false;
 	}

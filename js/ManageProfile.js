@@ -111,7 +111,7 @@ function CompanyDetails()
 	}
 	else if(Email=='')
 	{
-	alert("Please Enter the Email");
+	alert("Please Enter the email id");
 	$('#Email').addClass('highlight');
 	return false;
 	}
@@ -158,7 +158,6 @@ function OwnerDetails()
 	
 	var Designation = DocId('Designation').value;
 	var DOB = DocId('DOB').value;
-	
 	if(DocId('Male').checked)
 	Gender = DocId('Male').value;
 	else
@@ -187,6 +186,15 @@ function OwnerDetails()
 	alert("Please Enter the Valid Email Id");	
 	DocId('Email').focus();
 	return false;
+	}
+	var currentdate = $('#hide_current').val();
+	// alert('cure'+currentdate);
+	var own_dob  = $('#DOB').val();
+	// alert('own_dob'+own_dob);
+	if(own_dob > currentdate){		
+		$('#DOB').val('');
+		alert('Invalid Date');
+		return false;
 	}
 
 	var str = "OwnerName="+OwnerName+"&Designation="+Designation+"&DOB="+DOB+"&Address="+Address+"&SelCountry="+SelCountry+"&SelState="+SelState+"&SelCity="+SelCity+"&Mobile="+encodeURIComponent(Mobile)+"&LandLine="+encodeURIComponent(LandLine)+"&Email="+Email+"&OwnEducate="+OwnEducate+"&Gender="+Gender+"&SelArea="+SelArea+"&SelPincode="+SelPincode+"&r="+ran_number;
@@ -1488,6 +1496,12 @@ function AddEvents()
 	DocId('EFrom').focus();
 	return false;
 	}
+	var efrom = $("#EFrom").val();
+	var eto = $("#ETO").val();
+	if(efrom > eto){	
+	   alert("Invalid Date Range");
+	   return false;
+	}
 	var str = "action=1&Imagee="+Imagee+"&ExistId="+ExistId+"&Desp="+encodeURIComponent(Desp)+"&From="+From+"&To="+To+"&Title="+Title;
 	var url = "include/BlModules/Bl_Events.php";
 	xmlhttp.open("POST", url, true);  
@@ -1734,7 +1748,7 @@ function AddContact()
 	}
 	else if(Email=='')
 	{
-	alert("Please Enter the Email Id");
+	alert("Please Enter the email id Id");
 	DocId('CIEmail').focus();
 	return false;
 	}

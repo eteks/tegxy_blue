@@ -75,19 +75,13 @@ if($_REQUEST['action']=='2'){
 	else
 		echo '<div style="text-align:left;font-family:verdana;font-size:11px;width:498px;padding:2px 4px;" class="no_matches">Sorry! No such item found</div>';	
 }
-if($_REQUEST['action']=='3'){
-	//if (trim($str1) != '') $str1 = trim($str1);
-	//$Whecon = "WHERE `RGT_CompName` like '".$str1."%'";//AND
-	//$sql    = "SELECT RGT_CompName,RGT_City,RGT_Area FROM `tbl_registration`   ".$Whecon." Order by RGT_CompName asc limit 0,5";
-	//RGT_Status=1
+if($_REQUEST['action']=='3'){	
 	if ($str1 != '')
-	{
-	// $Whecon  = "WHERE `RGT_CompName` like '".$str1."%'";//AND
+	{	
 	$Whecon  = "WHERE `RGT_CompName` like '".$str1."%' AND RGT_Status = '1' AND RGT_PaymentStatus = '1' AND RGT_City=".$strc."";
 	$Whecon1 = "WHERE `S_Name` like '".$str1."%'";
 	$Whecon2 = "WHERE `Kd_Keyword` like '".$str1."%'";
 	}
-	// $sql    = "SELECT `RGT_CompName` as search, RGT_City,RGT_Area, '1' as type2 FROM `tbl_registration` ".$Whecon." UNION SELECT `S_Name` as search  ,'1' as RGT_City,'b' as RGT_Area ,'2' as type2 FROM `tbl_sector`  ".$Whecon1." UNION SELECT `Kd_Keyword` as search  ,'1' as RGT_City,'b' as RGT_Area ,'3' as type2 FROM `tbl_keywordmst`  ".$Whecon2."";
 	$sql    = "SELECT `RGT_CompName` as search, RGT_City,RGT_Area, '1' as type2 FROM `tbl_registration` ".$Whecon."";
 	$result = db_query($sql) or die(db_error());
 	if(db_num_rows($result))
@@ -117,12 +111,8 @@ if($_REQUEST['action']=='3'){
 }
 if($_REQUEST['action']=='4'){
 	if (trim($str1) != '') $str1 = trim($str1);
-	// $Whecon = "Where `ProductName` like '".$str1."%'";
-	// $sql    = "SELECT  ProductName FROM  ".TABLE_ADMINPRODUCT."  ".$Whecon." Order by ProductName asc limit 0,5";
-
 	$Whecon = "Where `Ps_Display` like '".$str1."%' AND PS_Status='1'";
 	$sql    = "SELECT  Ps_Display FROM  ".tbl_productservice." as product INNER JOIN `tbl_registration` as register ON register.RGT_PK=product.PS_User_Fk ".$Whecon." AND RGT_City=".$strc." Order by Ps_Display asc limit 0,5";
-	// "SELECT  PS_Display FROM  ".tbl_productservice." as prods INNER JOIN `tbl_registration` as regs ON regs.RGT_PK=prods.PS_User_Fk ".$Whecon." AND RGT_City=".$strc." Order by PS_Display asc limit 0,5";
 	$result = db_query($sql) or die(db_error());
 	if(db_num_rows($result))
 	{

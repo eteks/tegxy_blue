@@ -16,7 +16,7 @@ $Email         = $_REQUEST['Email'];
 
 $GroupName  = $_REQUEST['GroupName'];
 $RequestNo  = $_REQUEST['RequestNo'];
-$YearofEst  = $_REQUEST['YearofEst'];
+$YearofEst  = date('Y-m-d',  strtotime($_REQUEST['YearofEst']));
 $TypeofComp = $_REQUEST['TypeofComp'];
 $EmpStr     = $_REQUEST['EmpStr'];
 $Website    = $_REQUEST['Website'];

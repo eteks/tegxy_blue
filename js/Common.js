@@ -604,12 +604,15 @@ function fillIdcity(thisValue) {
     changeArealist(thisValue,'','');
 }
 function Togglecity(){
+	if($('#searchlist').val() != '')
+	{
+		$('#searchlist').val('');
+	}
     $("#userCityselect").css('display','inline-block');
     $("#cityvalue").css('display','none');
 	document.getElementById('userCityselect').placeholder='Select City';
     $("#userCityselect").focus();
-    $("#userCityselect").val();
-   
+    $("#userCityselect").val();   
 }
 function changeArealist(citycode,selectt,key){
 	if(citycode.length){

@@ -12,7 +12,15 @@ include("Mailer/class.phpmailer.php");
 <link rel="icon" href="images/">
 
 <?php include("ScriptStyle.php");?>
-
+<?php 
+$DOBB = $FetProfileDetails['RGT_OwnDOB'];
+if($DOBB!=='')
+{
+$CurrentDate = date("d-m-Y");
+$diff = abs(strtotime($CurrentDate) - strtotime($DOBB));
+$Age = floor($diff / (365*60*60*24));
+}
+?>
 <!-- Keyword related script -->
 
 <link rel="StyleSheet" href="Tagedit-master/css/ui-lightness/jquery-ui-1.9.2.custom.min.css" type="text/css" media="all"/>
@@ -179,7 +187,9 @@ to continue browsing XYget.com</p>
 <tr>
 <td class="twenty"><label for="input-two" class="floatleft">Date Of Birth</label></td>
 <td class="ten"> : </td>
-<td class="seventy"><input  class="inp-text" name="DOB"  id="DOB" type="text" size="30" value=""  autocomplete="off" readonly="readonly"  /><img src="images/Cal.png" width="16" height="16" style="cursor:pointer" onClick="showCalendarControl(document.forms['RegisterForm'].DOB)"  /></td>
+<td class="seventy">
+<input  class="inp-text" name="DOB"  id="DOB" type="text" size="30" value=""  autocomplete="off" readonly="readonly" onFocus="return clearedate('DOB')" onClick="return clearedate('DOB')" /><img src="images/Cal.png" width="16" height="16" style="cursor:pointer" onClick="showCalendarControl(document.forms['RegisterForm'].DOB)"  /></td>
+<input type="hidden" id="hide_current_dob" value="<?php echo $CurrentDate; ?>">
 </tr>
 
 <tr>
@@ -516,7 +526,7 @@ while(list($Id,$Area)=db_fetch_array($SelectArea))
 <li>The <b>TECHDNS</b> commits no warranties, representations, statements or guarantees (whether articulated, implied in law or enduring) regarding the service.</li><br />
 <li>You represent and warrant to <b>TECHDNS</b> that all of the information provided by you to <b>TECHDNS</b> to register as an account holder and participate in the services is correct and current, and that you have all necessary right, power and authority to enter in to this service.</li>
 </ol><br />
-<b>6.	VIOLATIONS:</b><br />
+<b>6.	Violations:</b><br />
 <ol>
 <li>Violations of system and network security are prohibited, and may result in criminal and civil liability. Examples of system and network security violations include the following:<br/> 
 a)	Any automated use of system.<br/>

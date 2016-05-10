@@ -1,3 +1,4 @@
+
 function positionInfo(object) {
 
   var p_elm = object;
@@ -141,12 +142,12 @@ function CalendarControl() {
 
   this.setDate = setDate;
   function setDate(year, month, day) {
-	    var monthname=new Array("01","02","03","04","05","06","07","08","09","10","11","12");
+      var monthname=new Array("01","02","03","04","05","06","07","08","09","10","11","12");
 
     if (dateField) {
       if (month < 10) {month =  month;}
       if (day < 10) {day = "0" + day;}
-	  var m=month	
+    var m=month 
       var dateString = day+"-"+monthname[m - 1]+"-"+year;
       dateField.value = dateString;
       hide();

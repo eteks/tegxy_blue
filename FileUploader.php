@@ -6,7 +6,7 @@ db_connect();
 $UId = trim($_SESSION['LID']);
 
 $LID=trim($_SESSION["LID"])!=""?trim($_SESSION["LID"]):session_id();
-echo $_REQUEST['objtype'];
+// echo $_REQUEST['objtype'];
 if(isset($_REQUEST['objtype']) && $_REQUEST['objtype']=="mov")
 	$allowExt = "movie";
 else if($_REQUEST['objtype']=="doc")
@@ -39,9 +39,9 @@ function uploadimagecheck()
 	// var FileSize = $('#FileSize').val();
 	var FileSize = 1000000;
 	var Check = parseInt(file.size);
-	alert('allowed size'+parseInt($('#FileSizeLimit').val()));
-	alert('current size'+Check);
-	alert(parseInt(FileSize) < parseInt(Check));
+	// alert('allowed size'+parseInt($('#FileSizeLimit').val()));
+	// alert('current size'+Check);
+	// alert(parseInt(FileSize) < parseInt(Check));
 	// if(parseInt($('#FileSizeLimit').val()) < parseInt(Check))
 	if(parseInt(FileSize) < parseInt(Check))
 	{
@@ -51,6 +51,7 @@ function uploadimagecheck()
 	<?php if($allowExt=="doc"){ ?>
 	if((fileType == ".gif") || (fileType == ".jpg") || (fileType == ".png") || (fileType == ".GIF") || (fileType == ".JPG") || (fileType == ".PNG"))
 	{
+		alert('file uploaded successfully');
 		return true;
 	} 
 	else 

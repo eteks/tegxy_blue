@@ -5,7 +5,7 @@ db_connect();
 $LID                       = $_SESSION['LID'];
 $OwnerName                 = $_REQUEST['OwnerName'];
 $Designation = $_REQUEST['Designation'];
-$DOB = $_REQUEST['DOB'];
+$DOB = date('Y-m-d',  strtotime($_REQUEST['DOB']));
 $Address = $_REQUEST['Address'];
 $SelCountry = $_REQUEST['SelCountry'];
 $SelState = $_REQUEST['SelState'];
@@ -44,8 +44,8 @@ $Age = floor($diff / (365*60*60*24));
 <input class="inp-text" name="Designation"  id="Designation" type="text" size="30" value="<?php echo $FetProfileDetails['RGT_OwnDesign'];?>"/><br />
 
 <label for="input-three" class="float">Date Of Birth :</label>
-<input  class="inp-text" name="DOB"  id="DOB" type="text" size="30"  onFocus="return clearedate('DOB')" onClick="return clearedate('DOB')"  value="<?php echo $FetProfileDetails['RGT_OwnDOB']; ?>" autocomplete="off" readonly="readonly"  /><img src="images/Cal.png" width="16" height="16" style="cursor:pointer" onClick="showCalendarControl(document.forms['OwnerForm'].DOB)"  />&nbsp;&nbsp;Age :<?php echo $Age;?><br />
-
+<input  class="inp-text" name="DOB"  id="DOB" type="text" size="30"  onFocus="return clearedate('DOB')" onClick="return clearedate('DOB')"  value="<?php echo $FetProfileDetails['RGT_OwnDOB']; ?>" autocomplete="off" readonly="readonly"  /><img src="images/Cal.png" width="16" height="16" style="cursor:pointer" onClick="showCalendarControl(document.forms['OwnerForm'].DOB)"  />
+<input type="hidden" id="hide_current" value="<?php echo $CurrentDate; ?>">
 
 <label for="input-two" class="float">Gender :</label><br />
 Male&nbsp;<input type="radio" id="Male" name="Gender" value="1" <?php if($FetProfileDetails['RGT_OwnGender']==1){?>checked="checked"<?php }?>  />&nbsp;&nbsp;&nbsp;&nbsp;Female&nbsp;<input type="radio" id="Female" name="Gender" value="2"  <?php if($FetProfileDetails['RGT_OwnGender']==2){?>checked="checked"<?php }?> />

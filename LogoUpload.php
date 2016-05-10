@@ -102,7 +102,7 @@ $FetchSlot=db_fetch_array($SelectSlot)?>
 			<span onclick="DeleteLogoFromFolder('<?php echo $FetchSlot['LG_Id']; ?>','<?php echo $FetchSlot['LG_Logo']; ?>','UploadLogoList','LogoImage');" style="color: #00677D;cursor: pointer;font-size: 11px;font-weight: bold;">Delete</span>	
 		<?php } ?>
 	</span><br/>
-	<em><span class="alertmsg">(gif,jpg,png Files Only - Below 1MB - Recommended size 148X155)</span></em>
+	<em><span class="alertmsg">(gif, jpg, png Files Only - Below 1MB - Recommended size 148X155)</span></em>
 </td>
 </tr>
 <tr>

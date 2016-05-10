@@ -21,9 +21,10 @@ $Age = floor($diff / (365*60*60*24));
 <input class="inp-text" name="Designation"  id="Designation" type="text" size="30" value="<?php echo $FetProfileDetails['RGT_OwnDesign'];?>"/><br />
 
 <label for="input-three" class="float">Date Of Birth :</label><!-- onFocus="return clearedate('DOB')" onClick="return clearedate('DOB')" -->
-<input  class="inp-text" name="DOB"  id="DOB" type="text" size="30"    value="<?php echo $FetProfileDetails['RGT_OwnDOB']; ?>" autocomplete="off" readonly="readonly"  /><img src="images/Cal.png" width="16" height="16" style="cursor:pointer" onClick="showCalendarControl(document.forms['OwnerForm'].DOB)"  /><?php if($Age !=''){?>&nbsp;&nbsp;Age :<?php echo $Age; } ?><br />
+<input  class="inp-text" name="DOB"  id="DOB" type="text" size="30"    value="<?php echo $FetProfileDetails['RGT_OwnDOB']; ?>" autocomplete="off" readonly="readonly" onclick="return clearedate('DOB')"  onFocus="return clearedate('DOB')" /><img src="images/Cal.png" width="16" height="16" style="cursor:pointer" onClick="showCalendarControl(document.forms['OwnerForm'].DOB)" /></br>
+<input type="hidden" id="hide_current" value="<?php echo $CurrentDate; ?>">
 
-<label for="input-two" class="float">Gender :</label><br />
+<label for="input-four" class="float">Gender :</label><br />
 Male&nbsp;<input type="radio" id="Male" name="Gender" value="1" <?php if($FetProfileDetails['RGT_OwnGender']==1){?>checked="checked"<?php }?>  />&nbsp;&nbsp;&nbsp;&nbsp;Female&nbsp;<input type="radio" id="Female" name="Gender" value="2"  <?php if($FetProfileDetails['RGT_OwnGender']==2){?>checked="checked"<?php }?> />
 <br />
 
@@ -96,6 +97,7 @@ while(list($MCyId,$MCyName)=db_fetch_array($SelectPin))
 
 <label for="input-nine" class="float">Education Details :</label><br />
 <input class="inp-text" name="OwnEducate"  id="OwnEducate" type="text" size="30" value="<?php echo $FetProfileDetails['RGT_OwnEducate'];?>" /><br />
+
 </fieldset>
 <p><input class="submit-btn" style="float:right;" type="button"  onclick="OwnerDetails();" value="Update" /></p>
 </form>
