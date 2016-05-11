@@ -222,8 +222,9 @@ function showOnClickStatusInActive()
 
 }
 
-function OnClickStatusActive(id,startData)
+function OnClickStatusActive(id,startData,pro)
 {
+	alert('Status Activation');
 	document.getElementById('tr_'+id).style.color = '#ffff00';
 	n=confirm("Do you want to Active this Detail?");
 	if (n==true)
@@ -240,7 +241,7 @@ function OnClickStatusActive(id,startData)
 		xmlhttp.open("POST", url, true);  
 		xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
 		xmlhttp.send(str);		
-		xmlhttp.onreadystatechange = showOnClickStatusActive
+		xmlhttp.onreadystatechange = showOnClickStatusActive(id,pro)
 	}
 	else
 	{
@@ -248,27 +249,43 @@ function OnClickStatusActive(id,startData)
 	}
 }
 
-function showOnClickStatusActive() 
+function showOnClickStatusActive(id,pro) 
 { 
+	alert('processing');
 	if (xmlhttp.readyState == 4) 
 	{
 		var response = xmlhttp.responseText;
-		if (response != "") 
-		{	
+		if (response != ""){
+			var message = "hai, Your product was approved by admin successfully";
+			var recip = $('#tr_'+id).children('td').find('#user_product_approve').val();
+			if(pro == 1){		
+				alert('contacts'+$('#tr_'+id).children('td').find('#user_product_approve').val());					
+				$.ajax({
+		        type: 'GET',
+		        url: 'http://bulksms.blackholesolution.com/app/smsapi/index.php',
+		        data: {'key':'55113155e7e2c','type':'text','contacts':recip,'senderid':'VNSPDY','msg':message},
+		           	success: function(data) {
+		             
+		           	}
+				});	
+			}
+			else{
+				var message1 = "hai, Your advertisement was approved by admin successfully";
+				var adrecip = $('#tr_'+id).children('td').find('#user_adv_approve').val();							
+				alert('contacts'+$('#tr_'+id).children('td').find('#user_adv_approve').val());
+				$.ajax({
+		        type: 'GET',
+		        url: 'http://bulksms.blackholesolution.com/app/smsapi/index.php',
+		        data: {'key':'55113155e7e2c','type':'text','contacts':adrecip,'senderid':'VNSPDY','msg':message1},
+		           	success: function(data) {
+		             
+		           	}
+				});
+			}
 			document.getElementById('DetailList').innerHTML = response;
-			document.getElementById('msgdisplay').innerHTML = 'Active Status Updated Successfully';
-			var message = "hai, Your product/Advertisement was approved by admin successfully";
-			var recip = $('#user_product_approve').val();
-			alert('recip'+$('#user_product_approve').val());
-			$.ajax({
-	        type: 'GET',
-	        url: 'http://bulksms.blackholesolution.com/app/smsapi/index.php',
-	        data: {'key':'55113155e7e2c','type':'text','contacts':recip,'senderid':'VNSPDY','msg':message},
-	           	success: function(data) {
-	             
-	           	}
-			});					
+			document.getElementById('msgdisplay').innerHTML = 'Active Status Updated Successfully';				
 		}
+			
 	} else {
 		document.getElementById('msgdisplay').innerHTML = 'Unable to change the Status';
 	}

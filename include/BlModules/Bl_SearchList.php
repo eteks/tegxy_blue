@@ -4,8 +4,7 @@ include_once("../DatabaseConnection.php");
 db_connect();
 
 	$str1 = addslashes($_POST['data']);
-	// $strc = addslashes($_POST['city_act']);
- 	$strc =  (isset($_POST['city_act']) ? $_POST['city_act'] : 1);
+	$strc =  (isset($_POST['city_act']) ? stripslashes($_POST['city_act']) : 1);
 	if($_GET['action']=='1'){	
 	if ($str1 != '')	
 	{	

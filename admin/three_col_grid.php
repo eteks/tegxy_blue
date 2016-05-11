@@ -3,6 +3,7 @@ include_once("../DatabaseConnection.php");
 db_connect();
 
 $WhereCont=(isset($WhereCont) && !empty($WhereCont) ? trim($WhereCont) : '');
+echo "where con",$all_Sql;
 	$sqltot=$all_Sql.$WhereCont;
 	$tot=mysql_query($sqltot);
 	$rtot=@mysql_num_rows($tot);
@@ -87,11 +88,14 @@ $WhereCont=(isset($WhereCont) && !empty($WhereCont) ? trim($WhereCont) : '');
                         	// echo "status",$Register_Fetch['PS_User_Fk']; 	
                         	$id=$Register_Fetch['0']; 
                         	$startdata=isset($_REQUEST['startdata'])?$_REQUEST['startdata']:0;
-                        	$mnumberadmin = db_query("SELECT RGT_Mobile FROM ".TABLE_REGISTRATION." as r INNER JOIN ".TABLE_PRODUCTSERVICE." as p ON p.PS_User_Fk=r.RGT_PK WHERE p.PS_Id='".$id."'");
-							list($mnumberadmin) = db_fetch_array($mnumberadmin);
-							$mnumberad = db_query("SELECT RGT_Mobile FROM ".TABLE_REGISTRATION." as r INNER JOIN ".TABLE_ADVERTISEMENT." as p ON p.ADV_Userfk=r.RGT_PK WHERE p.ADV_Id='".$id."'");
-							list($mnumberad) = db_fetch_array($mnumberad);
-							echo "ads",$mnumberad;
+       //                  	if(isset($Register_Fetch['PS_Id'])){
+	      //                   	$mnumberadmin = db_query("SELECT RGT_Mobile FROM ".TABLE_REGISTRATION." as r INNER JOIN ".TABLE_PRODUCTSERVICE." as p ON p.PS_User_Fk=r.RGT_PK WHERE p.PS_Id='".$id."'");
+							// 	list($mnumberadmin) = db_fetch_array($mnumberadmin);
+							// }else{
+							// 	$mnumberad = db_query("SELECT RGT_Mobile FROM ".TABLE_REGISTRATION." as r INNER JOIN ".TABLE_ADVERTISEMENT." as p ON p.ADV_Userfk=r.RGT_PK WHERE p.ADV_Id='".$id."'");
+							// 	list($mnumberad) = db_fetch_array($mnumberad);
+							// }
+							// echo "ads",$mnumberad;
 					 ?>
                       <tr id="tr_<?php echo $id ?>" <?php if(isset($optId) && !empty($optId)) if ($id == $optId) echo 'style="font-weight:bold; color: orange;"'; 
 					  else if ($_REQUEST['id'] == $id) echo 'style="color: #ffff00;"';
@@ -112,25 +116,31 @@ $WhereCont=(isset($WhereCont) && !empty($WhereCont) ? trim($WhereCont) : '');
 							// 		echo "<span  onclick=\"return OnClickStatusActive('$id','$startdata')\" style=\"text-decoration:underline;cursor:pointer\">In-Active</span>";
 							// 	}  
 							// }
-								if(isset($Register_Fetch['PS_Status'])){
-									if($Register_Fetch['PS_Status']==1 )
+								$pro = 1;
+								if(isset($Register_Fetch['PS_Status'])){	
+									$mnumberadmin = db_query("SELECT RGT_Mobile FROM ".TABLE_REGISTRATION." as r INNER JOIN ".TABLE_PRODUCTSERVICE." as p ON p.PS_User_Fk=r.RGT_PK WHERE p.PS_Id='".$id."'");
+									list($mnumberadmin) = db_fetch_array($mnumberadmin);								
+									if($Register_Fetch['PS_Status']==1 && $pro==1)
 									{ 
 										echo "<span onclick=\"return OnClickStatusInActive('$id','$startdata')\" style=\"text-decoration:underline;cursor:pointer\">Active</span>
 										";
 									}
 									else
 									{
-										echo "<span  onclick=\"return OnClickStatusActive('$id','$startdata')\" style=\"text-decoration:underline;cursor:pointer\"><input type='hidden' id='user_product_approve' value='$mnumberadmin'> In-Active</span>";
+										echo "<span  onclick=\"return OnClickStatusActive('$id','$startdata','$pro')\" style=\"text-decoration:underline;cursor:pointer\"><input type='hidden' id='user_product_approve' value='$mnumberadmin'> In-Active</span>";
 									} 
 								}
+								$pro = 0;
 								if(isset($Register_Fetch['ADV_Status'])){
+									$mnumberad = db_query("SELECT RGT_Mobile FROM ".TABLE_REGISTRATION." as r INNER JOIN ".TABLE_ADVERTISEMENT." as p ON p.ADV_Userfk=r.RGT_PK WHERE p.ADV_Id='".$id."'");
+									list($mnumberad) = db_fetch_array($mnumberad);
 									if($Register_Fetch['ADV_Status']==1)
 									{ 
 										echo "<span  onclick=\"return OnClickStatusInActive('$id','$startdata')\" style=\"text-decoration:underline;cursor:pointer\">Active</span>";
 									}
 									else
 									{
-										echo "<span  onclick=\"return OnClickStatusActive('$id','$startdata')\" style=\"text-decoration:underline;cursor:pointer\"><input type='hidden' id='user_product_approve' value='$mnumberad'>In-Active</span>";
+										echo "<span  onclick=\"return OnClickStatusActive('$id','$startdata','$pro')\" style=\"text-decoration:underline;cursor:pointer\"><input type='hidden' id='user_adv_approve' value='$mnumberad'>In-Active</span>";
 									}
 								}  
 							?>

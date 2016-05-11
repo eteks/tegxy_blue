@@ -283,15 +283,15 @@ return false;
 }
 var start_time = $('#timepicker_1').val();
 var end_time = $('#timepicker_2').val();
-if(start_time > end_time){
-alert('start time is always later than end time');
+if(minFromMidnight(start_time) > minFromMidnight(end_time)){
+alert('end time is always later than start time');
 return false;	
 }
 
 var start_time_brk = $('#timepicker_3').val();
 var end_time_brk = $('#timepicker_4').val();
-if(start_time_brk > end_time_brk){
-alert('start time is always later than end time');
+if(minFromMidnight(start_time_brk) > minFromMidnight(end_time_brk)){
+alert('end time is always later than start time');
 return false;	
 }	
 
