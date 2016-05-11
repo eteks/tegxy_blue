@@ -375,6 +375,24 @@ $(document).ready(function(){
 	    }
 	    
 	});
+	$('.reset1').click(function(){		
+	    element = $(this).parents('.next_ad');	   	 
+        if($('#Advname').val() != ''|| $('#Advdescription').val() != ''){    	
+    		$('#Advname').val('');
+    		$('#Advdescription').val('');	        
+	       	           
+        }	    
+	});
+	$('.reset2').click(function(){		
+	    element = $(this).parents('.next_ad');	   	 
+        if($('#Targetpage').val() != '' || $('#AdvLocation').val() != '' || $('#AdvSector').val() != '' || $('#Fromtimeline').val() != '' || $('#Totimeline').val() != ''){    	
+    		$('#Targetpage').val('');
+    		$('#AdvLocation').val('');
+    		$('#AdvSector').val('');
+    		$('#Fromtimeline').val('');
+    		$('#Totimeline').val('');	       	           
+        }	    
+	});
 
     // validation code when click previous button
     $('.adv_previous_format').click(function(){

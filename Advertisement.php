@@ -173,7 +173,11 @@
 				<div id="Nextprocess" style="display:none;text-align:right;">
 					<table width="100%" border="0" cellpadding="0" cellspacing="0" >
 						<tr><td colspan="7" height="10"></td></tr>
-						<tr><td colspan="7" height="5"><input type="button" class="adv_next" value="Next" />&nbsp;<input type="button"  value="Cancel" onclick="window.location.href='index.php'" /></td></tr>
+						<tr><td colspan="7" height="5">
+							<input type="button" class="adv_next" value="Next" />&nbsp;
+							<input type="reset"  value="Cancel" class="reset1" />
+							<!-- <input type="button"  value="Cancel" onclick="window.location.href='index.php'" /> -->
+						</td></tr>
 						<tr><td colspan="7" height="10"></td></tr>
 					</table>
 				</div>
@@ -396,10 +400,13 @@
 			<table width="100%" border="0" cellpadding="0" cellspacing="0" >
 				<tr><td colspan="2" height="10"></td></tr>
 				<!-- <tr><td  height="5"><input type="button" onclick="Secondleveladv();" value="Back" /></td><td  height="5" align="right"><input type="button" onclick="Fourthleveladv();" value="Next" />&nbsp;<input type="button"  value="Cancel" onclick="window.location.href='index.php'" /></td></tr> -->
-				<tr><td height="5"><input type="button" value="Back"  class="adv_previous_format1" /></td><td  height="5">
-		
-				<input type="hidden" id="get_sesssion_for_ad" value="<?php echo $mnumber_ad; ?>">
-				<input type="button" onclick="AddAdvertisement(<?php echo $LID;?>);" value="Submit" />&nbsp;<input type="button"  value="Cancel" onclick="window.location.href='index.php'" /></td></tr>
+				<tr><td height="5"><input type="button" value="Back"  class="adv_previous_format1" /></td>
+				<td  height="5">		
+					<input type="hidden" id="get_sesssion_for_ad" value="<?php echo $mnumber_ad; ?>">
+					<input type="button" onclick="AddAdvertisement(<?php echo $LID;?>);" value="Submit" />&nbsp;
+					<input type="reset"  value="Cancel" class="reset2" />
+					<!-- <input type="button"  value="Cancel" onclick="window.location.href='index.php'" /> -->
+				</td></tr>
 				<tr><td colspan="2" height="10"></td></tr>
 			</table>
 			</div>

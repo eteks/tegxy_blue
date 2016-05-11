@@ -39,7 +39,7 @@ $.post("sessionupdate.php"); // Sends request to update.php
 <div id="header">
 <div id="top">
 <div id="topadd"><a href="index.php" style="text-decoration:none;"><div id="toplogo"><div style="font-weight: bold; margin-top: 30px; font-family: Trebuchet MS; font-size: 40px;text-shadow: 2px 2px #000000;" id="toplogo"><span style="color:#00667C;">X</span><span style="color:#C31118;">Y</span><span style="color:#00667C;">GET</span><span style="color:#C31118;font-size:30px;">.COM</span></div></div></a></div></div>
-<div id="logo"><table width="600" height="55" cellpadding="0" style="margin-left:auto;margin-right:auto;"><tr><td valign="middle"><a href="index.php"><?php echo $FetProfileDetails['RGT_CompName'] ;?></a></td></tr></table></div>
+<div id="logo"><table width="600" height="55" cellpadding="0" style="margin-left:auto;margin-right:auto;"><tr><td valign="middle"><a href="<?php echo $FetProfileDetails['RGT_CompName'] ;?>"><?php echo $FetProfileDetails['RGT_CompName'] ;?></a></td></tr></table></div>
 <div id="topright">
 <div id="sign"><p><a href="<?php echo $SP;?>"><?php echo $SPT ;?></a></p></div>
 <?php if($_SESSION['LID']==''){?><div id="register"><p><a href="Register.php">Register</a></p></div><?php }else { if($_SESSION['Type']==2 && $FetProfileDetails['RGT_PaymentStatus']==1){?><div id="ProfileVieww"><p><a href="<?php echo $FetProfileDetails['RGT_ProfileUrl'] ;?>" target="_blank">View Profile</a></p></div><?php }}?>

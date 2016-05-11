@@ -67,9 +67,42 @@ showPeriod: true,
 showLeadingZero: true,
 showCloseButton: true
 });
-
 });
 })(jQuery);
+</script>
+<script type="text/javascript">
+    function ValidationDate(){
+        var start_time = $('#timepicker_1').val();
+            var end_time = $('#timepicker_2').val();
+            if(start_time == end_time){
+                $('#timepicker_1').val('');
+                $('#timepicker_2').val('');
+            }
+            if(minFromMidnight(start_time) > minFromMidnight(end_time)){
+            alert('end time is always later than start time');
+            return false;   
+            }
+
+            var start_time_brk = $('#timepicker_3').val();
+            var end_time_brk = $('#timepicker_4').val();
+            if(start_time_brk == end_time_brk)
+            {
+                $('#timepicker_3').val('');
+                $('#timepicker_4').val('');
+            }
+            if(minFromMidnight(start_time_brk) > minFromMidnight(end_time_brk)){
+            alert('end time is always later than start time');
+            return false;   
+            }  
+    }
+     function minFromMidnight(tm){
+         var ampm= tm.substr(-2)
+         var clk = tm.substr(0, 5);
+         var m  = parseInt(clk.match(/\d+$/)[0], 10);
+         var h  = parseInt(clk.match(/^\d+/)[0], 10);
+         h += (ampm.match(/pm/i))? 12: 0;
+         return h*60+m;
+        }
 </script>
 <!-- Keyword related script -->
 <script type="text/javascript" src="js/CalendarControl.js"></script>
@@ -156,7 +189,7 @@ to continue browsing XYget.com</p>
 <?php /*?><div class="validation text-align-c" id="msgdisplay" style="height:15px;"><?php if($_REQUEST['Id']=='1'){?>Successfully Registered<?php }?></div><?php */?>
 <div class="text-align-c" style="height:15px;display:none;">
 <input type="radio" id="Busradio" name="RegisterOpt" checked="checked" onclick="RegisterOption('Bus');RegisterReset();" />&nbsp;Business&nbsp;&nbsp;<input type="radio" id="Perradio" name="RegisterOpt" onclick="RegisterOption('Per');RegisterReset();" />&nbsp;Personal</div>
-<form method="post" id="RegisterForm" name="RegisterForm" action="Register.php" ><!-- onSubmit="return Validation();" -->
+<form method="post" id="RegisterForm" name="RegisterForm" action="Register.php" onsubmit="return ValidationDate();"><!-- onSubmit="return Validation();" -->
 <div id="BusinessGridd" style="display:block;" >
 <div id="personal"  style="width:140px;">&nbsp;</div>
 <div id="personal"  class="newreg" style="width:800px; padding-left:80px; margin-top:-40px;">
