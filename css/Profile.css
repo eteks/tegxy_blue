@@ -49,8 +49,11 @@ color:#FFFFFF;
 background: url("../images/dpl-drop-down.png") no-repeat scroll right -1px transparent;
 border: 1px solid #CCCCCC;
 color: #000000 !important;
-height: 16px;
-padding: 3px 18px 3px 0;
+/*height: 16px;*/
+padding-bottom: 3px;
+padding-left: 0;
+padding-right: 15px;
+padding-top: 4px;
 }
 
 #ProCategoryResponse, #SerCategoryResponse,#ProLocResponse,#ProLocationResponse{
