@@ -34,13 +34,13 @@ $FetProfileDetails = db_fetch_array($ProfileDetails);
 <form id="NewsForm">
 <fieldset>
 <legend>Profile</legend>
-<label for="input-one" class="float">Company Name<span style="color:#F00;">*</span> :</label> :</label><br /> 
+<label for="input-one" class="float">Company Name<span style="color:#F00;">*</span> :</label><br /> 
 <input class="inp-text" name="CompanyName" disabled="disabled" id="CompanyName" type="text" size="30" value="<?php echo $FetProfileDetails['RGT_CompName'];?>" /><br />
 
 <label for="input-two" class="float">Group Name :</label><br />
 <input class="inp-text" name="GroupName" id="GroupName" type="text" size="30" value="<?php echo $FetProfileDetails['RGT_GroupName'];?>" /><br />
 
-<label for="input-two" class="float">Industry<span style="color:#F00;">*</span> :</label> :</label><br />
+<label for="input-two" class="float">Industry<span style="color:#F00;">*</span> :</label><br />
 <select name="Sector" id="Sector"   class="inp-text" >
 <option value="">--Select Industry--</option>
 <?php $SelectSector=db_query("Select Id,S_Name From ".TABLE_SECTOR." WHERE Status=1 order by S_Name asc");
@@ -50,18 +50,18 @@ while(list($MSeId,$MSeName)=db_fetch_array($SelectSector))
 }?>
 </select><br />
 
-<label for="input-ten" class="float">Email<span style="color:#F00;">*</span> :</label> :</label><br />
+<label for="input-ten" class="float">Email<span style="color:#F00;">*</span> :</label><br />
 <input class="inp-text" name="Email"  id="Email" type="text" size="30" autocomplete="off" value="<?php echo $FetProfileDetails['RGT_Email'];?>" /><br /><br />
 
 
 <label for="input-three" class="float">Corporate Identification No(CIN) :</label><br />
 <input class="inp-text" name="RequestNo"  id="RequestNo" type="text" size="30" value="<?php echo $FetProfileDetails['RGT_RegNo'];?>" /><br />
 
-<label for="input-four" class="float">Year Of Establishment<span style="color:#F00;">*</span> :</label> :</label><br />
+<label for="input-four" class="float">Year Of Establishment<span style="color:#F00;">*</span> :</label><br />
 <input  class="inp-text" name="YearofEst"  id="YearofEst" type="text" size="30"  onFocus="return clearedate('YearofEst')" onClick="return clearedate('YearofEst')"  value="<?php echo $FetProfileDetails['RGT_YrofEstablish']; ?>" readonly="readonly" autocomplete="off"  />
 <img src="images/Cal.png" width="16" height="16" style="cursor:pointer" onclick="showCalendarControl(document.forms['NewsForm'].YearofEst)"  /> <br />
 
-<label for="input-five" class="float">Type Of Company<span style="color:#F00;">*</span> :</label> :</label><br />
+<label for="input-five" class="float">Type Of Company<span style="color:#F00;">*</span> :</label><br />
 <select name="TypeofComp" id="TypeofComp" class="inp-text" >
 <option value="">--Select Company Type--</option>
 <option value="1" <?php if($FetProfileDetails['RGT_CompType']=='1'){?>selected="selected"<?php }?>>Cooperative Societies</option>
@@ -75,7 +75,7 @@ while(list($MSeId,$MSeName)=db_fetch_array($SelectSector))
 <label for="input-six" class="float">Employement Strength :</label><br />
 <input class="inp-text" name="EmpStr"  id="EmpStr" type="text" size="30" value="<?php echo $FetProfileDetails['RGT_EmpStrength'];?>" /><br />
 
-<label for="input-six" class="float">Address Line 1<span style="color:#F00;">*</span> :</label> :</label><br />
+<label for="input-six" class="float">Address Line 1<span style="color:#F00;">*</span> :</label><br />
 <input class="inp-text" name="Address1"  id="Address1" type="text" size="30" autocomplete="off" value="<?php echo $FetProfileDetails['RGT_Address1'];?>" /><br />
 
 <label for="input-seven" class="float">Address Line 2 :</label><br />
@@ -91,7 +91,7 @@ while(list($MCId,$MCName)=db_fetch_array($SelectCountry))
 }?>
 </select>
 
-<label for="input-eight" class="float">State<span style="color:#F00;">*</span> :</label> :</label><br />
+<label for="input-eight" class="float">State<span style="color:#F00;">*</span> :</label><br />
 <span id="StateGrid"><select name="SelState" id="SelState" onchange="return OnclickStatee(this.value,'SelCountry','SelState','SelCity','BArea','BPincode');"  class="inp-text" >
 <option value="">--Select State--</option>
 <?php
@@ -102,7 +102,7 @@ while(list($MSId,$MSName)=db_fetch_array($SelectState))
 }?>
 </select></span>
 
-<label for="input-eight" class="float">City<span style="color:#F00;">*</span> :</label> :</label><br />
+<label for="input-eight" class="float">City<span style="color:#F00;">*</span>:</label><br />
 <span id="CityGrid"><select name="SelCity" id="SelCity"  class="inp-text" onchange="return OnclickCityy(this.value,'SelCountry','SelState','SelCity','BArea','BPincode');">
 <option value="">--Select City--</option>
 <?php $SelectCity=db_query("Select Id,Area From ".TABLE_GENERALAREAMASTER." WHERE Status=1 AND A_Country='".$FetProfileDetails['RGT_Country']."' AND A_State='".$FetProfileDetails['RGT_State']."' Order by Id asc");
@@ -142,7 +142,7 @@ while(list($MCyId,$MCyName)=db_fetch_array($SelectPin))
 <label for="input-ten" class="float">Website :</label><br />
 <input class="inp-text" name="Website"  id="Website" type="text" size="30" value="<?php echo $FetProfileDetails['RGT_Website'];?>" />
 <?php if($FetProfileDetails['RGT_PaymentStatus']=='1'){?>
-<label for="input-ten" class="float"><?php echo HTTP_URL ;?>/<span style="color:#F00;">*</span> :</label></label><br />
+<label for="input-ten" class="float"><?php echo HTTP_URL ;?>/<span style="color:#F00;">*</span> :</label><br />
 <span id="PrfleIdd"><input class="inp-text" name="ProfileLink" autocomplete="off" onkeyup="urlvalidate(this);showHint(this.value)"  id="ProfileLink" type="text" size="30" value="<?php echo $FetProfileDetails['RGT_ProfileUrl'];?>" /></span><p><input class="submit-button" type="button" onclick="ProfileeLinkk();" value="OK" />
 </p><?php }?><br /><span style="padding-left: 160px;" id="txtHint"></span>
 <p><input class="submit-btn" type="button" onclick="CompanyDetails();" value="Update" /></p>
