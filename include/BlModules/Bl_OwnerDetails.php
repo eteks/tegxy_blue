@@ -37,7 +37,7 @@ $Age = floor($diff / (365*60*60*24));
 <form id="OwnerForm">
 <fieldset>
 <legend> Owner Profile</legend>
-<label for="input-one" class="float">Owner Name :</label><br /> 
+<label for="input-one" class="float">Owner Name<span style="color:#F00;">*</span> :</label><br /> 
 <input class="inp-text" name="OwnerName" id="OwnerName" type="text" size="30" value="<?php echo $FetProfileDetails['RGT_OwnerName'];?>" /><br />
 
 <label for="input-two" class="float">Designation :</label><br />

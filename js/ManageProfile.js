@@ -191,7 +191,7 @@ function OwnerDetails()
 	// alert('cure'+currentdate);
 	var own_dob  = $('#DOB').val();
 	// alert('own_dob'+own_dob);
-	if(own_dob > currentdate){		
+	if(own_dob < currentdate){		
 		$('#DOB').val('');
 		alert('Invalid Date');
 		return false;
