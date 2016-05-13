@@ -5,7 +5,6 @@ db_connect();
 if(isset($_SESSION['LID'])){
 	$LID   = $_SESSION['LID'];
 	$ProfileDetails=db_query("SELECT * FROM ".TABLE_REGISTRATION." WHERE RGT_PK='".$LID."' AND RGT_Type!=1");
-	
 	$FetProfileDetails = db_fetch_array($ProfileDetails);
 	$UId   = trim($_SESSION['LID']);
 	$_SESSION['chatuser'] = $_SESSION['LID'];
@@ -50,6 +49,12 @@ orientation: 'vertical'
 
 $(document).ready(function()
 {
+// $(document).click(function(){
+	// if($('#CalendarControl').is(':visible')==true){
+// 		
+		// $('#CalendarControl').hide();
+	// }
+// });
 <?php  for($i=1;$i<=12;$i++)
 {?>
 	$("#OpenProfile_<?php echo $i ;?>").click(function()
@@ -67,6 +72,7 @@ $(document).ready(function()
      }?>
    });
 <?php }?>
+
 });
 </script>
 <body>

@@ -290,7 +290,7 @@ var SpDataShow1     ='ProductSpecificId';
 <tr>
 <tr><td colspan="3" height="10"></td></tr>
 <tr>
-<td>Inner Image<br /><em><span class="alertmsg">Maximum limit of two images</span></em></td>
+<td>Inner Image</td>
 <td> :&nbsp;</td>
 <td><span id="PGalleryUpload" style="cursor:pointer;"><img src="images/upload-icon.png" />&nbsp;upload</span><span style="display:none;" id="PGalleryStatus"></span><span id="PGalleryList"></span><br/><em><span class="alertmsg">(gif,jpg,png Files Only - Below 1MB)</span></em></td>
 </tr>

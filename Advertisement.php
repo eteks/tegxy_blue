@@ -7,7 +7,7 @@
 <link href="css/CalendarControl.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 	.error{
-		border: 1px solid red;
+		border: 1px solid red!important;
 	}
 </style>
 <div class="heading" style="text-align:center">Advertisement</div>

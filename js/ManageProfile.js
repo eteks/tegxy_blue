@@ -179,6 +179,7 @@ function OwnerDetails()
 	{
 	alert("Please Enter the Owner Name");
 	DocId('OwnerName').focus();
+	$('#OwnerName').addClass('error');
 	return false;
 	}
 	if (Email!='' && !(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(DocId('OwnEmail').value)))

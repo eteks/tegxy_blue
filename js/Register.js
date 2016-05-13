@@ -200,7 +200,7 @@ $('#RegisterForm').submit(function()
 {
 if(DocId('OwnerName').value=='')
 {
-alert("Please Enter the Your Name");	
+alert("Please enter the Name");	
 DocId('OwnerName').focus();
 return false;
 }	

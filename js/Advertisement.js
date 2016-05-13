@@ -410,9 +410,10 @@ $(document).ready(function(){
 			$('#Thirdleveladv').show();
 		}
 		else{
-			$('#Firstformate').addClass('error');
+			$('#Firstformate').parent().addClass('error');
 			$('#Firstformate').focus();
 			element.show();
+			alert('Please choose Format');
 		} 
     });
     // step3

@@ -87,7 +87,7 @@ while(list($MCyId,$MCyName)=db_fetch_array($SelectPin))
 
 
 <label for="input-nine" class="float">Mobile Number :</label><br />
-<input class="inp-text" name="OwnPhoneNo"  id="OwnPhoneNo" type="text" size="30" autocomplete="off"  onkeyup="checkNumber(this);" value="<?php echo $FetProfileDetails['RGT_OwnMobile'];?>" /><br />
+<input class="inp-text" name="OwnPhoneNo"  id="OwnPhoneNo" type="text" size="30" autocomplete="off" maxlength="10"  onkeyup="checkNumber(this);" value="<?php echo $FetProfileDetails['RGT_OwnMobile'];?>" /><br />
 
 <label for="input-ten" class="float">Land Line :</label><br />
 <input class="inp-text" name="OwnLandLine"  id="OwnLandLine" type="text" size="30" autocomplete="off"  onkeyup="checkNumber(this);" value="<?php echo $FetProfileDetails['RGT_OwnLandline'];?>" />

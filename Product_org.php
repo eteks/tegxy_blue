@@ -283,7 +283,7 @@ var SpDataShow1     ='ProductSpecificId';
 <tr>
 <tr style="display:none;"><td colspan="3" height="10"></td></tr>
 <tr style="display:none;">
-<td>Cover Image<br /><em><span class="alertmsg">Maximum limit of three images</span></em></td>
+<td>Cover Image</td>
 <td> :&nbsp;</td>
 <td><input type="hidden" name="ProdCoverImgPath" id="ProdCoverImgPath" value="" /><span onclick="FileUploadValidate('ProdCoverImgPath','doc','ProdCoverImgDisp','Document/CoverImages/');"  style="cursor:pointer;"><img src="images/upload-icon.png" /> upload</span>&nbsp;&nbsp;<span id="ProdCoverImgDisp"></span><br/><em><span class="alertmsg">(gif,jpg,png Files Only - Below 1MB)</span></em></td>
 </tr>
