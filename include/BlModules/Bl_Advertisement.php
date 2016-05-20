@@ -4,6 +4,7 @@ db_connect();
 include("../../../Mailer/class.phpmailer.php");
 $action = $_REQUEST['action'];
 $user   = $_REQUEST['user'];
+
 if($action==1)
 {
 $type   = $_REQUEST['type'];
@@ -159,4 +160,5 @@ echo '</select>';
 }
 echo '#**#'.$ADV_Linkyouradvto.'#**#'.$ADV_Url.'#**#'.$ADV_Imagepath.'#**#'.$ADV_Imagepath.'#**#'.$ADV_Description.'#**#'.$ADV_Displayformate.'#**#'.$ADV_Targetpage.'#**#'.$ADV_Sector.'#**#'.$ADV_Totalaudience.'#**#'.ChangeDateforShow($ADV_From).'#**#'.ChangeDateforShow($ADV_To).'#**#'.$ADV_TotalAmount.'#**#'.$ADV_TotalBudget.'#**#'.$ADV_Id;
 }
+
 ?>

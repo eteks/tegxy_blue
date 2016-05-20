@@ -27,7 +27,7 @@
 			$audience = $_POST['adv_audience'];
 			$sql = mysql_query("select * from tbl_advertisement where ADV_Name = '$title' ");
 			if(!mysql_num_rows($sql)){
-				$new = mysql_query("insert into tbl_advertisement set ADV_Name = '$title',ADV_Description = '$desc',ADV_Targetpage='$page',ADV_Sector='$sector',ADV_Totalaudience = '$audience',ADV_Imagepath = 'admin/images/$new_file_name'");
+				$new = mysql_query("insert into tbl_advertisement set ADV_Name = '$title',ADV_Description = '$desc',ADV_Targetpage='$page',ADV_Sector='$sector',ADV_Totalaudience = '$audience',ADV_Imagepath = 'images/$new_file_name'");
 			}
 			echo 'Congratulations!  Your file was accepted.';
 		}

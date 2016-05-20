@@ -1,7 +1,7 @@
 <?php include_once("../Configuration.php");
 include_once("../DatabaseConnection.php");
 db_connect();
-include("../../../Mailer/class.phpmailer.php");
+include("../../Mailer/class.phpmailer.php");
 $_REQUEST['DisplayName'] = (isset($_REQUEST['DisplayName']) ? $_REQUEST['DisplayName'] : '');
 $_REQUEST['Product'] = (isset($_REQUEST['Product']) ? $_REQUEST['Product'] : '');
 $_REQUEST['IndustryList'] = (isset($_REQUEST['IndustryList']) ? $_REQUEST['IndustryList'] : '');
@@ -138,14 +138,10 @@ if($Action=='1')
 		$sent = mail($Message,$Subject,$ToAddress,$ToName,$FromAddress,$FromName,'','');	
 		
 		// echo "sent--->",$sent;
-		if($sent)	   
-		{
-			echo "sucess";
-		}
-		else{
-			echo "fail";
-		}				
+		if($sent)			
          echo 'Added Successfullly';
+		else
+			echo 'Please contact your network administrator!';
          //email admin approval	
  	}   
 	}

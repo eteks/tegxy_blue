@@ -96,10 +96,10 @@ $(document).ready(function (e) {
    cache: false,             // To unable request pages to be cached
    processData:false,        // To send DOMDocument or non processed data file it is set to false
    success: function(data){   // A function to be called if request succeeds
-    alert(data);
+    //alert(data);
     //location.reload();
-    //OnclickMenu('0','28','Advertisement');
-   }
+    OnclickMenu('0','28','Advertisement');
+   }	
   });
  });
 });

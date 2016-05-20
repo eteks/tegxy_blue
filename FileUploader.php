@@ -154,7 +154,7 @@ if($_POST['Upload']=='Upload')
 }
 if($LID!='')
 { ?>
-<form id="ImageUploader" name="ImageUploader" method="post" enctype="multipart/form-data" action="FileUploader.php"  onsubmit="return uploadimagecheck();">
+<form id="ImageUploader" name="ImageUploader" method="post" enctype="multipart/form-data" action="FileUploader.php" >
 <input type="hidden" id="Path" name="Path" value="<?php echo $FilePath ;?>" />
 <input type="hidden" id="Disp" name="Disp" value="<?php echo $ImageDisp ;?>" />
 <input type="hidden" id="FileSize" name="FileSize"  value="<?php echo UserFileSize($UId);?>" />

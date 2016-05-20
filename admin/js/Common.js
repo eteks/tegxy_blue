@@ -293,7 +293,7 @@ function showOnClickStatusActive(id,pro)
 
 function OnclickEdit(id,startData)
 {
-	createXmlObject();
+		createXmlObject();
 		var ran_unrounded=Math.random()*100000;
 		var ran_number=Math.floor(ran_unrounded);
 		//alert(document.getElementById('ModuleId').value);
@@ -304,10 +304,11 @@ function OnclickEdit(id,startData)
 		
 		var str = "action=edit&id="+id+"&SearchFilterField="+SearchFilterField+"&SearchFilterFieldList="+SearchFilterFieldList+"&r="+ran_number+"&ModuleId="+ModuleId+"&startdata="+startData;
 		var url = ""+fileName+".php";
+		//alert(str);
 		xmlhttp.open("POST", url, true);  
 		xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
 		xmlhttp.send(str);
-	xmlhttp.onreadystatechange = showOnclickEdit
+		xmlhttp.onreadystatechange = showOnclickEdit
 }
 
 function showOnclickEdit() 
@@ -319,7 +320,6 @@ function showOnclickEdit()
 		if (response != "") 
 		{
 			document.getElementById('ScrollText').innerHTML = response;
-			document.getElementById('ScrollText').scrollIntoView(true);
 			document.getElementById('ScrollText').scrollIntoView(true);
 		}
 	}
@@ -339,11 +339,21 @@ function OnClickDelete(id,startData)
 		var SearchFilterFieldList = document.getElementById('SearchFilterFieldList').value;
 		var SearchFilterField     = document.getElementById('SearchFilterField').value;
 		var str = "action=delete&val=1&ModuleId="+ModuleId+"&id="+id+"&startdata="+startData+"&SearchFilterField="+SearchFilterField+"&SearchFilterFieldList="+SearchFilterFieldList+"&r="+ran_number;
-		var url = "include/BlModules/Bl_"+fileName+".php";
-		xmlhttp.open("POST", url, true);
-		xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
-		xmlhttp.send(str);
-		xmlhttp.onreadystatechange = showOnClickDelete
+		//var url = "include/BlModules/Bl_"+fileName+".php";
+		if(fileName == 'Advertisement'){
+			var url = ""+fileName+".php";
+			xmlhttp.open("POST", url, true);
+			xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+			xmlhttp.send(str);
+			xmlhttp.onreadystatechange = showOnClickDeleteBymuthu
+		}else{
+			var url = "include/BlModules/Bl_"+fileName+".php";
+			xmlhttp.open("POST", url, true);
+			xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+			xmlhttp.send(str);
+			xmlhttp.onreadystatechange = showOnClickDelete
+		}
+		
 	}
 	else
 	{
@@ -367,6 +377,19 @@ function showOnClickDelete()
 		document.getElementById('msgdisplay').innerHTML = 'Unable to Delete Record';
 	}
 }
+function showOnClickDeleteBymuthu() 
+{ 
+	if (xmlhttp.readyState == 4) 
+	{
+		var response = xmlhttp.responseText;
+		//alert(response);
+		if (response != "") 
+		{
+			document.getElementById('ScrollText').innerHTML = response;
+			document.getElementById('ScrollText').scrollIntoView(true);
+		}
+	}
+}
 
 function OnclickView(id,startData)
 {
@@ -379,6 +402,7 @@ function OnclickView(id,startData)
 	var SearchFilterField     = document.getElementById('SearchFilterField').value;
 	var str = "action=view&id="+id+"&SearchFilterField="+SearchFilterField+"&SearchFilterFieldList="+SearchFilterFieldList+"&r="+ran_number+"&ModuleId="+ModuleId+"&startdata="+startData;
 	var url = fileName+".php";
+	//alert(url);
 	xmlhttp.open("POST", url, true);  
 	xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
 	xmlhttp.send(str);

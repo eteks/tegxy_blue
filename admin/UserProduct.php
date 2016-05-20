@@ -6,7 +6,7 @@ include("include/BlModules/Bl_General.php");
 $PageName = basename($_SERVER['SCRIPT_FILENAME'],'.php');
 
 if(!isset($_SESSION['Admin_Id']))
-header("location:Login.php");
+	header("location:Login.php");
 
 $ModuleId = $_REQUEST['ModuleId'];
 $CheckModulePrevilage = PermissionList($_SESSION['Admin_Id'],'ModuleList',$ModuleId);
@@ -21,12 +21,16 @@ $_REQUEST['startdata']=0;
 if($_REQUEST['startdata']==-1)
 $_REQUEST['startdata']=0;
 if(isset($_REQUEST['action'])){
-if($_REQUEST['action']=='edit')
-{	$ValidCheckSql ="Select * FROM ".TABLE_PRODUCTRELATIVITY." WHERE  Product_fk='".$_REQUEST['id']."'";}}
-else
-	{$ValidCheckSql ="Select * FROM ".TABLE_PRODUCTRELATIVITY." WHERE  Ses_Id='".session_id()."'";}
-$ValidCheckRel=db_query($ValidCheckSql);
-$CountValidRel=db_num_rows($ValidCheckRel);
+	if($_REQUEST['action']=='edit'){
+		$ValidCheckSql ="Select * FROM ".TABLE_PRODUCTRELATIVITY." WHERE  Product_fk='".$_REQUEST['id']."'";
+	}else if($_REQUEST['action']=='view'){
+		$ValidCheckSql1 ="Select * FROM ".TABLE_PRODUCTSERVICE." WHERE  PS_Id='".$_REQUEST['id']."'";
+		echo $ValidCheckSql1;
+		$ValidCheckRel1=db_query($ValidCheckSql1);
+		$ValidCheckRel11=db_fetch_array($ValidCheckRel1);
+		$CountValidRel=db_num_rows($ValidCheckRel11);
+	}
+}
 $fileName   = 'UserProduct';
 ?>
 
@@ -39,6 +43,90 @@ $fileName   = 'UserProduct';
 <input type="hidden" id="startdata" name="startdata" value="<?php echo $_REQUEST['startdata'] ?>" />
 <input type="hidden" id="hidSearchFilterFieldList" name="hidSearchFilterFieldList" value="<?php echo $_REQUEST['SearchFilterFieldList'] ?>" />
 <input type="hidden" id="hidSearchFilterField" name="hidSearchFilterField" value="<?php echo $_REQUEST['SearchFilterField'] ?>" />
+<?php
+if($_REQUEST['action']=='view'){
+?>
+<table style="left: 201px; position: relative; z-index: -1000; padding: 34px;">
+	<tr>
+		<td class="feildstxt">Product mode</td>
+		<td class="feildstxt">:</td>
+		<td class="feildstxt">
+			<?php 
+				if($ValidCheckRel11['PS_Mode']=='1'){
+					echo 'Provider';
+				}
+				else {
+					echo 'Seeker';
+				}
+			?>
+		</td>
+	</tr>
+	<tr>
+		<td class="feildstxt">Display name</td>
+		<td class="feildstxt">:</td>
+		<td class="feildstxt"><?php echo $ValidCheckRel11['PS_Display']; ?></td>
+	</tr>
+	<tr>
+		<td class="feildstxt">Product / Service Name</td>
+		<td class="feildstxt">:</td>
+		<td class="feildstxt"><?php echo ProductName($ValidCheckRel11['PS_Fk']); ?></td>
+	</tr>
+	<tr>
+		<td class="feildstxt">Industry</td>
+		<td class="feildstxt">:</td>
+		<td class="feildstxt"><?php echo ProductCategory($ValidCheckRel11['PS_CategoryFk']).'>>'.ProductSubCategory($ValidCheckRel11['PS_SubCategoryFk']).'>>'.ProductType($ValidCheckRel11['PS_TypeFk']); ?></td>
+	</tr>
+	<tr>
+		<td class="feildstxt">Description</td>
+		<td class="feildstxt">:</td>
+		<td class="feildstxt"><?php echo $ValidCheckRel11['PS_Description']; ?></td>
+	</tr>
+	<tr>
+		<td class="feildstxt">Business Type</td>
+		<td class="feildstxt">:</td>
+		<td class="feildstxt"><?php echo $ValidCheckRel11['PS_BusinessType']; ?></td>
+	</tr>
+	<tr>
+		<td class="feildstxt">Keyword</td>
+		<td class="feildstxt">:</td>
+		<td class="feildstxt"><?php echo $ValidCheckRel11['PS_Keyword']; ?></td>
+	</tr>
+	<tr>
+		<td class="feildstxt">Currency</td>
+		<td class="feildstxt">:</td>
+		<td class="feildstxt">
+			<?php if($ValidCheckRel11['PS_Currency']==1){
+				echo "INR";
+			} else{
+				echo "$";
+			}
+			?></td>
+	</tr>
+	<tr>
+		<td class="feildstxt">Quantity</td>
+		<td class="feildstxt">:</td>
+		<td class="feildstxt"><?php echo $ValidCheckRel11['PS_Unit']; ?></td>
+	</tr>
+	<tr>
+		<td class="feildstxt">Price</td>
+		<td class="feildstxt">:</td>
+		<td class="feildstxt"><?php echo $ValidCheckRel11['PS_Price']; ?></td>
+	</tr>
+	<tr>
+		<td class="feildstxt">Brochure</td>
+		<td class="feildstxt">:</td>
+		<td class="feildstxt"><?php if(!empty($ValidCheckRel11['PS_Brochure'])){?><a href="../<?php echo $ValidCheckRel11['PS_Brochure']; ?>" target="_blank"><img width="30" height="30" src="../images/pdf.png"></a><?php }else{ echo "Nil"; } ?></td>
+	</tr>
+	<tr>
+		<td class="feildstxt">Cover Image</td>
+		<td class="feildstxt">:</td>
+		<td class="feildstxt"><a target="_blank"><?php if(!empty($ValidCheckRel11['PS_CoverImg'])){?><img width="100" height="100" src="../<?php echo $ValidCheckRel11['PS_CoverImg']; ?>"><?php } else echo 'Nil';?></td>
+	</tr>
+
+</table>
+<?php
+}
+?>
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" >
 <tr>
 <td align="left" valign="top">

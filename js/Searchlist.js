@@ -196,7 +196,7 @@ $(document).ready(function(){
 		//CITY BASED SEARCH CODE
 		var searchlist = $("#comp_searchid").val();
 		if($("#search_city").val() == ''){
-			var userCityselect_act = $("#search_city").val('1');
+			var userCityselect_act = $("#search_city option:eq(1)").val();
 		}
 		else{
 			var userCityselect_act = $("#search_city").val().trim();

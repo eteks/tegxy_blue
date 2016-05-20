@@ -145,7 +145,6 @@
 
 				<div id="Selectnewgrid" style="display:none;">
 					<fieldset>
-						<legend>Create New Advertisement</legend>
 						<form id="Formcreatenew">
 							<table width="100%" border="0" cellpadding="0" cellspacing="0" >
 								<tr><td colspan="7" height="10"></td></tr>
@@ -154,9 +153,10 @@
 									<td>Image</td>
 									<td>&nbsp;</td>
 									<td><input type="hidden" name="ADVImage" id="ADVImage" value="" /><span onclick="FileUploadValidate('ADVImage','doc','ADVImageDisp','Document/Advertisement/');"  style="cursor:pointer;"><img src="images/upload-icon.png" /> upload</span>&nbsp;&nbsp;<span id="ADVImageDisp"></span></td>
+									
 									<td colspan="2">&nbsp;</td>
 								</tr>
-								<tr><td colspan="7" height="5"></td></tr>
+								<tr><td colspan="7" height="5"><em><span class="alertmsg">(gif, jpg, png Files Only - Below 1MB - Recommended size 148X155)</span></em></td></tr>
 								<tr>
 									<td colspan="2">&nbsp;</td>
 									<td>Description</td>

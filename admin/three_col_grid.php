@@ -1,9 +1,14 @@
 <?php
-include_once("../DatabaseConnection.php");
-db_connect();
+if(isset($_REQUEST['action'])){
+	include_once("include/DatabaseConnection.php");
+}
+else{
+	include_once("../DatabaseConnection.php");
+}
 
+db_connect();
 $WhereCont=(isset($WhereCont) && !empty($WhereCont) ? trim($WhereCont) : '');
-echo "where con",$all_Sql;
+//echo "where con",$all_Sql;
 	$sqltot=$all_Sql.$WhereCont;
 	$tot=mysql_query($sqltot);
 	$rtot=@mysql_num_rows($tot);
@@ -58,13 +63,13 @@ echo "where con",$all_Sql;
                         <table width="100%" border="0" cellspacing="0" cellpadding="0" >
                           <tr>
                                 <td width="5%"  align="center" valign="top"><?php echo $colHead[0] ?></td>
-                                <td width="30%" align="center" valign="top"><?php echo $colHead[1] ?></td>
-                                <td width="22%" align="center" valign="top"><?php echo $colHead[2] ?></td>
+                                <td width="0%" align="center" valign="top"><?php echo $colHead[1] ?></td>
+                                <td width="40%" align="center" valign="top"><?php echo $colHead[2] ?></td>
                                 <!-- <td width="20%" align="center" valign="top"><?php echo $colHead[3] ?></td> -->
                                 <?php if(isset($Verified) && !empty($Verified)) if($Verified=='A'){
 								$colspan=6;
 								?>
-                                <td align="center" valign="top" width="20%"><?php echo $colHead[4] ?></td>
+                                <td align="center" valign="top" width="23%"><?php echo $colHead[4] ?></td>
                                 <?php } else {
 								$colspan=5;
 								?>
@@ -148,17 +153,18 @@ echo "where con",$all_Sql;
 						</td>
 						<td width="25%" align="center" class="gridtxt1">
 						<?php 
-							if($CheckModulePrevilage[3]==1)
+							if($CheckModulePrevilage[3]==1 && $_REQUEST['ModuleId']!=29)
 							{
 							echo "<span onclick=\"return OnclickEdit('$id','$startdata'); \" style=\"cursor:pointer\">Edit</span> &nbsp;/&nbsp;";
 							} ?>
 							<?php
-							if($CheckModulePrevilage[4]==1)
+							
+							if($CheckModulePrevilage[4]==1 && $_REQUEST['ModuleId']!=29)
 							{
 							echo "<span onclick=\"return OnClickDelete('$id','$startdata')\"  style=\"text-decoration:underline;cursor:pointer\">Delete</span> &nbsp;/&nbsp;";
 							} ?>
 							<?php
-							if($CheckModulePrevilage[1]==1)
+							if($CheckModulePrevilage[1]==1 )
 							{ 
 							echo "<span onclick=\"return OnclickView('$id','$startdata',this); \" style=\"cursor:pointer\" >View</span>";
 							} ?>
